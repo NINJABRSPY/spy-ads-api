@@ -1,0 +1,49 @@
+{
+  "scrape_date": "2026-03-22T18:58:12.957469",
+  "total_collected": 5027,
+  "unique_ads": 4957,
+  "sources": {
+    "bigspy": 5027,
+    "adyntel_meta": 0,
+    "adyntel_google": 0,
+    "adyntel_linkedin": 0,
+    "adyntel_tiktok": 0
+  },
+  "keywords_searched": [
+    "dropshipping",
+    "skincare",
+    "fitness",
+    "ecommerce",
+    "marketing digital",
+    "curso online",
+    "suplementos",
+    "moda feminina",
+    "pet shop",
+    "infoproduto"
+  ],
+  "competitors_analyzed": [
+    "shopify.com",
+    "hotmart.com",
+    "kiwify.com.br"
+  ],
+  "by_source": {
+    "bigspy": 4957
+  },
+  "by_platform": {
+    "facebook": 1771,
+    "instagram": 1769,
+    "tiktok": 1417
+  },
+  "by_keyword": {
+    "dropshipping": 537,
+    "skincare": 537,
+    "fitness": 535,
+    "ecommerce": 529,
+    "marketing digital": 517,
+    "curso online": 494,
+    "suplementos": 449,
+    "moda feminina": 471,
+    "pet shop": 537,
+    "infoproduto": 351
+  }
+}

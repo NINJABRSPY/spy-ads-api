@@ -119,14 +119,14 @@ def count_ads(keyword, platform="facebook", days_back=30):
 
 def flatten_ad(ad):
     """Converte um anuncio em dicionario plano para CSV"""
-    # Extrair primeira imagem
+    # Extrair imagem e video
     image_url = ""
     video_url = ""
     if ad.get("resource_urls"):
         for res in ad["resource_urls"]:
-            if res.get("type") == 2 and not image_url:
+            if res.get("image_url") and not image_url:
                 image_url = res.get("image_url", "")
-            if res.get("type") == 1 and not video_url:
+            if res.get("video_url") and not video_url:
                 video_url = res.get("video_url", "")
 
     return {

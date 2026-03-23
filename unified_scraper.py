@@ -64,9 +64,11 @@ def normalize_bigspy_ad(ad, keyword):
     image_url = ""
     video_url = ""
     for res in (ad.get("resource_urls") or []):
-        if res.get("type") == 2 and not image_url:
+        # Pegar imagem
+        if res.get("image_url") and not image_url:
             image_url = res.get("image_url", "")
-        if res.get("type") == 1 and not video_url:
+        # Pegar video (pode estar em qualquer type)
+        if res.get("video_url") and not video_url:
             video_url = res.get("video_url", "")
 
     return {

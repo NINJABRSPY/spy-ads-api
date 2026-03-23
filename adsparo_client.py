@@ -60,31 +60,58 @@ def normalize_adsparo_ad(ad, keyword):
     # Se nenhuma outra, e Facebook (padrao do AdsParo)
     platform = "facebook"
 
+    # Calcular dias rodando
+    days_running = 0
+    try:
+        from datetime import datetime as dt
+        d1 = dt.strptime(ad.get("date_found", "")[:10], "%Y-%m-%d")
+        d2 = dt.strptime(ad.get("date_updated", "")[:10], "%Y-%m-%d")
+        days_running = (d2 - d1).days
+    except:
+        pass
+
+    # Contar plataformas onde roda
+    also_on = []
+    if ad.get("a_tiktok"): also_on.append("tiktok")
+    if ad.get("a_pinterest"): also_on.append("pinterest")
+    if ad.get("a_twitter"): also_on.append("twitter")
+    if ad.get("a_snapchat"): also_on.append("snapchat")
+    if ad.get("a_google_conversion"): also_on.append("google")
+
     return {
         "ad_id": str(ad.get("id", "")),
         "source": "adsparo",
         "platform": platform,
         "advertiser": ad.get("p_title", ""),
         "advertiser_username": ad.get("p_username", ""),
+        "advertiser_image": ad.get("p_img", ""),
         "title": ad.get("p_title", ""),
-        "body": (ad.get("description", "") or "")[:500],
+        "body": (ad.get("description", "") or "")[:800],
         "cta": "",
         "landing_page": ad.get("cta_link", ""),
         "image_url": ad.get("thumbnail", ""),
         "video_url": ad.get("video_link", ""),
-        "advertiser_image": ad.get("p_img", ""),
         "first_seen": ad.get("date_found", ""),
         "last_seen": ad.get("date_updated", ""),
         "is_active": True,
+        # Engajamento
         "likes": 0,
         "comments": 0,
         "shares": 0,
-        "total_ads": ad.get("totalads", 0),
+        "impressions": 0,
+        # Benchmarking
+        "days_running": days_running,
+        "heat": 0,
+        "ad_type": "video" if ad.get("video_link") else "image",
+        "video_duration": 0,
+        "total_ads_from_advertiser": int(ad.get("totalads", 0) or 0),
+        "max_ads_from_advertiser": int(ad.get("max_totalads", 0) or 0),
         "country": ad.get("country", ""),
         "all_countries": ad.get("all_countries", ""),
-        "also_on_tiktok": ad.get("a_tiktok", False),
-        "also_on_pinterest": ad.get("a_pinterest", False),
-        "also_on_twitter": ad.get("a_twitter", False),
+        "channels": ", ".join(["facebook"] + also_on),
+        "also_on": ", ".join(also_on) if also_on else "",
+        "has_store": bool(ad.get("cta_link")),
+        "total_engagement": 0,
         "search_keyword": keyword,
         "collected_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
     }

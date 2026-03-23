@@ -72,13 +72,18 @@ def normalize_bigspy_ad(ad, keyword):
         if res.get("video_url") and not video_url:
             video_url = res.get("video_url", "")
 
+    # Canais onde o ad aparece
+    channels = ad.get("fb_merge_channel", [])
+    if isinstance(channels, list):
+        channels = ", ".join(channels)
+
     return {
         "ad_id": ad.get("ad_key", ""),
         "source": "bigspy",
         "platform": ad.get("platform", ""),
         "advertiser": ad.get("page_name", ad.get("advertiser_name", "")),
         "title": ad.get("title", ""),
-        "body": (ad.get("body", "") or ad.get("message", "") or "")[:500],
+        "body": (ad.get("body", "") or ad.get("message", "") or "")[:800],
         "cta": ad.get("call_to_action", ""),
         "landing_page": "",
         "image_url": image_url or ad.get("preview_img_url", ""),
@@ -86,12 +91,19 @@ def normalize_bigspy_ad(ad, keyword):
         "first_seen": datetime.fromtimestamp(ad["first_seen"]).strftime("%Y-%m-%d") if ad.get("first_seen") else "",
         "last_seen": datetime.fromtimestamp(ad["last_seen"]).strftime("%Y-%m-%d") if ad.get("last_seen") else "",
         "is_active": True,
-        "likes": ad.get("like_count", 0),
-        "comments": ad.get("comment_count", 0),
-        "shares": ad.get("share_count", 0),
-        "days_running": ad.get("days_count", 0),
-        "impressions": ad.get("impression", 0),
-        "heat": ad.get("heat", 0),
+        # Engajamento
+        "likes": int(ad.get("like_count", 0) or 0),
+        "comments": int(ad.get("comment_count", 0) or 0),
+        "shares": int(ad.get("share_count", 0) or 0),
+        "impressions": int(ad.get("impression", 0) or 0),
+        # Benchmarking
+        "days_running": int(ad.get("days_count", 0) or 0),
+        "heat": int(ad.get("heat", 0) or 0),
+        "ad_type": "video" if video_url else "image",
+        "video_duration": int(ad.get("video_duration", 0) or 0),
+        "channels": channels,
+        "has_store": bool(ad.get("has_store_url", False)),
+        "total_engagement": int(ad.get("like_count", 0) or 0) + int(ad.get("comment_count", 0) or 0) + int(ad.get("share_count", 0) or 0),
         "search_keyword": keyword,
         "collected_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
     }

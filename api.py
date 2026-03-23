@@ -194,6 +194,114 @@ def search_ads(q: str = Query(..., description="Termo de busca")):
                q_lower in (a.get("cta", "") or "").lower()]
     return {"data": results, "total": len(results), "query": q}
 
+@app.get("/api/top-advertisers")
+def top_advertisers(
+    platform: str = Query(None),
+    keyword: str = Query(None),
+    limit: int = Query(20, ge=1, le=100),
+):
+    """Top anunciantes por volume de ads"""
+    ads = load_latest_data()
+    if platform:
+        ads = [a for a in ads if a.get("platform") == platform]
+    if keyword:
+        ads = [a for a in ads if keyword.lower() in (a.get("search_keyword", "") or "").lower()]
+
+    # Agrupar por anunciante
+    advertisers = {}
+    for ad in ads:
+        name = ad.get("advertiser", "Desconhecido")
+        if name not in advertisers:
+            advertisers[name] = {
+                "advertiser": name,
+                "total_ads": 0,
+                "platforms": set(),
+                "total_impressions": 0,
+                "total_engagement": 0,
+                "avg_days_running": 0,
+                "days_list": [],
+                "has_video": False,
+                "keywords": set(),
+                "countries": set(),
+            }
+        a = advertisers[name]
+        a["total_ads"] += 1
+        a["platforms"].add(ad.get("platform", ""))
+        a["total_impressions"] += int(ad.get("impressions", 0) or 0)
+        a["total_engagement"] += int(ad.get("total_engagement", 0) or 0)
+        days = int(ad.get("days_running", 0) or 0)
+        if days > 0:
+            a["days_list"].append(days)
+        if ad.get("video_url"):
+            a["has_video"] = True
+        if ad.get("search_keyword"):
+            a["keywords"].add(ad["search_keyword"])
+        if ad.get("country"):
+            a["countries"].add(ad["country"])
+
+    # Calcular medias e converter sets
+    result = []
+    for a in advertisers.values():
+        a["platforms"] = list(a["platforms"])
+        a["keywords"] = list(a["keywords"])
+        a["countries"] = list(a["countries"])
+        a["avg_days_running"] = round(sum(a["days_list"]) / len(a["days_list"]), 1) if a["days_list"] else 0
+        del a["days_list"]
+        result.append(a)
+
+    result.sort(key=lambda x: x["total_ads"], reverse=True)
+    return {"data": result[:limit]}
+
+
+@app.get("/api/benchmark")
+def benchmark(
+    keyword: str = Query(..., description="Keyword para analisar"),
+):
+    """Benchmarking completo de uma keyword: metricas, top ads, formatos, CTAs"""
+    ads = load_latest_data()
+    filtered = [a for a in ads if keyword.lower() in (a.get("search_keyword", "") or "").lower()]
+
+    if not filtered:
+        return {"error": "Nenhum ad encontrado para essa keyword"}
+
+    # Metricas gerais
+    total = len(filtered)
+    with_video = len([a for a in filtered if a.get("video_url")])
+    with_image = total - with_video
+    platforms = {}
+    ctas = {}
+    for ad in filtered:
+        p = ad.get("platform", "unknown")
+        platforms[p] = platforms.get(p, 0) + 1
+        cta = ad.get("cta", "") or "Sem CTA"
+        ctas[cta] = ctas.get(cta, 0) + 1
+
+    # Top ads por engajamento
+    top_engagement = sorted(filtered,
+        key=lambda x: int(x.get("total_engagement", 0) or 0) + int(x.get("impressions", 0) or 0),
+        reverse=True)[:10]
+
+    # Top ads por duracao
+    top_duration = sorted(filtered,
+        key=lambda x: int(x.get("days_running", 0) or 0),
+        reverse=True)[:10]
+
+    # Anunciantes unicos
+    unique_advertisers = list(set(a.get("advertiser", "") for a in filtered if a.get("advertiser")))
+
+    return {
+        "keyword": keyword,
+        "total_ads": total,
+        "unique_advertisers": len(unique_advertisers),
+        "format_split": {"video": with_video, "image": with_image},
+        "by_platform": dict(sorted(platforms.items(), key=lambda x: x[1], reverse=True)),
+        "top_ctas": dict(sorted(ctas.items(), key=lambda x: x[1], reverse=True)[:10]),
+        "top_by_engagement": top_engagement,
+        "top_by_duration": top_duration,
+        "advertisers": unique_advertisers[:30],
+    }
+
+
 @app.get("/api/keywords")
 def get_keywords():
     """Dados de keywords pagas vs organicas por dominio"""

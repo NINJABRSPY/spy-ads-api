@@ -75,6 +75,11 @@ def load_latest_summary():
 def root():
     return {"message": "Spy Ads API", "docs": "/docs"}
 
+@app.get("/health")
+def health():
+    """Health check - mantem a API acordada no Render"""
+    return {"status": "ok"}
+
 @app.get("/api/ads")
 def list_ads(
     platform: str = Query(None, description="facebook, instagram, tiktok, google, linkedin"),

@@ -1,6 +1,6 @@
 """
 Unified Spy Ads Scraper
-BigSpy + Adyntel combinados em um unico sistema.
+BigSpy + Adyntel + AdsParo combinados em um unico sistema.
 Coleta, normaliza, deduplica e salva tudo junto.
 """
 
@@ -21,6 +21,7 @@ from adyntel_client import (
     normalize_meta_keyword_ads, normalize_meta_domain_ads,
     normalize_google_ads, normalize_linkedin_ads, normalize_tiktok_ads,
 )
+from adsparo_client import search_ads as adsparo_search, normalize_adsparo_ad
 
 # ============================================================
 # BIGSPY CLIENT
@@ -112,7 +113,7 @@ def run():
 
     all_ads = []
     keywords_data = []
-    stats = {"bigspy": 0, "adyntel_meta": 0, "adyntel_google": 0,
+    stats = {"bigspy": 0, "adsparo": 0, "adyntel_meta": 0, "adyntel_google": 0,
              "adyntel_linkedin": 0, "adyntel_tiktok": 0}
 
     # ========================================================
@@ -140,6 +141,19 @@ def run():
                 if len(ads) < 60:
                     break
                 time.sleep(BIGSPY_DELAY)
+
+    # ========================================================
+    # FASE 1.5: AdsParo - Busca por keyword
+    # ========================================================
+    print("\n" + "=" * 70)
+    print("  FASE 1.5: AdsParo")
+    print("=" * 70)
+
+    for keyword in KEYWORDS:
+        ads = adsparo_search(keyword)
+        for ad in ads:
+            all_ads.append(normalize_adsparo_ad(ad, keyword))
+            stats["adsparo"] += 1
 
     # ========================================================
     # FASE 2: Adyntel - Busca por keyword (Meta + TikTok)

@@ -1,0 +1,78 @@
+{
+  "scrape_date": "2026-03-23T20:08:24.334810",
+  "total_collected": 13812,
+  "unique_ads": 13404,
+  "sources": {
+    "bigspy": 13652,
+    "adsparo": 0,
+    "adyntel_meta": 30,
+    "adyntel_google": 83,
+    "adyntel_linkedin": 47,
+    "adyntel_tiktok": 0
+  },
+  "keywords_searched": [
+    "dropshipping",
+    "skincare",
+    "fitness",
+    "ecommerce",
+    "marketing digital",
+    "curso online",
+    "suplementos",
+    "moda feminina",
+    "pet shop",
+    "infoproduto",
+    "afiliado",
+    "renda extra",
+    "trafego pago",
+    "loja virtual",
+    "cosmeticos",
+    "coaching",
+    "mentoria",
+    "investimentos",
+    "saude",
+    "emagrecimento"
+  ],
+  "competitors_analyzed": [
+    "shopify.com",
+    "hotmart.com",
+    "kiwify.com.br"
+  ],
+  "by_source": {
+    "bigspy": 13244,
+    "adyntel_meta": 30,
+    "adyntel_google": 83,
+    "adyntel_linkedin": 47
+  },
+  "by_platform": {
+    "facebook": 5181,
+    "instagram": 5584,
+    "tiktok": 2509,
+    "google": 83,
+    "linkedin": 47
+  },
+  "by_keyword": {
+    "dropshipping": 857,
+    "skincare": 897,
+    "fitness": 893,
+    "ecommerce": 846,
+    "marketing digital": 844,
+    "curso online": 717,
+    "suplementos": 683,
+    "moda feminina": 708,
+    "pet shop": 802,
+    "infoproduto": 593,
+    "afiliado": 447,
+    "renda extra": 556,
+    "trafego pago": 138,
+    "loja virtual": 583,
+    "cosmeticos": 594,
+    "coaching": 775,
+    "mentoria": 294,
+    "investimentos": 568,
+    "saude": 886,
+    "emagrecimento": 563,
+    "shopify.com": 94,
+    "hotmart.com": 63,
+    "kiwify.com.br": 3
+  }
+}

@@ -21,6 +21,7 @@ ADYNTEL_EMAIL = "felipe_capoart@hotmail.com"
 
 # Keywords para busca geral (BigSpy + Adyntel Meta/TikTok)
 KEYWORDS = [
+    # Originais
     "dropshipping",
     "skincare",
     "fitness",
@@ -31,6 +32,17 @@ KEYWORDS = [
     "moda feminina",
     "pet shop",
     "infoproduto",
+    # Novos
+    "afiliado",
+    "renda extra",
+    "trafego pago",
+    "loja virtual",
+    "cosmeticos",
+    "coaching",
+    "mentoria",
+    "investimentos",
+    "saude",
+    "emagrecimento",
 ]
 
 # Plataformas BigSpy
@@ -46,7 +58,7 @@ COMPETITOR_DOMAINS = [
 # ============================================================
 # LIMITES
 # ============================================================
-BIGSPY_MAX_PAGES = 3          # paginas por keyword/plataforma (60 ads/pag)
+BIGSPY_MAX_PAGES = 5          # paginas por keyword/plataforma (60 ads/pag)
 BIGSPY_DELAY = 3              # segundos entre requests
 ADYNTEL_DELAY = 2             # segundos entre requests
 OUTPUT_DIR = "resultados"

@@ -55,18 +55,21 @@ def load_latest_data():
     clean = []
     for ad in ads:
         title = ad.get("title", "") or ""
-        # Remover ads com templates nao resolvidos (ex: {{product.name}})
+        body = ad.get("body", "") or ""
+        image = ad.get("image_url", "") or ""
+        video = ad.get("video_url", "") or ""
+
+        # Pular ads com templates nao resolvidos e sem midia
+        if "{{" in title and not image and not video:
+            continue
+
+        # Limpar templates do titulo
         if "{{" in title:
             ad["title"] = ""
-        # Marcar qualidade
-        has_image = bool(ad.get("image_url") or ad.get("video_url"))
-        has_text = bool((ad.get("body") or "").strip())
-        ad["has_media"] = has_image
-        ad["has_content"] = has_text or bool(title and "{{" not in title)
+
+        ad["has_media"] = bool(image or video)
         clean.append(ad)
 
-    # Ordenar: ads com midia primeiro
-    clean.sort(key=lambda x: (x.get("has_media", False), x.get("has_content", False)), reverse=True)
     return clean
 
 def load_latest_keywords():

@@ -13,7 +13,7 @@ BIGSPY_DEVICE_ID = "bbe6b60cf45b3967acc419c461ddff0a"
 # ADYNTEL
 # ============================================================
 ADYNTEL_API_KEY = "hd-bec5d4a316758d4272-3"
-ADYNTEL_EMAIL = "karangasam1988@gmail.com"
+ADYNTEL_EMAIL = "felipe_capoart@hotmail.com"
 
 # ============================================================
 # BUSCAS - Edite aqui para adicionar/remover

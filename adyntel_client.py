@@ -100,6 +100,15 @@ def normalize_meta_keyword_ads(data, keyword):
     if not isinstance(results, list):
         return ads
 
+    # Achatar lista aninhada
+    flat = []
+    for item in results:
+        if isinstance(item, list):
+            flat.extend(item)
+        elif isinstance(item, dict):
+            flat.append(item)
+    results = flat
+
     for ad in results:
         snapshot = ad.get("snapshot", {})
         body_text = ""
@@ -138,6 +147,15 @@ def normalize_meta_domain_ads(data, domain):
     results = data.get("results", [])
     if not isinstance(results, list):
         return []
+
+    # Achatar lista aninhada: [[ad], [ad]] -> [ad, ad]
+    flat = []
+    for item in results:
+        if isinstance(item, list):
+            flat.extend(item)
+        elif isinstance(item, dict):
+            flat.append(item)
+    results = flat
 
     ads = []
     for ad in results:

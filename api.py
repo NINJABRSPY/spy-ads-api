@@ -44,12 +44,30 @@ app.add_middleware(
 # ============================================================
 
 def load_latest_data():
-    """Carrega o JSON mais recente da pasta resultados"""
+    """Carrega o JSON mais recente da pasta resultados, filtrando ads sem qualidade"""
     files = sorted(glob.glob(f"{OUTPUT_DIR}/unified_*.json"), reverse=True)
     if not files:
         return []
     with open(files[0], "r", encoding="utf-8") as f:
-        return json.load(f)
+        ads = json.load(f)
+
+    # Filtrar ads com dados incompletos/templates
+    clean = []
+    for ad in ads:
+        title = ad.get("title", "") or ""
+        # Remover ads com templates nao resolvidos (ex: {{product.name}})
+        if "{{" in title:
+            ad["title"] = ""
+        # Marcar qualidade
+        has_image = bool(ad.get("image_url") or ad.get("video_url"))
+        has_text = bool((ad.get("body") or "").strip())
+        ad["has_media"] = has_image
+        ad["has_content"] = has_text or bool(title and "{{" not in title)
+        clean.append(ad)
+
+    # Ordenar: ads com midia primeiro
+    clean.sort(key=lambda x: (x.get("has_media", False), x.get("has_content", False)), reverse=True)
+    return clean
 
 def load_latest_keywords():
     """Carrega keywords mais recentes"""

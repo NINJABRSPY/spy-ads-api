@@ -59,15 +59,15 @@ def load_latest_data():
         image = ad.get("image_url", "") or ""
         video = ad.get("video_url", "") or ""
 
-        # Pular ads com templates nao resolvidos e sem midia
-        if "{{" in title and not image and not video:
-            continue
-
         # Limpar templates do titulo
         if "{{" in title:
             ad["title"] = ""
 
-        ad["has_media"] = bool(image or video)
+        # Pular ads sem imagem nem video (nao tem valor visual)
+        if not image and not video:
+            continue
+
+        ad["has_media"] = True
         clean.append(ad)
 
     return clean

@@ -199,6 +199,19 @@ def normalize_google_ads(data, domain):
 
     ads = []
     for ad in results:
+        # Extrair imagem dos variants
+        image_url = ""
+        variants = ad.get("variants", [])
+        if variants and isinstance(variants, list):
+            for v in variants:
+                content = v.get("content", "")
+                if "src=" in content:
+                    import re
+                    match = re.search(r'src="([^"]+)"', content)
+                    if match:
+                        image_url = match.group(1)
+                        break
+
         ads.append({
             "ad_id": str(ad.get("creative_id", "")),
             "source": "adyntel_google",
@@ -208,7 +221,7 @@ def normalize_google_ads(data, domain):
             "body": "",
             "cta": "",
             "landing_page": ad.get("original_url", ""),
-            "image_url": "",
+            "image_url": image_url,
             "video_url": "",
             "first_seen": ad.get("start", ""),
             "last_seen": ad.get("last_seen", ""),
@@ -234,6 +247,19 @@ def normalize_linkedin_ads(data, domain):
         headline = ad.get("headline", {})
         commentary = ad.get("commentary", {})
 
+        # Extrair imagem do LinkedIn
+        image_url = ""
+        if ad.get("image") and isinstance(ad["image"], dict):
+            image_url = ad["image"].get("url", "")
+        if not image_url and ad.get("carousel") and isinstance(ad["carousel"], list):
+            for card in ad["carousel"]:
+                if isinstance(card, dict) and card.get("url"):
+                    image_url = card["url"]
+                    break
+        # Fallback: logo do advertiser
+        if not image_url and isinstance(advertiser, dict):
+            image_url = advertiser.get("logo_url", "")
+
         ads.append({
             "ad_id": str(ad.get("ad_id", "")),
             "source": "adyntel_linkedin",
@@ -243,7 +269,7 @@ def normalize_linkedin_ads(data, domain):
             "body": (commentary.get("text", "") if isinstance(commentary, dict) else "")[:500],
             "cta": "",
             "landing_page": ad.get("view_details_link", ""),
-            "image_url": "",
+            "image_url": image_url,
             "video_url": "",
             "first_seen": "",
             "last_seen": "",

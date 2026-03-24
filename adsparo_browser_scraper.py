@@ -161,13 +161,32 @@ def main():
                 print(f"{len(ads)} ads (HTTP {result.get('status', '?')})")
 
                 for ad in ads:
+                    # Plataformas cruzadas
+                    also_on = []
+                    if ad.get("a_tiktok"): also_on.append("tiktok")
+                    if ad.get("a_pinterest"): also_on.append("pinterest")
+                    if ad.get("a_twitter"): also_on.append("twitter")
+                    if ad.get("a_snapchat"): also_on.append("snapchat")
+
+                    # Dias rodando
+                    days = 0
+                    try:
+                        from datetime import datetime as dt
+                        d1 = dt.strptime(str(ad.get("date_found",""))[:10], "%Y-%m-%d")
+                        d2 = dt.strptime(str(ad.get("date_updated",""))[:10], "%Y-%m-%d")
+                        days = (d2-d1).days
+                    except: pass
+
                     all_ads.append({
                         "ad_id": str(ad.get("id", "")),
                         "source": "adsparo",
                         "platform": "facebook",
                         "advertiser": ad.get("p_title", ""),
+                        "advertiser_username": ad.get("p_username", ""),
+                        "advertiser_image": ad.get("p_img", ""),
+                        "facebook_page_id": str(ad.get("p_page_id", "")),
                         "title": ad.get("p_title", ""),
-                        "body": (ad.get("description", "") or "")[:500],
+                        "body": (ad.get("description", "") or "")[:800],
                         "cta": "",
                         "landing_page": ad.get("cta_link", ""),
                         "image_url": ad.get("thumbnail", ""),
@@ -175,11 +194,26 @@ def main():
                         "first_seen": ad.get("date_found", ""),
                         "last_seen": ad.get("date_updated", ""),
                         "is_active": True,
-                        "likes": 0, "comments": 0, "shares": 0,
-                        "total_ads": ad.get("totalads", 0),
+                        "likes": 0, "comments": 0, "shares": 0, "impressions": 0,
+                        "days_running": days,
+                        "total_ads_from_advertiser": int(ad.get("totalads", 0) or 0),
+                        "max_ads_from_advertiser": int(ad.get("max_totalads", 0) or 0),
                         "country": ad.get("country", ""),
                         "all_countries": ad.get("all_countries", ""),
-                        "also_on_tiktok": ad.get("a_tiktok", False),
+                        "ad_type": "video" if ad.get("video_link") else "image",
+                        "channels": ", ".join(["facebook"] + also_on),
+                        "also_on_tiktok": bool(ad.get("a_tiktok", False)),
+                        "also_on_pinterest": bool(ad.get("a_pinterest", False)),
+                        "also_on_twitter": bool(ad.get("a_twitter", False)),
+                        "also_on_snapchat": bool(ad.get("a_snapchat", False)),
+                        "uses_google_conversion": bool(ad.get("a_google_conversion", False)),
+                        "also_on": ", ".join(also_on) if also_on else "",
+                        "page_banned": bool(ad.get("p_banned", False)),
+                        "max_country": ad.get("max_country", ""),
+                        "peak_date": ad.get("max_lastupdate", ""),
+                        "has_media": True,
+                        "has_store": bool(ad.get("cta_link")),
+                        "heat": 0, "video_duration": 0, "total_engagement": 0,
                         "search_keyword": kw,
                         "collected_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
                     })

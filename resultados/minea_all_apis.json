@@ -1,0 +1,1122 @@
+[
+  {
+    "url": "https://app.minea.com/rpc/meta-ads-graphql/searchAds",
+    "size": 34589,
+    "data": {
+      "json": {
+        "items": [
+          {
+            "id": "359b5d8d-2c8e-4303-9e01-1e7424d4b5f0",
+            "ad": {
+              "start_date": "2025-06-26T07:00:00+00:00",
+              "end_date": "2025-11-01T07:00:00+00:00",
+              "duration": 128,
+              "is_active": false,
+              "link": "https://www.facebook.com/ads/library/?country=ALL&id=733622279026236",
+              "low_impression_count": false,
+              "media_type": "image",
+              "is_eu": true
+            },
+            "ad_cards": [
+              {
+                "title": "Coghlan's - Berenbel met klittenbandsluiting",
+                "description": "Stain remover - Brauzz Say goodbye to stubborn stains like blood, dirt, or red wine with the Brauzz 100% natural stain remover - your sustainable solution for stain management on the go and on vacation!",
+                "ad_copy": "Camp smart, Live stylish! Webshop & Fysieke winkel te Beerse. Géén dropshipping!",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/e383893118ed2df598b578ccfee1658573a3290ae3cade293470d281f9e433db.webp",
+                "video_url": "",
+                "link_url": "https://campingcocooning.com/products/coghlans-berenbel-met-klittenbandsluiting",
+                "cta_text": "Shop Now"
+              },
+              {
+                "title": "Stain Remover - Brauzz",
+                "description": "Stain remover - Brauzz Say goodbye to stubborn stains like blood, dirt, or red wine with the Brauzz 100% natural stain remover - your sustainable solution for stain management on the go and on vacation!",
+                "ad_copy": "Camp smart, Live stylish! Webshop & Fysieke winkel te Beerse. Géén dropshipping!",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/31ad2048c7a8ecfdd405f3a950475bd1cdce7515e5abcbc9b91bb1b0f3f2d7e2.webp",
+                "video_url": "",
+                "link_url": "https://campingcocooning.com/en/products/brauzz-vlekverwijderaar",
+                "cta_text": "Shop Now"
+              },
+              {
+                "title": "Navullingen allesreiniger - Brauzz",
+                "description": "Stain remover - Brauzz Say goodbye to stubborn stains like blood, dirt, or red wine with the Brauzz 100% natural stain remover - your sustainable solution for stain management on the go and on vacation!",
+                "ad_copy": "Camp smart, Live stylish! Webshop & Fysieke winkel te Beerse. Géén dropshipping!",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/463cd4e15905fc3cf92a7ffa9675c34cf9a5f798ece62d34d5f0b7c0dec47e3d.webp",
+                "video_url": "",
+                "link_url": "https://campingcocooning.com/products/brauzz-navullingen-allesreiniger",
+                "cta_text": "Shop Now"
+              },
+              {
+                "title": "Coghlan's - Set karabijnhaken - 5 Stuks",
+                "description": "Stain remover - Brauzz Say goodbye to stubborn stains like blood, dirt, or red wine with the Brauzz 100% natural stain remover - your sustainable solution for stain management on the go and on vacation!",
+                "ad_copy": "Camp smart, Live stylish! Webshop & Fysieke winkel te Beerse. Géén dropshipping!",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/c07351c67a4f623b89dd3e44b7340c75334701b433ab93f04a0243fd481929c1.webp",
+                "video_url": "",
+                "link_url": "https://campingcocooning.com/products/coghlans-set-karabijnhaken-5-stuks",
+                "cta_text": "Shop Now"
+              },
+              {
+                "title": "Coghlan's - Verende Tafelkleedklemmen, 6 stuks",
+                "description": "Stain remover - Brauzz Say goodbye to stubborn stains like blood, dirt, or red wine with the Brauzz 100% natural stain remover - your sustainable solution for stain management on the go and on vacation!",
+                "ad_copy": "Camp smart, Live stylish! Webshop & Fysieke winkel te Beerse. Géén dropshipping!",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/243522d65b5921fcc7c0363e2d72212b2760c5a2e68f79ed06b3b3da1d7c6eda.webp",
+                "video_url": "",
+                "link_url": "https://campingcocooning.com/products/coghlans-verende-tafelkleedklemmen-6-stuks",
+                "cta_text": "Shop Now"
+              },
+              {
+                "title": "Coghlan's - Elastische knijperloze waslijn, 1,8 meter",
+                "description": "Stain remover - Brauzz Say goodbye to stubborn stains like blood, dirt, or red wine with the Brauzz 100% natural stain remover - your sustainable solution for stain management on the go and on vacation!",
+                "ad_copy": "Camp smart, Live stylish! Webshop & Fysieke winkel te Beerse. Géén dropshipping!",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/f3eb71f94bbb93c8b4a45b15b920e5c256a43f7f19e11989e5433571c27ee2e7.webp",
+                "video_url": "",
+                "link_url": "https://campingcocooning.com/products/coghlans-elastische-knijperloze-waslijn-1-8-meter",
+                "cta_text": "Shop Now"
+              }
+            ],
+            "brand": {
+              "name": "Camper Cocooning",
+              "link": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=224020044125180",
+              "page_id": "224020044125180",
+              "logo_url": "https://d1h2rbttwpj2ub.cloudfront.net/e9eac7d1621348a0dbbc23c981ff6ca9868488ef829fbba3da4cb51e40bd1a19.webp",
+              "active_ads": 8,
+              "total_ads": 142,
+              "page_estimated_audience": 5710067,
+              "page_estimated_spend": 51390.603
+            },
+            "shop": {
+              "url": "https://campingcocooning.com",
+              "domain": "campingcocooning.com",
+              "created_at": "2023-10-15T13:56:04+02:00",
+              "country": "BE",
+              "products_listed": 1512,
+              "monthly_visits": [
+                {
+                  "visits": 5601,
+                  "date": "2025-12-01"
+                },
+                {
+                  "visits": 8490,
+                  "date": "2026-01-01"
+                },
+                {
+                  "visits": 6274,
+                  "date": "2026-02-01"
+                }
+              ],
+              "daily_revenue": 293.02,
+              "id": "bf3ec52e-ca78-45d8-a74e-4d787cd92bde",
+              "traffic_by_country": [
+                {
+                  "country": "BE",
+                  "percentage": 0.3046
+                },
+                {
+                  "country": "FR",
+                  "percentage": 0.2149
+                },
+                {
+                  "country": "NL",
+                  "percentage": 0.1945
+                },
+                {
+                  "country": "DE",
+                  "percentage": 0.17
+                },
+                {
+                  "country": "US",
+                  "percentage": 0.116
+                }
+              ]
+            },
+            "preview": {
+              "brand_logo": "https://d1h2rbttwpj2ub.cloudfront.net/e9eac7d1621348a0dbbc23c981ff6ca9868488ef829fbba3da4cb51e40bd1a19.webp",
+              "published_date": "2025-06-26T07:00:00.000Z",
+              "website_url": "https://campingcocooning.com/products/coghlans-berenbel-met-klittenbandsluiting"
+            }
+          },
+          {
+            "id": "028eb61c-57a2-45ed-8f41-09f00367dd84",
+            "ad": {
+              "start_date": "2025-06-21T07:00:00+00:00",
+              "end_date": "2025-06-21T07:00:00+00:00",
+              "duration": 0,
+              "is_active": false,
+              "link": "https://www.facebook.com/ads/library/?country=ALL&id=551489874561271",
+              "collation_count": 1,
+              "low_impression_count": true,
+              "media_type": "video",
+              "is_eu": true,
+              "reach": 1,
+              "spend": 0.009
+            },
+            "ad_cards": [
+              {
+                "title": "",
+                "description": "",
+                "ad_copy": "Of Couse TWCAko!  Simulan mo na ang sarili mong online negosyo for only ₱999! Walang monthly subscription. May lifetime business ka na!\nKami na ang bahala sa:\n✨ High Quality Products\n✨ Packing and Shipment\n✨ Marketing Materials\n✨ E-commerce Website\n✨ Facebook Marketing Training\n✨ Messenger Chatbot Automation Training\n✨ Facebook Ads Training\nMaging isa sa aming Marketing Partners, at magbenta ng aming WINNING PRODUCTS gamit ang COD at Dropshipping System. 🌟\nMay iba't ibang produkto na pwede mong ibenta:\n👜 Bags at Accessories\n⌚ Branded Watches\n☕ Men's Coffee\n🌿 Health and Wellness Products\n...at marami pang iba!\nHanda ka na bang simulan? I-message kami AGAD para malaman ang mas marami pa tungkol sa Online Store o Dropshipping Business na ito. 💬 Huwag palampasin ang napakagandang oportunidad na ito!\n#OnlineNegosyo #Entrepreneurship #DropshippingSuccess #SimulaNa #BusinessOpportunity #WinningProducts #COD #Ecommerce #FacebookAdsTraining #ShopFromHome #SarilingBoss #TagumpayAngHinihintay\nOrder here https://nituredepot.com",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/fb0b2248ad963e5882fa0764470fb883c3cab788678aa604cb75037a84ef59c4.webp",
+                "video_url": "https://d1h2rbttwpj2ub.cloudfront.net/6b84bef7437e27ddb2c44d55920126242dcf3f533dfa2152098d2fea81869fb1.mp4",
+                "link_url": "https://nituredepot.com/",
+                "cta_text": "Shop now"
+              }
+            ],
+            "brand": {
+              "name": "Gunter Derr Payton",
+              "link": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=116951158165281",
+              "page_id": "116951158165281",
+              "logo_url": "https://d1h2rbttwpj2ub.cloudfront.net/22fc105d7451b436426e1163c9176210e0cf0bddd2da8d89126bdbaa5a7d9f7e.webp",
+              "active_ads": null,
+              "total_ads": 203,
+              "page_estimated_audience": 5400,
+              "page_estimated_spend": 48.6
+            },
+            "shop": {
+              "url": "https://nituredepot.com",
+              "domain": "nituredepot.com",
+              "created_at": "2025-03-18T03:11:33-04:00",
+              "country": "US",
+              "products_listed": 5,
+              "monthly_visits": [
+                {
+                  "visits": 0,
+                  "date": "2025-11-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2025-12-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-01-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-02-01"
+                }
+              ],
+              "daily_revenue": 513.33,
+              "id": "66f897b6-e9f3-4aab-bef4-c8fbda3b0603",
+              "traffic_by_country": []
+            },
+            "preview": {
+              "brand_logo": "https://d1h2rbttwpj2ub.cloudfront.net/22fc105d7451b436426e1163c9176210e0cf0bddd2da8d89126bdbaa5a7d9f7e.webp",
+              "published_date": "2025-06-21T07:00:00.000Z",
+              "website_url": "https://nituredepot.com/"
+            }
+          },
+          {
+            "id": "4a58093b-5337-4b48-b518-58562bd3372a",
+            "ad": {
+              "start_date": "2025-06-20T07:00:00+00:00",
+              "end_date": "2025-06-29T07:00:00+00:00",
+              "duration": 9,
+              "is_active": false,
+              "link": "https://www.facebook.com/ads/library/?country=ALL&id=2281601115630673",
+              "collation_count": 1,
+              "low_impression_count": true,
+              "media_type": "image",
+              "is_eu": true,
+              "reach": 5,
+              "spend": 0.045
+            },
+            "ad_cards": [
+              {
+                "title": "",
+                "description": "",
+                "ad_copy": "Simulan mo na ang sarili mong online negosyo for only ₱999! Walang monthly subscription. May lifetime business ka na!\n\nKami na ang bahala sa:\n✨ High Quality Products\n✨ Packing and Shipment\n✨ Marketing Materials\n✨ E-commerce Website\n✨ Facebook Marketing Training\n✨ Messenger Chatbot Automation Training\n✨ Facebook Ads Training\nMaging isa sa aming Marketing Partners, at magbenta ng aming WINNING PRODUCTS gamit ang COD at Dropshipping System. 🌟\nMay iba't ibang produkto na pwede mong ibenta:\n👜 Bags at Accessories\n⌚ Branded Watches\n☕ Men's Coffee\n🌿 Health and Wellness Products\n...at marami pang iba!\n\nHanda ka na bang simulan? I-message kami AGAD para malaman ang mas marami pa tungkol sa Online Store o Dropshipping Business na ito. 💬 Huwag palampasin ang napakagandang oportunidad na ito!\n#OnlineNegosyo #Entrepreneurship #DropshippingSuccess #SimulaNa #BusinessOpportunity #WinningProducts #COD #Ecommerce #FacebookAdsTraining #ShopFromHome #SarilingBoss #TagumpayAngHinihintay\nOrder here https://nituredepot.com",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/97f6f8c48466bcd0093e0964807aa642eb51818b0922f7395f6cd36bef78f400.webp",
+                "video_url": "",
+                "link_url": "https://nituredepot.com/",
+                "cta_text": "Shop now"
+              }
+            ],
+            "brand": {
+              "name": "Pulliam Karl Liam",
+              "link": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=108498129018296",
+              "page_id": "108498129018296",
+              "logo_url": "https://d1h2rbttwpj2ub.cloudfront.net/b313ab971152d30961051364d8d2d6bdb2c1985e2db98b2588eb46ccdbc06cee.webp",
+              "active_ads": null,
+              "total_ads": 375,
+              "page_estimated_audience": 5164,
+              "page_estimated_spend": 46.476
+            },
+            "shop": {
+              "url": "https://nituredepot.com",
+              "domain": "nituredepot.com",
+              "created_at": "2025-03-18T03:11:33-04:00",
+              "country": "US",
+              "products_listed": 5,
+              "monthly_visits": [
+                {
+                  "visits": 0,
+                  "date": "2025-11-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2025-12-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-01-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-02-01"
+                }
+              ],
+              "daily_revenue": 513.33,
+              "id": "66f897b6-e9f3-4aab-bef4-c8fbda3b0603",
+              "traffic_by_country": []
+            },
+            "preview": {
+              "brand_logo": "https://d1h2rbttwpj2ub.cloudfront.net/b313ab971152d30961051364d8d2d6bdb2c1985e2db98b2588eb46ccdbc06cee.webp",
+              "published_date": "2025-06-20T07:00:00.000Z",
+              "website_url": "https://nituredepot.com/"
+            }
+          },
+          {
+            "id": "72052ac1-46b7-4d5c-8589-75f8b2a89d21",
+            "ad": {
+              "start_date": "2025-06-20T07:00:00+00:00",
+              "end_date": "2025-06-23T07:00:00+00:00",
+              "duration": 3,
+              "is_active": false,
+              "link": "https://www.facebook.com/ads/library/?country=ALL&id=754858980212962",
+              "collation_count": 2,
+              "low_impression_count": true,
+              "media_type": "video",
+              "is_eu": true,
+              "reach": 2,
+              "spend": 0.018
+            },
+            "ad_cards": [
+              {
+                "title": "",
+                "description": "",
+                "ad_copy": "🚀 SIMULAN ANG ONLINE BUSINESS MO FOR ONLY ₱999! NO HIDDEN FEES—LIFETIME OPPORTUNITY!\n\"Gusto mo kumita ng passive income? Walang inventory, no hassle packing/shipping? Ito na ang sagot!\"\n\n💡 Bakit DAPAT GRABIN ‘to?\n✔ Premium Products (Bags, Watches, Health & Wellness, etc.)—WINNING ITEMS na patok sa market!\n✔ We do ALL the work: Packing, Shipping, Website, Marketing Tools—ikaw, benta lang!\n✔ FREE Trainings: Facebook Ads, Chatbot Automation, Dropshipping Tricks—para sureball ang sales!\n✔ COD + Dropshipping System—walang lugi, walang stress!\n\n🔥 LIMITED SLOTS! Message us NOW para ma-explain sayo step-by-step!\n\n📩 PM \"BUSINESS\" TODAY para sa full details!\n#OnlineNegosyo #DropshippingPH #SideHustlePH\nOrder here https://nituredepot.com",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/3f53d193283587fa9e3b2005111880b8c0611496eb370bdc23cffb388bba95e2.webp",
+                "video_url": "https://d1h2rbttwpj2ub.cloudfront.net/cc9ff0e884b891ac2efd995a0a017d9e7dba5ec65763579bf2682b5525b68998.mp4",
+                "link_url": "https://nituredepot.com/",
+                "cta_text": "Shop now"
+              }
+            ],
+            "brand": {
+              "name": "Miller Sarah Carney",
+              "link": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=121110847746434",
+              "page_id": "121110847746434",
+              "logo_url": "https://d1h2rbttwpj2ub.cloudfront.net/0168282f28ea1fd3b5a84b8e8c1a078e3f413224ca2112523df834d81e3e1c2a.webp",
+              "active_ads": null,
+              "total_ads": 232,
+              "page_estimated_audience": 4030,
+              "page_estimated_spend": 36.27
+            },
+            "shop": {
+              "url": "https://nituredepot.com",
+              "domain": "nituredepot.com",
+              "created_at": "2025-03-18T03:11:33-04:00",
+              "country": "US",
+              "products_listed": 5,
+              "monthly_visits": [
+                {
+                  "visits": 0,
+                  "date": "2025-11-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2025-12-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-01-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-02-01"
+                }
+              ],
+              "daily_revenue": 513.33,
+              "id": "66f897b6-e9f3-4aab-bef4-c8fbda3b0603",
+              "traffic_by_country": []
+            },
+            "preview": {
+              "brand_logo": "https://d1h2rbttwpj2ub.cloudfront.net/0168282f28ea1fd3b5a84b8e8c1a078e3f413224ca2112523df834d81e3e1c2a.webp",
+              "published_date": "2025-06-20T07:00:00.000Z",
+              "website_url": "https://nituredepot.com/"
+            }
+          },
+          {
+            "id": "d2fb637e-5aed-4083-8467-576842e1e013",
+            "ad": {
+              "start_date": "2025-06-20T07:00:00+00:00",
+              "end_date": "2025-06-29T07:00:00+00:00",
+              "duration": 9,
+              "is_active": false,
+              "link": "https://www.facebook.com/ads/library/?country=ALL&id=723884783381585",
+              "low_impression_count": false,
+              "media_type": "image",
+              "is_eu": true,
+              "reach": 107,
+              "spend": 0.963
+            },
+            "ad_cards": [
+              {
+                "title": "",
+                "description": "",
+                "ad_copy": "Simulan mo na ang sarili mong online negosyo for only ₱999! Walang monthly subscription. May lifetime business ka na!\n\nKami na ang bahala sa:\n✨ High Quality Products\n✨ Packing and Shipment\n✨ Marketing Materials\n✨ E-commerce Website\n✨ Facebook Marketing Training\n✨ Messenger Chatbot Automation Training\n✨ Facebook Ads Training\nMaging isa sa aming Marketing Partners, at magbenta ng aming WINNING PRODUCTS gamit ang COD at Dropshipping System. 🌟\nMay iba't ibang produkto na pwede mong ibenta:\n 📦Perfumes \n 📦Electronics \n 📦Bags at Accessories\n 📦Branded Watches\n 📦Men's Coffee\n 📦Health and Wellness Products\n...at marami pang iba!\n\nHanda ka na bang simulan? I-message kami AGAD para malaman ang mas marami pa tungkol sa Online Store o Dropshipping Business na ito. 💬 Huwag palampasin ang napakagandang oportunidad na ito!\n#OnlineNegosyo #Entrepreneurship #DropshippingSuccess #SimulaNa #BusinessOpportunity #WinningProducts #COD #Ecommerce #FacebookAdsTraining #ShopFromHome #SarilingBoss #TagumpayAngHinihintay\nOrder here https://nituredepot.com",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/75aa6d59992a248b2dc17acff2f8598542693220b1eaf0c792c60bd75126e6b9.webp",
+                "video_url": "",
+                "link_url": "https://nituredepot.com/",
+                "cta_text": "Shop now"
+              }
+            ],
+            "brand": {
+              "name": "Kobe Rodriguez Juliana",
+              "link": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=122099396282007911",
+              "page_id": "122099396282007911",
+              "logo_url": "https://d1h2rbttwpj2ub.cloudfront.net/6c36559243e2ea9525601f35427cf8c43d9de3b9ae5adae246fec5359ac8d5de.webp",
+              "active_ads": null,
+              "total_ads": 201,
+              "page_estimated_audience": 3860,
+              "page_estimated_spend": 34.74
+            },
+            "shop": {
+              "url": "https://nituredepot.com",
+              "domain": "nituredepot.com",
+              "created_at": "2025-03-18T03:11:33-04:00",
+              "country": "US",
+              "products_listed": 5,
+              "monthly_visits": [
+                {
+                  "visits": 0,
+                  "date": "2025-11-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2025-12-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-01-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-02-01"
+                }
+              ],
+              "daily_revenue": 513.33,
+              "id": "66f897b6-e9f3-4aab-bef4-c8fbda3b0603",
+              "traffic_by_country": []
+            },
+            "preview": {
+              "brand_logo": "https://d1h2rbttwpj2ub.cloudfront.net/6c36559243e2ea9525601f35427cf8c43d9de3b9ae5adae246fec5359ac8d5de.webp",
+              "published_date": "2025-06-20T07:00:00.000Z",
+              "website_url": "https://nituredepot.com/"
+            }
+          },
+          {
+            "id": "f9e8be53-3b84-47d1-98ad-7bf2e56e7a68",
+            "ad": {
+              "start_date": "2025-05-07T07:00:00+00:00",
+              "end_date": "2025-05-14T07:00:00+00:00",
+              "duration": 7,
+              "is_active": false,
+              "link": "https://www.facebook.com/ads/library/?country=ALL&id=685294950859038",
+              "low_impression_count": false,
+              "media_type": "image",
+              "is_eu": true
+            },
+            "ad_cards": [
+              {
+                "title": "Betaal nu later met Klarna!",
+                "description": "Bestel met vertrouwen – al honderden tevreden klanten gingen je voor.",
+                "ad_copy": "Iedereen zoekt ze — dé zomersetjes die overal uitverkocht zijn.\nBij ons heb je ze gewoon morgen in huis.\n\n✔️ 100% origineel\n✔️ Vertrouwd door duizenden klanten\n✔️ Voor 16:00 besteld = morgen dragen\n\nGeen dropshipping, geen wachttijden. Echte voorraad, echte service.\n\nWacht niet tot ze weer weg zijn.",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/78637d700c2e3fbea3d71d761b6d0284d31f0846cea3a48cd8d1d6d514e83fd9.webp",
+                "video_url": "",
+                "link_url": "https://bashcollect.nl/collections/essentials",
+                "cta_text": "Order now"
+              }
+            ],
+            "brand": {
+              "name": "Bashcollect",
+              "link": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=103429866000766",
+              "page_id": "103429866000766",
+              "logo_url": "https://d1h2rbttwpj2ub.cloudfront.net/78039091a3d9a19fe268003f2f899cc5a44562d14256333744e6d0aec6dafe2d.webp",
+              "active_ads": null,
+              "total_ads": 261,
+              "page_estimated_audience": 1456882,
+              "page_estimated_spend": 13111.938
+            },
+            "shop": {
+              "url": "https://bashcollect.nl",
+              "domain": "bashcollect.nl",
+              "created_at": "2024-10-21T09:13:41+02:00",
+              "country": "NL",
+              "products_listed": 81,
+              "monthly_visits": [
+                {
+                  "visits": 2033,
+                  "date": "2025-11-01"
+                },
+                {
+                  "visits": 2439,
+                  "date": "2025-12-01"
+                },
+                {
+                  "visits": 1985,
+                  "date": "2026-01-01"
+                },
+                {
+                  "visits": 2039,
+                  "date": "2026-02-01"
+                }
+              ],
+              "daily_revenue": 42.72,
+              "id": "7b64050d-d72f-4c89-9188-b3eaee463cd8",
+              "traffic_by_country": [
+                {
+                  "country": "NL",
+                  "percentage": 0.8708
+                },
+                {
+                  "country": "BE",
+                  "percentage": 0.1292
+                }
+              ]
+            },
+            "preview": {
+              "brand_logo": "https://d1h2rbttwpj2ub.cloudfront.net/78039091a3d9a19fe268003f2f899cc5a44562d14256333744e6d0aec6dafe2d.webp",
+              "published_date": "2025-05-07T07:00:00.000Z",
+              "website_url": "https://bashcollect.nl/collections/essentials"
+            }
+          },
+          {
+            "id": "11f12079-df0b-4b3d-a631-8b7b1c3d3abb",
+            "ad": {
+              "start_date": "2025-04-12T07:00:00+00:00",
+              "end_date": "2025-04-13T07:00:00+00:00",
+              "duration": 1,
+              "is_active": false,
+              "link": "https://www.facebook.com/ads/library/?country=ALL&id=1825910487950637",
+              "low_impression_count": false,
+              "media_type": "video",
+              "is_eu": true,
+              "reach": 202,
+              "spend": 1.818
+            },
+            "ad_cards": [
+              {
+                "title": "",
+                "description": "",
+                "ad_copy": "Start your very own online business for just ₱999! No monthly fees—this is a lifetime business opportunity!\n\nWe’ll handle everything for you: \n✨ Premium Quality Products \n✨ Packing and Shipping \n✨ Ready-to-Use Marketing Materials \n✨ Your Own E-commerce Website \n✨ Facebook Marketing Training \n✨ Messenger Chatbot Automation Training \n✨ Facebook Ads Training\n\nJoin us as a Marketing Partner and sell our WINNING PRODUCTS using our COD and Dropshipping System. 🌟\n\nChoose from a wide range of products to sell: \n👜 Bags & Accessories \n⌚ Branded Watches \n☕ Men's Coffee \n🌿 Health & Wellness Products ...and so much more!\n\nReady to get started? Message us NOW to learn more about this Online Store or Dropshipping Business. \n\n💬 Don’t miss out on this incredible opportunity!\n\n#OnlineBusiness #EntrepreneurMindset #DropshippingMadeEasy #StartNow #BusinessOpportunity #WinningProducts #CODSystem #EcommerceSuccess #FacebookAdsTraining #WorkFromHome #BeYourOwnBoss #SuccessAwaits\nOrder here https://nituredepot.com",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/38fe255e1a0bb28daf087e8f6081e6fb499eb591f25e57efeb5b12257ebded5b.webp",
+                "video_url": "https://d1h2rbttwpj2ub.cloudfront.net/c80f8ed06568ad1a5756b46c1f8f1b3114df7662c0522f98caacaf10c23bd27a.mp4",
+                "link_url": "https://nituredepot.com/",
+                "cta_text": "Shop now"
+              }
+            ],
+            "brand": {
+              "name": "Brock Detweiler Chrissy",
+              "link": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=117553334769383",
+              "page_id": "117553334769383",
+              "logo_url": "https://d1h2rbttwpj2ub.cloudfront.net/22e809dde6f45bbb6ca78bd589af0db7dd4ed25a9df228a526211d856e83b031.webp",
+              "active_ads": null,
+              "total_ads": 206,
+              "page_estimated_audience": 188,
+              "page_estimated_spend": 1.692
+            },
+            "shop": {
+              "url": "https://nituredepot.com",
+              "domain": "nituredepot.com",
+              "created_at": "2025-03-18T03:11:33-04:00",
+              "country": "US",
+              "products_listed": 5,
+              "monthly_visits": [
+                {
+                  "visits": 0,
+                  "date": "2025-11-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2025-12-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-01-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-02-01"
+                }
+              ],
+              "daily_revenue": 513.33,
+              "id": "66f897b6-e9f3-4aab-bef4-c8fbda3b0603",
+              "traffic_by_country": []
+            },
+            "preview": {
+              "brand_logo": "https://d1h2rbttwpj2ub.cloudfront.net/22e809dde6f45bbb6ca78bd589af0db7dd4ed25a9df228a526211d856e83b031.webp",
+              "published_date": "2025-04-12T07:00:00.000Z",
+              "website_url": "https://nituredepot.com/"
+            }
+          },
+          {
+            "id": "cdffdd3a-6f7c-4142-b7da-13ad4705e36c",
+            "ad": {
+              "start_date": "2025-04-12T07:00:00+00:00",
+              "end_date": "2025-04-13T07:00:00+00:00",
+              "duration": 1,
+              "is_active": false,
+              "link": "https://www.facebook.com/ads/library/?country=ALL&id=2133096057114832",
+              "low_impression_count": false,
+              "media_type": "video",
+              "is_eu": true,
+              "reach": 86,
+              "spend": 0.774
+            },
+            "ad_cards": [
+              {
+                "title": "",
+                "description": "",
+                "ad_copy": "Start your very own online business for just ₱999! No monthly fees—this is a lifetime business opportunity!\n\nWe’ll handle everything for you: \n✨ Premium Quality Products \n✨ Packing and Shipping \n✨ Ready-to-Use Marketing Materials \n✨ Your Own E-commerce Website \n✨ Facebook Marketing Training \n✨ Messenger Chatbot Automation Training \n✨ Facebook Ads Training\n\nJoin us as a Marketing Partner and sell our WINNING PRODUCTS using our COD and Dropshipping System. 🌟\n\nChoose from a wide range of products to sell: \n👜 Bags & Accessories \n⌚ Branded Watches \n☕ Men's Coffee \n🌿 Health & Wellness Products ...and so much more!\n\nReady to get started? Message us NOW to learn more about this Online Store or Dropshipping Business. \n\n💬 Don’t miss out on this incredible opportunity!\n\n#OnlineBusiness #EntrepreneurMindset #DropshippingMadeEasy #StartNow #BusinessOpportunity #WinningProducts #CODSystem #EcommerceSuccess #FacebookAdsTraining #WorkFromHome #BeYourOwnBoss #SuccessAwaits\nOrder here https://kunust.com",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/38fe255e1a0bb28daf087e8f6081e6fb499eb591f25e57efeb5b12257ebded5b.webp",
+                "video_url": "https://d1h2rbttwpj2ub.cloudfront.net/164191a601783c75312b66f2418bcd33d1b7d5294cc63a8fff7260302f7c0a70.mp4",
+                "link_url": "https://kunust.com/",
+                "cta_text": "Shop now"
+              }
+            ],
+            "brand": {
+              "name": "Brooke Miller Bentley",
+              "link": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=117374931455595",
+              "page_id": "117374931455595",
+              "logo_url": "https://d1h2rbttwpj2ub.cloudfront.net/22fc105d7451b436426e1163c9176210e0cf0bddd2da8d89126bdbaa5a7d9f7e.webp",
+              "active_ads": null,
+              "total_ads": 213,
+              "page_estimated_audience": 3,
+              "page_estimated_spend": 0.027
+            },
+            "shop": {
+              "url": "https://kunust.com",
+              "domain": "kunust.com",
+              "created_at": "",
+              "country": "US",
+              "products_listed": 0,
+              "monthly_visits": [
+                {
+                  "visits": 0,
+                  "date": "2025-11-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2025-12-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-01-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-02-01"
+                }
+              ],
+              "daily_revenue": 130.67,
+              "id": "7c6a98b9-28bb-4360-b0bf-4add598a941b",
+              "traffic_by_country": []
+            },
+            "preview": {
+              "brand_logo": "https://d1h2rbttwpj2ub.cloudfront.net/22fc105d7451b436426e1163c9176210e0cf0bddd2da8d89126bdbaa5a7d9f7e.webp",
+              "published_date": "2025-04-12T07:00:00.000Z",
+              "website_url": "https://kunust.com/"
+            }
+          },
+          {
+            "id": "2a324c1a-564b-434f-a2c1-cf6042ab6882",
+            "ad": {
+              "start_date": "2025-04-07T07:00:00+00:00",
+              "end_date": "2025-04-07T07:00:00+00:00",
+              "duration": 0,
+              "is_active": false,
+              "link": "https://www.facebook.com/ads/library/?country=ALL&id=657711913882041",
+              "collation_count": 1,
+              "low_impression_count": true,
+              "media_type": "video",
+              "is_eu": true,
+              "reach": 1,
+              "spend": 0.009
+            },
+            "ad_cards": [
+              {
+                "title": "",
+                "description": "",
+                "ad_copy": "🚀 SIMULAN ANG ONLINE BUSINESS MO FOR ONLY ₱999! NO HIDDEN FEES—LIFETIME OPPORTUNITY!\n\"Gusto mo kumita ng passive income? Walang inventory, no hassle packing/shipping? Ito na ang sagot!\"\n\n💡 Bakit DAPAT GRABIN ‘to?\n✔ Premium Products (Bags, Watches, Health & Wellness, etc.)—WINNING ITEMS na patok sa market!\n✔ We do ALL the work: Packing, Shipping, Website, Marketing Tools—ikaw, benta lang!\n✔ FREE Trainings: Facebook Ads, Chatbot Automation, Dropshipping Tricks—para sureball ang sales!\n✔ COD + Dropshipping System—walang lugi, walang stress!\n\n🔥 LIMITED SLOTS! Message us NOW para ma-explain sayo step-by-step!\n\n📩 PM \"BUSINESS\" TODAY para sa full details!\n#OnlineNegosyo #DropshippingPH #SideHustlePH\nOrder here https://nituredepot.com",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/3f53d193283587fa9e3b2005111880b8c0611496eb370bdc23cffb388bba95e2.webp",
+                "video_url": "https://d1h2rbttwpj2ub.cloudfront.net/0879729edc240a74c81578015cd591f1f6bd3c2add6a4ed136a39f361517d7b0.mp4",
+                "link_url": "https://nituredepot.com/",
+                "cta_text": "Shop now"
+              }
+            ],
+            "brand": {
+              "name": "Buczik Longueira Nichols",
+              "link": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=117144001479256",
+              "page_id": "117144001479256",
+              "logo_url": "https://d1h2rbttwpj2ub.cloudfront.net/22fc105d7451b436426e1163c9176210e0cf0bddd2da8d89126bdbaa5a7d9f7e.webp",
+              "active_ads": null,
+              "total_ads": 201,
+              "page_estimated_audience": 152,
+              "page_estimated_spend": 1.368
+            },
+            "shop": {
+              "url": "https://nituredepot.com",
+              "domain": "nituredepot.com",
+              "created_at": "2025-03-18T03:11:33-04:00",
+              "country": "US",
+              "products_listed": 5,
+              "monthly_visits": [
+                {
+                  "visits": 0,
+                  "date": "2025-11-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2025-12-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-01-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-02-01"
+                }
+              ],
+              "daily_revenue": 513.33,
+              "id": "66f897b6-e9f3-4aab-bef4-c8fbda3b0603",
+              "traffic_by_country": []
+            },
+            "preview": {
+              "brand_logo": "https://d1h2rbttwpj2ub.cloudfront.net/22fc105d7451b436426e1163c9176210e0cf0bddd2da8d89126bdbaa5a7d9f7e.webp",
+              "published_date": "2025-04-07T07:00:00.000Z",
+              "website_url": "https://nituredepot.com/"
+            }
+          },
+          {
+            "id": "b2216d74-6822-436f-a775-12f257fa5966",
+            "ad": {
+              "start_date": "2025-04-07T07:00:00+00:00",
+              "end_date": "2025-04-07T07:00:00+00:00",
+              "duration": 0,
+              "is_active": false,
+              "link": "https://www.facebook.com/ads/library/?country=ALL&id=1043201644332648",
+              "collation_count": 1,
+              "low_impression_count": true,
+              "media_type": "video",
+              "is_eu": true,
+              "reach": 1,
+              "spend": 0.009
+            },
+            "ad_cards": [
+              {
+                "title": "",
+                "description": "",
+                "ad_copy": "Of Couse TWCAko!  Simulan mo na ang sarili mong online negosyo for only ₱999! Walang monthly subscription. May lifetime business ka na!\nKami na ang bahala sa:\n✨ High Quality Products\n✨ Packing and Shipment\n✨ Marketing Materials\n✨ E-commerce Website\n✨ Facebook Marketing Training\n✨ Messenger Chatbot Automation Training\n✨ Facebook Ads Training\nMaging isa sa aming Marketing Partners, at magbenta ng aming WINNING PRODUCTS gamit ang COD at Dropshipping System. 🌟\nMay iba't ibang produkto na pwede mong ibenta:\n👜 Bags at Accessories\n⌚ Branded Watches\n☕ Men's Coffee\n🌿 Health and Wellness Products\n...at marami pang iba!\nHanda ka na bang simulan? I-message kami AGAD para malaman ang mas marami pa tungkol sa Online Store o Dropshipping Business na ito. 💬 Huwag palampasin ang napakagandang oportunidad na ito!\n#OnlineNegosyo #Entrepreneurship #DropshippingSuccess #SimulaNa #BusinessOpportunity #WinningProducts #COD #Ecommerce #FacebookAdsTraining #ShopFromHome #SarilingBoss #TagumpayAngHinihintay\nOrder here https://kunust.com",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/fb0b2248ad963e5882fa0764470fb883c3cab788678aa604cb75037a84ef59c4.webp",
+                "video_url": "https://d1h2rbttwpj2ub.cloudfront.net/7bb7bd6c4b42e1dd66a37d3423a090301f29d3145f5a39d7e4b33f03d8f6e6fc.mp4",
+                "link_url": "https://kunust.com/",
+                "cta_text": "Shop now"
+              }
+            ],
+            "brand": {
+              "name": "Tyler Toy Sansone",
+              "link": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=109705748896607",
+              "page_id": "109705748896607",
+              "logo_url": "https://d1h2rbttwpj2ub.cloudfront.net/26904bcbbef1fb2685c1c3ffa5218336a1bb9049f56fe16f546708f09c156270.webp",
+              "active_ads": null,
+              "total_ads": 187,
+              "page_estimated_audience": 868,
+              "page_estimated_spend": 7.812
+            },
+            "shop": {
+              "url": "https://kunust.com",
+              "domain": "kunust.com",
+              "created_at": "",
+              "country": "US",
+              "products_listed": 0,
+              "monthly_visits": [
+                {
+                  "visits": 0,
+                  "date": "2025-11-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2025-12-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-01-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-02-01"
+                }
+              ],
+              "daily_revenue": 130.67,
+              "id": "7c6a98b9-28bb-4360-b0bf-4add598a941b",
+              "traffic_by_country": []
+            },
+            "preview": {
+              "brand_logo": "https://d1h2rbttwpj2ub.cloudfront.net/26904bcbbef1fb2685c1c3ffa5218336a1bb9049f56fe16f546708f09c156270.webp",
+              "published_date": "2025-04-07T07:00:00.000Z",
+              "website_url": "https://kunust.com/"
+            }
+          },
+          {
+            "id": "c4bb22a5-ff93-437c-88db-b44b4ec0178f",
+            "ad": {
+              "start_date": "2025-04-07T07:00:00+00:00",
+              "end_date": "2025-04-08T07:00:00+00:00",
+              "duration": 1,
+              "is_active": false,
+              "link": "https://www.facebook.com/ads/library/?country=ALL&id=1239970760803316",
+              "collation_count": 1,
+              "low_impression_count": true,
+              "media_type": "video",
+              "is_eu": true,
+              "reach": 2,
+              "spend": 0.018
+            },
+            "ad_cards": [
+              {
+                "title": "",
+                "description": "",
+                "ad_copy": "Of Couse TWCAko!  Simulan mo na ang sarili mong online negosyo for only ₱999! Walang monthly subscription. May lifetime business ka na!\nKami na ang bahala sa:\n✨ High Quality Products\n✨ Packing and Shipment\n✨ Marketing Materials\n✨ E-commerce Website\n✨ Facebook Marketing Training\n✨ Messenger Chatbot Automation Training\n✨ Facebook Ads Training\nMaging isa sa aming Marketing Partners, at magbenta ng aming WINNING PRODUCTS gamit ang COD at Dropshipping System. 🌟\nMay iba't ibang produkto na pwede mong ibenta:\n👜 Bags at Accessories\n⌚ Branded Watches\n☕ Men's Coffee\n🌿 Health and Wellness Products\n...at marami pang iba!\nHanda ka na bang simulan? I-message kami AGAD para malaman ang mas marami pa tungkol sa Online Store o Dropshipping Business na ito. 💬 Huwag palampasin ang napakagandang oportunidad na ito!\n#OnlineNegosyo #Entrepreneurship #DropshippingSuccess #SimulaNa #BusinessOpportunity #WinningProducts #COD #Ecommerce #FacebookAdsTraining #ShopFromHome #SarilingBoss #TagumpayAngHinihintay\nOrder here https://kunust.com",
+                "image_url": "https://d1h2rbttwpj2ub.cloudfront.net/fb0b2248ad963e5882fa0764470fb883c3cab788678aa604cb75037a84ef59c4.webp",
+                "video_url": "https://d1h2rbttwpj2ub.cloudfront.net/6b84bef7437e27ddb2c44d55920126242dcf3f533dfa2152098d2fea81869fb1.mp4",
+                "link_url": "https://kunust.com/",
+                "cta_text": "Shop now"
+              }
+            ],
+            "brand": {
+              "name": "Perna Maddie Dawyot",
+              "link": "https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=ALL&is_targeted_country=false&media_type=all&search_type=page&view_all_page_id=121884537667086",
+              "page_id": "121884537667086",
+              "logo_url": "https://d1h2rbttwpj2ub.cloudfront.net/9b3c694839a7bdb2c9e33acdcc74e8505eb911dad873a816938af48ba4f3a6a8.webp",
+              "active_ads": null,
+              "total_ads": 175,
+              "page_estimated_audience": 2970,
+              "page_estimated_spend": 26.73
+            },
+            "shop": {
+              "url": "https://kunust.com",
+              "domain": "kunust.com",
+              "created_at": "",
+              "country": "US",
+              "products_listed": 0,
+              "monthly_visits": [
+                {
+                  "visits": 0,
+                  "date": "2025-11-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2025-12-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-01-01"
+                },
+                {
+                  "visits": 0,
+                  "date": "2026-02-01"
+                }
+              ],
+              "daily_revenue": 130.67,
+              "id": "7c6a98b9-28bb-4360-b0bf-4add598a941b",
+              "traffic_by_country": []
+            },
+            "preview": {
+              "brand_logo": "https://d1h2rbttwpj2ub.cloudfront.net/9b3c694839a7bdb2c9e33acdcc74e8505eb911dad873a816938af48ba4f3a6a8.webp",
+              "published_date": "2025-04-07T07:00:00.000Z",
+              "website_url": "https://kunust.com/"
+            }
+          }
+        ],
+        "offset": 20,
+        "total": 31,
+        "length": 11
+      },
+      "meta": [
+        [
+          1,
+          "items",
+          0,
+          "preview",
+          "published_date"
+        ],
+        [
+          1,
+          "items",
+          1,
+          "preview",
+          "published_date"
+        ],
+        [
+          1,
+          "items",
+          2,
+          "preview",
+          "published_date"
+        ],
+        [
+          1,
+          "items",
+          3,
+          "preview",
+          "published_date"
+        ],
+        [
+          1,
+          "items",
+          4,
+          "preview",
+          "published_date"
+        ],
+        [
+          1,
+          "items",
+          5,
+          "preview",
+          "published_date"
+        ],
+        [
+          1,
+          "items",
+          6,
+          "preview",
+          "published_date"
+        ],
+        [
+          1,
+          "items",
+          7,
+          "preview",
+          "published_date"
+        ],
+        [
+          1,
+          "items",
+          8,
+          "preview",
+          "published_date"
+        ],
+        [
+          1,
+          "items",
+          9,
+          "preview",
+          "published_date"
+        ],
+        [
+          1,
+          "items",
+          10,
+          "preview",
+          "published_date"
+        ]
+      ]
+    }
+  },
+  {
+    "url": "https://app.minea.com/rpc/collections/getItemsSavedStateBatch",
+    "size": 3834,
+    "data": {
+      "json": {
+        "items": [
+          {
+            "itemId": "405f2c36-d0e7-4671-aa40-2be16e1023ff",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "6ee1837e-8f5d-490b-92c7-acfb02674f1d",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "b2e5a79b-f57c-42a1-a494-927cf3f73905",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "0113e47c-e55a-4ad8-886b-063d41f02ce6",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "c94a73a5-809a-446e-848f-e7b4664162b9",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "d10dd2ea-f466-418d-b884-58f3b9efdff1",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "8fd3796e-1fab-4cea-9b8f-c1a473a07cab",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "99b85bbc-715d-4fe4-886e-d2dcee57bca8",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "414c1c80-2cc7-40df-9c59-4db6a5db6954",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "eba6160e-6445-4daa-bb47-83241bc3719f",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "7bcb35a8-170c-4799-899b-bc8cd602bf25",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "04bc25fe-e8d6-4047-8df7-2ce3024425a7",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "5f5ef825-f174-4efe-aed9-de8c5544674c",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "31f6a069-0b28-4021-b890-4ac77a9008e0",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "a2a79265-5000-4ee4-bb1a-c9808e392939",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "2af5958f-9ccd-40de-81b4-4b96b9ff6bc0",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "38bae327-3e5b-4011-adc1-1cc5d5c02bbf",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "2b332568-dba6-4401-b6f5-c0ef5fa33239",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "2001e0d5-2c6f-4c63-a61d-1225f3022710",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "22299fbe-3985-47b0-99d8-a35471362dcf",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "359b5d8d-2c8e-4303-9e01-1e7424d4b5f0",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "028eb61c-57a2-45ed-8f41-09f00367dd84",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "4a58093b-5337-4b48-b518-58562bd3372a",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "72052ac1-46b7-4d5c-8589-75f8b2a89d21",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "d2fb637e-5aed-4083-8467-576842e1e013",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "f9e8be53-3b84-47d1-98ad-7bf2e56e7a68",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "11f12079-df0b-4b3d-a631-8b7b1c3d3abb",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "cdffdd3a-6f7c-4142-b7da-13ad4705e36c",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "2a324c1a-564b-434f-a2c1-cf6042ab6882",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "b2216d74-6822-436f-a775-12f257fa5966",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          },
+          {
+            "itemId": "c4bb22a5-ff93-437c-88db-b44b4ec0178f",
+            "itemType": "facebook_ads_library",
+            "saved": false,
+            "collections": []
+          }
+        ]
+      }
+    }
+  }
+]

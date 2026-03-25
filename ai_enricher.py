@@ -200,10 +200,9 @@ def enrich_ads(api_key, max_ads=100):
 
         enriched_count += 1
 
-        # 4. AI analysis (apenas para top ads e com limite)
+        # 4. AI analysis (todos os ads com body)
         if client and ai_count < max_ads and ad.get("body") and len(ad["body"]) > 30:
-            if ad.get("potential_score", 0) >= 3 or ad.get("days_running", 0) > 7:
-                if not ad.get("ai_niche"):
+            if not ad.get("ai_niche"):
                     analysis = ai_analyze_ad(client, ad)
                     if analysis and not analysis.get("error"):
                         ad["ai_niche"] = analysis.get("niche", "")
@@ -217,10 +216,15 @@ def enrich_ads(api_key, max_ads=100):
                         ad["ai_language"] = analysis.get("language", "")
                         ai_count += 1
 
-                        if ai_count % 10 == 0:
-                            print(f"  AI analisou {ai_count}/{max_ads} ads...")
+                        if ai_count % 50 == 0:
+                            print(f"  AI analisou {ai_count} ads...")
+                            # Salvar progresso a cada 200
+                            if ai_count % 200 == 0:
+                                with open(uf[0], "w", encoding="utf-8") as f:
+                                    json.dump(ads, f, ensure_ascii=False)
+                                print(f"  [SALVO] progresso em {uf[0]}")
 
-                    time.sleep(0.5)  # Rate limit
+                    time.sleep(0.3)  # Rate limit
 
     # Salvar
     with open(uf[0], "w", encoding="utf-8") as f:
@@ -243,5 +247,6 @@ def enrich_ads(api_key, max_ads=100):
 
 if __name__ == "__main__":
     import sys
-    key = sys.argv[1] if len(sys.argv) > 1 else ""
-    enrich_ads(key, max_ads=200)
+    key = sys.argv[1] if len(sys.argv) > 1 else AI_API_KEY
+    max_a = int(sys.argv[2]) if len(sys.argv) > 2 else 99999
+    enrich_ads(key, max_ads=max_a)

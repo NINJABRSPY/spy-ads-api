@@ -324,7 +324,24 @@ def run():
         print(f"    {k}: {c}")
 
     print(f"\n  Arquivos em: {output_dir}/")
-    print(f"  Concluido!")
+    print(f"  Concluido coleta!")
+
+    # ========================================================
+    # FASE 5: AI Enrichment (automatico)
+    # ========================================================
+    print("\n" + "=" * 70)
+    print("  FASE 5: AI Enrichment (DeepSeek)")
+    print("=" * 70)
+
+    try:
+        from ai_enricher import enrich_ads, AI_API_KEY
+        if AI_API_KEY:
+            enrich_ads(AI_API_KEY, max_ads=99999)
+        else:
+            print("  AI_API_KEY nao configurada - pulando enriquecimento")
+    except Exception as e:
+        print(f"  Erro no AI enricher: {e}")
+
     return unique_ads
 
 

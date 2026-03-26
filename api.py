@@ -330,111 +330,353 @@ def get_sources():
         ]
     }
 
+def _get_ai_client():
+    from openai import OpenAI
+    return OpenAI(api_key="sk-75b1ddd6be014170a52a790133025c07", base_url="https://api.deepseek.com")
+
+def _find_ad(ad_id):
+    ads = load_latest_data()
+    for ad in ads:
+        if ad.get("ad_id") == ad_id:
+            return ad
+    return None
+
+def _save_ad_update(ad_id, updates):
+    files = sorted(glob.glob(f"{OUTPUT_DIR}/unified_*.json"), reverse=True)
+    if files:
+        with open(files[0], "r", encoding="utf-8") as f:
+            all_ads = json.load(f)
+        for i, a in enumerate(all_ads):
+            if a.get("ad_id") == ad_id:
+                all_ads[i].update(updates)
+                break
+        with open(files[0], "w", encoding="utf-8") as f:
+            json.dump(all_ads, f, ensure_ascii=False)
+
+def _ai_call(prompt, max_tokens=800):
+    client = _get_ai_client()
+    r = client.chat.completions.create(
+        model="deepseek-chat",
+        messages=[{"role": "user", "content": prompt}],
+        max_tokens=max_tokens, temperature=0.3,
+    )
+    text = r.choices[0].message.content.strip().replace("```json", "").replace("```", "").strip()
+    import json as jl
+    return jl.loads(text)
+
+
+# ============================================================
+# 1. CREATIVE DECONSTRUCTION (Autopsia completa)
+# ============================================================
 @app.post("/api/analyze/{ad_id}")
 def analyze_ad(ad_id: str):
-    """Analisa um ad especifico com IA na hora e salva o resultado"""
-    from openai import OpenAI
-
-    AI_KEY = "sk-75b1ddd6be014170a52a790133025c07"
-    AI_URL = "https://api.deepseek.com"
-
-    # Encontrar o ad
-    ads = load_latest_data()
-    target = None
-    target_idx = None
-    for i, ad in enumerate(ads):
-        if ad.get("ad_id") == ad_id:
-            target = ad
-            target_idx = i
-            break
-
+    """Autopsia completa do criativo: psicologia, persona, brief reverso, prompts de IA"""
+    target = _find_ad(ad_id)
     if not target:
         return {"error": "Ad nao encontrado"}
 
-    # Se ja tem analise, retorna direto
-    if target.get("ai_niche"):
-        return {
-            "status": "already_analyzed",
-            "ad_id": ad_id,
-            "ai_niche": target.get("ai_niche"),
-            "ai_target_audience": target.get("ai_target_audience"),
-            "ai_strategy": target.get("ai_strategy"),
-            "ai_hook_type": target.get("ai_hook_type"),
-            "ai_product_type": target.get("ai_product_type"),
-            "ai_copy_quality": target.get("ai_copy_quality"),
-            "ai_urgency_level": target.get("ai_urgency_level"),
-            "ai_emotion": target.get("ai_emotion"),
-            "estimated_spend": target.get("estimated_spend"),
-            "potential_score": target.get("potential_score"),
-        }
+    # Se ja tem analise completa, retorna
+    if target.get("ai_creative_brief"):
+        return {"status": "already_analyzed", "ad_id": ad_id,
+                **{k: v for k, v in target.items() if k.startswith("ai_")},
+                "estimated_spend": target.get("estimated_spend"),
+                "estimated_roas": target.get("estimated_roas"),
+                "potential_score": target.get("potential_score")}
 
-    # Analisar com DeepSeek
     body = target.get("body", "") or ""
     title = target.get("title", "") or ""
     if not body and not title:
         return {"error": "Ad sem texto para analisar"}
 
     try:
-        client = OpenAI(api_key=AI_KEY, base_url=AI_URL)
+        # Calcular ROAS estimado
+        spend = target.get("estimated_spend", 0) or 0
+        revenue = target.get("store_daily_revenue", 0) or target.get("estimated_daily_revenue", 0) or 0
+        roas = round((revenue * 30) / spend, 2) if spend > 0 and revenue > 0 else 0
 
-        prompt = f"""Analise este anúncio e retorne APENAS um JSON. Não invente dados.
+        analysis = _ai_call(f"""Voce e um estrategista de marketing senior. Analise este anuncio em profundidade.
+Retorne APENAS JSON valido.
 
-Anúncio:
+ANUNCIO:
 - Anunciante: {target.get('advertiser', '')}
 - Plataforma: {target.get('platform', '')}
-- Título: {title}
-- Copy: {body[:500]}
+- Titulo: {title}
+- Copy: {body[:600]}
 - CTA: {target.get('cta', '')}
-- Landing: {target.get('landing_page', '')}
+- Landing page: {target.get('landing_page', '')}
+- Tipo: {target.get('ad_type', '')}
 - Dias rodando: {target.get('days_running', 0)}
 - Curtidas: {target.get('likes', 0)}
+- Comentarios: {target.get('comments', 0)}
+- Impressoes: {target.get('impressions', 0)}
+- Paises: {target.get('all_countries', target.get('country', ''))}
 
 JSON:
-{{"niche":"string","target_audience":"string curta","strategy":"string curta","hook_type":"string","product_type":"string","copy_quality":"1-10","urgency_level":"1-10","emotion":"string","language":"string","summary":"resumo em 1 frase do que o anuncio vende e como"}}"""
+{{
+  "niche": "nicho especifico",
+  "target_audience": "descricao detalhada do publico-alvo",
+  "persona": {{
+    "gender": "homem/mulher/ambos",
+    "age_range": "25-34",
+    "interests": ["interesse1", "interesse2"],
+    "pain_points": ["dor1", "dor2"],
+    "income_level": "baixa/media/alta",
+    "profile": "descricao em 1 frase da persona"
+  }},
+  "creative_brief": {{
+    "objective": "objetivo da campanha",
+    "angle": "angulo de abordagem",
+    "value_proposition": "proposta de valor",
+    "differentiator": "diferencial competitivo"
+  }},
+  "psychology": {{
+    "triggers": ["gatilho1", "gatilho2"],
+    "copy_framework": "PAS/AIDA/BAB/FAB/outro",
+    "hook_type": "pergunta/estatistica/dor/curiosidade/beneficio",
+    "emotion": "emocao principal",
+    "urgency_level": 7,
+    "social_proof_used": true
+  }},
+  "strategy": "descricao da estrategia em 2 frases",
+  "product_type": "fisico/digital/servico/SaaS/curso",
+  "copy_quality": 8,
+  "estimated_ai_prompts": {{
+    "image_prompt": "prompt provavel se a imagem foi gerada por IA",
+    "copy_prompt": "prompt provavel para gerar copy similar"
+  }},
+  "recommendations": ["recomendacao1 para melhorar", "recomendacao2"],
+  "summary": "resumo executivo em 2 frases",
+  "language": "pt/en/es"
+}}""")
 
-        response = client.chat.completions.create(
-            model="deepseek-chat",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=300,
-            temperature=0.3,
-        )
-        text = response.choices[0].message.content.strip()
-        text = text.replace("```json", "").replace("```", "").strip()
-        import json as json_lib
-        analysis = json_lib.loads(text)
-
-        # Salvar no ad
-        target["ai_niche"] = analysis.get("niche", "")
-        target["ai_target_audience"] = analysis.get("target_audience", "")
-        target["ai_strategy"] = analysis.get("strategy", "")
-        target["ai_hook_type"] = analysis.get("hook_type", "")
-        target["ai_product_type"] = analysis.get("product_type", "")
-        target["ai_copy_quality"] = analysis.get("copy_quality", 0)
-        target["ai_urgency_level"] = analysis.get("urgency_level", 0)
-        target["ai_emotion"] = analysis.get("emotion", "")
-        target["ai_language"] = analysis.get("language", "")
-        target["ai_summary"] = analysis.get("summary", "")
-
-        # Salvar no arquivo
-        files = sorted(glob.glob(f"{OUTPUT_DIR}/unified_*.json"), reverse=True)
-        if files:
-            with open(files[0], "r", encoding="utf-8") as f:
-                all_ads = json.load(f)
-            for j, a in enumerate(all_ads):
-                if a.get("ad_id") == ad_id:
-                    all_ads[j].update(target)
-                    break
-            with open(files[0], "w", encoding="utf-8") as f:
-                json.dump(all_ads, f, ensure_ascii=False)
-
-        return {
-            "status": "analyzed",
-            "ad_id": ad_id,
-            **{k: v for k, v in analysis.items()},
+        # Salvar todos os campos
+        updates = {
+            "ai_niche": analysis.get("niche", ""),
+            "ai_target_audience": analysis.get("target_audience", ""),
+            "ai_strategy": analysis.get("strategy", ""),
+            "ai_hook_type": analysis.get("psychology", {}).get("hook_type", ""),
+            "ai_product_type": analysis.get("product_type", ""),
+            "ai_copy_quality": analysis.get("copy_quality", 0),
+            "ai_urgency_level": analysis.get("psychology", {}).get("urgency_level", 0),
+            "ai_emotion": analysis.get("psychology", {}).get("emotion", ""),
+            "ai_language": analysis.get("language", ""),
+            "ai_summary": analysis.get("summary", ""),
+            "ai_persona": analysis.get("persona", {}),
+            "ai_creative_brief": analysis.get("creative_brief", {}),
+            "ai_psychology": analysis.get("psychology", {}),
+            "ai_prompts": analysis.get("estimated_ai_prompts", {}),
+            "ai_recommendations": analysis.get("recommendations", []),
+            "estimated_roas": roas,
         }
+        _save_ad_update(ad_id, updates)
+
+        return {"status": "analyzed", "ad_id": ad_id, **updates}
 
     except Exception as e:
         return {"error": str(e)}
+
+
+# ============================================================
+# 2. SCRIPT GENERATOR (Creative Co-Pilot)
+# ============================================================
+@app.post("/api/generate-script/{ad_id}")
+def generate_script(ad_id: str):
+    """Gera roteiro de video baseado na analise do anuncio"""
+    target = _find_ad(ad_id)
+    if not target:
+        return {"error": "Ad nao encontrado"}
+
+    body = target.get("body", "") or target.get("title", "") or ""
+    if not body:
+        return {"error": "Ad sem texto"}
+
+    try:
+        result = _ai_call(f"""Voce e um copywriter especialista em anuncios de video para redes sociais.
+Baseado neste anuncio que esta performando bem, gere um roteiro de video adaptado.
+
+ANUNCIO ORIGINAL:
+- Copy: {body[:500]}
+- CTA: {target.get('cta', '')}
+- Nicho: {target.get('ai_niche', 'nao identificado')}
+- Plataforma: {target.get('platform', '')}
+- Publico: {target.get('ai_target_audience', '')}
+
+Retorne JSON:
+{{
+  "hook": "frase de abertura impactante (primeiros 3 segundos)",
+  "script": [
+    {{"timestamp": "0-3s", "visual": "descricao da cena", "narration": "texto falado", "text_overlay": "texto na tela"}},
+    {{"timestamp": "3-8s", "visual": "descricao", "narration": "texto", "text_overlay": "texto"}},
+    {{"timestamp": "8-15s", "visual": "descricao", "narration": "texto", "text_overlay": "texto"}},
+    {{"timestamp": "15-25s", "visual": "descricao", "narration": "texto", "text_overlay": "texto"}},
+    {{"timestamp": "25-30s", "visual": "CTA final", "narration": "texto", "text_overlay": "texto"}}
+  ],
+  "music_suggestion": "tipo de musica sugerida",
+  "format": "vertical 9:16 / horizontal 16:9",
+  "estimated_duration": "30 segundos",
+  "style": "estilo visual sugerido",
+  "variations": [
+    "variacao 1: mudar o hook para...",
+    "variacao 2: testar angulo de...",
+    "variacao 3: usar formato de..."
+  ]
+}}""", max_tokens=1000)
+
+        return {"status": "generated", "ad_id": ad_id, **result}
+
+    except Exception as e:
+        return {"error": str(e)}
+
+
+# ============================================================
+# 3. STRATEGY ROOM (Comparar 3 concorrentes)
+# ============================================================
+@app.post("/api/strategy-room")
+def strategy_room(
+    advertisers: str = Query(..., description="3 anunciantes separados por virgula"),
+):
+    """Compara 3 concorrentes e gera inteligencia estrategica"""
+    names = [n.strip() for n in advertisers.split(",")][:3]
+    ads = load_latest_data()
+
+    competitors = {}
+    for name in names:
+        name_lower = name.lower()
+        comp_ads = [a for a in ads if name_lower in (a.get("advertiser", "") or "").lower()]
+        if comp_ads:
+            competitors[name] = {
+                "total_ads": len(comp_ads),
+                "platforms": list(set(a.get("platform", "") for a in comp_ads)),
+                "avg_days": round(sum(a.get("days_running", 0) or 0 for a in comp_ads) / len(comp_ads), 1),
+                "total_engagement": sum(a.get("total_engagement", 0) or 0 for a in comp_ads),
+                "total_impressions": sum(a.get("impressions", 0) or 0 for a in comp_ads),
+                "video_ratio": round(len([a for a in comp_ads if a.get("video_url")]) / len(comp_ads) * 100),
+                "top_ctas": {},
+                "niches": list(set(a.get("ai_niche", "") for a in comp_ads if a.get("ai_niche"))),
+                "strategies": list(set(a.get("ai_strategy", "") for a in comp_ads if a.get("ai_strategy")))[:5],
+                "sample_ads": comp_ads[:3],
+            }
+            for a in comp_ads:
+                cta = a.get("cta", "") or "Sem CTA"
+                competitors[name]["top_ctas"][cta] = competitors[name]["top_ctas"].get(cta, 0) + 1
+
+    if not competitors:
+        return {"error": "Nenhum anunciante encontrado"}
+
+    # IA gera analise estrategica
+    try:
+        comp_summary = json.dumps({n: {k: v for k, v in d.items() if k != "sample_ads"} for n, d in competitors.items()}, ensure_ascii=False, default=str)
+
+        ai_analysis = _ai_call(f"""Voce e um consultor de estrategia de marketing.
+Analise estes 3 concorrentes e gere recomendacoes estrategicas.
+
+DADOS DOS CONCORRENTES:
+{comp_summary[:1500]}
+
+Retorne JSON:
+{{
+  "market_leader": "quem esta ganhando e por que",
+  "share_of_voice": {{"nome1": "X%", "nome2": "Y%", "nome3": "Z%"}},
+  "gaps": ["oportunidade1 que ninguem esta explorando", "oportunidade2"],
+  "recommendation": "recomendacao estrategica em 3 frases",
+  "best_angle": "melhor angulo para atacar agora",
+  "timing": "melhor momento para lancar campanha"
+}}""")
+
+        return {
+            "competitors": competitors,
+            "ai_analysis": ai_analysis,
+        }
+    except Exception as e:
+        return {"competitors": competitors, "ai_analysis": {"error": str(e)}}
+
+
+# ============================================================
+# 4. SATURATION METER
+# ============================================================
+@app.get("/api/saturation")
+def saturation(keyword: str = Query(...)):
+    """Mede saturacao de mercado para uma keyword"""
+    ads = load_latest_data()
+    filtered = [a for a in ads if keyword.lower() in (a.get("search_keyword", "") or "").lower()
+                or keyword.lower() in (a.get("body", "") or "").lower()
+                or keyword.lower() in (a.get("title", "") or "").lower()]
+
+    if not filtered:
+        return {"keyword": keyword, "saturation": 0, "message": "Nenhum ad encontrado"}
+
+    unique_advertisers = len(set(a.get("advertiser", "") for a in filtered if a.get("advertiser")))
+    total_ads = len(filtered)
+    avg_days = sum(a.get("days_running", 0) or 0 for a in filtered) / len(filtered) if filtered else 0
+    with_video = len([a for a in filtered if a.get("video_url")])
+
+    # Score de saturacao (0-100)
+    score = min(100, int(
+        (unique_advertisers / 50 * 30) +  # Mais anunciantes = mais saturado
+        (total_ads / 200 * 30) +           # Mais ads = mais saturado
+        (avg_days / 30 * 20) +             # Ads durando muito = mercado maduro
+        (20 if avg_days > 14 else 0)       # Bonus se media > 14 dias
+    ))
+
+    level = "baixa" if score < 30 else "media" if score < 60 else "alta" if score < 80 else "muito alta"
+
+    return {
+        "keyword": keyword,
+        "saturation_score": score,
+        "saturation_level": level,
+        "unique_advertisers": unique_advertisers,
+        "total_ads": total_ads,
+        "avg_days_running": round(avg_days, 1),
+        "video_ratio": round(with_video / total_ads * 100) if total_ads > 0 else 0,
+        "recommendation": "Mercado saturado - busque angulo diferenciado" if score > 60
+                          else "Mercado com espaco - boa oportunidade" if score < 30
+                          else "Mercado competitivo - precisa de criativo forte",
+    }
+
+
+# ============================================================
+# 5. PIXEL DETECTION (da landing page)
+# ============================================================
+@app.get("/api/pixel-detect")
+def pixel_detect(url: str = Query(..., description="URL da landing page")):
+    """Detecta pixels de tracking instalados em uma landing page"""
+    import requests as req
+
+    try:
+        r = req.get(url, timeout=10, headers={"User-Agent": "Mozilla/5.0"}, allow_redirects=True)
+        html = r.text.lower()
+
+        pixels = {
+            "meta_pixel": "fbq(" in html or "facebook.com/tr" in html or "connect.facebook" in html,
+            "google_analytics": "gtag(" in html or "google-analytics.com" in html or "googletagmanager" in html,
+            "google_ads": "googleads" in html or "conversion.js" in html or "google_conversion" in html,
+            "tiktok_pixel": "tiktok.com/i18n/pixel" in html or "analytics.tiktok" in html,
+            "linkedin_pixel": "snap.licdn.com" in html or "linkedin.com/px" in html,
+            "pinterest_tag": "pintrk(" in html or "pinterest.com/ct" in html,
+            "snapchat_pixel": "sc-static.net/scevent" in html or "snapchat" in html,
+            "hotjar": "hotjar.com" in html,
+            "clarity": "clarity.ms" in html,
+            "shopify": "shopify" in html or "myshopify" in html,
+            "wordpress": "wp-content" in html or "wordpress" in html,
+            "klaviyo": "klaviyo" in html,
+            "mailchimp": "mailchimp" in html,
+        }
+
+        active = [k for k, v in pixels.items() if v]
+        platform = "shopify" if pixels["shopify"] else "wordpress" if pixels["wordpress"] else "outro"
+
+        return {
+            "url": url,
+            "final_url": r.url,
+            "platform": platform,
+            "pixels_detected": active,
+            "pixel_count": len(active),
+            "all_checks": pixels,
+            "has_retargeting": pixels["meta_pixel"] or pixels["google_ads"] or pixels["tiktok_pixel"],
+            "has_analytics": pixels["google_analytics"] or pixels["hotjar"] or pixels["clarity"],
+        }
+    except Exception as e:
+        return {"url": url, "error": str(e)}
 
 
 @app.post("/api/sync/trigger")

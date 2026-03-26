@@ -385,16 +385,52 @@ def _save_ad_update(ad_id, updates):
         with open(files[0], "w", encoding="utf-8") as f:
             json.dump(all_ads, f, ensure_ascii=False)
 
-def _ai_call(prompt, max_tokens=800):
+def _ai_call(prompt, max_tokens=1200):
+    import re as _re
     client = _get_ai_client()
     r = client.chat.completions.create(
         model="deepseek-chat",
-        messages=[{"role": "user", "content": prompt}],
-        max_tokens=max_tokens, temperature=0.3,
+        messages=[
+            {"role": "system", "content": "Voce SEMPRE retorna JSON valido. Sem markdown, sem explicacao, apenas o JSON puro. Use aspas duplas. Nao use caracteres especiais dentro de strings."},
+            {"role": "user", "content": prompt}
+        ],
+        max_tokens=max_tokens, temperature=0.2,
     )
-    text = r.choices[0].message.content.strip().replace("```json", "").replace("```", "").strip()
+    text = r.choices[0].message.content.strip()
+
+    # Limpar markdown
+    text = text.replace("```json", "").replace("```", "").strip()
+
+    # Remover texto antes do primeiro {
+    start = text.find("{")
+    if start > 0:
+        text = text[start:]
+
+    # Remover texto depois do ultimo }
+    end = text.rfind("}")
+    if end >= 0:
+        text = text[:end + 1]
+
+    # Corrigir problemas comuns
+    text = text.replace("\n", " ").replace("\r", " ")
+    text = text.replace("\\n", " ").replace("\\r", " ")
+    # Remover tabs dentro de strings
+    text = text.replace("\t", " ")
+    # Aspas simples -> duplas em chaves
+    text = _re.sub(r"(?<={|,)\s*'([^']+)'\s*:", r' "\1":', text)
+
     import json as jl
-    return jl.loads(text)
+    try:
+        return jl.loads(text)
+    except jl.JSONDecodeError:
+        # Tentar corrigir JSON truncado adicionando fechamentos
+        for fix in ["}", "]}", "\"}", "\"]}", "\"]}}"]:
+            try:
+                return jl.loads(text + fix)
+            except:
+                continue
+        # Ultimo recurso: retornar dict basico
+        return {"error": "JSON malformado", "raw": text[:200]}
 
 
 # ============================================================

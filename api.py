@@ -679,6 +679,266 @@ def pixel_detect(url: str = Query(..., description="URL da landing page")):
         return {"url": url, "error": str(e)}
 
 
+# ============================================================
+# FAVORITOS (salvar ads em colecoes)
+# ============================================================
+_favorites = {}  # {user_id: {collection_name: [ad_ids]}}
+
+@app.post("/api/favorites/save")
+def save_favorite(
+    ad_id: str = Query(...),
+    collection: str = Query("Meus Favoritos"),
+    user_id: str = Query("default"),
+):
+    """Salva um ad nos favoritos"""
+    if user_id not in _favorites:
+        _favorites[user_id] = {}
+    if collection not in _favorites[user_id]:
+        _favorites[user_id][collection] = []
+    if ad_id not in _favorites[user_id][collection]:
+        _favorites[user_id][collection].append(ad_id)
+    return {"status": "saved", "collection": collection, "total": len(_favorites[user_id][collection])}
+
+@app.delete("/api/favorites/remove")
+def remove_favorite(
+    ad_id: str = Query(...),
+    collection: str = Query("Meus Favoritos"),
+    user_id: str = Query("default"),
+):
+    """Remove um ad dos favoritos"""
+    if user_id in _favorites and collection in _favorites[user_id]:
+        _favorites[user_id][collection] = [x for x in _favorites[user_id][collection] if x != ad_id]
+    return {"status": "removed"}
+
+@app.get("/api/favorites")
+def list_favorites(
+    collection: str = Query(None),
+    user_id: str = Query("default"),
+):
+    """Lista favoritos com dados completos dos ads"""
+    if user_id not in _favorites:
+        return {"collections": {}, "ads": []}
+
+    if collection:
+        ids = _favorites[user_id].get(collection, [])
+        ads = load_latest_data()
+        fav_ads = [a for a in ads if a.get("ad_id") in ids]
+        return {"collection": collection, "total": len(fav_ads), "ads": fav_ads}
+
+    return {"collections": {k: len(v) for k, v in _favorites[user_id].items()}}
+
+@app.get("/api/favorites/check")
+def check_favorite(
+    ad_id: str = Query(...),
+    user_id: str = Query("default"),
+):
+    """Verifica se um ad esta nos favoritos"""
+    saved_in = []
+    if user_id in _favorites:
+        for col, ids in _favorites[user_id].items():
+            if ad_id in ids:
+                saved_in.append(col)
+    return {"ad_id": ad_id, "is_saved": len(saved_in) > 0, "collections": saved_in}
+
+
+# ============================================================
+# HISTORICO DE BUSCA
+# ============================================================
+_search_history = {}  # {user_id: [{query, timestamp, results_count}]}
+
+@app.get("/api/history")
+def get_history(user_id: str = Query("default"), limit: int = Query(20)):
+    """Retorna historico de buscas"""
+    history = _search_history.get(user_id, [])
+    return {"history": history[-limit:][::-1]}
+
+@app.post("/api/history/add")
+def add_history(
+    query: str = Query(...),
+    results_count: int = Query(0),
+    user_id: str = Query("default"),
+):
+    """Registra uma busca no historico"""
+    if user_id not in _search_history:
+        _search_history[user_id] = []
+    _search_history[user_id].append({
+        "query": query,
+        "timestamp": datetime.now().isoformat(),
+        "results_count": results_count,
+    })
+    # Manter max 100
+    if len(_search_history[user_id]) > 100:
+        _search_history[user_id] = _search_history[user_id][-100:]
+    return {"status": "saved"}
+
+
+# ============================================================
+# MONITORAMENTO DE ANUNCIANTES (alertas de novos ads)
+# ============================================================
+_watchlist = {}  # {user_id: [advertiser_names]}
+
+@app.post("/api/watchlist/add")
+def add_to_watchlist(
+    advertiser: str = Query(...),
+    user_id: str = Query("default"),
+):
+    """Adiciona anunciante a lista de monitoramento"""
+    if user_id not in _watchlist:
+        _watchlist[user_id] = []
+    if advertiser not in _watchlist[user_id]:
+        _watchlist[user_id].append(advertiser)
+    return {"status": "added", "watchlist": _watchlist[user_id]}
+
+@app.delete("/api/watchlist/remove")
+def remove_from_watchlist(
+    advertiser: str = Query(...),
+    user_id: str = Query("default"),
+):
+    """Remove anunciante do monitoramento"""
+    if user_id in _watchlist:
+        _watchlist[user_id] = [x for x in _watchlist[user_id] if x != advertiser]
+    return {"status": "removed"}
+
+@app.get("/api/watchlist")
+def get_watchlist(user_id: str = Query("default")):
+    """Lista anunciantes monitorados com contagem de ads"""
+    names = _watchlist.get(user_id, [])
+    ads = load_latest_data()
+    result = []
+    for name in names:
+        name_lower = name.lower()
+        advertiser_ads = [a for a in ads if name_lower in (a.get("advertiser", "") or "").lower()]
+        latest = max([a.get("collected_at", "") for a in advertiser_ads]) if advertiser_ads else ""
+        result.append({
+            "advertiser": name,
+            "total_ads": len(advertiser_ads),
+            "latest_ad": latest,
+            "platforms": list(set(a.get("platform", "") for a in advertiser_ads)),
+        })
+    return {"watchlist": result}
+
+
+# ============================================================
+# COMPARADOR DE LOJAS (dados Minea)
+# ============================================================
+@app.get("/api/compare-stores")
+def compare_stores(
+    domains: str = Query(..., description="Dominios separados por virgula, ex: loja1.com,loja2.com,loja3.com"),
+):
+    """Compara ate 5 lojas usando dados da Minea"""
+    domain_list = [d.strip().lower() for d in domains.split(",")][:5]
+    ads = load_latest_data()
+
+    stores = {}
+    for ad in ads:
+        domain = (ad.get("store_domain", "") or "").lower()
+        if not domain:
+            landing = (ad.get("landing_page", "") or "").lower()
+            for d in domain_list:
+                if d in landing:
+                    domain = d
+                    break
+        if domain and domain in domain_list and domain not in stores:
+            stores[domain] = {
+                "domain": domain,
+                "store_url": ad.get("store_url", ""),
+                "country": ad.get("store_country", ""),
+                "created_at": ad.get("store_created_at", ""),
+                "products_listed": ad.get("store_products_listed", 0),
+                "monthly_visits": ad.get("store_monthly_visits", 0),
+                "daily_revenue": ad.get("store_daily_revenue", 0),
+                "monthly_revenue": round((ad.get("store_daily_revenue", 0) or 0) * 30, 2),
+                "brand_total_ads": ad.get("brand_total_ads", 0),
+                "brand_active_ads": ad.get("brand_active_ads", 0),
+                "brand_estimated_spend": ad.get("brand_estimated_spend", 0),
+                "estimated_roas": round(
+                    ((ad.get("store_daily_revenue", 0) or 0) * 30) /
+                    (ad.get("brand_estimated_spend", 0) or 1), 2
+                ) if ad.get("brand_estimated_spend", 0) else 0,
+                "advertiser": ad.get("advertiser", ""),
+                "platforms": [],
+                "total_ads_found": 0,
+            }
+
+    # Enriquecer com mais dados
+    for ad in ads:
+        for domain in stores:
+            if domain in (ad.get("store_domain", "") or "").lower() or \
+               domain in (ad.get("landing_page", "") or "").lower():
+                stores[domain]["total_ads_found"] += 1
+                p = ad.get("platform", "")
+                if p and p not in stores[domain]["platforms"]:
+                    stores[domain]["platforms"].append(p)
+
+    store_list = list(stores.values())
+
+    # Ranking
+    if store_list:
+        best_revenue = max(store_list, key=lambda x: x.get("daily_revenue", 0))
+        best_traffic = max(store_list, key=lambda x: x.get("monthly_visits", 0))
+        best_products = max(store_list, key=lambda x: x.get("products_listed", 0))
+    else:
+        best_revenue = best_traffic = best_products = {}
+
+    # Se tem pelo menos 2 lojas, IA compara
+    ai_comparison = {}
+    if len(store_list) >= 2:
+        try:
+            store_summary = json.dumps([{k: v for k, v in s.items()} for s in store_list], ensure_ascii=False, default=str)
+            ai_comparison = _ai_call(f"""Compare estas lojas e-commerce e diga qual esta melhor posicionada.
+
+DADOS:
+{store_summary[:2000]}
+
+Retorne JSON:
+{{
+  "winner": "dominio da melhor loja",
+  "reason": "por que ela ganha",
+  "revenue_comparison": "comparacao de receita",
+  "traffic_comparison": "comparacao de trafego",
+  "strengths": {{"loja1.com": "ponto forte", "loja2.com": "ponto forte"}},
+  "weaknesses": {{"loja1.com": "ponto fraco", "loja2.com": "ponto fraco"}},
+  "recommendation": "recomendacao para quem quer competir nesse mercado"
+}}""")
+        except:
+            pass
+
+    return {
+        "stores": store_list,
+        "not_found": [d for d in domain_list if d not in stores],
+        "rankings": {
+            "best_revenue": best_revenue.get("domain", ""),
+            "best_traffic": best_traffic.get("domain", ""),
+            "best_catalog": best_products.get("domain", ""),
+        },
+        "ai_comparison": ai_comparison,
+    }
+
+
+@app.get("/api/stores/top")
+def top_stores(limit: int = Query(20)):
+    """Ranking das melhores lojas por receita"""
+    ads = load_latest_data()
+    stores = {}
+    for ad in ads:
+        domain = ad.get("store_domain", "")
+        if domain and domain not in stores and ad.get("store_daily_revenue", 0) > 0:
+            stores[domain] = {
+                "domain": domain,
+                "store_url": ad.get("store_url", ""),
+                "advertiser": ad.get("advertiser", ""),
+                "country": ad.get("store_country", ""),
+                "daily_revenue": ad.get("store_daily_revenue", 0),
+                "monthly_revenue": round((ad.get("store_daily_revenue", 0) or 0) * 30, 2),
+                "monthly_visits": ad.get("store_monthly_visits", 0),
+                "products_listed": ad.get("store_products_listed", 0),
+                "brand_estimated_spend": ad.get("brand_estimated_spend", 0),
+                "brand_total_ads": ad.get("brand_total_ads", 0),
+            }
+    ranked = sorted(stores.values(), key=lambda x: x["daily_revenue"], reverse=True)
+    return {"stores": ranked[:limit]}
+
+
 @app.post("/api/sync/trigger")
 def trigger_sync():
     """Dispara nova coleta (roda o scraper)"""

@@ -40,35 +40,45 @@ app.add_middleware(
 )
 
 # ============================================================
-# HELPERS
+# CACHE - Carrega dados uma vez, nao a cada request
 # ============================================================
+_cache = {"ads": None, "loaded_at": None, "file": None}
 
 def load_latest_data():
-    """Carrega o JSON mais recente da pasta resultados, filtrando ads sem qualidade"""
+    """Carrega dados com cache em memoria - so rele se arquivo mudou"""
     files = sorted(glob.glob(f"{OUTPUT_DIR}/unified_*.json"), reverse=True)
     if not files:
         return []
-    with open(files[0], "r", encoding="utf-8") as f:
+
+    latest = files[0]
+    file_mtime = os.path.getmtime(latest)
+
+    # Usar cache se mesmo arquivo e nao mudou
+    if _cache["ads"] is not None and _cache["file"] == latest and _cache["loaded_at"] == file_mtime:
+        return _cache["ads"]
+
+    # Carregar e filtrar
+    with open(latest, "r", encoding="utf-8") as f:
         ads = json.load(f)
 
-    # Filtrar ads com dados incompletos/templates
     clean = []
     for ad in ads:
         title = ad.get("title", "") or ""
-        body = ad.get("body", "") or ""
         image = ad.get("image_url", "") or ""
         video = ad.get("video_url", "") or ""
 
-        # Limpar templates do titulo
         if "{{" in title:
             ad["title"] = ""
-
-        # Pular ads sem imagem nem video (nao tem valor visual)
         if not image and not video:
             continue
 
         ad["has_media"] = True
         clean.append(ad)
+
+    # Salvar no cache
+    _cache["ads"] = clean
+    _cache["file"] = latest
+    _cache["loaded_at"] = file_mtime
 
     return clean
 
@@ -101,16 +111,30 @@ def health():
     """Health check - mantem a API acordada no Render"""
     return {"status": "ok"}
 
+# Campos essenciais para listagem (reduz payload ~80%)
+COMPACT_FIELDS = [
+    "ad_id", "source", "platform", "advertiser", "advertiser_image",
+    "title", "body", "cta", "landing_page", "image_url", "video_url",
+    "ad_type", "first_seen", "last_seen", "days_running",
+    "likes", "comments", "shares", "impressions", "total_engagement",
+    "heat", "potential_score", "estimated_spend", "country",
+    "ai_niche", "ai_strategy", "ai_copy_quality", "ai_emotion",
+    "also_on", "has_store", "store_daily_revenue", "search_keyword",
+]
+
 @app.get("/api/ads")
 def list_ads(
     platform: str = Query(None, description="facebook, instagram, tiktok, google, linkedin"),
     source: str = Query(None, description="bigspy, adyntel_meta, adyntel_google, adyntel_linkedin, adyntel_tiktok"),
     keyword: str = Query(None, description="Filtrar por keyword de busca"),
     search: str = Query(None, description="Buscar no texto/titulo do anuncio"),
+    niche: str = Query(None, description="Filtrar por nicho IA"),
+    min_score: int = Query(None, description="Score minimo de potencial"),
     sort: str = Query("collected_at", description="Campo para ordenar"),
     order: str = Query("desc", description="asc ou desc"),
     page: int = Query(1, ge=1),
-    limit: int = Query(50, ge=1, le=500),
+    limit: int = Query(20, ge=1, le=100),
+    compact: bool = Query(True, description="Retornar campos reduzidos (mais rapido)"),
 ):
     """Lista anuncios com filtros e paginacao"""
     ads = load_latest_data()
@@ -119,30 +143,38 @@ def list_ads(
     if platform:
         platforms = platform.split(",")
         ads = [a for a in ads if a.get("platform") in platforms]
-
     if source:
         sources = source.split(",")
         ads = [a for a in ads if a.get("source") in sources]
-
     if keyword:
-        ads = [a for a in ads if keyword.lower() in (a.get("search_keyword", "") or "").lower()]
-
+        kw = keyword.lower()
+        ads = [a for a in ads if kw in (a.get("search_keyword", "") or "").lower()]
     if search:
-        search_lower = search.lower()
+        sl = search.lower()
         ads = [a for a in ads if
-               search_lower in (a.get("title", "") or "").lower() or
-               search_lower in (a.get("body", "") or "").lower() or
-               search_lower in (a.get("advertiser", "") or "").lower()]
+               sl in (a.get("title", "") or "").lower() or
+               sl in (a.get("body", "") or "").lower() or
+               sl in (a.get("advertiser", "") or "").lower()]
+    if niche:
+        ads = [a for a in ads if niche.lower() in (a.get("ai_niche", "") or "").lower()]
+    if min_score:
+        ads = [a for a in ads if (a.get("potential_score", 0) or 0) >= min_score]
 
     # Ordenacao
     reverse = order == "desc"
-    ads.sort(key=lambda x: x.get(sort, ""), reverse=reverse)
+    try:
+        ads.sort(key=lambda x: x.get(sort, "") or "", reverse=reverse)
+    except:
+        pass
 
     # Paginacao
     total = len(ads)
     start = (page - 1) * limit
-    end = start + limit
-    page_ads = ads[start:end]
+    page_ads = ads[start:start + limit]
+
+    # Modo compacto - so campos essenciais
+    if compact:
+        page_ads = [{k: a.get(k) for k in COMPACT_FIELDS if a.get(k) is not None} for a in page_ads]
 
     return {
         "data": page_ads,

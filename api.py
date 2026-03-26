@@ -330,6 +330,113 @@ def get_sources():
         ]
     }
 
+@app.post("/api/analyze/{ad_id}")
+def analyze_ad(ad_id: str):
+    """Analisa um ad especifico com IA na hora e salva o resultado"""
+    from openai import OpenAI
+
+    AI_KEY = "sk-75b1ddd6be014170a52a790133025c07"
+    AI_URL = "https://api.deepseek.com"
+
+    # Encontrar o ad
+    ads = load_latest_data()
+    target = None
+    target_idx = None
+    for i, ad in enumerate(ads):
+        if ad.get("ad_id") == ad_id:
+            target = ad
+            target_idx = i
+            break
+
+    if not target:
+        return {"error": "Ad nao encontrado"}
+
+    # Se ja tem analise, retorna direto
+    if target.get("ai_niche"):
+        return {
+            "status": "already_analyzed",
+            "ad_id": ad_id,
+            "ai_niche": target.get("ai_niche"),
+            "ai_target_audience": target.get("ai_target_audience"),
+            "ai_strategy": target.get("ai_strategy"),
+            "ai_hook_type": target.get("ai_hook_type"),
+            "ai_product_type": target.get("ai_product_type"),
+            "ai_copy_quality": target.get("ai_copy_quality"),
+            "ai_urgency_level": target.get("ai_urgency_level"),
+            "ai_emotion": target.get("ai_emotion"),
+            "estimated_spend": target.get("estimated_spend"),
+            "potential_score": target.get("potential_score"),
+        }
+
+    # Analisar com DeepSeek
+    body = target.get("body", "") or ""
+    title = target.get("title", "") or ""
+    if not body and not title:
+        return {"error": "Ad sem texto para analisar"}
+
+    try:
+        client = OpenAI(api_key=AI_KEY, base_url=AI_URL)
+
+        prompt = f"""Analise este anúncio e retorne APENAS um JSON. Não invente dados.
+
+Anúncio:
+- Anunciante: {target.get('advertiser', '')}
+- Plataforma: {target.get('platform', '')}
+- Título: {title}
+- Copy: {body[:500]}
+- CTA: {target.get('cta', '')}
+- Landing: {target.get('landing_page', '')}
+- Dias rodando: {target.get('days_running', 0)}
+- Curtidas: {target.get('likes', 0)}
+
+JSON:
+{{"niche":"string","target_audience":"string curta","strategy":"string curta","hook_type":"string","product_type":"string","copy_quality":"1-10","urgency_level":"1-10","emotion":"string","language":"string","summary":"resumo em 1 frase do que o anuncio vende e como"}}"""
+
+        response = client.chat.completions.create(
+            model="deepseek-chat",
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=300,
+            temperature=0.3,
+        )
+        text = response.choices[0].message.content.strip()
+        text = text.replace("```json", "").replace("```", "").strip()
+        import json as json_lib
+        analysis = json_lib.loads(text)
+
+        # Salvar no ad
+        target["ai_niche"] = analysis.get("niche", "")
+        target["ai_target_audience"] = analysis.get("target_audience", "")
+        target["ai_strategy"] = analysis.get("strategy", "")
+        target["ai_hook_type"] = analysis.get("hook_type", "")
+        target["ai_product_type"] = analysis.get("product_type", "")
+        target["ai_copy_quality"] = analysis.get("copy_quality", 0)
+        target["ai_urgency_level"] = analysis.get("urgency_level", 0)
+        target["ai_emotion"] = analysis.get("emotion", "")
+        target["ai_language"] = analysis.get("language", "")
+        target["ai_summary"] = analysis.get("summary", "")
+
+        # Salvar no arquivo
+        files = sorted(glob.glob(f"{OUTPUT_DIR}/unified_*.json"), reverse=True)
+        if files:
+            with open(files[0], "r", encoding="utf-8") as f:
+                all_ads = json.load(f)
+            for j, a in enumerate(all_ads):
+                if a.get("ad_id") == ad_id:
+                    all_ads[j].update(target)
+                    break
+            with open(files[0], "w", encoding="utf-8") as f:
+                json.dump(all_ads, f, ensure_ascii=False)
+
+        return {
+            "status": "analyzed",
+            "ad_id": ad_id,
+            **{k: v for k, v in analysis.items()},
+        }
+
+    except Exception as e:
+        return {"error": str(e)}
+
+
 @app.post("/api/sync/trigger")
 def trigger_sync():
     """Dispara nova coleta (roda o scraper)"""

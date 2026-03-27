@@ -359,6 +359,7 @@ def get_sources():
             {"id": "adyntel_linkedin", "name": "Adyntel LinkedIn", "platforms": ["linkedin"]},
             {"id": "adyntel_tiktok", "name": "Adyntel TikTok", "platforms": ["tiktok"]},
             {"id": "minea", "name": "Minea", "platforms": ["facebook", "tiktok", "pinterest"]},
+            {"id": "pipiads", "name": "PiPiAds", "platforms": ["tiktok", "facebook"]},
         ]
     }
 

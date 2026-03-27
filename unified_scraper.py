@@ -270,11 +270,23 @@ def run():
                 writer.writerow(row)
         print(f"\n  CSV: {csv_path}")
 
-    # JSON unificado
-    json_path = output_dir / f"unified_{timestamp}.json"
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(unique_ads, f, ensure_ascii=False, indent=2)
-    print(f"  JSON: {json_path}")
+    # JSON unificado - ADICIONAR ao existente, nunca sobreescrever
+    existing_files = sorted(glob.glob(str(output_dir / "unified_*.json")), reverse=True)
+    if existing_files:
+        json_path = existing_files[0]
+        with open(json_path, "r", encoding="utf-8") as f:
+            existing_ads = json.load(f)
+        existing_ids = {a.get("ad_id", "") for a in existing_ads if a.get("ad_id")}
+        new_only = [a for a in unique_ads if a.get("ad_id") and a["ad_id"] not in existing_ids]
+        combined = existing_ads + new_only
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(combined, f, ensure_ascii=False)
+        print(f"  JSON: {json_path} (+{len(new_only)} novos, total: {len(combined)})")
+    else:
+        json_path = output_dir / f"unified_{timestamp}.json"
+        with open(json_path, "w", encoding="utf-8") as f:
+            json.dump(unique_ads, f, ensure_ascii=False)
+        print(f"  JSON: {json_path} ({len(unique_ads)} ads)")
 
     # Keywords separado
     if keywords_data:

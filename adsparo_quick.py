@@ -104,7 +104,7 @@ unified_files = sorted(glob.glob("resultados/unified_*.json"), reverse=True)
 if unified_files:
     with open(unified_files[0], "r", encoding="utf-8") as f:
         existing = json.load(f)
-    existing_ids = {a["ad_id"] for a in existing}
+    existing_ids = {a.get("ad_id","") for a in existing if a.get("ad_id")}
     new_ads = [a for a in unique if a["ad_id"] not in existing_ids]
     combined = existing + new_ads
     with open(unified_files[0], "w", encoding="utf-8") as f:

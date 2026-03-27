@@ -253,7 +253,7 @@ def main():
     if unified:
         with open(unified[0], "r", encoding="utf-8") as f:
             existing = json.load(f)
-        ids = {a["ad_id"] for a in existing}
+        ids = {a.get("ad_id","") for a in existing if a.get("ad_id")}
         new = [a for a in unique if a["ad_id"] not in ids]
         combined = existing + new
         with open(unified[0], "w", encoding="utf-8") as f:

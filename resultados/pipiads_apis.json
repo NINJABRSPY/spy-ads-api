@@ -1,0 +1,142 @@
+[
+  {
+    "url": "https://www.pipiads.com/v1/api/member/info",
+    "size": 1187
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/usage",
+    "size": 265
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/search4/at/video/search",
+    "size": 42642
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/usage",
+    "size": 265
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/common/region",
+    "size": 9034
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/product/category?page_size=100",
+    "size": 3552
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/app/common/category",
+    "size": 12489
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/tiktok-shop/product-category",
+    "size": 1136610
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/usage",
+    "size": 265
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/info",
+    "size": 1187
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/search4/at/video/search",
+    "size": 42642
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/usage",
+    "size": 265
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/product/category?page_size=100",
+    "size": 3552
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/common/region",
+    "size": 9034
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/app/common/category",
+    "size": 12489
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/tiktok-shop/product-category",
+    "size": 1136610
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/usage",
+    "size": 265
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/info",
+    "size": 1187
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/search4/at/video/search",
+    "size": 42642
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/usage",
+    "size": 265
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/common/region",
+    "size": 9034
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/app/common/category",
+    "size": 12489
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/product/category?page_size=100",
+    "size": 3552
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/tiktok-shop/product-category",
+    "size": 1136610
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/info",
+    "size": 1187
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/usage",
+    "size": 265
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/common/region",
+    "size": 9034
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/product/category?page_size=100",
+    "size": 3552
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/usage",
+    "size": 265
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/product/search?time=0&search_type=5&sort=1&sort_type=desc&current_page=1&page_size=20",
+    "size": 19881
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/usage",
+    "size": 265
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/product/search?time=0&search_type=5&sort=1&sort_type=desc&current_page=2&page_size=20&after_id=9939441615139&after_key=1774577639",
+    "size": 19907
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/usage",
+    "size": 265
+  },
+  {
+    "url": "https://www.pipiads.com/v3/api/product/search?time=0&search_type=5&sort=1&sort_type=desc&current_page=3&page_size=20&after_id=7740555755562&after_key=1774577630",
+    "size": 19961
+  },
+  {
+    "url": "https://www.pipiads.com/v1/api/member/usage",
+    "size": 265
+  }
+]

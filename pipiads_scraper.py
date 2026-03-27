@@ -31,42 +31,70 @@ KEYWORDS = [
 
 
 def normalize(ad, keyword, platform="tiktok"):
-    """Normaliza ad do PiPiAds para schema unificado"""
+    """Normaliza ad do PiPiAds para schema unificado - campos reais mapeados"""
+    from datetime import datetime as dt
+
+    # Converter timestamps Unix
+    first_seen = ""
+    last_seen = ""
+    try:
+        if ad.get("found_time"):
+            first_seen = dt.fromtimestamp(ad["found_time"]).strftime("%Y-%m-%d")
+        if ad.get("last_put_time"):
+            last_seen = dt.fromtimestamp(ad["last_put_time"]).strftime("%Y-%m-%d")
+    except: pass
+
+    # Regioes
+    regions = ad.get("fetch_region", [])
+    if isinstance(regions, list):
+        regions = ", ".join(regions)
+
+    likes = int(ad.get("digg_count", 0) or 0)
+    comments = int(ad.get("comment_count", 0) or 0)
+    shares = int(ad.get("share_count", 0) or 0)
+
     return {
-        "ad_id": str(ad.get("id", ad.get("ad_id", ad.get("adId", "")))),
+        "ad_id": str(ad.get("ad_id", "")),
         "source": "pipiads",
-        "platform": platform,
-        "advertiser": ad.get("advertiser_name", ad.get("advertiserName", ad.get("name", ""))),
-        "advertiser_image": ad.get("advertiser_logo", ad.get("logo", "")),
-        "title": ad.get("title", ad.get("headline", ad.get("ad_title", ""))),
-        "body": (ad.get("text", ad.get("body", ad.get("description", ad.get("ad_text", "")))) or "")[:200],
-        "cta": ad.get("cta", ad.get("call_to_action", "")),
-        "landing_page": ad.get("landing_page", ad.get("url", ad.get("link", ""))),
-        "image_url": ad.get("thumbnail", ad.get("cover", ad.get("image", ad.get("preview", "")))),
-        "video_url": ad.get("video_url", ad.get("videoUrl", ad.get("video", ""))),
-        "first_seen": ad.get("first_seen", ad.get("firstSeen", ad.get("created_at", ad.get("start_date", "")))),
-        "last_seen": ad.get("last_seen", ad.get("lastSeen", ad.get("updated_at", ad.get("end_date", "")))),
-        "is_active": ad.get("is_active", ad.get("isActive", ad.get("status", "") == "active")),
-        "likes": int(ad.get("likes", ad.get("like_count", ad.get("digg_count", 0))) or 0),
-        "comments": int(ad.get("comments", ad.get("comment_count", 0)) or 0),
-        "shares": int(ad.get("shares", ad.get("share_count", 0)) or 0),
-        "impressions": int(ad.get("impressions", ad.get("views", ad.get("play_count", 0))) or 0),
-        "total_engagement": int(ad.get("likes", 0) or 0) + int(ad.get("comments", 0) or 0) + int(ad.get("shares", 0) or 0),
-        "days_running": int(ad.get("duration", ad.get("days_running", ad.get("days", 0))) or 0),
-        "ad_type": "video" if ad.get("video_url", ad.get("videoUrl", ad.get("video"))) else "image",
-        "country": ad.get("country", ad.get("region", "")),
+        "platform": "tiktok",
+        "advertiser": ad.get("app_name", ad.get("unique_id", "")),
+        "advertiser_image": ad.get("app_image", ""),
+        "title": ad.get("app_title", ad.get("desc", ""))[:200] if ad.get("app_title") or ad.get("desc") else "",
+        "body": (ad.get("desc", ad.get("app_title", "")) or "")[:200],
+        "cta": ad.get("button_text", ""),
+        "landing_page": "",
+        "image_url": ad.get("cover", ""),
+        "video_url": ad.get("video_url", ""),
+        "first_seen": first_seen,
+        "last_seen": last_seen,
+        "is_active": True,
+        "likes": likes,
+        "comments": comments,
+        "shares": shares,
+        "impressions": int(ad.get("play_count", 0) or 0),
+        "total_engagement": likes + comments + shares,
+        "days_running": int(ad.get("put_days", 0) or 0),
+        "heat": int(ad.get("hot_value", 0) or 0),
+        "ad_type": "video",
+        "video_duration": int(ad.get("duration", 0) or 0),
+        "country": regions,
+        "all_countries": regions,
         "channels": "tiktok",
         "has_media": True,
-        "has_store": bool(ad.get("shop_url", ad.get("store_url", ad.get("landing_page", "")))),
-        # PiPiAds exclusivos
-        "pipi_ad_spend": ad.get("spend", ad.get("cost", ad.get("estimated_spend", 0))),
-        "pipi_ctr": ad.get("ctr", 0),
-        "pipi_cvr": ad.get("cvr", ad.get("conversion_rate", 0)),
-        "pipi_category": ad.get("category", ad.get("industry", "")),
-        "pipi_product_name": ad.get("product_name", ad.get("productName", "")),
-        "pipi_product_price": ad.get("product_price", ad.get("price", "")),
-        "pipi_shop_name": ad.get("shop_name", ad.get("shopName", "")),
-        "pipi_ranking": ad.get("rank", ad.get("ranking", 0)),
+        "has_store": bool(ad.get("shop_id") or ad.get("store_id")),
+        # EXCLUSIVOS PIPIADS
+        "pipi_hook": ad.get("ai_analysis_main_hook", ""),
+        "pipi_script": (ad.get("ai_analysis_script", "") or "")[:500],
+        "pipi_tags": ad.get("ai_analysis_tags", []),
+        "pipi_has_presenter": ad.get("ai_analysis_human_presenter", ""),
+        "pipi_language": ad.get("ai_analysis_language", ""),
+        "pipi_cpm": ad.get("min_cpm", 0),
+        "pipi_cpa": ad.get("min_cpa", 0),
+        "pipi_digg_play_rate": ad.get("digg_play_rate", 0),
+        "pipi_share_play_rate": ad.get("share_play_rate", 0),
+        "pipi_score": ad.get("_score", 0),
+        "pipi_video_id": ad.get("video_id", ""),
+        "estimated_spend": round((ad.get("min_cpm", 0) or 0) * (ad.get("play_count", 0) or 0) / 1000, 2) if ad.get("min_cpm") and ad.get("play_count") else 0,
         "search_keyword": keyword,
         "collected_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
     }
@@ -168,47 +196,54 @@ def run():
 
         print(f'\nFase 1 completa: {len(all_ads)} ads da descoberta')
 
-        # Fase 2: Buscar por keywords
+        # Fase 2: Buscar por keywords usando interceptor JS
         print('\nFase 2: Buscando por keywords...')
 
         for idx, kw in enumerate(KEYWORDS):
-            captured = []
-            def on_resp(resp, c=captured):
-                url = resp.url
-                ct = resp.headers.get('content-type', '')
-                if 'json' in ct and 'pipiads' in url:
-                    try:
-                        data = resp.json()
-                        if isinstance(data, dict):
-                            for key in ['data', 'list', 'items', 'ads', 'results']:
-                                items = data.get(key, [])
-                                if isinstance(items, list):
-                                    c.extend([i for i in items if isinstance(i, dict)])
-                    except:
-                        pass
-
-            page.on('response', on_resp)
             try:
-                page.goto(f'https://www.pipiads.com/ad-search?keyword={kw}&platform=tiktok',
+                # Instalar interceptor
+                page.evaluate('''() => { window._pipiSearch = []; }''')
+                page.evaluate('''() => {
+                    const origXHR = XMLHttpRequest.prototype.send;
+                    XMLHttpRequest.prototype.send = function(body) {
+                        this.addEventListener('load', function() {
+                            if (this._url && this._url.includes('search')) {
+                                try {
+                                    const d = JSON.parse(this.responseText);
+                                    if (d.result && d.result.data) {
+                                        d.result.data.forEach(item => window._pipiSearch.push(item));
+                                    }
+                                } catch(e) {}
+                            }
+                        });
+                        return origXHR.apply(this, arguments);
+                    };
+                }''')
+
+                page.goto(f'https://www.pipiads.com/ad-search?keyword={kw}&platform=1&search_type=1',
                           timeout=20000, wait_until='domcontentloaded')
-                time.sleep(5)
-                for _ in range(5):
+                time.sleep(6)
+
+                for _ in range(3):
                     page.evaluate('window.scrollTo(0, document.body.scrollHeight)')
-                    time.sleep(2)
-            except:
+                    time.sleep(3)
+
+                # Pegar dados capturados
+                raw = page.evaluate('JSON.stringify(window._pipiSearch)')
+                items = json.loads(raw) if raw else []
+
+                for item in items:
+                    ad = normalize(item, kw)
+                    aid = ad['ad_id']
+                    if aid and aid not in seen:
+                        seen.add(aid)
+                        all_ads.append(ad)
+
+                if items:
+                    print(f'  [{idx+1:2d}/{len(KEYWORDS)}] {kw:25s} +{len(items)} (uniq: {len(all_ads)})')
+
+            except Exception as e:
                 pass
-
-            page.remove_listener('response', on_resp)
-
-            for item in captured:
-                ad = normalize(item, kw)
-                aid = ad['ad_id']
-                if aid and aid not in seen:
-                    seen.add(aid)
-                    all_ads.append(ad)
-
-            if captured:
-                print(f'  [{idx+1:2d}/{len(KEYWORDS)}] {kw:25s} +{len(captured)} (uniq: {len(all_ads)})')
 
             time.sleep(1)
 

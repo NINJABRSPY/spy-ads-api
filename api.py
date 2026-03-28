@@ -1008,6 +1008,23 @@ def top_stores(limit: int = Query(20)):
     return {"stores": ranked[:limit]}
 
 
+# ============================================================
+# SEOTOOLS INTEGRATION
+# ============================================================
+@app.get("/api/seotools/list")
+def seotools_list():
+    """Lista todas as ferramentas SEOTools disponiveis"""
+    tools_file = Path("resultados/seotools_ferramentas.json")
+    if tools_file.exists():
+        with open(tools_file, "r", encoding="utf-8") as f:
+            tools = json.load(f)
+        return {"tools": tools, "total": len(tools),
+                "socket_url": "http://127.0.0.1:3992",
+                "cookie": "d18a1e33-3944-4d0d-9043-b73bd2f3a60d",
+                "version": "20250906"}
+    return {"tools": [], "total": 0}
+
+
 @app.post("/api/sync/trigger")
 def trigger_sync():
     """Dispara nova coleta (roda o scraper)"""

@@ -16,3 +16,17 @@
 [2026-03-28 06:00:02]   NinjaSpy Daily Scraper
 [2026-03-28 06:00:02] ============================================================
 [2026-03-28 06:00:02] === BIGSPY ===
+[2026-03-28 17:10:34] BigSpy BR: OK
+[2026-03-28 17:52:19] BigSpy Global ERRO: name 'glob' is not defined
+[2026-03-28 17:52:19] === PIPIADS ===
+[2026-03-28 18:16:25] PiPiAds: OK
+[2026-03-28 18:16:25] === MINEA ===
+[2026-03-28 18:21:55] PiPiAds: OK
+[2026-03-28 18:21:55] === MINEA ===
+[2026-03-28 22:24:56] BigSpy BR: OK
+[2026-03-28 22:43:24] Minea: OK
+[2026-03-28 22:43:24] === ADYNTEL ===
+[2026-03-28 22:45:25] Adyntel: +30 novos ads
+[2026-03-28 22:45:25] Adyntel: OK
+[2026-03-28 22:45:26] Total: 34816 ads | Fontes: {'bigspy': 33069, 'adyntel_google': 53, 'adyntel_linkedin': 47, 'pipiads': 1309, 'minea': 308, 'adyntel_meta': 30}
+[2026-03-28 22:45:26] === PUSH ===

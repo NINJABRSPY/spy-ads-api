@@ -30,3 +30,12 @@
 [2026-03-28 22:45:25] Adyntel: OK
 [2026-03-28 22:45:26] Total: 34816 ads | Fontes: {'bigspy': 33069, 'adyntel_google': 53, 'adyntel_linkedin': 47, 'pipiads': 1309, 'minea': 308, 'adyntel_meta': 30}
 [2026-03-28 22:45:26] === PUSH ===
+[2026-03-28 22:45:36] Push: OK
+[2026-03-28 22:45:36] Concluido em 1931.5 minutos
+[2026-03-28 22:45:36] ============================================================
+[2026-03-28 22:53:50] Minea: OK
+[2026-03-28 22:53:50] === ADYNTEL ===
+[2026-03-28 22:55:50] Adyntel: +30 novos ads
+[2026-03-28 22:55:50] Adyntel: OK
+[2026-03-28 22:55:50] Total: 34883 ads | Fontes: {'bigspy': 33069, 'adyntel_google': 53, 'adyntel_linkedin': 47, 'pipiads': 1309, 'minea': 375, 'adyntel_meta': 30}
+[2026-03-28 22:55:50] === PUSH ===

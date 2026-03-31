@@ -103,3 +103,9 @@
 [2026-03-31 09:06:06] === PIPIADS ===
 [2026-03-31 09:39:13] PiPiAds: OK
 [2026-03-31 09:39:13] === MINEA ===
+[2026-03-31 11:21:57] Minea: OK
+[2026-03-31 11:21:57] === ADYNTEL ===
+[2026-03-31 11:23:32] Adyntel: sem ads novos
+[2026-03-31 11:23:32] Adyntel: OK
+[2026-03-31 11:23:34] Total: 54686 ads | Fontes: {'bigspy': 48696, 'adyntel_google': 112, 'adyntel_linkedin': 51, 'pipiads': 1419, 'minea': 4376, 'adyntel_meta': 32}
+[2026-03-31 11:23:34] === PUSH ===

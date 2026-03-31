@@ -121,7 +121,10 @@ def convert_clickmidas_to_ninjaspy(input_file=None):
 
     # Encontrar arquivo mais recente se não especificado
     if not input_file:
+        # Buscar arquivo principal (clickmidas_YYYYMMDD.json, sem sufixo de plataforma)
+        import re
         files = sorted(glob.glob(f"{INPUT_DIR}/clickmidas_*.json"), reverse=True)
+        files = [f for f in files if re.search(r'clickmidas_\d{8}\.json$', f)]
         if not files:
             print("Nenhum arquivo clickmidas encontrado!")
             return None

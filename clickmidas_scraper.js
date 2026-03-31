@@ -152,18 +152,30 @@ async function main() {
         }
         lastPageNum = pd.currentPage;
 
-        // Parse rows into products
+        // Parse rows into products based on table headers
         for (const cells of pd.rows) {
-          if (cells.length >= 6) {
-            allProducts.push({
-              name: cells[0],
-              gravity: parseFloat(cells[1]) || 0,
-              gravity_1d: parseFloat(cells[2]) || 0,
-              gravity_7d: parseFloat(cells[3]) || 0,
-              gravity_30d: parseFloat(cells[4]) || 0,
-              midas_score: parseFloat(cells[5]) || 0,
-              table_id: table.id
-            });
+          if (cells.length >= 2 && cells[0]) {
+            const product = { name: cells[0], table_id: table.id };
+
+            // Map cells to headers dynamically
+            const hdrs = table.headers;
+            for (let h = 1; h < hdrs.length && h < cells.length; h++) {
+              const header = hdrs[h].toLowerCase();
+              const val = parseFloat(cells[h]) || 0;
+
+              if (header === 'grav.' || header === 'temp.') product.gravity = val;
+              else if (header.includes('1d')) product.gravity_1d = val;
+              else if (header.includes('7d')) product.gravity_7d = val;
+              else if (header.includes('30d')) product.gravity_30d = val;
+              else if (header.includes('midas')) product.midas_score = val;
+              else if (header.includes('visitas')) product.traffic = val;
+              else if (header.includes('comiss')) product.max_commission = val;
+              else if (header.includes('moeda')) product.currency = cells[h];
+              else if (header.includes('avalia')) product.rating = val;
+              else if (header.includes('nota')) product.overall_score = val;
+            }
+
+            allProducts.push(product);
           }
         }
 
@@ -173,21 +185,23 @@ async function main() {
       }
     }
 
-    // Deduplicate
+    // Deduplicate - merge ALL fields from all tables
     const productMap = {};
     for (const p of allProducts) {
+      const tableId = p.table_id;
+      delete p.table_id;
+
       if (!productMap[p.name]) {
-        productMap[p.name] = {
-          name: p.name,
-          gravity: p.gravity,
-          gravity_1d: p.gravity_1d,
-          gravity_7d: p.gravity_7d,
-          gravity_30d: p.gravity_30d,
-          midas_score: p.midas_score,
-          tables: [p.table_id]
-        };
+        productMap[p.name] = { ...p, tables: [tableId] };
       } else {
-        productMap[p.name].tables.push(p.table_id);
+        // Merge: keep non-zero/non-empty values from each table
+        productMap[p.name].tables.push(tableId);
+        for (const [k, v] of Object.entries(p)) {
+          if (k === 'name') continue;
+          if (v && v !== 0 && (!productMap[p.name][k] || productMap[p.name][k] === 0)) {
+            productMap[p.name][k] = v;
+          }
+        }
       }
     }
 

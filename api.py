@@ -1206,6 +1206,205 @@ def gold_rush(
 
 
 # ============================================================
+# SATURATION CLOCK GERAL (Cross-source: Ads + Afiliados)
+# ============================================================
+
+def _build_market_intelligence():
+    """Cruza dados de ads (6 fontes) com produtos afiliados para gerar inteligencia de mercado"""
+    ads = load_latest_data()
+    affiliates = load_affiliate_products()
+
+    # Agrupar ads por keyword/nicho
+    keyword_stats = {}
+    for ad in ads:
+        kw = (ad.get("search_keyword") or ad.get("ai_niche") or "").lower()
+        if not kw:
+            continue
+        if kw not in keyword_stats:
+            keyword_stats[kw] = {
+                "keyword": kw,
+                "total_ads": 0,
+                "advertisers": set(),
+                "platforms": set(),
+                "sources": set(),
+                "total_impressions": 0,
+                "total_engagement": 0,
+                "total_spend": 0,
+                "days_running_list": [],
+                "heat_list": [],
+                "with_video": 0,
+                "recent_ads": 0,  # ads com menos de 7 dias
+            }
+        s = keyword_stats[kw]
+        s["total_ads"] += 1
+        if ad.get("advertiser"):
+            s["advertisers"].add(ad["advertiser"])
+        if ad.get("platform"):
+            s["platforms"].add(ad["platform"])
+        if ad.get("source"):
+            s["sources"].add(ad["source"])
+        s["total_impressions"] += int(ad.get("impressions", 0) or 0)
+        s["total_engagement"] += int(ad.get("total_engagement", 0) or 0)
+        s["total_spend"] += float(ad.get("estimated_spend", 0) or 0)
+        days = int(ad.get("days_running", 0) or 0)
+        if days > 0:
+            s["days_running_list"].append(days)
+        if days <= 7:
+            s["recent_ads"] += 1
+        heat = float(ad.get("heat", 0) or 0)
+        if heat > 0:
+            s["heat_list"].append(heat)
+        if ad.get("video_url"):
+            s["with_video"] += 1
+
+    # Calcular metricas finais por keyword
+    markets = []
+    for kw, s in keyword_stats.items():
+        if s["total_ads"] < 2:
+            continue
+
+        unique_advertisers = len(s["advertisers"])
+        avg_days = sum(s["days_running_list"]) / len(s["days_running_list"]) if s["days_running_list"] else 0
+        avg_heat = sum(s["heat_list"]) / len(s["heat_list"]) if s["heat_list"] else 0
+        freshness = s["recent_ads"] / s["total_ads"] if s["total_ads"] > 0 else 0
+        source_count = len(s["sources"])
+        platform_count = len(s["platforms"])
+
+        # Saturacao (0-100)
+        sat_score = min(100, int(
+            (unique_advertisers / 50 * 25) +
+            (s["total_ads"] / 200 * 25) +
+            (avg_days / 30 * 20) +
+            (15 if avg_days > 14 else 0) +
+            (15 if unique_advertisers > 20 else 0)
+        ))
+
+        # Momentum: freshness alta = mercado aquecendo, baixa = estagnado
+        momentum = round(freshness * 100)
+
+        # Multi-source signal: aparece em multiplas fontes = sinal forte
+        cross_source = min(10, source_count * 2 + platform_count)
+
+        # Zona
+        if momentum > 60 and sat_score < 40:
+            zone = "gold_rush"
+        elif momentum > 40 and sat_score < 60:
+            zone = "early_majority"
+        elif momentum > 20 and sat_score < 70:
+            zone = "growth"
+        elif sat_score >= 70:
+            zone = "saturation"
+        else:
+            zone = "mature"
+
+        # Opportunity (0-100)
+        opp = max(0, min(100, int(
+            momentum * 0.4 +
+            (100 - sat_score) * 0.3 +
+            cross_source * 3 +
+            min(20, avg_heat * 0.3)
+        )))
+
+        markets.append({
+            "keyword": kw,
+            "total_ads": s["total_ads"],
+            "unique_advertisers": unique_advertisers,
+            "platforms": sorted(s["platforms"]),
+            "sources": sorted(s["sources"]),
+            "source_count": source_count,
+            "total_impressions": s["total_impressions"],
+            "total_engagement": s["total_engagement"],
+            "total_spend": round(s["total_spend"], 2),
+            "avg_days_running": round(avg_days, 1),
+            "avg_heat": round(avg_heat, 1),
+            "video_ratio": round(s["with_video"] / s["total_ads"] * 100) if s["total_ads"] > 0 else 0,
+            "freshness": momentum,
+            "saturation_score": sat_score,
+            "cross_source_signal": cross_source,
+            "zone": zone,
+            "opportunity_score": opp,
+            # Cruzamento com afiliados
+            "affiliate_products": [],
+        })
+
+    # Cruzar com produtos afiliados por nicho
+    aff_by_niche = {}
+    for p in affiliates:
+        n = p.get("niche", "other")
+        if n not in aff_by_niche:
+            aff_by_niche[n] = []
+        aff_by_niche[n].append(p)
+
+    for m in markets:
+        kw = m["keyword"]
+        # Match por keyword em nichos de afiliados
+        matched = []
+        for niche, prods in aff_by_niche.items():
+            if kw in niche or niche in kw:
+                top = sorted(prods, key=lambda x: x.get("opportunity_score", 0), reverse=True)[:3]
+                matched.extend(top)
+        # Tambem buscar por nome
+        if not matched:
+            for p in affiliates:
+                if kw in p.get("name", "").lower():
+                    matched.append(p)
+                    if len(matched) >= 3:
+                        break
+        m["affiliate_products"] = matched[:3]
+        m["has_affiliate_match"] = len(matched) > 0
+
+    markets.sort(key=lambda x: x["opportunity_score"], reverse=True)
+    return markets
+
+
+@app.get("/api/market-intelligence")
+def market_intelligence(
+    zone: str = Query(None, description="gold_rush, early_majority, growth, mature, saturation"),
+    min_ads: int = Query(5, description="Minimo de ads para considerar o mercado"),
+    limit: int = Query(30, ge=1, le=100),
+):
+    """Inteligencia de mercado geral - cruza 6 fontes de ads + produtos afiliados"""
+    markets = _build_market_intelligence()
+
+    if min_ads:
+        markets = [m for m in markets if m["total_ads"] >= min_ads]
+    if zone:
+        markets = [m for m in markets if m["zone"] == zone]
+
+    # Stats
+    zones = {}
+    for m in _build_market_intelligence():
+        z = m["zone"]
+        zones[z] = zones.get(z, 0) + 1
+
+    return {
+        "data": markets[:limit],
+        "total": len(markets),
+        "zones_overview": zones,
+    }
+
+
+@app.get("/api/market-intelligence/gold-rush")
+def market_gold_rush(limit: int = Query(20, ge=1, le=50)):
+    """Mercados em Gold Rush - cruzamento de todas as fontes"""
+    markets = _build_market_intelligence()
+    gold = [m for m in markets if m["zone"] == "gold_rush" and m["total_ads"] >= 3]
+    return {"data": gold[:limit], "total": len(gold)}
+
+
+@app.get("/api/market-intelligence/cross-source")
+def cross_source_signals(
+    min_sources: int = Query(3, description="Minimo de fontes para considerar sinal forte"),
+    limit: int = Query(20, ge=1, le=50),
+):
+    """Sinais cross-source - mercados detectados em multiplas fontes simultaneamente"""
+    markets = _build_market_intelligence()
+    strong = [m for m in markets if m["source_count"] >= min_sources]
+    strong.sort(key=lambda x: x["cross_source_signal"], reverse=True)
+    return {"data": strong[:limit], "total": len(strong)}
+
+
+# ============================================================
 # SEOTOOLS INTEGRATION
 # ============================================================
 @app.get("/api/seotools/list")

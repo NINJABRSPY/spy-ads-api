@@ -6,6 +6,7 @@ Coleta, normaliza, deduplica e salva tudo junto.
 
 import json
 import csv
+import glob
 import time
 import requests
 from datetime import datetime, timedelta

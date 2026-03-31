@@ -1147,13 +1147,62 @@ def affiliate_opportunities(
     if platform:
         products = [p for p in products if p.get("platform") == platform]
 
-    # Produtos com score alto e competicao baixa/media
     opportunities = [p for p in products
                      if (p.get("ninja_score", 0) or 0) >= 5
                      and p.get("competition_level") in ("low", "medium")]
-    opportunities.sort(key=lambda x: x.get("ninja_score", 0), reverse=True)
+    opportunities.sort(key=lambda x: x.get("opportunity_score", 0) or 0, reverse=True)
 
     return {"data": opportunities[:limit], "total": len(opportunities)}
+
+
+@app.get("/api/affiliate/saturation-clock")
+def saturation_clock(
+    zone: str = Query(None, description="gold_rush, early_majority, growth, mature, saturation"),
+    niche: str = Query(None),
+    platform: str = Query(None),
+    limit: int = Query(50, ge=1, le=100),
+):
+    """Predictive Saturation Clock - janela de oportunidade em tempo real"""
+    products = load_affiliate_products()
+
+    if platform:
+        products = [p for p in products if p.get("platform") == platform]
+    if niche:
+        products = [p for p in products if p.get("niche") == niche.lower()]
+    if zone:
+        products = [p for p in products if p.get("saturation_zone") == zone]
+
+    # Ordenar por opportunity_score
+    products.sort(key=lambda x: x.get("opportunity_score", 0) or 0, reverse=True)
+
+    # Stats por zona
+    zones = {}
+    for p in load_affiliate_products():
+        z = p.get("saturation_zone", "unknown")
+        zones[z] = zones.get(z, 0) + 1
+
+    return {
+        "data": products[:limit],
+        "total": len(products),
+        "zones_overview": zones,
+    }
+
+
+@app.get("/api/affiliate/gold-rush")
+def gold_rush(
+    niche: str = Query(None),
+    limit: int = Query(20, ge=1, le=50),
+):
+    """Gold Rush - produtos explodindo AGORA com pouca competicao"""
+    products = load_affiliate_products()
+
+    if niche:
+        products = [p for p in products if p.get("niche") == niche.lower()]
+
+    gold = [p for p in products if p.get("saturation_zone") == "gold_rush"]
+    gold.sort(key=lambda x: x.get("opportunity_score", 0) or 0, reverse=True)
+
+    return {"data": gold[:limit], "total": len(gold)}
 
 
 # ============================================================

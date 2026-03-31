@@ -116,6 +116,112 @@ def classify_trend(trend_1d, trend_7d, trend_30d):
     return "stable"
 
 
+def calculate_saturation_clock(gravity, trend_1d, trend_7d, trend_30d, traffic):
+    """
+    Predictive Saturation Clock — classifica a janela de oportunidade.
+
+    Fórmula: velocity / competition × lifecycle_bonus
+
+    velocity = ritmo de crescimento (quanto mais rápido sobe, melhor)
+    competition = quantos afiliados já estão vendendo (gravity)
+    lifecycle = em que fase do ciclo de vida está
+    """
+    # Velocity: combinação ponderada dos trends
+    velocity = (trend_1d * 3) + (trend_7d * 2) + (trend_30d * 0.5)
+
+    # Competition factor: quanto menor a gravidade, menos competição
+    if gravity <= 0:
+        comp_factor = 1
+    elif gravity < 20:
+        comp_factor = 5      # pouquíssima competição
+    elif gravity < 50:
+        comp_factor = 3
+    elif gravity < 100:
+        comp_factor = 1.5
+    elif gravity < 200:
+        comp_factor = 0.8
+    else:
+        comp_factor = 0.4    # muito saturado
+
+    # Lifecycle bonus: produto novo subindo rápido = bonus
+    lifecycle = 1.0
+    if trend_30d == 0 and trend_7d > 0:
+        lifecycle = 2.0   # produto com menos de 30 dias e subindo = muito novo
+    elif trend_7d > 0 and trend_30d > 0 and trend_7d > trend_30d * 0.3:
+        lifecycle = 1.5   # aceleração sustentável
+    elif trend_7d < 0 and trend_30d < 0:
+        lifecycle = 0.3   # decadência
+
+    # Traffic bonus
+    traffic_bonus = 1.0
+    if traffic > 500000:
+        traffic_bonus = 1.3
+    elif traffic > 100000:
+        traffic_bonus = 1.15
+
+    raw_score = velocity * comp_factor * lifecycle * traffic_bonus
+
+    # Classificar em zonas
+    if raw_score > 15:
+        zone = "gold_rush"           # 🟢 0-48h: entrar AGORA
+        hours_left = 48
+    elif raw_score > 5:
+        zone = "early_majority"      # 🟡 3-7 dias: ainda lucrativo
+        hours_left = 168
+    elif raw_score > 0:
+        zone = "growth"              # 🔵 crescendo mas moderado
+        hours_left = 336
+    elif raw_score > -5:
+        zone = "mature"              # ⚪ estável/maduro
+        hours_left = 0
+    else:
+        zone = "saturation"          # 🔴 saturado, evitar
+        hours_left = 0
+
+    return {
+        "zone": zone,
+        "raw_score": round(raw_score, 2),
+        "velocity": round(velocity, 2),
+        "hours_left": hours_left,
+    }
+
+
+def calculate_opportunity_score(ninja_score, gravity, trend_7d, trend_30d, traffic, zone):
+    """
+    Score final de oportunidade — combina tudo num número de 0-100.
+    Quanto maior, mais urgente a oportunidade.
+    """
+    base = ninja_score * 8  # 0-80
+
+    # Bonus por zona do saturation clock
+    zone_bonus = {
+        "gold_rush": 20,
+        "early_majority": 12,
+        "growth": 5,
+        "mature": 0,
+        "saturation": -15,
+    }.get(zone, 0)
+
+    # Bonus por aceleração (trend_7d > trend_30d proporcionalmente)
+    accel_bonus = 0
+    if trend_30d != 0 and trend_7d > 0:
+        ratio = trend_7d / max(abs(trend_30d), 1)
+        if ratio > 2:
+            accel_bonus = 8   # acelerando muito
+        elif ratio > 1:
+            accel_bonus = 4
+
+    # Bonus por tráfego (validação de mercado)
+    traffic_bonus = 0
+    if traffic > 1000000:
+        traffic_bonus = 5
+    elif traffic > 100000:
+        traffic_bonus = 3
+
+    score = base + zone_bonus + accel_bonus + traffic_bonus
+    return max(0, min(100, round(score)))
+
+
 def convert_clickmidas_to_ninjaspy(input_file=None):
     """Converte arquivo ClickMidas JSON para formato NinjaSpy"""
 
@@ -159,6 +265,10 @@ def convert_clickmidas_to_ninjaspy(input_file=None):
         niche = classify_niche(name)
         trend = classify_trend(g1d, g7d, g30d)
         ninja_score = normalize_score(midas, gravity)
+        sat_clock = calculate_saturation_clock(gravity, g1d, g7d, g30d, traffic)
+        opp_score = calculate_opportunity_score(
+            ninja_score, gravity, g7d, g30d, traffic, sat_clock["zone"]
+        )
 
         converted.append({
             # Identificação
@@ -186,7 +296,16 @@ def convert_clickmidas_to_ninjaspy(input_file=None):
             "trend_direction": trend,
             "competition_level": "high" if gravity > 150 else "medium" if gravity > 50 else "low",
 
-            # Rankings (em quais views apareceu)
+            # Saturation Clock
+            "saturation_zone": sat_clock["zone"],
+            "saturation_score": sat_clock["raw_score"],
+            "velocity": sat_clock["velocity"],
+            "hours_left": sat_clock["hours_left"],
+
+            # Opportunity Score (0-100)
+            "opportunity_score": opp_score,
+
+            # Rankings
             "rankings": p.get("rankings", {}),
             "tables": p.get("tables", []),
         })

@@ -124,6 +124,100 @@ def run_adyntel():
         log(f"Adyntel ERRO: {e}")
 
 
+def run_clickmidas():
+    """ClickMidas - scrape via Chrome CDP + converte para formato NinjaSpy"""
+    log("=== CLICKMIDAS ===")
+    try:
+        import requests
+        r = requests.get("http://localhost:9222/json/version", timeout=3)
+        if r.status_code != 200:
+            log("ClickMidas: Chrome debugging nao disponivel - PULANDO")
+            return
+    except:
+        log("ClickMidas: Chrome debugging nao disponivel - PULANDO")
+        return
+
+    # Verificar se tem aba do ClickMidas aberta
+    try:
+        import requests
+        r = requests.get("http://localhost:9222/json", timeout=3)
+        tabs = r.json()
+        has_midas = any("clickmidas" in t.get("url", "") for t in tabs)
+        if not has_midas:
+            log("ClickMidas: Nenhuma aba do ClickMidas aberta - PULANDO")
+            return
+    except:
+        log("ClickMidas: Erro ao verificar abas - PULANDO")
+        return
+
+    # Rodar scraper Node.js
+    try:
+        result = subprocess.run(
+            ["node", "clickmidas_scraper.js"],
+            capture_output=True, text=True, timeout=1800,
+            cwd=os.path.dirname(os.path.abspath(__file__))
+        )
+        if result.returncode == 0:
+            log("ClickMidas scraper: OK")
+        else:
+            log(f"ClickMidas scraper ERRO: {result.stderr[:200]}")
+            return
+    except subprocess.TimeoutExpired:
+        log("ClickMidas scraper: TIMEOUT (30min)")
+        return
+    except Exception as e:
+        log(f"ClickMidas scraper ERRO: {e}")
+        return
+
+    # Converter para formato NinjaSpy (merge incremental)
+    try:
+        from clickmidas_converter import convert_clickmidas_to_ninjaspy
+        output_file = convert_clickmidas_to_ninjaspy()
+        if output_file:
+            # Merge com arquivo anterior - manter produtos que nao mudaram
+            merge_affiliate_data(output_file)
+            log(f"ClickMidas converter: OK -> {output_file}")
+        else:
+            log("ClickMidas converter: nenhum dado")
+    except Exception as e:
+        log(f"ClickMidas converter ERRO: {e}")
+
+
+def merge_affiliate_data(new_file):
+    """Merge incremental - atualiza produtos existentes, mantem os que nao mudaram"""
+    try:
+        # Carregar novo
+        with open(new_file, "r", encoding="utf-8") as f:
+            new_data = json.load(f)
+        new_products = {p["name"]: p for p in new_data.get("products", [])}
+
+        # Carregar mais recente anterior (se existir)
+        files = sorted(glob.glob("resultados/affiliate_products_*.json"), reverse=True)
+        existing_products = {}
+        for af in files:
+            if af != new_file:
+                with open(af, "r", encoding="utf-8") as f:
+                    old_data = json.load(f)
+                existing_products = {p["name"]: p for p in old_data.get("products", [])}
+                break
+
+        # Merge: novos sobrescrevem, antigos permanecem
+        merged = {**existing_products, **new_products}
+
+        # Salvar no arquivo novo
+        new_data["products"] = list(merged.values())
+        new_data["total_products"] = len(new_data["products"])
+        new_data["merged_from_previous"] = len(existing_products)
+        new_data["new_or_updated"] = len(new_products)
+
+        with open(new_file, "w", encoding="utf-8") as f:
+            json.dump(new_data, f, ensure_ascii=False, indent=2)
+
+        log(f"Merge: {len(merged)} total ({len(new_products)} atualizados, {len(merged) - len(new_products)} mantidos)")
+    except Exception as e:
+        log(f"Merge ERRO: {e}")
+
+
 def push_to_render():
     """Push automatico para GitHub (Render faz redeploy)"""
     log("=== PUSH ===")
@@ -158,6 +252,7 @@ def main():
 
     start = time.time()
 
+    run_clickmidas()
     run_bigspy()
     run_pipiads()
     run_minea()

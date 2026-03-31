@@ -1,3 +1,7 @@
 __pycache__/
 *.pyc
 .env
+node_modules/
+clickmidas_api_discovery.json
+clickmidas_structure.json
+clickmidas_page_data.json

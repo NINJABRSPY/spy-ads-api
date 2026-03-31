@@ -1009,6 +1009,154 @@ def top_stores(limit: int = Query(20)):
 
 
 # ============================================================
+# AFILIADOS NA GRINGA (ClickBank, BuyGoods, Digistore24, MaxWeb)
+# ============================================================
+
+_affiliate_cache = {"data": None, "loaded_at": None, "file": None}
+
+def load_affiliate_products():
+    """Carrega produtos de afiliacao com cache"""
+    files = sorted(glob.glob(f"{OUTPUT_DIR}/affiliate_products_*.json"), reverse=True)
+    if not files:
+        return []
+
+    latest = files[0]
+    file_mtime = os.path.getmtime(latest)
+
+    if _affiliate_cache["data"] is not None and _affiliate_cache["file"] == latest and _affiliate_cache["loaded_at"] == file_mtime:
+        return _affiliate_cache["data"]
+
+    with open(latest, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    _affiliate_cache["data"] = data.get("products", [])
+    _affiliate_cache["file"] = latest
+    _affiliate_cache["loaded_at"] = file_mtime
+
+    return _affiliate_cache["data"]
+
+
+@app.get("/api/affiliate/products")
+def list_affiliate_products(
+    platform: str = Query(None, description="clickbank, buygoods, digistore24, maxweb"),
+    niche: str = Query(None, description="health, fitness, wealth, beauty, etc"),
+    trend: str = Query(None, description="rising_fast, rising, declining, stable"),
+    competition: str = Query(None, description="low, medium, high"),
+    min_score: float = Query(None, description="Ninja Score minimo (1-10)"),
+    search: str = Query(None, description="Buscar no nome do produto"),
+    sort: str = Query("ninja_score", description="Campo para ordenar"),
+    order: str = Query("desc", description="asc ou desc"),
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, ge=1, le=100),
+):
+    """Lista produtos de afiliacao internacional com filtros"""
+    products = load_affiliate_products()
+
+    if platform:
+        products = [p for p in products if p.get("platform") == platform]
+    if niche:
+        products = [p for p in products if p.get("niche") == niche.lower()]
+    if trend:
+        products = [p for p in products if p.get("trend_direction") == trend]
+    if competition:
+        products = [p for p in products if p.get("competition_level") == competition]
+    if min_score:
+        products = [p for p in products if (p.get("ninja_score", 0) or 0) >= min_score]
+    if search:
+        sl = search.lower()
+        products = [p for p in products if sl in (p.get("name", "") or "").lower()]
+
+    # Ordenacao
+    reverse = order == "desc"
+    try:
+        products.sort(key=lambda x: x.get(sort, 0) or 0, reverse=reverse)
+    except:
+        pass
+
+    total = len(products)
+    start = (page - 1) * limit
+    page_products = products[start:start + limit]
+
+    return {
+        "data": page_products,
+        "total": total,
+        "page": page,
+        "pages": (total + limit - 1) // limit if total > 0 else 0,
+        "limit": limit,
+    }
+
+
+@app.get("/api/affiliate/stats")
+def affiliate_stats():
+    """Estatisticas dos produtos de afiliacao"""
+    products = load_affiliate_products()
+    if not products:
+        return {"total": 0}
+
+    niches = {}
+    platforms = {}
+    trends = {}
+    for p in products:
+        n = p.get("niche", "other")
+        niches[n] = niches.get(n, 0) + 1
+        pl = p.get("platform", "unknown")
+        platforms[pl] = platforms.get(pl, 0) + 1
+        t = p.get("trend_direction", "unknown")
+        trends[t] = trends.get(t, 0) + 1
+
+    scores = [p.get("ninja_score", 0) for p in products if p.get("ninja_score")]
+    avg_score = round(sum(scores) / len(scores), 1) if scores else 0
+
+    return {
+        "total_products": len(products),
+        "avg_ninja_score": avg_score,
+        "by_niche": dict(sorted(niches.items(), key=lambda x: x[1], reverse=True)),
+        "by_platform": dict(sorted(platforms.items(), key=lambda x: x[1], reverse=True)),
+        "by_trend": dict(sorted(trends.items(), key=lambda x: x[1], reverse=True)),
+        "top_rising": sorted(
+            [p for p in products if p.get("trend_direction", "").startswith("rising")],
+            key=lambda x: x.get("ninja_score", 0), reverse=True
+        )[:10],
+    }
+
+
+@app.get("/api/affiliate/trending")
+def affiliate_trending(
+    platform: str = Query(None),
+    limit: int = Query(20, ge=1, le=50),
+):
+    """Produtos em alta - subindo rapido"""
+    products = load_affiliate_products()
+    if platform:
+        products = [p for p in products if p.get("platform") == platform]
+
+    # Filtrar apenas rising e ordenar por trend_7d
+    rising = [p for p in products if (p.get("trend_7d", 0) or 0) > 0]
+    rising.sort(key=lambda x: x.get("trend_7d", 0) or 0, reverse=True)
+
+    return {"data": rising[:limit], "total": len(rising)}
+
+
+@app.get("/api/affiliate/opportunities")
+def affiliate_opportunities(
+    platform: str = Query(None),
+    limit: int = Query(20, ge=1, le=50),
+):
+    """Oportunidades - alto score + baixa competicao"""
+    products = load_affiliate_products()
+    if platform:
+        products = [p for p in products if p.get("platform") == platform]
+
+    # Produtos com score alto e competicao baixa/media
+    opportunities = [p for p in products
+                     if (p.get("ninja_score", 0) or 0) >= 5
+                     and p.get("competition_level") in ("low", "medium")]
+    opportunities.sort(key=lambda x: x.get("ninja_score", 0), reverse=True)
+
+    return {"data": opportunities[:limit], "total": len(opportunities)}
+
+
+# ============================================================
 # SEOTOOLS INTEGRATION
 # ============================================================
 @app.get("/api/seotools/list")

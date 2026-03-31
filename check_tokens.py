@@ -4,6 +4,7 @@ Rodar diariamente junto com o daily_scraper.
 """
 import json
 import base64
+import os
 import subprocess
 from datetime import datetime, timedelta
 
@@ -70,8 +71,32 @@ def get_token_from_file(filepath, varname):
     return None
 
 
+ALERT_LOG = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resultados", ".token_alerts_sent")
+
+
+def already_alerted_today():
+    """Verifica se ja mostrou alerta hoje"""
+    try:
+        if os.path.exists(ALERT_LOG):
+            with open(ALERT_LOG, "r") as f:
+                last_date = f.read().strip()
+            return last_date == datetime.now().strftime("%Y-%m-%d")
+    except:
+        pass
+    return False
+
+
+def mark_alerted_today():
+    """Marca que ja alertou hoje"""
+    try:
+        with open(ALERT_LOG, "w") as f:
+            f.write(datetime.now().strftime("%Y-%m-%d"))
+    except:
+        pass
+
+
 def show_windows_alert(title, message):
-    """Mostra popup no Windows"""
+    """Mostra popup no Windows (1x por dia)"""
     try:
         subprocess.Popen(
             ["msg.exe", "*", f"{title}: {message}"],
@@ -126,7 +151,13 @@ def check_all_tokens():
         print(f"\n  {len(alerts)} alerta(s)!")
         for alert in alerts:
             print(f"  >> {alert}")
-            show_windows_alert("NinjaSpy Token", alert)
+        # Popup no Windows apenas 1x por dia
+        if not already_alerted_today():
+            show_windows_alert("NinjaSpy Token", " | ".join(alerts))
+            mark_alerted_today()
+            print("  (popup exibido)")
+        else:
+            print("  (popup ja exibido hoje, ignorando)")
     else:
         print("\n  Todos os tokens OK.")
 

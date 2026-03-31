@@ -252,6 +252,18 @@ def main():
 
     start = time.time()
 
+    # Verificar tokens antes de tudo
+    log("=== TOKENS ===")
+    try:
+        from check_tokens import check_all_tokens
+        alerts = check_all_tokens()
+        if alerts:
+            log(f"ALERTA DE TOKENS: {'; '.join(alerts)}")
+        else:
+            log("Tokens: todos OK")
+    except Exception as e:
+        log(f"Check tokens ERRO: {e}")
+
     run_clickmidas()
     run_bigspy()
     run_pipiads()

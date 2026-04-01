@@ -1,0 +1,1618 @@
+{
+  "source": "social1",
+  "type": "creators",
+  "scraped_at": "2026-04-01T14:31:10.575Z",
+  "total": 160,
+  "regions": [
+    "us",
+    "uk",
+    "br",
+    "de",
+    "fr",
+    "es",
+    "it",
+    "mx"
+  ],
+  "creators": [
+    {
+      "creator_oecuid": "7495991474537138873",
+      "handle": "cakedfinds",
+      "nickname": "cakedfinds",
+      "follower_cnt": 48431,
+      "med_gmv_revenue": 2383354,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/cakedfinds",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7495403384116840923",
+      "handle": "una_flor_cubana",
+      "nickname": "Una Flor Cubana",
+      "follower_cnt": 602302,
+      "med_gmv_revenue": 1735622,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/una_flor_cubana",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7496151695759543292",
+      "handle": "jetskcqzy7m",
+      "nickname": "jet",
+      "follower_cnt": 19514,
+      "med_gmv_revenue": 1644519,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/jetskcqzy7m",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7495550069606549851",
+      "handle": "be.lush",
+      "nickname": "LUSH",
+      "follower_cnt": 239762,
+      "med_gmv_revenue": 1613850,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/be.lush",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7493991190294137023",
+      "handle": "hannahbentley",
+      "nickname": "Hannah Bentley",
+      "follower_cnt": 51036,
+      "med_gmv_revenue": 1237058,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/hannahbentley",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7495283613023635487",
+      "handle": "dealswithty",
+      "nickname": "Ty",
+      "follower_cnt": 139321,
+      "med_gmv_revenue": 1222203,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/dealswithty",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7495638685734898087",
+      "handle": "shop_shiesty",
+      "nickname": "shopshiesty",
+      "follower_cnt": 14546,
+      "med_gmv_revenue": 1130667,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast8-avt-0068-tx2/568c75fbb5337aed0500a221c2e4f8c7~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=99435fa0&x-expires=1775224800&x-signature=moiy9yXdvN86nExClCEEtG0pM04%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7494989757691889690",
+      "handle": "skincarepronikki",
+      "nickname": "Esthetician Nikki",
+      "follower_cnt": 146127,
+      "med_gmv_revenue": 1123620,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/skincarepronikki",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7495490103817373958",
+      "handle": "myriamestrella8",
+      "nickname": "myriam gets healthy",
+      "follower_cnt": 1722995,
+      "med_gmv_revenue": 1122720,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/myriamestrella8",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7494004618194290186",
+      "handle": "mikaylanogueira",
+      "nickname": "Mikayla Nogueira",
+      "follower_cnt": 14561210,
+      "med_gmv_revenue": 1110869,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/mikaylanogueira",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7494010558164862549",
+      "handle": "dj.foof",
+      "nickname": "djfoof",
+      "follower_cnt": 639984,
+      "med_gmv_revenue": 1021227,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/dj.foof",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7495450761895381743",
+      "handle": "dudedealz",
+      "nickname": "Dude Dealz",
+      "follower_cnt": 105092,
+      "med_gmv_revenue": 997901,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/dudedealz",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7494857042274454032",
+      "handle": "victorshoplatin",
+      "nickname": "VICTOR  SHOP LATIN",
+      "follower_cnt": 132582,
+      "med_gmv_revenue": 989403,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/victorshoplatin",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7495848675092629838",
+      "handle": "she.found.what",
+      "nickname": "SheFoundWhat",
+      "follower_cnt": 44283,
+      "med_gmv_revenue": 973465,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/she.found.what",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7494465038416185621",
+      "handle": "klothesminded",
+      "nickname": "Shamela",
+      "follower_cnt": 139383,
+      "med_gmv_revenue": 969967,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/klothesminded",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7495029460384385115",
+      "handle": "simplymandys",
+      "nickname": "simplymandys",
+      "follower_cnt": 460837,
+      "med_gmv_revenue": 877656,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/simplymandys",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7493997288129136889",
+      "handle": "victoriaaa131313",
+      "nickname": "VICTORIA",
+      "follower_cnt": 29991,
+      "med_gmv_revenue": 844873,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast5-avt-0068-tx/34ad7e6154ad63705f560134f336e5a7~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=e37211a4&x-expires=1775224800&x-signature=W0uDnFRSaep9aG%2F2VwcMqZT3LXA%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7495193964731337605",
+      "handle": "kenlyealtumofficial",
+      "nickname": "kenlyealtumofficial",
+      "follower_cnt": 123886,
+      "med_gmv_revenue": 843357,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast5-avt-0068-tx/7589efbfb81567835c8e0525383f1cf7~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=764d2258&x-expires=1775224800&x-signature=fncLvFrJ7KBJVMt%2B%2B5OBAyfHXFc%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7494029610805068842",
+      "handle": "myfamilypov",
+      "nickname": "Josh Morris",
+      "follower_cnt": 247256,
+      "med_gmv_revenue": 834234,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/myfamilypov",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7494887032686087063",
+      "handle": "anniedanner",
+      "nickname": "Alli  Shoppable Finds",
+      "follower_cnt": 46503,
+      "med_gmv_revenue": 812853,
+      "profilePicture": "https://d1lj461v9v7c81.cloudfront.net/avatars/anniedanner",
+      "_region": "us",
+      "_scraped_at": "2026-04-01T14:30:47.429Z"
+    },
+    {
+      "creator_oecuid": "7494003238392727577",
+      "handle": "sacha_mj",
+      "nickname": "Sacha",
+      "follower_cnt": 92313,
+      "med_gmv_revenue": 316307,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/7338848596391821317~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=e4cd0d5d&x-expires=1775224800&x-signature=hn8ceNhfhFBH6GM0jXuxO0sqJD4%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7496030434774846057",
+      "handle": "triedbymrandmrsp",
+      "nickname": "Mike  Tom",
+      "follower_cnt": 24947,
+      "med_gmv_revenue": 307510,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/8da218cf368779bd817c3fe1b2d1d3e0~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=7bec2808&x-expires=1775224800&x-signature=E41WjgJ%2F8kGYCHcO%2BWWieHd48Dk%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7493995436917885317",
+      "handle": "marialouisefish1",
+      "nickname": "Maria  Mummy of two",
+      "follower_cnt": 23266,
+      "med_gmv_revenue": 300571,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/c8275336fc8d7eb723dfca7eee657c1f~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=76fc3f65&x-expires=1775224800&x-signature=VhDx5m%2F%2F8%2BJYMTb%2F1zbEOeun2Bs%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7496142104493657007",
+      "handle": "camilla.finds",
+      "nickname": "Cam",
+      "follower_cnt": 74647,
+      "med_gmv_revenue": 299884,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/11ef983b70f9d01754a89b9c0b60f2cf~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=88f3df14&x-expires=1775224800&x-signature=DO6mROIhj3farZAsJOBonNQTePY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7494006347831412289",
+      "handle": "officialsamanthalouise",
+      "nickname": "Samantha Louise  Fashion",
+      "follower_cnt": 281590,
+      "med_gmv_revenue": 291205,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/cbb911f543fcc52382d5ca97bbbdd216~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=9c04b006&x-expires=1775224800&x-signature=XZuHTwztlwxRM%2Fj0vxZc8QNDks0%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7494059958355266413",
+      "handle": "justnina_official",
+      "nickname": "JustNina",
+      "follower_cnt": 357612,
+      "med_gmv_revenue": 262136,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/df074f73bd4afe55dde77c7d97b7afc5~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=cec3b848&x-expires=1775224800&x-signature=xj73Rbajf1zBul50DmE4tt4AaRM%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7494011553822246275",
+      "handle": "abbybeechx",
+      "nickname": "Abby Beech",
+      "follower_cnt": 214612,
+      "med_gmv_revenue": 259899,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/5f4aa1eb5821cf1b19f282033f7aba83~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=faaddc9c&x-expires=1775224800&x-signature=nOKGwN8ACqyEgcUHBS4ctx9Ggv8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7495737213571205614",
+      "handle": "lock_price_deals",
+      "nickname": "Lock Price Deals",
+      "follower_cnt": 52949,
+      "med_gmv_revenue": 259040,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/762e5f18fea9b85acce23efae1904694~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=38f70b93&x-expires=1775224800&x-signature=YQ7ntf9pe5Rs1NC65SubxOADu4A%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7494025637009131124",
+      "handle": "alana_thomson_",
+      "nickname": "Alana  ft Style",
+      "follower_cnt": 123137,
+      "med_gmv_revenue": 258794,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/522d8bd3be3d84f81853b9ddb869aafb~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=0936bbb6&x-expires=1775224800&x-signature=lmTamE88eI0KueSvNWm3FMWLcrU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7495666662028905284",
+      "handle": "sj.unfiltered",
+      "nickname": "SJUnfiltered",
+      "follower_cnt": 112535,
+      "med_gmv_revenue": 223456,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/444d890f8eba823814c31be54551c0f1~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=5c958d79&x-expires=1775224800&x-signature=hdLR2BTa9TYlvxvx0lWmUHdwSl4%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7494025187912681372",
+      "handle": "katchme.official",
+      "nickname": "Katch Me",
+      "follower_cnt": 265794,
+      "med_gmv_revenue": 221064,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/7311798116105338886~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=db990c1a&x-expires=1775224800&x-signature=9uWPG3cji6N4iEQ7B9OaCTSkwG0%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7495691530146318887",
+      "handle": "jays.gems",
+      "nickname": "Jays Gems",
+      "follower_cnt": 34903,
+      "med_gmv_revenue": 215555,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/f4fc008b17b1ae05ce7756696beb0c9b~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=17b8c6a3&x-expires=1775224800&x-signature=8XJmXBi3qCGT%2BPXxbj%2BGRfLUnWQ%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7494470324163217543",
+      "handle": "stephanievavron",
+      "nickname": "Stephanie Vavron",
+      "follower_cnt": 631932,
+      "med_gmv_revenue": 211424,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/9449426742698cb56114504939cde2e3~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=e667cae9&x-expires=1775224800&x-signature=WX5df4TLHsMVShE%2B%2BSNVQ88msEw%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7496263602344724888",
+      "handle": "millshomefinds",
+      "nickname": "Mills  The Finds  Faves Edit",
+      "follower_cnt": 14724,
+      "med_gmv_revenue": 210491,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/3becef60321a22c286bd3a14baa6a78f~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=bf482bd9&x-expires=1775224800&x-signature=h9prnnGxkXBJ4f4e8PDoPijLOzo%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7494002494425827540",
+      "handle": "guardian52926",
+      "nickname": "guardian",
+      "follower_cnt": 32013,
+      "med_gmv_revenue": 197214,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/d30cf163ba34838157f454d3356f98c3~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=1a677e78&x-expires=1775224800&x-signature=%2F1cUGsQCOt5nw2FJDOIYfI24PYE%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7495783650234633173",
+      "handle": "luxe_deals4u",
+      "nickname": "Essential Health UK",
+      "follower_cnt": 42739,
+      "med_gmv_revenue": 196635,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/4948eb17daa6bbfdf44a60d3bf032455~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=0d738bc4&x-expires=1775224800&x-signature=XacfwrFA6APYwEpg6X9EpFj%2BuCM%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7496094369353795702",
+      "handle": "amandjmillions",
+      "nickname": "Amanda J Millions",
+      "follower_cnt": 86160,
+      "med_gmv_revenue": 195850,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/33f40126ed5d2277be40b63f1db7fe8b~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=3990592a&x-expires=1775224800&x-signature=SAC52t%2FjoF17hRuAcfJ4Fb%2F0KSc%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7494567706575211386",
+      "handle": "dennsgallery",
+      "nickname": "dennsgallery",
+      "follower_cnt": 9886,
+      "med_gmv_revenue": 194488,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/8b2df1a7d1afcaed16a35f5c9cdee325~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=99065a8f&x-expires=1775224800&x-signature=a9pKCHnEw3tahbWUmwlNHEXHxq0%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7496214525805955943",
+      "handle": "team.finds",
+      "nickname": "Team Finds",
+      "follower_cnt": 15195,
+      "med_gmv_revenue": 192968,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/10fc5ab5520d1885258e095cd5d44bd9~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=416585de&x-expires=1775224800&x-signature=WFrm5b7eZTJQSfvuwSyD1PJ8q7w%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7495625892523575609",
+      "handle": "todaysshoppicks",
+      "nickname": "IsaacTTSDEALS",
+      "follower_cnt": 127508,
+      "med_gmv_revenue": 191468,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/ba3d0b02dc6fa4c60a901dd9bd1c07a0~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=4b49e8dc&x-expires=1775224800&x-signature=PtS%2FMkBtyV93Rb7isBXTA7P1KrU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "uk",
+      "_scraped_at": "2026-04-01T14:30:49.928Z"
+    },
+    {
+      "creator_oecuid": "7494076335764440964",
+      "handle": "lealrecomenda",
+      "nickname": "Leal Recomenda",
+      "follower_cnt": 1609023,
+      "med_gmv_revenue": 2416059,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/79a67e9f35b89bf9c1ae5084b81bfe54~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=269d4c4d&x-expires=1775224800&x-signature=74I5uZQ24mfl8OEpb0IcEHGowd4%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7494174386397088218",
+      "handle": "garcia_indica",
+      "nickname": "Garcia",
+      "follower_cnt": 159437,
+      "med_gmv_revenue": 2296861,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/9d29eb927ed44e6bc5a1fb2c861f4c20~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=89b17722&x-expires=1775224800&x-signature=y39kx%2FxScysp4Pxbb4NFHRlTea8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7495598366727244364",
+      "handle": "renan_soares_shop",
+      "nickname": "Renan Soares Shop",
+      "follower_cnt": 217966,
+      "med_gmv_revenue": 2165796,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/ab2a3f05da5ee301db323afd59a52fd1~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=c3f57bd3&x-expires=1775224800&x-signature=YwWXthUSB4tWiGTyb7uf42dNgOI%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7494017270209283568",
+      "handle": "alinecavanellas",
+      "nickname": "Aline Cavanellas",
+      "follower_cnt": 1439411,
+      "med_gmv_revenue": 2081941,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/b6c135eda9402fba46284c2a25d551ac~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=12bee75c&x-expires=1775224800&x-signature=q3nTbYqIDt3LcfqFVHHdqetRZS8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7495601093005773073",
+      "handle": "rosa.ciril",
+      "nickname": "Rosa Ciril",
+      "follower_cnt": 60219,
+      "med_gmv_revenue": 2070101,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/d4d8e4bfeb012439c301cdcdcfd3b25c~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=83f594ec&x-expires=1775224800&x-signature=8H87t3bRXwX%2BaGrf54Aq6DEE%2Fvg%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7494011852770215782",
+      "handle": "drpimenta",
+      "nickname": "DR PIMENTA  PERFUME  CREATOR",
+      "follower_cnt": 273560,
+      "med_gmv_revenue": 1786322,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/5efa7b9e259a1e1281f11692ccb1fe91~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=194fff36&x-expires=1775224800&x-signature=uV%2BeXX%2FvOy8neAv0XgNVf9%2Bmu1Q%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7494010883628500472",
+      "handle": "pedrovitoroficial_",
+      "nickname": "Pedro Vitor",
+      "follower_cnt": 2506920,
+      "med_gmv_revenue": 1715377,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/3c9e9b6b369c625dce8c5683f37eebba~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=862136f0&x-expires=1775224800&x-signature=ybxb9QCpvWQGDppf%2FCSGT5xSp7k%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7495293464421108541",
+      "handle": "guhfontes_",
+      "nickname": "Guh Fontes",
+      "follower_cnt": 137187,
+      "med_gmv_revenue": 1461284,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/553b732bce19c8f053a5f3f227ab1dc8~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=4d487045&x-expires=1775224800&x-signature=gpsibCN1LkumWAFGB%2BEk%2Bo87Pxk%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7494242213986076895",
+      "handle": "felipe.tomio",
+      "nickname": "FelipeTomio",
+      "follower_cnt": 121750,
+      "med_gmv_revenue": 1407265,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/e411c78837b7234a20f96bae4abe940a~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=9f1bbdeb&x-expires=1775224800&x-signature=Mtd88lGsfuua2CXpPxlKXhoj8ZQ%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7494691639864888131",
+      "handle": "engciviladrianovanjura",
+      "nickname": "Eng Civil Adriano Vanjura",
+      "follower_cnt": 287664,
+      "med_gmv_revenue": 1394032,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/66503620cdbc6fb9b3394d7d659fb34f~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=6eb81e4f&x-expires=1775224800&x-signature=1W5TyqYejAvH0rWJ%2BLXcfXhxNU0%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7495916778491775987",
+      "handle": "laavsri",
+      "nickname": "Lara Ribeiro",
+      "follower_cnt": 66054,
+      "med_gmv_revenue": 1393191,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/eb54c1e167a4235c14d23094a7994aad~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=c81841d9&x-expires=1775224800&x-signature=YjT9%2BPHS%2FHIzkcFTI6qveZ0gRuw%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7495968994190003094",
+      "handle": "dicas_sah",
+      "nickname": "Samanta Vidal",
+      "follower_cnt": 106259,
+      "med_gmv_revenue": 1262143,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/a5faae6722b9c9443c0a91ec0f4e905f~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=5e2336b1&x-expires=1775224800&x-signature=LZhbCQJwjp4MrsriCfmxox9%2F0PQ%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7494022540062001087",
+      "handle": "maninho_play",
+      "nickname": "Maninho Perfumado",
+      "follower_cnt": 198433,
+      "med_gmv_revenue": 1206647,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/2b06f490df6440b1d1546d5dfc811f3c~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=0bf28651&x-expires=1775224800&x-signature=YoPGRgiU%2Ba5rBoEgG84cs7W0ID4%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7495941776953739750",
+      "handle": "flavinharecomenda",
+      "nickname": "Flavinha",
+      "follower_cnt": 51460,
+      "med_gmv_revenue": 1166772,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/f11a2e6e616edf238775639ab480eb2c~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=27fe3f9d&x-expires=1775224800&x-signature=N2Hu0YFcot1D%2BX6dy06gq59OEZU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7493990537995389862",
+      "handle": "opiazada",
+      "nickname": "O Piazada",
+      "follower_cnt": 173508,
+      "med_gmv_revenue": 1124048,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/c4ffe55f8332b617a6e60802f8d236fc~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=ffc7f43f&x-expires=1775224800&x-signature=LimzJsny7bXWdsq72%2FCPKUxblJk%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7495486558210853118",
+      "handle": "marck_shop",
+      "nickname": "Marck",
+      "follower_cnt": 207268,
+      "med_gmv_revenue": 1037127,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/143962427cb7bf20d424c2e10568a670~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=b4601a91&x-expires=1775224800&x-signature=qNLeBQ4nE9KSsJDxpPSRkFqUkhI%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7494237655540730341",
+      "handle": "dripaz",
+      "nickname": "DRI PAZ",
+      "follower_cnt": 831361,
+      "med_gmv_revenue": 1023481,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/6c3ecddb851fa295477e107a5c0abd9c~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=f4615c96&x-expires=1775224800&x-signature=DEvND%2FIFr5sdPxuo9RkU1VQlHLM%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7496288290573814468",
+      "handle": "tavs.shop",
+      "nickname": "Lucas Tavares",
+      "follower_cnt": 54786,
+      "med_gmv_revenue": 1022291,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/e303df4ab9de367311e7d31d2b4fe40d~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=eacf23f9&x-expires=1775224800&x-signature=mmaeq5dumeEEdnNEsfJvynxQJ0s%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7494018074891421497",
+      "handle": "athaisfavero",
+      "nickname": "athaisfavero",
+      "follower_cnt": 160784,
+      "med_gmv_revenue": 1011082,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/ed7b8e0e3a215479479ab245c1814f94~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=1c776869&x-expires=1775224800&x-signature=7RBdZ6g6ZbTIOf4hniOtVtURs1Y%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7494013386904536713",
+      "handle": "amandaxavieer",
+      "nickname": "Amanda Xavier  SHOP CREATOR",
+      "follower_cnt": 178936,
+      "med_gmv_revenue": 1010970,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/2f9ede7474e89fa5057db54e74653dab~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=88db18b3&x-expires=1775224800&x-signature=LZIe2oYC0dzhOcn%2Fonc4ZZ2nC2o%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "br",
+      "_scraped_at": "2026-04-01T14:30:52.647Z"
+    },
+    {
+      "creator_oecuid": "7494988652975458894",
+      "handle": "alwin_altmann",
+      "nickname": "alwinaltmann",
+      "follower_cnt": 44689,
+      "med_gmv_revenue": 303292,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/8b020f70599c59a58b70726488853405~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=3c3ef838&x-expires=1775224800&x-signature=0mXW5FGaQ8wtsyEaKDkatKRH0%2FU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7493993835037820392",
+      "handle": "scheidingslagerverkauf",
+      "nickname": "ScheidingsDeals",
+      "follower_cnt": 248386,
+      "med_gmv_revenue": 295782,
+      "profilePicture": "https://p19-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/0144a72e1cb66ce6bfd6ab5bae22a75c~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=b01b9598&x-expires=1775224800&x-signature=LTlwWBAsre5QIoa4esPbpkGzFFU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7494001826923120671",
+      "handle": "4g.testet",
+      "nickname": "G testet",
+      "follower_cnt": 45170,
+      "med_gmv_revenue": 261527,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/9d35b1950288d28c2c14539a38a42c9b~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=71781471&x-expires=1775224800&x-signature=9ICbvcCaqy%2FqU3dcjMAV72ZTi0I%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7496050091423336750",
+      "handle": "drivenbydestiny2",
+      "nickname": "DrivenbyDestiny",
+      "follower_cnt": 689977,
+      "med_gmv_revenue": 198265,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/48e960979782968d6ff3e6d6d85e2d6a~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=79381486&x-expires=1775224800&x-signature=5tx8hpw1pzloKPdVpDOmDIsqFJk%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7494012269737707806",
+      "handle": "christian.wolf",
+      "nickname": "Christian Wolf",
+      "follower_cnt": 811569,
+      "med_gmv_revenue": 195552,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/b275a48fef47864e9bc40ededb5fb4cb~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=a2451caa&x-expires=1775224800&x-signature=8VfCP6FBDHZRN%2B%2Bnw03%2F9o2wj7s%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=f20df69d&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7494029649915708608",
+      "handle": "shopmitjean",
+      "nickname": "dasshopsofa",
+      "follower_cnt": 26053,
+      "med_gmv_revenue": 193168,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/461d3c78cf0895a352ab0ccf02223ce1~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=42e4e56a&x-expires=1775224800&x-signature=1mx7sJwhtZXOZeGIuXoXTcv09sY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7494012699812005780",
+      "handle": "uniquemakeupdesign",
+      "nickname": "N U R I",
+      "follower_cnt": 123722,
+      "med_gmv_revenue": 189962,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/f36512e081707c027c4fac6ddae88b17~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=33287e56&x-expires=1775224800&x-signature=ruoE54uxW926mjxitS8OJ1kIJtM%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7494021853374088445",
+      "handle": "sinemzayn",
+      "nickname": "Sinem",
+      "follower_cnt": 23098,
+      "med_gmv_revenue": 187746,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/710688162a2be86a4296c5f5c5f00565~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=88e890be&x-expires=1775224800&x-signature=TGGzgv3v5to%2FU0b%2FOUOjFkKuPd8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7494112666440599582",
+      "handle": "ttbestedeals",
+      "nickname": "TT Beste Deals",
+      "follower_cnt": 7806,
+      "med_gmv_revenue": 181747,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/fe038783776ff7f37c37226bce61c0db~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=9a155b84&x-expires=1775224800&x-signature=xGCE6ZcW0bgnKCbMmcvwMCuLDIs%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7495880431713618003",
+      "handle": "4g..testet",
+      "nickname": "G Testet",
+      "follower_cnt": 13848,
+      "med_gmv_revenue": 177954,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/63afcc12f06cb7a81fee7f4ac400546f~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=d3829acb&x-expires=1775224800&x-signature=q5J00fNDdNyRpYTHJff3nIsXLI8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7493991205472798392",
+      "handle": "mr.creepytiktok",
+      "nickname": "Produkt Tester",
+      "follower_cnt": 49909,
+      "med_gmv_revenue": 160349,
+      "profilePicture": "https://p19-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/094d5d0f29564bf17641d8d62c1d1308~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=646880ed&x-expires=1775224800&x-signature=nMOcM0TsSc47WXCDsX586rlb%2BO8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7494014319414511489",
+      "handle": "nikolaihein",
+      "nickname": "Golddigger Deutschland",
+      "follower_cnt": 156454,
+      "med_gmv_revenue": 155062,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/20d5e4210f95d013fb84ad4a6c23df93~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=86b3e652&x-expires=1775224800&x-signature=4BMd82njFPl6E4oAXtnZsH2YzHo%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7495944743115131543",
+      "handle": "derdaviddeals",
+      "nickname": "Der David",
+      "follower_cnt": 21702,
+      "med_gmv_revenue": 154854,
+      "profilePicture": "https://p19-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/a23129e59b54fdc381ed8f269024cd45~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=92cd45c2&x-expires=1775224800&x-signature=R9ePv6p7BRbeqJIQa%2BDiM2ImA%2F0%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7494932081606626006",
+      "handle": "memo98err",
+      "nickname": "Memoer",
+      "follower_cnt": 10615,
+      "med_gmv_revenue": 148358,
+      "profilePicture": "https://lf16-tiktok-common.ibytedtos.com/obj/tiktok-web-common-sg/mtact/static/images/tiktok-logo/poster-square.png",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7495364299151149569",
+      "handle": "sebodeals",
+      "nickname": "SEBO DEALS",
+      "follower_cnt": 95378,
+      "med_gmv_revenue": 147964,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/d97d1d221ec4b4992424f09d0d8a5890~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=855349fb&x-expires=1775224800&x-signature=guZCrL%2Bz60D7%2FQ%2FbX05mDqQzOPc%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7494131521146160887",
+      "handle": "nextlivinghub",
+      "nickname": "FamilyGadgetsU",
+      "follower_cnt": 12896,
+      "med_gmv_revenue": 147615,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/ad747880c59f41a5a57e83476724febe~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=5285e84d&x-expires=1775224800&x-signature=bGJmURCvXitVrd2pB%2BsqxgP4FJE%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7493991818614113765",
+      "handle": "maximnoise",
+      "nickname": "MaximNoise",
+      "follower_cnt": 257564,
+      "med_gmv_revenue": 129295,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/8c44939b3099d54204f792a19fdfdbf9~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=b7a47d0a&x-expires=1775224800&x-signature=fzhddyEqerkPtYcUN5ny6dcf118%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7495818604635917178",
+      "handle": "jrg.dold",
+      "nickname": "Jorg D",
+      "follower_cnt": 6517,
+      "med_gmv_revenue": 128834,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/9754d8d57f7f6ced34e602d086bbc018~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=bdc6c0b7&x-expires=1775224800&x-signature=GD5Sfsj8AnCy%2B%2BTgZexoiAupFfE%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7495574430548265244",
+      "handle": "produktguru",
+      "nickname": "produktguru",
+      "follower_cnt": 84523,
+      "med_gmv_revenue": 126951,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/181ee39541a5251b6196a2268646c6cd~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=98ba01e9&x-expires=1775224800&x-signature=rNSrKB7KEB6Cqc3NVGfIRViMnps%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7494043284316326012",
+      "handle": "casaleeee",
+      "nickname": "Luca Casale",
+      "follower_cnt": 38376,
+      "med_gmv_revenue": 125545,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/bde350612f24ae0b3956b024da5284c1~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=e3ad7468&x-expires=1775224800&x-signature=ggIcnJyt%2BmMDV%2FgFS9trvVKEtfY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "de",
+      "_scraped_at": "2026-04-01T14:30:56.224Z"
+    },
+    {
+      "creator_oecuid": "7494010630217566132",
+      "handle": "elgourchiouassima",
+      "nickname": "Ouassima",
+      "follower_cnt": 380485,
+      "med_gmv_revenue": 307470,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/a3c6e2ca9e90f8db379bc5877bce728f~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=8bf40cb0&x-expires=1775224800&x-signature=6tuDJsynZBJNZIrvF5jULe9zA64%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7493994318033226678",
+      "handle": "bonplansana_1",
+      "nickname": "bonplansana",
+      "follower_cnt": 220178,
+      "med_gmv_revenue": 278967,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/5cd2b9e3d4f350b0106f492f6fda3b87~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=897b8578&x-expires=1775224800&x-signature=rw2gMvHApD38xjWxOFkdMVs628U%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7494000827720567443",
+      "handle": "_meldeco",
+      "nickname": "Meldeco",
+      "follower_cnt": 107522,
+      "med_gmv_revenue": 224368,
+      "profilePicture": "https://p19-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/346f5b3ffb39033b5681556e4125978f~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=cf84fa72&x-expires=1775224800&x-signature=mKhjHcRC6rtr%2FGWEA4cmG5bZVmc%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7495564003776563554",
+      "handle": "trouvailletiktokfr",
+      "nickname": "TrouvaillesTikTok",
+      "follower_cnt": 53601,
+      "med_gmv_revenue": 216533,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/267d96c10b20bbe908b9df1ce4c452a5~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=76bc0faf&x-expires=1775224800&x-signature=Ik1QquE1ZFQsBZKmhXAXBGIuczc%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7494698482329487460",
+      "handle": "melenclaquettes",
+      "nickname": "MELENCLAQUETTES",
+      "follower_cnt": 237911,
+      "med_gmv_revenue": 176378,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/67cbff0574ca3697ad30b0517613f1d4~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=6edb4b16&x-expires=1775224800&x-signature=0qRjmUE%2F20DQP3hvABP9qClOSEQ%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7495984360856193531",
+      "handle": "solar_alex_",
+      "nickname": "Solar Alex",
+      "follower_cnt": 63571,
+      "med_gmv_revenue": 169924,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/dc99dc0cac873f0eb67fdc79934d5fe2~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=c6571a54&x-expires=1775224800&x-signature=mFlX8T1cRKenFuYPO4MJAGJkF2Y%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7495916184026646960",
+      "handle": "lesbonsplansdedali",
+      "nickname": "Les bons plans de Dali",
+      "follower_cnt": 13386,
+      "med_gmv_revenue": 151650,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/72ae4f6ef3cc3581ee4019d0b7064409~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=df208217&x-expires=1775224800&x-signature=xwf%2F0tI64dz995NHsNHlyr2P9Jg%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7495343065830558198",
+      "handle": "mombearshop",
+      "nickname": "mombear",
+      "follower_cnt": 71779,
+      "med_gmv_revenue": 150933,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/2a3e01c494a22ff36be254f998a4b903~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=551dd86d&x-expires=1775224800&x-signature=cGblmV7sYw9hLu33Dyt6tm5X7VE%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7495999160682056088",
+      "handle": "dkalkette3.0",
+      "nickname": "Dekalkette",
+      "follower_cnt": 314112,
+      "med_gmv_revenue": 149830,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/79d844c6bb46026cf04b200ac9b2f341~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=5bea82ee&x-expires=1775224800&x-signature=%2BUwUPuBtPHEFSpVsIXLaSGVRuCE%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7494145382451152599",
+      "handle": "jujubonsplans",
+      "nickname": "Juju",
+      "follower_cnt": 21294,
+      "med_gmv_revenue": 148960,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/952f162a31d2754ff9655a23903e9249~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=109ad89a&x-expires=1775224800&x-signature=2GBwMxpiQQ9k6qUtaBsGnJwSaVc%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7496150735121910085",
+      "handle": "vroummm81",
+      "nickname": "shopper",
+      "follower_cnt": 58331,
+      "med_gmv_revenue": 136646,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/6eaa8bf316b35bccb8f15dc7e190072e~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=6af00315&x-expires=1775224800&x-signature=DY7Q9slU8gFcAgU3uEDD3MaHV30%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7496000479562599132",
+      "handle": "nairananou",
+      "nickname": "Naira",
+      "follower_cnt": 15426,
+      "med_gmv_revenue": 132374,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/7e65a730f9a4b201b17fb310e5b30f28~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=875d5df6&x-expires=1775224800&x-signature=u%2FSFEmDA70zHmLZRR7NNHwAHGvM%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7495298648184883274",
+      "handle": "diwakara.off",
+      "nickname": "diwakaraoff",
+      "follower_cnt": 66223,
+      "med_gmv_revenue": 130509,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/8f89e829effc93fa40ced6447f5ec059~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=7e368e51&x-expires=1775224800&x-signature=g%2BU4R87T01TaanlxCo%2BSEoyC3qw%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7495843070488971326",
+      "handle": "adel.tiktokshop",
+      "nickname": "Adel  TikTok Shop",
+      "follower_cnt": 49544,
+      "med_gmv_revenue": 129460,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/86087ee60a7e465b9b2b7d6b66dff7e1~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=8922cdc4&x-expires=1775224800&x-signature=3ObHnB5EIZkYEuNBR7Ej0qK94g0%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7496085226548661189",
+      "handle": "sannyselected_fr1",
+      "nickname": "SannyselectedFR",
+      "follower_cnt": 53646,
+      "med_gmv_revenue": 125639,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/da6853408dd16c4f5b072e32d7e877bc~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=9ffe23a8&x-expires=1775224800&x-signature=uLf3fxuBAt06Blw6FVbHEOgGlv4%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7494494368184240746",
+      "handle": "ibtissam_084",
+      "nickname": "Ibtissam Hamoudi",
+      "follower_cnt": 92333,
+      "med_gmv_revenue": 125630,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/f296427d02464758b424ef26bc7535cb~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=7b076891&x-expires=1775224800&x-signature=CVKqZsaTGFstO%2F3GQicgnRqJ9Ns%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7494818437096900875",
+      "handle": "davidplav2",
+      "nickname": "davidplav",
+      "follower_cnt": 27822,
+      "med_gmv_revenue": 123951,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/794a1c2e01e25aac45ab4b3db7341449~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=49b540d8&x-expires=1775224800&x-signature=1RYue2TGqjlsYnTnG7ZpuCIwPvo%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7494171365070768573",
+      "handle": "nelya.beautylife",
+      "nickname": "Nelyalifestyle",
+      "follower_cnt": 20336,
+      "med_gmv_revenue": 123076,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/d7cc5f3e84f8b1f3569f6296ee6e0df4~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=574b56ec&x-expires=1775224800&x-signature=ze1%2B6l2ovOrGXg0gti3W5bpivb8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7494015825386703377",
+      "handle": "yayatp.off",
+      "nickname": "Yaya TP",
+      "follower_cnt": 76872,
+      "med_gmv_revenue": 122062,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/b8d2dde3862408c4bcb6b00abd2f72e3~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=8e782cfe&x-expires=1775224800&x-signature=DMnlzI8WF3TTCXoaCmNYkwQZym8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7494959530162620417",
+      "handle": "alpha_meute",
+      "nickname": "alphameute",
+      "follower_cnt": 148441,
+      "med_gmv_revenue": 118450,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/28a5bbabf325b51458e8d13c4fe96bb8~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=d354a1d3&x-expires=1775224800&x-signature=LNa%2BmRdYyKwCra9Ez5JXA%2F0A2XU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "fr",
+      "_scraped_at": "2026-04-01T14:30:59.452Z"
+    },
+    {
+      "creator_oecuid": "7493994298027902301",
+      "handle": "kiwi_xu",
+      "nickname": "Diego Xu",
+      "follower_cnt": 4563755,
+      "med_gmv_revenue": 275051,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/f28d92c6798b8bb5bf8cdda5c4fe8e23~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=3c385776&x-expires=1775224800&x-signature=mIvMXeu6oXRjbm95wh8BVqkrmEw%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7495836191786240529",
+      "handle": "salamashopdaily",
+      "nickname": "salamashopdaily",
+      "follower_cnt": 269794,
+      "med_gmv_revenue": 231361,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/8c238de5e6e3ff933359f94be78be425~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=d4455a53&x-expires=1775224800&x-signature=BHVkijGZj4ur%2BNyMOP1nArJwMl0%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494024816072624317",
+      "handle": "katiaargoteshop",
+      "nickname": "Katia Argote",
+      "follower_cnt": 92722,
+      "med_gmv_revenue": 226898,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/d803cbf17d10a6b7772e96f40f0f8a9a~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=fda10254&x-expires=1775224800&x-signature=hYisektbKlyWHTp4HpFsq3YTjXo%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494342826352609823",
+      "handle": "imane.fh.shop",
+      "nickname": "Imane Fh Shop",
+      "follower_cnt": 258657,
+      "med_gmv_revenue": 175033,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/2fc58b7798328ae12dd3f61b88066770~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=9e1009ed&x-expires=1775224800&x-signature=3ngu2nmVdT6AbZasugDt86%2BjoVs%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494012289395885485",
+      "handle": "doble_twin",
+      "nickname": "dobletwin",
+      "follower_cnt": 685843,
+      "med_gmv_revenue": 151955,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/3d139f5473abb1b62667394c400a9841~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=55443fdb&x-expires=1775224800&x-signature=8q%2B1mFmKHqGuQb9sXTz4%2FuLAOUY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494615367510362867",
+      "handle": "alexvalinoo",
+      "nickname": "Alex Valino  Fitness  Habits",
+      "follower_cnt": 55919,
+      "med_gmv_revenue": 148461,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/addf68e364ac7f5a355bf8cbdf7d7d49~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=a10fbd8b&x-expires=1775224800&x-signature=62cMEjAZBUaIdpoQ69litVg2aJU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7495657029331355897",
+      "handle": "evalopez_fit",
+      "nickname": "evalopezfit",
+      "follower_cnt": 69334,
+      "med_gmv_revenue": 139492,
+      "profilePicture": "https://p19-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/f3eb5355441e11138273d3c636924727~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=feced9ab&x-expires=1775224800&x-signature=L8vrFCol7gNIgQmWnekkHglOtGU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7495607575300049765",
+      "handle": "niicoshop",
+      "nickname": "niicoshop",
+      "follower_cnt": 22913,
+      "med_gmv_revenue": 132412,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/390016d180f4d95511c06efa4f13e48c~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=43391c18&x-expires=1775224800&x-signature=M9xr3S3dmBuGmoAujG5LwNk1PyQ%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7495332819351145099",
+      "handle": "raquel.twin",
+      "nickname": "Raquel",
+      "follower_cnt": 44985,
+      "med_gmv_revenue": 125165,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/082e40772870668773694a9794025c0b~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=a0c21304&x-expires=1775224800&x-signature=PFMfq7slCt%2Bv1gQR6riGPCfd%2FmQ%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494247384964105936",
+      "handle": "outfitlab1",
+      "nickname": "OutfitLab",
+      "follower_cnt": 9981,
+      "med_gmv_revenue": 110282,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/eda1a6988388e57482fca8c67bfe78d9~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=4c63eefd&x-expires=1775224800&x-signature=JAXtL0V6nSA0atFW%2FuZ8E%2FnWBCY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494001334811396571",
+      "handle": "tienda_lirio_24hrs",
+      "nickname": "TiendaLirio",
+      "follower_cnt": 130849,
+      "med_gmv_revenue": 103309,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/5f28ed10416be596458a9cb88ebe8e88~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=ec5a3c6e&x-expires=1775224800&x-signature=8xs%2FHJdkXTXAJdfAlClcHXvZ0yI%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7495445988633905649",
+      "handle": "cholloshop1",
+      "nickname": "ChollosShop",
+      "follower_cnt": 76633,
+      "med_gmv_revenue": 97580,
+      "profilePicture": "https://p19-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/1572bf7a2c9f73b857074386bea37221~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=b19226da&x-expires=1775224800&x-signature=7cJPQqHkeeOupWv7uMHOrSHRwpA%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494014877277391348",
+      "handle": "laura.igle",
+      "nickname": "laura iglesias",
+      "follower_cnt": 44075,
+      "med_gmv_revenue": 94424,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/1c7dbcaee8077a066e7b26ac726f0aaf~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=7b2107c9&x-expires=1775224800&x-signature=dwJOsFAJtnoU2DVtiTc0ZQC64Wc%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7493994047563729745",
+      "handle": "crisocejo",
+      "nickname": "Cris Ocejo   UGC Spain",
+      "follower_cnt": 45903,
+      "med_gmv_revenue": 93703,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/ab217a057c768c3173468b3a93dac79a~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=f8636522&x-expires=1775224800&x-signature=9j%2BqNHEDKBXwc65szLwjLIRgUWE%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7496011991656860463",
+      "handle": "monnojo",
+      "nickname": "monicaguilar  UGC Spain",
+      "follower_cnt": 16097,
+      "med_gmv_revenue": 93088,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/7d170cb80b5202aee74848da9c0399ec~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=7d9caf45&x-expires=1775224800&x-signature=GYV9TiMdilmjmljgbQh5oJXhRl0%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494058009480825463",
+      "handle": "familysugus",
+      "nickname": "Familysugus",
+      "follower_cnt": 125787,
+      "med_gmv_revenue": 91854,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/78de217bdb10f161aa1f9fd5f10e14e9~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=1aafca53&x-expires=1775224800&x-signature=RIj3aJJW%2BgFwAps4nXpd%2BH8PAzs%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494007605932493732",
+      "handle": "lorenamunoz___",
+      "nickname": "Lorena Munoz",
+      "follower_cnt": 88380,
+      "med_gmv_revenue": 88570,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/a1c03f5c942531ac04cafab6bb5880cb~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=774dc2ed&x-expires=1775224800&x-signature=CgCbzTIXRA2tkPZE26DYRXQUS6Q%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7496001284579297630",
+      "handle": "lourdeslagruta",
+      "nickname": "LoUrdEs La GrUta",
+      "follower_cnt": 149711,
+      "med_gmv_revenue": 87253,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/28da8f7bb5fa75896def2236543fe7c9~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=2a080562&x-expires=1775224800&x-signature=ck8jDq34PErQ7GszoD5MGJ8PzkY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494016271735032038",
+      "handle": "comiendoconlosclementes",
+      "nickname": "ComiendoConLosClementes",
+      "follower_cnt": 61255,
+      "med_gmv_revenue": 83832,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-giso/b0cc1e6c17dd7705c3f4ff6fa94944bb~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=2391f9e9&x-expires=1775224800&x-signature=pLMSTPDgTX1UnnLpQfJJMOB9A28%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494016361293777350",
+      "handle": "dani_alcarria",
+      "nickname": "DANI ALCARRIA",
+      "follower_cnt": 81134,
+      "med_gmv_revenue": 82666,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/5a3402b0f8044fd67bb6e8fd0594d225~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=63bfcec1&x-expires=1775224800&x-signature=ikKAPu4OAnlKnz%2FN7aNVsvxmhpE%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast5",
+      "_region": "es",
+      "_scraped_at": "2026-04-01T14:31:02.030Z"
+    },
+    {
+      "creator_oecuid": "7494020196363766765",
+      "handle": "fumoalento",
+      "nickname": "Alex",
+      "follower_cnt": 173105,
+      "med_gmv_revenue": 133118,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/bfa51a37802a71ee49248d29b5fc02ee~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=7a549614&x-expires=1775224800&x-signature=iBRNwhopVaADMIVoGyoOz%2FqNz58%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7494048964820896044",
+      "handle": "xlorin94",
+      "nickname": "xLorin",
+      "follower_cnt": 133520,
+      "med_gmv_revenue": 130122,
+      "profilePicture": "https://p19-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/0d576cce864c8cf2e69862dffc54f093~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=f60358a7&x-expires=1775224800&x-signature=eL0NKAW5AKKRQ%2By2bIzdVxBhx1U%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7495612625101752966",
+      "handle": "puffypom_lilly",
+      "nickname": "Lilly",
+      "follower_cnt": 20763,
+      "med_gmv_revenue": 125129,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/ecda8833786dd2541083497a16df6b12~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=07f267db&x-expires=1775224800&x-signature=M0bcR3CbjRLkOyMgA4Isx10mN1M%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7495903464914062331",
+      "handle": "teoofitnes",
+      "nickname": "Teo",
+      "follower_cnt": 8603,
+      "med_gmv_revenue": 120838,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/155d4674f121040e35d21a9a4200fa5a~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=4eb93078&x-expires=1775224800&x-signature=ghBZqT9qZ7z0sgESFB6%2F0MOOdug%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7494015029524532214",
+      "handle": "susetta930",
+      "nickname": "Susetta",
+      "follower_cnt": 63566,
+      "med_gmv_revenue": 114144,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/29fe29af461315b57fb4da14402ee034~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=2363d0ac&x-expires=1775224800&x-signature=DsbR0SAboa%2FxrSrfsZHKVFzSp34%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7494043504000403661",
+      "handle": "dr_chicheucot",
+      "nickname": "drchicheucot",
+      "follower_cnt": 57614,
+      "med_gmv_revenue": 113713,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/0b0795f53a878117e9062f4a76189a8d~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=de90e745&x-expires=1775224800&x-signature=OFCWQznlL3SW3ivDx2u%2BKMYXr3I%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7493991183025538985",
+      "handle": "cicolaricristiano",
+      "nickname": "Cicolari Cristiano",
+      "follower_cnt": 516493,
+      "med_gmv_revenue": 110520,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/33db976598258cef514e948234cd72ee~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=84f65bd0&x-expires=1775224800&x-signature=IvlMDst8y1dw3N%2BWdPprvuGxhYc%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7496212669536897801",
+      "handle": "teo22532",
+      "nickname": "Teo",
+      "follower_cnt": 147001,
+      "med_gmv_revenue": 104305,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/92ae919bc22a6e27e31647ebd5e9320c~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=ca007baa&x-expires=1775224800&x-signature=v%2F640d6FGlOSFkEYzlB2GrheCzk%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7494013196534450992",
+      "handle": "saracolaiacolo",
+      "nickname": "Saras shop",
+      "follower_cnt": 46039,
+      "med_gmv_revenue": 102021,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/6a1c32cbb9aa8c70367b0e02da732508~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=b51d7b1e&x-expires=1775224800&x-signature=%2B%2BDsld9bi8yQD2xC4pq7bga81ms%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7493992137068151916",
+      "handle": "trendface",
+      "nickname": "TrendFace",
+      "follower_cnt": 132750,
+      "med_gmv_revenue": 101077,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/1abdc9914e080a36d91a5e3bf943f601~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=9540a864&x-expires=1775224800&x-signature=CHwj%2BSqgd%2F3gLL%2Bkgc3KQhn6mD8%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7494009081129043786",
+      "handle": "martinaprocacciant",
+      "nickname": "Martina",
+      "follower_cnt": 65232,
+      "med_gmv_revenue": 89163,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/78e38e649c6b64259424090b12e06339~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=9a34afa4&x-expires=1775224800&x-signature=vqNafXEA6%2F0%2F5%2FwuOqumo%2BK6Sno%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7496129575738378511",
+      "handle": "arianna.cellamare",
+      "nickname": "Arianna in cucina",
+      "follower_cnt": 15442,
+      "med_gmv_revenue": 88665,
+      "profilePicture": "https://p19-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/f59d8bdb78454c2c57122167c27f3808~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=a83511d7&x-expires=1775224800&x-signature=8Fe3TkEuel72ZpccLVDNsGG%2F7ck%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7494505986559412963",
+      "handle": "casadanieleofficial",
+      "nickname": "Casa Daniele",
+      "follower_cnt": 271874,
+      "med_gmv_revenue": 85420,
+      "profilePicture": "https://p19-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/93275759ae0d672da7adcd4516547759~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=48e116a1&x-expires=1775224800&x-signature=J6beyY3FS5T80B6Hw5aYKrcGr6A%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7495030933779548887",
+      "handle": "diycrrhp5oz",
+      "nickname": "R I M",
+      "follower_cnt": 1228561,
+      "med_gmv_revenue": 84352,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/5af6a45cf88676ebedf470da8fa5d030~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=c3e8984c&x-expires=1775224800&x-signature=OFYtYEH%2BlbgsqETQU4n%2FRzbApYk%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7494503671777953915",
+      "handle": "kinderina_20193",
+      "nickname": "Kinderina",
+      "follower_cnt": 38517,
+      "med_gmv_revenue": 80484,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/0f93c7f4ddced6f164ed7b54087090e4~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=6632cb49&x-expires=1775224800&x-signature=wuznmKidNSfe2He4y6fhTYt5KYs%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7494024489902245329",
+      "handle": "veroonixca",
+      "nickname": "veronica fasano",
+      "follower_cnt": 43747,
+      "med_gmv_revenue": 79379,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/336d66dc78ca2d07d7bbdb7841f666d4~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=900c175d&x-expires=1775224800&x-signature=k7Bj4MtGQrnx3DmnlSDQtPlj46M%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7494453172998212407",
+      "handle": "claudiasciuesciue",
+      "nickname": "ClaudiaSciueSciue",
+      "follower_cnt": 31214,
+      "med_gmv_revenue": 75055,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/b1d69bd9c2193ab80ebd6c7f59bb5717~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=456e28ef&x-expires=1775224800&x-signature=sbNNv1VTTT4s4TGpHL4cq3eaKSA%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7494772733483912147",
+      "handle": "andrea360life",
+      "nickname": "Andrea",
+      "follower_cnt": 26589,
+      "med_gmv_revenue": 73731,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/7b704e6f9b579f06324b960b3d6821a7~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=dae90ce9&x-expires=1775224800&x-signature=OLSo4tXX4Z4UpDmog3ZSzbRoLsU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7495193421480495114",
+      "handle": "lidiaarena",
+      "nickname": "DARIOLIDIA",
+      "follower_cnt": 162169,
+      "med_gmv_revenue": 70630,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/5009851b868307e88e5d488d0072c0e3~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=bb03e7a2&x-expires=1775224800&x-signature=NNq9sOwtb6DkEWxT4jRRUl9d5%2Bg%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7493991577160090889",
+      "handle": "selvaggia84",
+      "nickname": "",
+      "follower_cnt": 101145,
+      "med_gmv_revenue": 68804,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-useast2a-avt-0068-euttp/7676ffef78e9be45e25c2d5c9c67bd8c~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=43158e84&x-expires=1775224800&x-signature=AcTgFzxMB5Xz3sFrZ%2FRBAnxwMcc%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "it",
+      "_scraped_at": "2026-04-01T14:31:05.029Z"
+    },
+    {
+      "creator_oecuid": "7495897309651176389",
+      "handle": "itsmafer.ro",
+      "nickname": "Mafer Rodriguez",
+      "follower_cnt": 52787,
+      "med_gmv_revenue": 3604598,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/c593e5d02d130ef1fcfa708b8c241dbb~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=57559e32&x-expires=1775224800&x-signature=peZN%2BsB1jQ1Vujmm6jvfvXHiBi4%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7494087101141452988",
+      "handle": "kals_alex",
+      "nickname": "kalsalex",
+      "follower_cnt": 279972,
+      "med_gmv_revenue": 3416945,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/09d98d47185934e68fdca732bbf002ba~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=334bd6ca&x-expires=1775224800&x-signature=fPXK5ffPYxC2ya4ZNrhKU78rFGU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7494537914514311496",
+      "handle": "hekkerphood",
+      "nickname": "Valeria",
+      "follower_cnt": 192408,
+      "med_gmv_revenue": 2918057,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/9e99d5db6684ea4e42614a2034ba796d~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=fd21400d&x-expires=1775224800&x-signature=zzKH6vAaCDBEPBqmHidVdFOVQkw%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7495474387888802141",
+      "handle": "mrcarlosmtiktoksh",
+      "nickname": "Mrcarlosmtiktokshop",
+      "follower_cnt": 67809,
+      "med_gmv_revenue": 2608833,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/d95e19b50980019313e33de00d269554~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=678a5621&x-expires=1775224800&x-signature=C4CXTfGVPLOilZZIW2F5JfKH4ns%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7495066440089373333",
+      "handle": "beego2025",
+      "nickname": "Beto eL Enfermero",
+      "follower_cnt": 335461,
+      "med_gmv_revenue": 1481714,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/d9f0ad1e47b89b2f6bde9b2a5d09982d~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=58ef1948&x-expires=1775224800&x-signature=7qLtH9bH93Inmm%2BBYIGy9MW9PKA%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7494025827703161863",
+      "handle": "balerianohernandez",
+      "nickname": "Baleriano hernandez",
+      "follower_cnt": 151670,
+      "med_gmv_revenue": 1148657,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/390ffd1353ab9ba4742ad658c7d85c01~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=658ac86d&x-expires=1775224800&x-signature=e8INThrPZk0uak6HK9nFcKPGueU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7493995519000546066",
+      "handle": "mariagna_martinez",
+      "nickname": "mariagnamartinez",
+      "follower_cnt": 215719,
+      "med_gmv_revenue": 1014205,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/2c0c9004e147b8b17551eab2ff986230~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=d350ada7&x-expires=1775224800&x-signature=hArH45vDsl16aONwF7BrO7XL3dU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7494748816682617734",
+      "handle": "sergiomiramx",
+      "nickname": "Sergio Miramontes",
+      "follower_cnt": 16481,
+      "med_gmv_revenue": 846276,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/1e1d5fa481a879cfbaed95b2f9b056ce~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=6b38787e&x-expires=1775224800&x-signature=N2JLy00eK9dF7%2BRDzXf6a0U10ys%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7494911766274148446",
+      "handle": "mimanicurista",
+      "nickname": "MiManicurista",
+      "follower_cnt": 73393,
+      "med_gmv_revenue": 819184,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/af2f306a20a653781782ec6f69217078~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=c6bd03bb&x-expires=1775224800&x-signature=fNB5sjlwZbe%2BZP3LCKjML%2BDJaDE%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7493998221545868042",
+      "handle": "denissebrito1998",
+      "nickname": "Denisse Brito",
+      "follower_cnt": 63283,
+      "med_gmv_revenue": 795974,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/fbd59064480606c63b90834fbddac5f9~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=ed975328&x-expires=1775224800&x-signature=%2FjZNfYkVJfJxYL5KOQClBkM%2FDU0%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7494024193569424666",
+      "handle": "plazamayoreodm",
+      "nickname": "David Mendoza  Plaza Mayoreo",
+      "follower_cnt": 205673,
+      "med_gmv_revenue": 771322,
+      "profilePicture": "https://lf16-tiktok-common.ibytedtos.com/obj/tiktok-web-common-sg/mtact/static/images/tiktok-logo/poster-square.png",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7494022680064001797",
+      "handle": "paulinaivana1",
+      "nickname": "Paulina Ivana",
+      "follower_cnt": 162105,
+      "med_gmv_revenue": 754401,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/2c3ef11d23de2e10b33ef34d4c11f492~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=f0afb620&x-expires=1775224800&x-signature=gvf%2FnuJWaEc7uiF73oPOi6X3rBY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7494016187513736045",
+      "handle": "eldelossuplementos",
+      "nickname": "El de los Suplementos",
+      "follower_cnt": 21191,
+      "med_gmv_revenue": 705202,
+      "profilePicture": "https://p19-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/d794c6ed0c9e1240cf666379e7dac2cf~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=c055a2b0&x-expires=1775224800&x-signature=ZtqEyCfISiWAf%2F%2FCamWkU9xmx9s%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7495228353149963093",
+      "handle": "elchamanmares",
+      "nickname": "El chaman",
+      "follower_cnt": 13315,
+      "med_gmv_revenue": 696483,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/6b9532ad1531a926b2dc9681ca3230bb~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=2bde7a42&x-expires=1775224800&x-signature=xqY0ofVnWRDBlEtdQANIkZg5xAY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7496060884373506720",
+      "handle": "srzvbhar0dc",
+      "nickname": "srzvbhardc",
+      "follower_cnt": 9463,
+      "med_gmv_revenue": 687908,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/139f5cfda0eda6c23ad5558cce3aa819~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=5f8b9605&x-expires=1775224800&x-signature=N3npG2qY0Sy1s6xm1o9qmU1G8HM%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7494697070100252946",
+      "handle": "candiiosuna",
+      "nickname": "candiiosuna",
+      "follower_cnt": 14763,
+      "med_gmv_revenue": 656667,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/df27aa58c55faaec33598ff0bb18bf1f~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=56d13b09&x-expires=1775224800&x-signature=wj8f0%2F4kXMkZLVby%2B4G%2FMD6GUyM%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7495888776027015225",
+      "handle": "hacksdealex",
+      "nickname": "Hacks",
+      "follower_cnt": 11317,
+      "med_gmv_revenue": 654525,
+      "profilePicture": "https://lf16-tiktok-common.ibytedtos.com/obj/tiktok-web-common-sg/mtact/static/images/tiktok-logo/poster-square.png",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7495922793513715992",
+      "handle": "tecnoborregg",
+      "nickname": "tecnoborregg",
+      "follower_cnt": 21139,
+      "med_gmv_revenue": 631354,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/8daa206dcb0056679f30d6d348c7f3e8~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=c170b139&x-expires=1775224800&x-signature=Yt0FRoEFj8kpzhLm36lvCviI2RY%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7494014382173489575",
+      "handle": "elyorozcoo",
+      "nickname": "Elizabeth Orozco",
+      "follower_cnt": 64526,
+      "med_gmv_revenue": 600643,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-alisg-avt-0068/504e09ac624538b16ca432bb7b38ba36~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=c2c16ea9&x-expires=1775224800&x-signature=m8fVR0yX8ovpETUTkfNtIe53T%2Bo%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    },
+    {
+      "creator_oecuid": "7494152145089891111",
+      "handle": "manuplay666",
+      "nickname": "ManuPlay",
+      "follower_cnt": 40568,
+      "med_gmv_revenue": 578887,
+      "profilePicture": "https://p16-common-sign.tiktokcdn-us.com/tos-maliva-avt-0068/5e9818e73aa9cf9e172319d7ec5a04a9~tplv-tiktokx-cropcenter:720:720.jpeg?dr=9640&refresh_token=41600309&x-expires=1775224800&x-signature=Rgg40e6JC%2BKPs3pPkgtKV313pYU%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=useast8",
+      "_region": "mx",
+      "_scraped_at": "2026-04-01T14:31:07.678Z"
+    }
+  ]
+}

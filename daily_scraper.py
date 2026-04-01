@@ -183,6 +183,74 @@ def run_clickmidas():
         log(f"ClickMidas converter ERRO: {e}")
 
 
+def run_social1():
+    """Social1 - TikTok Shop products, videos e creators via Chrome CDP"""
+    log("=== SOCIAL1 (TikTok Shop) ===")
+    try:
+        import requests
+        r = requests.get("http://localhost:9222/json/version", timeout=3)
+        if r.status_code != 200:
+            log("Social1: Chrome debugging nao disponivel - PULANDO")
+            return
+    except:
+        log("Social1: Chrome debugging nao disponivel - PULANDO")
+        return
+
+    # Verificar se tem aba do Social1 aberta
+    try:
+        import requests
+        r = requests.get("http://localhost:9222/json", timeout=3)
+        tabs = r.json()
+        has_social1 = any("social1" in t.get("url", "") for t in tabs)
+        if not has_social1:
+            log("Social1: Nenhuma aba do Social1 aberta - PULANDO")
+            return
+    except:
+        log("Social1: Erro ao verificar abas - PULANDO")
+        return
+
+    # Rodar scraper de produtos + videos
+    try:
+        result = subprocess.run(
+            ["node", "social1_scraper.js"],
+            capture_output=True, text=True, timeout=1200,
+            cwd=os.path.dirname(os.path.abspath(__file__))
+        )
+        if result.returncode == 0:
+            log("Social1 products+videos: OK")
+        else:
+            log(f"Social1 scraper ERRO: {result.stderr[:200]}")
+    except subprocess.TimeoutExpired:
+        log("Social1 scraper: TIMEOUT (20min)")
+    except Exception as e:
+        log(f"Social1 scraper ERRO: {e}")
+
+    # Rodar scraper de creators
+    try:
+        result = subprocess.run(
+            ["node", "social1_creators2.js"],
+            capture_output=True, text=True, timeout=300,
+            cwd=os.path.dirname(os.path.abspath(__file__))
+        )
+        if result.returncode == 0:
+            log("Social1 creators: OK")
+        else:
+            log(f"Social1 creators ERRO: {result.stderr[:200]}")
+    except Exception as e:
+        log(f"Social1 creators ERRO: {e}")
+
+    # Converter para formato NinjaSpy
+    try:
+        from social1_converter import convert_social1
+        output_file = convert_social1()
+        if output_file:
+            log(f"Social1 converter: OK -> {output_file}")
+        else:
+            log("Social1 converter: nenhum dado")
+    except Exception as e:
+        log(f"Social1 converter ERRO: {e}")
+
+
 def merge_affiliate_data(new_file):
     """Merge incremental - atualiza produtos existentes, mantem os que nao mudaram"""
     try:
@@ -265,6 +333,7 @@ def main():
         log(f"Check tokens ERRO: {e}")
 
     run_clickmidas()
+    run_social1()
     run_bigspy()
     run_pipiads()
     run_minea()

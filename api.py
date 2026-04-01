@@ -1405,6 +1405,172 @@ def cross_source_signals(
 
 
 # ============================================================
+# TIKTOK SHOP (Social1 data)
+# ============================================================
+
+_tiktok_cache = {"data": None, "loaded_at": None, "file": None}
+
+def load_tiktok_shop():
+    """Carrega dados TikTok Shop com cache"""
+    files = sorted(glob.glob(f"{OUTPUT_DIR}/tiktok_shop_*.json"), reverse=True)
+    if not files:
+        return {"products": [], "videos": [], "creators": []}
+
+    latest = files[0]
+    file_mtime = os.path.getmtime(latest)
+
+    if _tiktok_cache["data"] is not None and _tiktok_cache["file"] == latest and _tiktok_cache["loaded_at"] == file_mtime:
+        return _tiktok_cache["data"]
+
+    with open(latest, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    _tiktok_cache["data"] = data
+    _tiktok_cache["file"] = latest
+    _tiktok_cache["loaded_at"] = file_mtime
+    return data
+
+
+@app.get("/api/tiktok-shop/products")
+def tiktok_products(
+    region: str = Query(None, description="us, uk, br, de, fr, es, it, mx"),
+    category: str = Query(None, description="Filtrar por categoria"),
+    competition: str = Query(None, description="low, medium, high"),
+    min_score: float = Query(None, description="Viral score minimo (1-10)"),
+    search: str = Query(None, description="Buscar no nome"),
+    sort: str = Query("viral_score", description="viral_score, units_sold, gmv, video_views, creator_count"),
+    order: str = Query("desc"),
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, ge=1, le=100),
+):
+    """Produtos virais do TikTok Shop - 8 paises"""
+    data = load_tiktok_shop()
+    products = data.get("products", [])
+
+    if region:
+        products = [p for p in products if p.get("region") == region]
+    if category:
+        products = [p for p in products if category.lower() in (p.get("category", "") or "").lower()]
+    if competition:
+        products = [p for p in products if p.get("competition_level") == competition]
+    if min_score:
+        products = [p for p in products if (p.get("viral_score", 0) or 0) >= min_score]
+    if search:
+        sl = search.lower()
+        products = [p for p in products if sl in (p.get("name", "") or "").lower()]
+
+    reverse = order == "desc"
+    try:
+        products.sort(key=lambda x: x.get(sort, 0) or 0, reverse=reverse)
+    except:
+        pass
+
+    total = len(products)
+    start = (page - 1) * limit
+    return {
+        "data": products[start:start + limit],
+        "total": total,
+        "page": page,
+        "pages": (total + limit - 1) // limit if total > 0 else 0,
+    }
+
+
+@app.get("/api/tiktok-shop/videos")
+def tiktok_videos(
+    region: str = Query(None),
+    is_ad: bool = Query(None, description="Filtrar apenas ads"),
+    has_insights: bool = Query(None, description="Apenas com AI insights"),
+    search: str = Query(None),
+    sort: str = Query("views", description="views, likes, engagement_rate"),
+    order: str = Query("desc"),
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, ge=1, le=100),
+):
+    """Videos virais do TikTok Shop com AI insights"""
+    data = load_tiktok_shop()
+    videos = data.get("videos", [])
+
+    if region:
+        videos = [v for v in videos if v.get("region") == region]
+    if is_ad is not None:
+        videos = [v for v in videos if v.get("is_ad") == is_ad]
+    if has_insights:
+        videos = [v for v in videos if v.get("has_insights")]
+    if search:
+        sl = search.lower()
+        videos = [v for v in videos if sl in (v.get("description", "") or "").lower()]
+
+    reverse = order == "desc"
+    try:
+        videos.sort(key=lambda x: x.get(sort, 0) or 0, reverse=reverse)
+    except:
+        pass
+
+    total = len(videos)
+    start = (page - 1) * limit
+    return {
+        "data": videos[start:start + limit],
+        "total": total,
+        "page": page,
+        "pages": (total + limit - 1) // limit if total > 0 else 0,
+    }
+
+
+@app.get("/api/tiktok-shop/creators")
+def tiktok_creators(
+    region: str = Query(None),
+    sort: str = Query("gmv_30d", description="gmv_30d, followers, influence_score"),
+    order: str = Query("desc"),
+    limit: int = Query(20, ge=1, le=50),
+):
+    """Top creators do TikTok Shop por GMV"""
+    data = load_tiktok_shop()
+    creators = data.get("creators", [])
+
+    if region:
+        creators = [c for c in creators if c.get("region") == region]
+
+    reverse = order == "desc"
+    creators.sort(key=lambda x: x.get(sort, 0) or 0, reverse=reverse)
+
+    return {"data": creators[:limit], "total": len(creators)}
+
+
+@app.get("/api/tiktok-shop/stats")
+def tiktok_stats():
+    """Estatisticas do TikTok Shop"""
+    data = load_tiktok_shop()
+    products = data.get("products", [])
+    videos = data.get("videos", [])
+    creators = data.get("creators", [])
+
+    categories = {}
+    regions = {}
+    for p in products:
+        cat = p.get("category", "Unknown")
+        categories[cat] = categories.get(cat, 0) + 1
+        r = p.get("region", "?")
+        regions[r] = regions.get(r, 0) + 1
+
+    total_gmv = sum(p.get("gmv", 0) or 0 for p in products)
+    total_units = sum(p.get("units_sold", 0) or 0 for p in products)
+    total_views = sum(v.get("views", 0) or 0 for v in videos)
+    with_insights = sum(1 for v in videos if v.get("has_insights"))
+
+    return {
+        "total_products": len(products),
+        "total_videos": len(videos),
+        "total_creators": len(creators),
+        "total_gmv": round(total_gmv, 2),
+        "total_units_sold": total_units,
+        "total_video_views": total_views,
+        "videos_with_insights": with_insights,
+        "by_category": dict(sorted(categories.items(), key=lambda x: x[1], reverse=True)[:15]),
+        "by_region": dict(sorted(regions.items(), key=lambda x: x[1], reverse=True)),
+    }
+
+
+# ============================================================
 # SEOTOOLS INTEGRATION
 # ============================================================
 @app.get("/api/seotools/list")

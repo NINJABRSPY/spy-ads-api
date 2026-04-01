@@ -136,6 +136,9 @@ def convert_social1():
                 "gmv_30d": round(gmv, 2),
                 "profile_picture": c.get("profilePicture", ""),
                 "influence_score": influence_score,
+                "videos": c.get("videos", []),
+                "video_count": c.get("video_count", 0),
+                "total_views": c.get("total_views", 0),
             })
 
     # --- SAVE ALL ---
@@ -153,8 +156,11 @@ def convert_social1():
     }
 
     output_file = f"{INPUT_DIR}/tiktok_shop_{timestamp}.json"
+    # Clean surrogates that break utf-8
+    raw = json.dumps(output, indent=2, ensure_ascii=False)
+    clean = raw.encode('utf-8', errors='replace').decode('utf-8')
     with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(output, f, indent=2, ensure_ascii=False)
+        f.write(clean)
 
     print(f"Products: {len(products)}")
     print(f"Videos: {len(videos_list)} ({sum(1 for v in videos_list if v['has_insights'])} with AI insights)")

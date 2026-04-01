@@ -463,78 +463,168 @@ def analyze_ad(ad_id: str):
         revenue = target.get("store_daily_revenue", 0) or target.get("estimated_daily_revenue", 0) or 0
         roas = round((revenue * 30) / spend, 2) if spend > 0 and revenue > 0 else 0
 
-        analysis = _ai_call(f"""Voce e um estrategista de marketing senior. Analise este anuncio em profundidade.
-Retorne APENAS JSON valido.
+        # Dados enriquecidos
+        days = target.get('days_running', 0) or 0
+        impressions = target.get('impressions', 0) or 0
+        likes = target.get('likes', 0) or 0
+        comments = target.get('comments', 0) or 0
+        shares = target.get('shares', 0) or 0
+        engagement = likes + comments + shares
+        eng_rate = round(engagement / max(impressions, 1) * 100, 2)
+        has_video = bool(target.get('video_url'))
+        source = target.get('source', '')
 
-ANUNCIO:
+        # Social1 specific
+        units_sold = target.get('social1_units_sold', 0) or 0
+        gmv = target.get('social1_gmv', 0) or 0
+        creators = target.get('social1_creators', 0) or 0
+
+        analysis = _ai_call(f"""Voce e uma equipe de 5 especialistas analisando este anuncio. Cada um contribui com sua area:
+1. DIRETOR CRIATIVO: analisa o conceito, narrativa visual e storytelling
+2. COPYWRITER SENIOR: disseca cada palavra, framework e gatilho do texto
+3. MEDIA BUYER: avalia metricas, performance e eficiencia do gasto
+4. PSICOLOGO DO CONSUMIDOR: decodifica as emocoes, vieses cognitivos e motivacoes
+5. ESTRATEGISTA DE MARCA: posicionamento, diferenciacao e vantagem competitiva
+
+DADOS DO ANUNCIO:
 - Anunciante: {target.get('advertiser', '')}
 - Plataforma: {target.get('platform', '')}
 - Titulo: {title}
-- Copy: {body[:600]}
+- Copy completo: {body[:800]}
 - CTA: {target.get('cta', '')}
 - Landing page: {target.get('landing_page', '')}
-- Tipo: {target.get('ad_type', '')}
-- Dias rodando: {target.get('days_running', 0)}
-- Curtidas: {target.get('likes', 0)}
-- Comentarios: {target.get('comments', 0)}
-- Impressoes: {target.get('impressions', 0)}
+- Tipo: {'video' if has_video else 'imagem'}
+- Fonte: {source}
+- Dias rodando: {days}
+- Impressoes: {impressions:,}
+- Curtidas: {likes:,} | Comentarios: {comments:,} | Shares: {shares:,}
+- Taxa de engajamento: {eng_rate}%
+- Gasto estimado: ${spend:,.0f}
 - Paises: {target.get('all_countries', target.get('country', ''))}
+{"- Unidades vendidas: " + str(units_sold) + " | GMV: $" + str(gmv) + " | Creators: " + str(creators) if units_sold else ""}
 
-JSON:
+Retorne APENAS JSON valido com esta estrutura:
 {{
+  "verdict": "EXCELENTE/BOM/MEDIANO/FRACO (1 palavra)",
+  "verdict_emoji": "emoji que representa o nivel",
+  "overall_score": 8.5,
+  "headline": "frase de 1 linha resumindo o anuncio de forma impactante, como manchete de revista",
+
+  "creative_direction": {{
+    "concept": "qual e o conceito criativo central em 1 frase",
+    "narrative_arc": "qual historia esta sendo contada (heroi, transformacao, descoberta, urgencia)",
+    "visual_strategy": "o que a imagem/video provavelmente mostra e por que funciona",
+    "attention_hook": "o que prende a atencao nos primeiros 2 segundos e por que",
+    "scroll_stopper_score": 8,
+    "what_makes_it_work": "em 2 frases, o segredo deste criativo"
+  }},
+
+  "copy_dissection": {{
+    "framework": "PAS/AIDA/BAB/FAB/Story/Before-After-Bridge",
+    "framework_explanation": "como o framework foi aplicado neste texto especificamente",
+    "hook_line": "a primeira frase exata que funciona como gancho",
+    "hook_type": "pergunta/estatistica/dor/curiosidade/beneficio/choque/contraste",
+    "power_words": ["lista de palavras de poder usadas no texto"],
+    "emotional_triggers": ["gatilho1 com explicacao", "gatilho2 com explicacao"],
+    "objection_handling": "como o texto lida com objecoes do comprador",
+    "cta_analysis": "analise do CTA - e forte? urgente? claro?",
+    "copy_grade": "A+/A/B/C/D com justificativa",
+    "weakness": "o ponto mais fraco do texto"
+  }},
+
+  "audience_profile": {{
+    "primary_persona": {{
+      "name_fictional": "nome ficticio para a persona (ex: Maria, 34, mae solteira)",
+      "demographics": "genero, idade, localizacao, renda",
+      "psychographics": "valores, estilo de vida, aspiracoes",
+      "pain_points": ["dor1 especifica", "dor2 especifica", "dor3 especifica"],
+      "desires": ["desejo1", "desejo2"],
+      "objections": ["objecao1 antes de comprar", "objecao2"],
+      "where_they_hang": "onde essa pessoa passa tempo online",
+      "what_they_googled": "o que essa pessoa pesquisou antes de ver o anuncio"
+    }},
+    "secondary_audience": "quem mais pode ser impactado por esse anuncio"
+  }},
+
+  "psychology_deep_dive": {{
+    "cognitive_biases": [
+      {{"bias": "nome do vies cognitivo", "how_used": "como e explorado neste anuncio"}},
+      {{"bias": "segundo vies", "how_used": "explicacao"}}
+    ],
+    "emotional_journey": "descreva a jornada emocional: o que a pessoa sente ao ler linha por linha (medo -> curiosidade -> esperanca -> urgencia)",
+    "trust_signals": ["sinal de confianca 1", "sinal 2"],
+    "scarcity_urgency": "como escassez ou urgencia e usada (se for)",
+    "social_proof_type": "tipo de prova social (numeros, depoimentos, autoridade, bandwagon)",
+    "decision_trigger": "o momento exato que faz a pessoa clicar"
+  }},
+
+  "performance_analysis": {{
+    "engagement_verdict": "ALTO/MEDIO/BAIXO com contexto",
+    "estimated_ctr": "X.X% (estimado baseado nas metricas)",
+    "longevity_prediction": "quanto tempo mais esse ad pode rodar antes de fadigar",
+    "best_performing_element": "qual elemento deste ad e o mais forte",
+    "weakest_element": "o que esta puxando a performance para baixo",
+    "ab_test_suggestions": ["teste A/B 1 para melhorar", "teste 2", "teste 3"]
+  }},
+
+  "competitive_intel": {{
+    "market_position": "como este anunciante se posiciona vs concorrentes",
+    "differentiation": "o que torna este anuncio diferente dos demais do nicho",
+    "threat_level": "se voce e concorrente, quao ameacador e este ad (1-10)",
+    "vulnerability": "onde este anunciante e vulneravel - como atacar"
+  }},
+
+  "replication_blueprint": {{
+    "step1": "primeiro passo para replicar a estrategia deste ad",
+    "step2": "segundo passo",
+    "step3": "terceiro passo",
+    "adapted_hook": "reescreva o hook adaptado para um concorrente",
+    "adapted_cta": "reescreva o CTA melhorado",
+    "platforms_to_test": ["plataformas onde essa abordagem funcionaria"],
+    "estimated_budget_to_test": "quanto investir para testar ($)"
+  }},
+
+  "ai_generation": {{
+    "image_prompt": "prompt detalhado para gerar imagem similar com IA (Midjourney/DALL-E)",
+    "video_script": "roteiro de 30s inspirado neste ad",
+    "copy_variations": ["variacao 1 do copy", "variacao 2", "variacao 3"],
+    "headline_variations": ["titulo alternativo 1", "titulo 2", "titulo 3"]
+  }},
+
   "niche": "nicho especifico",
-  "target_audience": "descricao detalhada do publico-alvo",
-  "persona": {{
-    "gender": "homem/mulher/ambos",
-    "age_range": "25-34",
-    "interests": ["interesse1", "interesse2"],
-    "pain_points": ["dor1", "dor2"],
-    "income_level": "baixa/media/alta",
-    "profile": "descricao em 1 frase da persona"
-  }},
-  "creative_brief": {{
-    "objective": "objetivo da campanha",
-    "angle": "angulo de abordagem",
-    "value_proposition": "proposta de valor",
-    "differentiator": "diferencial competitivo"
-  }},
-  "psychology": {{
-    "triggers": ["gatilho1", "gatilho2"],
-    "copy_framework": "PAS/AIDA/BAB/FAB/outro",
-    "hook_type": "pergunta/estatistica/dor/curiosidade/beneficio",
-    "emotion": "emocao principal",
-    "urgency_level": 7,
-    "social_proof_used": true
-  }},
-  "strategy": "descricao da estrategia em 2 frases",
   "product_type": "fisico/digital/servico/SaaS/curso",
-  "copy_quality": 8,
-  "estimated_ai_prompts": {{
-    "image_prompt": "prompt provavel se a imagem foi gerada por IA",
-    "copy_prompt": "prompt provavel para gerar copy similar"
-  }},
-  "recommendations": ["recomendacao1 para melhorar", "recomendacao2"],
-  "summary": "resumo executivo em 2 frases",
-  "language": "pt/en/es"
-}}""")
+  "language": "pt/en/es",
+  "summary": "resumo executivo em 3 frases como se estivesse apresentando para um CEO"
+}}""", max_tokens=2500)
 
         # Salvar todos os campos
+        copy_diss = analysis.get("copy_dissection", {})
+        psych = analysis.get("psychology_deep_dive", {})
         updates = {
             "ai_niche": analysis.get("niche", ""),
-            "ai_target_audience": analysis.get("target_audience", ""),
-            "ai_strategy": analysis.get("strategy", ""),
-            "ai_hook_type": analysis.get("psychology", {}).get("hook_type", ""),
+            "ai_target_audience": analysis.get("audience_profile", {}).get("primary_persona", {}).get("demographics", ""),
+            "ai_strategy": analysis.get("summary", ""),
+            "ai_hook_type": copy_diss.get("hook_type", ""),
             "ai_product_type": analysis.get("product_type", ""),
-            "ai_copy_quality": analysis.get("copy_quality", 0),
-            "ai_urgency_level": analysis.get("psychology", {}).get("urgency_level", 0),
-            "ai_emotion": analysis.get("psychology", {}).get("emotion", ""),
+            "ai_copy_quality": analysis.get("overall_score", 0),
+            "ai_urgency_level": psych.get("scarcity_urgency", ""),
+            "ai_emotion": psych.get("emotional_journey", ""),
             "ai_language": analysis.get("language", ""),
             "ai_summary": analysis.get("summary", ""),
-            "ai_persona": analysis.get("persona", {}),
-            "ai_creative_brief": analysis.get("creative_brief", {}),
-            "ai_psychology": analysis.get("psychology", {}),
-            "ai_prompts": analysis.get("estimated_ai_prompts", {}),
-            "ai_recommendations": analysis.get("recommendations", []),
+            "ai_headline": analysis.get("headline", ""),
+            "ai_verdict": analysis.get("verdict", ""),
+            "ai_verdict_emoji": analysis.get("verdict_emoji", ""),
+            "ai_overall_score": analysis.get("overall_score", 0),
+            "ai_creative_direction": analysis.get("creative_direction", {}),
+            "ai_copy_dissection": copy_diss,
+            "ai_persona": analysis.get("audience_profile", {}),
+            "ai_creative_brief": analysis.get("competitive_intel", {}),
+            "ai_psychology": psych,
+            "ai_performance": analysis.get("performance_analysis", {}),
+            "ai_replication": analysis.get("replication_blueprint", {}),
+            "ai_generation": analysis.get("ai_generation", {}),
+            "ai_prompts": analysis.get("ai_generation", {}),
+            "ai_recommendations": analysis.get("performance_analysis", {}).get("ab_test_suggestions", []),
             "estimated_roas": roas,
         }
         _save_ad_update(ad_id, updates)

@@ -1495,6 +1495,441 @@ def cross_source_signals(
 
 
 # ============================================================
+# HOOK BANK — Banco de ganchos validados
+# ============================================================
+
+def _build_hook_bank():
+    """Extrai e classifica hooks (primeira frase) de todos os ads"""
+    ads = load_latest_data()
+    hooks = []
+    seen = set()
+
+    for ad in ads:
+        body = (ad.get("body") or "").strip()
+        title = (ad.get("title") or "").strip()
+
+        # O hook e a primeira frase do body ou o titulo
+        text = body or title
+        if not text or len(text) < 10:
+            continue
+
+        # Extrair primeira frase
+        hook = text
+        for sep in ["\n", ". ", "! ", "? ", "...", "👉", "⬇", "🔥"]:
+            if sep in text:
+                parts = text.split(sep)
+                if len(parts[0]) >= 10:
+                    hook = parts[0].strip()
+                    break
+
+        # Limitar tamanho
+        if len(hook) > 200:
+            hook = hook[:200]
+        if len(hook) < 10:
+            continue
+
+        # Deduplicar
+        hook_key = hook.lower()[:60]
+        if hook_key in seen:
+            continue
+        seen.add(hook_key)
+
+        impressions = ad.get("impressions", 0) or 0
+        likes = ad.get("likes", 0) or 0
+        engagement = ad.get("total_engagement", 0) or 0
+
+        # Classificar tipo de hook
+        hl = hook.lower()
+        if "?" in hook:
+            hook_type = "question"
+        elif any(w in hl for w in ["%", "milhões", "milhares", "mil", "100", "500", "1000", "studies", "research", "scientists"]):
+            hook_type = "statistic"
+        elif any(w in hl for w in ["cansado", "tired", "sick of", "frustrated", "struggling", "sofrendo", "dor", "pain", "problem"]):
+            hook_type = "pain"
+        elif any(w in hl for w in ["segredo", "secret", "ninguém", "nobody", "hidden", "descobr", "discover", "revealed"]):
+            hook_type = "curiosity"
+        elif any(w in hl for w in ["grátis", "free", "ganhe", "win", "earn", "lucro", "profit", "resultado", "result"]):
+            hook_type = "benefit"
+        elif any(w in hl for w in ["pare", "stop", "nunca", "never", "não", "don't", "avoid", "warning", "cuidado"]):
+            hook_type = "shock"
+        elif any(w in hl for w in ["antes", "before", "depois", "after", "era", "agora", "now", "transformação"]):
+            hook_type = "contrast"
+        elif any(w in hl for w in ["eu ", "i ", "minha", "my ", "quando", "when i", "meu"]):
+            hook_type = "story"
+        else:
+            hook_type = "direct"
+
+        # Detectar idioma simples
+        if any(w in hl for w in ["você", "para", "como", "não", "uma", "que", "isso"]):
+            language = "pt"
+        elif any(w in hl for w in ["the", "you", "how", "what", "this", "your", "are"]):
+            language = "en"
+        elif any(w in hl for w in ["el", "los", "como", "para", "que", "una"]):
+            language = "es"
+        else:
+            language = "other"
+
+        hooks.append({
+            "hook": hook,
+            "hook_type": hook_type,
+            "language": language,
+            "source": ad.get("source", ""),
+            "platform": ad.get("platform", ""),
+            "advertiser": ad.get("advertiser", ""),
+            "niche": ad.get("ai_niche") or ad.get("search_keyword", ""),
+            "impressions": impressions,
+            "engagement": engagement,
+            "likes": likes,
+            "days_running": ad.get("days_running", 0) or 0,
+            "ad_id": ad.get("ad_id", ""),
+            "score": min(10, round(
+                min(3, impressions / 100000) +
+                min(3, engagement / 1000) +
+                min(2, (ad.get("days_running", 0) or 0) / 15) +
+                min(2, (ad.get("heat", 0) or 0) / 200)
+            , 1)),
+        })
+
+    hooks.sort(key=lambda x: x["score"], reverse=True)
+    return hooks
+
+
+@app.get("/api/hooks")
+def hook_bank(
+    hook_type: str = Query(None, description="question, statistic, pain, curiosity, benefit, shock, contrast, story, direct"),
+    language: str = Query(None, description="pt, en, es"),
+    niche: str = Query(None, description="Filtrar por nicho"),
+    platform: str = Query(None),
+    min_score: float = Query(None),
+    search: str = Query(None, description="Buscar no texto do hook"),
+    sort: str = Query("score", description="score, impressions, engagement"),
+    limit: int = Query(50, ge=1, le=200),
+    page: int = Query(1, ge=1),
+):
+    """Banco de hooks validados — os melhores ganchos com milhoes de impressoes"""
+    hooks = _build_hook_bank()
+
+    if hook_type:
+        hooks = [h for h in hooks if h["hook_type"] == hook_type]
+    if language:
+        hooks = [h for h in hooks if h["language"] == language]
+    if niche:
+        hooks = [h for h in hooks if niche.lower() in (h.get("niche") or "").lower()]
+    if platform:
+        hooks = [h for h in hooks if h["platform"] == platform]
+    if min_score:
+        hooks = [h for h in hooks if h["score"] >= min_score]
+    if search:
+        sl = search.lower()
+        hooks = [h for h in hooks if sl in h["hook"].lower()]
+
+    try:
+        hooks.sort(key=lambda x: x.get(sort, 0) or 0, reverse=True)
+    except:
+        pass
+
+    # Stats
+    types = {}
+    langs = {}
+    for h in hooks:
+        types[h["hook_type"]] = types.get(h["hook_type"], 0) + 1
+        langs[h["language"]] = langs.get(h["language"], 0) + 1
+
+    total = len(hooks)
+    start = (page - 1) * limit
+
+    return {
+        "data": hooks[start:start + limit],
+        "total": total,
+        "page": page,
+        "pages": (total + limit - 1) // limit if total > 0 else 0,
+        "stats": {
+            "by_type": dict(sorted(types.items(), key=lambda x: x[1], reverse=True)),
+            "by_language": dict(sorted(langs.items(), key=lambda x: x[1], reverse=True)),
+        }
+    }
+
+
+@app.get("/api/hooks/top")
+def hooks_top(
+    language: str = Query(None),
+    limit: int = Query(20, ge=1, le=50),
+):
+    """Top hooks da semana — os ganchos com melhor performance"""
+    hooks = _build_hook_bank()
+    if language:
+        hooks = [h for h in hooks if h["language"] == language]
+    return {"data": hooks[:limit], "total": len(hooks)}
+
+
+# ============================================================
+# DAILY BRIEFING — Radar diario de inteligencia
+# ============================================================
+
+@app.get("/api/briefing")
+def daily_briefing():
+    """Briefing diario de inteligencia — o que mudou nas ultimas 24h"""
+    ads = load_latest_data()
+    affiliates = load_affiliate_products()
+
+    # Ads mais recentes (ultimas 24h)
+    from datetime import datetime, timedelta
+    now = datetime.now()
+    recent_ads = [a for a in ads if a.get("days_running", 999) <= 3]
+    recent_ads.sort(key=lambda x: x.get("impressions", 0) or 0, reverse=True)
+
+    # Top novo da semana (poucos dias rodando + alto engajamento)
+    rising_stars = [a for a in ads if 1 <= (a.get("days_running", 0) or 0) <= 7
+                    and (a.get("impressions", 0) or 0) > 10000]
+    rising_stars.sort(key=lambda x: x.get("impressions", 0) or 0, reverse=True)
+
+    # Ads longevos (validados)
+    evergreen = [a for a in ads if (a.get("days_running", 0) or 0) > 30]
+    evergreen.sort(key=lambda x: x.get("impressions", 0) or 0, reverse=True)
+
+    # Uncloak stats
+    uncloak = _build_uncloak_data()
+    new_revealed = [u for u in uncloak if u["is_revealed"]]
+
+    # Affiliate gold rush
+    gold_rush = [p for p in affiliates if p.get("saturation_zone") == "gold_rush"]
+
+    # Top hooks recentes
+    hooks = _build_hook_bank()
+    recent_hooks = [h for h in hooks if h.get("days_running", 999) <= 7][:5]
+
+    # Nichos em alta
+    niche_count = {}
+    for a in recent_ads[:500]:
+        n = a.get("ai_niche") or a.get("search_keyword", "")
+        if n:
+            niche_count[n] = niche_count.get(n, 0) + 1
+
+    briefing = {
+        "date": now.strftime("%d/%m/%Y"),
+        "greeting": f"Bom dia! Aqui esta seu briefing de inteligencia.",
+
+        "highlights": {
+            "new_ads_today": len(recent_ads),
+            "rising_stars": len(rising_stars),
+            "evergreen_validated": len(evergreen),
+            "uncloaked_total": len(new_revealed),
+            "gold_rush_products": len(gold_rush),
+        },
+
+        "rising_stars": [{
+            "advertiser": a.get("advertiser", ""),
+            "title": (a.get("title") or "")[:80],
+            "platform": a.get("platform", ""),
+            "impressions": a.get("impressions", 0),
+            "days_running": a.get("days_running", 0),
+            "ad_id": a.get("ad_id", ""),
+        } for a in rising_stars[:5]],
+
+        "top_new_hooks": [{
+            "hook": h["hook"][:100],
+            "type": h["hook_type"],
+            "impressions": h["impressions"],
+            "score": h["score"],
+        } for h in recent_hooks],
+
+        "gold_rush_alert": [{
+            "name": p.get("name", ""),
+            "ninja_score": p.get("ninja_score", 0),
+            "trend_7d": p.get("trend_7d", 0),
+            "competition": p.get("competition_level", ""),
+        } for p in sorted(gold_rush, key=lambda x: x.get("opportunity_score", 0), reverse=True)[:5]],
+
+        "uncloak_alert": [{
+            "advertiser": u["advertiser"],
+            "cloaking_score": u["cloaking_score"],
+            "video_ads": u["video_ads"],
+            "estimated_spend": u["estimated_spend"],
+        } for u in new_revealed[:5]],
+
+        "hot_niches": dict(sorted(niche_count.items(), key=lambda x: x[1], reverse=True)[:10]),
+
+        "total_monitored": {
+            "ads": len(ads),
+            "affiliates": len(affiliates),
+            "sources": 7,
+        }
+    }
+
+    return briefing
+
+
+# ============================================================
+# OFFER TRACKER — Rastrear ofertas cross-platform
+# ============================================================
+
+@app.get("/api/offer-tracker")
+def offer_tracker(
+    search: str = Query(None, description="Nome do produto ou oferta"),
+    min_advertisers: int = Query(2, description="Minimo de anunciantes diferentes"),
+    limit: int = Query(30, ge=1, le=100),
+):
+    """Rastreia uma oferta em todas as plataformas e fontes"""
+    ads = load_latest_data()
+    affiliates = load_affiliate_products()
+
+    # Agrupar ads por keywords/termos no titulo e body
+    offers = {}
+    for ad in ads:
+        # Usar search_keyword ou ai_niche como chave
+        kw = (ad.get("search_keyword") or "").lower().strip()
+        if not kw or len(kw) < 3:
+            continue
+
+        if kw not in offers:
+            offers[kw] = {
+                "keyword": kw,
+                "ads": [],
+                "advertisers": set(),
+                "platforms": set(),
+                "sources": set(),
+                "total_impressions": 0,
+                "total_spend": 0,
+                "has_video": False,
+                "has_image": False,
+            }
+
+        o = offers[kw]
+        o["ads"].append(ad)
+        if ad.get("advertiser"):
+            o["advertisers"].add(ad["advertiser"])
+        if ad.get("platform"):
+            o["platforms"].add(ad["platform"])
+        if ad.get("source"):
+            o["sources"].add(ad["source"])
+        o["total_impressions"] += ad.get("impressions", 0) or 0
+        o["total_spend"] += ad.get("estimated_spend", 0) or 0
+        if ad.get("video_url"):
+            o["has_video"] = True
+        if ad.get("image_url") and not ad.get("video_url"):
+            o["has_image"] = True
+
+    # Filtrar e formatar
+    results = []
+    for kw, o in offers.items():
+        num_advertisers = len(o["advertisers"])
+        if num_advertisers < min_advertisers:
+            continue
+
+        if search and search.lower() not in kw:
+            continue
+
+        # Encontrar produto afiliado correspondente
+        matching_affiliate = None
+        for p in affiliates:
+            if kw in (p.get("name", "") or "").lower() or kw in (p.get("niche", "") or "").lower():
+                matching_affiliate = {
+                    "name": p.get("name", ""),
+                    "ninja_score": p.get("ninja_score", 0),
+                    "sales_volume": p.get("sales_volume", 0),
+                    "trend_7d": p.get("trend_7d", 0),
+                    "saturation_zone": p.get("saturation_zone", ""),
+                }
+                break
+
+        # Top ads por impressoes
+        top_ads = sorted(o["ads"], key=lambda x: x.get("impressions", 0) or 0, reverse=True)
+
+        # Angulos unicos (hooks dos top ads)
+        angles = []
+        seen_angles = set()
+        for a in top_ads[:20]:
+            hook = (a.get("title") or a.get("body", ""))[:100]
+            if hook and hook.lower()[:40] not in seen_angles:
+                seen_angles.add(hook.lower()[:40])
+                angles.append({
+                    "hook": hook,
+                    "advertiser": a.get("advertiser", ""),
+                    "platform": a.get("platform", ""),
+                    "impressions": a.get("impressions", 0),
+                })
+
+        # Saturation score
+        days_list = [a.get("days_running", 0) or 0 for a in o["ads"]]
+        avg_days = sum(days_list) / len(days_list) if days_list else 0
+        saturation = min(100, int(
+            (num_advertisers / 30 * 30) +
+            (len(o["ads"]) / 100 * 30) +
+            (avg_days / 30 * 20) +
+            (20 if avg_days > 14 else 0)
+        ))
+
+        results.append({
+            "offer": kw.title(),
+            "total_ads": len(o["ads"]),
+            "unique_advertisers": num_advertisers,
+            "platforms": sorted(o["platforms"]),
+            "sources": sorted(o["sources"]),
+            "total_impressions": o["total_impressions"],
+            "total_spend": round(o["total_spend"], 2),
+            "has_video_and_image": o["has_video"] and o["has_image"],
+            "saturation_score": saturation,
+            "avg_days_running": round(avg_days, 1),
+            "top_angles": angles[:5],
+            "top_ads": [{
+                "ad_id": a.get("ad_id", ""),
+                "advertiser": a.get("advertiser", ""),
+                "title": (a.get("title") or "")[:80],
+                "platform": a.get("platform", ""),
+                "impressions": a.get("impressions", 0),
+                "image_url": a.get("image_url", ""),
+                "video_url": a.get("video_url", ""),
+            } for a in top_ads[:6]],
+            "affiliate_match": matching_affiliate,
+        })
+
+    results.sort(key=lambda x: x["unique_advertisers"], reverse=True)
+
+    return {
+        "data": results[:limit],
+        "total": len(results),
+    }
+
+
+@app.get("/api/offer-tracker/search")
+def offer_search(q: str = Query(..., description="Buscar oferta especifica")):
+    """Busca uma oferta especifica em todas as plataformas"""
+    ads = load_latest_data()
+    q_lower = q.lower()
+
+    matched = [a for a in ads if
+               q_lower in (a.get("title") or "").lower() or
+               q_lower in (a.get("body") or "").lower() or
+               q_lower in (a.get("advertiser") or "").lower() or
+               q_lower in (a.get("search_keyword") or "").lower()]
+
+    advertisers = list(set(a.get("advertiser", "") for a in matched if a.get("advertiser")))
+    platforms = list(set(a.get("platform", "") for a in matched if a.get("platform")))
+    sources = list(set(a.get("source", "") for a in matched if a.get("source")))
+
+    # Angulos
+    angles = {}
+    for a in matched:
+        hook = (a.get("title") or a.get("body", ""))[:80]
+        if hook:
+            angles[hook] = angles.get(hook, 0) + 1
+
+    top_angles = sorted(angles.items(), key=lambda x: x[1], reverse=True)[:10]
+
+    matched.sort(key=lambda x: x.get("impressions", 0) or 0, reverse=True)
+
+    return {
+        "query": q,
+        "total_ads": len(matched),
+        "unique_advertisers": len(advertisers),
+        "platforms": platforms,
+        "sources": sources,
+        "top_angles": [{"hook": h, "count": c} for h, c in top_angles],
+        "top_ads": matched[:20],
+    }
+
+
+# ============================================================
 # UNCLOAK ENGINE — Revelar criativos escondidos
 # ============================================================
 

@@ -1566,6 +1566,30 @@ def tiktok_product_detail(product_id: str, region: str = Query("us")):
     }
 
 
+@app.get("/api/tiktok-shop/creator/{handle}")
+def tiktok_creator_detail(handle: str, region: str = Query("us")):
+    """Detalhe de um creator + seus videos"""
+    data = load_tiktok_shop()
+
+    # Buscar creator
+    creator = None
+    for c in data.get("creators", []):
+        if c.get("handle", "").lower() == handle.lower():
+            creator = c
+            break
+
+    # Buscar videos desse creator
+    creator_videos = [v for v in data.get("videos", [])
+                      if v.get("creator_handle", "").lower() == handle.lower()]
+    creator_videos.sort(key=lambda x: x.get("views", 0) or 0, reverse=True)
+
+    return {
+        "creator": creator,
+        "videos": creator_videos[:24],
+        "total_videos": len(creator_videos),
+    }
+
+
 @app.get("/api/tiktok-shop/stats")
 def tiktok_stats():
     """Estatisticas do TikTok Shop"""

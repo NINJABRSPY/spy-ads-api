@@ -239,7 +239,7 @@ def run_social1():
     except Exception as e:
         log(f"Social1 creators ERRO: {e}")
 
-    # Converter para formato NinjaSpy
+    # Converter para formato NinjaSpy (TikTok Shop page)
     try:
         from social1_converter import convert_social1
         output_file = convert_social1()
@@ -249,6 +249,14 @@ def run_social1():
             log("Social1 converter: nenhum dado")
     except Exception as e:
         log(f"Social1 converter ERRO: {e}")
+
+    # Merge com unified (mesclado com outros ads)
+    try:
+        from social1_to_unified import convert_and_merge
+        added = convert_and_merge()
+        log(f"Social1 -> unified: +{added} ads mesclados")
+    except Exception as e:
+        log(f"Social1 unified merge ERRO: {e}")
 
 
 def merge_affiliate_data(new_file):

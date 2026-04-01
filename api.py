@@ -1495,6 +1495,256 @@ def cross_source_signals(
 
 
 # ============================================================
+# YOUTUBE SPY (SearchAPI.io) — Video analysis + VSL transcription
+# ============================================================
+
+SEARCHAPI_KEY = "ZFDmiHTH75sZT3wjDBc7vGay"
+
+@app.get("/api/youtube/analyze")
+def youtube_analyze(url: str = Query(..., description="URL ou ID do video do YouTube")):
+    """Analisa um video do YouTube — metadata completa + transcrição"""
+    import requests as req
+
+    # Extrair video_id da URL
+    video_id = url
+    if "youtube.com" in url or "youtu.be" in url:
+        if "v=" in url:
+            video_id = url.split("v=")[1].split("&")[0]
+        elif "youtu.be/" in url:
+            video_id = url.split("youtu.be/")[1].split("?")[0]
+
+    # Buscar metadata do video
+    try:
+        r = req.get("https://www.searchapi.io/api/v1/search", params={
+            "engine": "youtube_video",
+            "video_id": video_id,
+            "api_key": SEARCHAPI_KEY,
+        }, timeout=15)
+        video_data = r.json()
+    except Exception as e:
+        return {"error": f"Erro ao buscar video: {e}"}
+
+    if "error" in video_data:
+        return {"error": video_data["error"]}
+
+    video = video_data.get("video", {})
+    channel = video_data.get("channel", {})
+    comment = video_data.get("comment", {})
+
+    # Buscar transcrição
+    transcript_text = ""
+    transcript_segments = []
+    try:
+        r2 = req.get("https://www.searchapi.io/api/v1/search", params={
+            "engine": "youtube_transcripts",
+            "video_id": video_id,
+            "lang": "en",
+            "api_key": SEARCHAPI_KEY,
+        }, timeout=15)
+        trans_data = r2.json()
+        segments = trans_data.get("transcripts", [])
+        transcript_segments = segments
+        transcript_text = " ".join(s.get("text", "") for s in segments)
+    except:
+        pass
+
+    # Se não achou em inglês, tenta português
+    if not transcript_text:
+        try:
+            r3 = req.get("https://www.searchapi.io/api/v1/search", params={
+                "engine": "youtube_transcripts",
+                "video_id": video_id,
+                "lang": "pt",
+                "api_key": SEARCHAPI_KEY,
+            }, timeout=15)
+            trans_data = r3.json()
+            segments = trans_data.get("transcripts", [])
+            transcript_segments = segments
+            transcript_text = " ".join(s.get("text", "") for s in segments)
+        except:
+            pass
+
+    result = {
+        "video_id": video_id,
+        "title": video.get("title", ""),
+        "description": video.get("description", ""),
+        "views": video.get("views", 0),
+        "likes": video.get("likes", 0),
+        "comments_count": comment.get("total", 0),
+        "duration_seconds": video.get("length_seconds", 0),
+        "published": video.get("published_time", ""),
+        "category": video.get("category", ""),
+        "keywords": video.get("keywords", []),
+        "thumbnail": video.get("thumbnail", ""),
+        "is_family_safe": video.get("is_family_safe", True),
+        "channel": {
+            "name": channel.get("name", ""),
+            "subscribers": channel.get("subscribers", 0),
+            "link": channel.get("link", ""),
+            "thumbnail": channel.get("thumbnail", ""),
+        },
+        "transcript": {
+            "full_text": transcript_text,
+            "segments": transcript_segments[:200],
+            "word_count": len(transcript_text.split()) if transcript_text else 0,
+            "has_transcript": bool(transcript_text),
+        },
+        "available_languages": trans_data.get("available_languages", []) if transcript_text else [],
+    }
+
+    return result
+
+
+@app.post("/api/youtube/analyze-vsl")
+def youtube_analyze_vsl(url: str = Query(..., description="URL do YouTube")):
+    """Transcreve VSL do YouTube e analisa com IA — o script completo + estratégia"""
+    # Primeiro buscar video + transcript
+    video_data = youtube_analyze(url)
+    if "error" in video_data:
+        return video_data
+
+    transcript = video_data.get("transcript", {}).get("full_text", "")
+    if not transcript:
+        return {"error": "Video sem transcrição disponível", "video": video_data}
+
+    # Limitar transcript para IA
+    transcript_trimmed = transcript[:3000]
+
+    try:
+        analysis = _ai_call(f"""Voce e um especialista em VSLs (Video Sales Letters) de Direct Response.
+Analise esta transcrição de VSL e extraia toda a inteligencia competitiva.
+
+VIDEO: {video_data.get('title', '')}
+CANAL: {video_data.get('channel', {}).get('name', '')}
+VIEWS: {video_data.get('views', 0):,}
+DURAÇÃO: {video_data.get('duration_seconds', 0)}s
+
+TRANSCRIÇÃO:
+{transcript_trimmed}
+
+Retorne JSON:
+{{
+  "vsl_type": "tipo da VSL (whiteboard, talking head, slides, animation, documentary)",
+  "product_name": "nome do produto mencionado",
+  "product_type": "fisico/digital/suplemento/software",
+  "mechanism": "mecanismo unico de venda (o ingrediente secreto, a descoberta, o metodo)",
+  "target_audience": "publico-alvo detalhado",
+  "main_promise": "a promessa principal em 1 frase",
+  "hook_analysis": {{
+    "opening_hook": "primeiras 2-3 frases da VSL",
+    "hook_type": "curiosity/fear/story/statistic/authority",
+    "attention_retention": "como mantem atencao ao longo do video"
+  }},
+  "copy_structure": {{
+    "framework": "framework usado (PAS, AIDA, Star-Story-Solution, etc)",
+    "sections": ["secao1: o que acontece", "secao2: o que acontece", "secao3"],
+    "emotional_arc": "jornada emocional do viewer"
+  }},
+  "objections_handled": ["objecao1 e como foi tratada", "objecao2"],
+  "social_proof": ["prova social 1", "prova social 2"],
+  "urgency_scarcity": "como cria urgencia ou escassez",
+  "offer_structure": {{
+    "main_offer": "o que esta vendendo",
+    "price_anchoring": "como ancora o preco",
+    "bonuses": ["bonus1", "bonus2"],
+    "guarantee": "tipo de garantia"
+  }},
+  "cta": "call to action final",
+  "key_phrases": ["frase poderosa 1 do script", "frase 2", "frase 3", "frase 4", "frase 5"],
+  "replication_guide": {{
+    "angle": "angulo que pode ser replicado",
+    "adapted_hook": "hook adaptado para usar em outro produto",
+    "script_template": "template de 5 linhas baseado na estrutura desta VSL"
+  }},
+  "score": 8,
+  "verdict": "EXCELENTE/BOM/MEDIANO/FRACO"
+}}""", max_tokens=2000)
+
+        return {
+            "video": video_data,
+            "vsl_analysis": analysis,
+            "status": "analyzed",
+        }
+
+    except Exception as e:
+        return {
+            "video": video_data,
+            "vsl_analysis": {"error": str(e)},
+            "status": "transcript_only",
+        }
+
+
+@app.get("/api/meta-ads/search")
+def meta_ads_search(
+    q: str = Query(..., description="Keyword de busca"),
+    country: str = Query("US", description="Pais (US, BR, GB, etc)"),
+    active_only: bool = Query(True),
+    media_type: str = Query("all", description="all, video, image"),
+):
+    """Busca ads oficiais do Meta Ad Library via SearchAPI"""
+    import requests as req
+
+    params = {
+        "engine": "meta_ad_library",
+        "q": q,
+        "country": country,
+        "active_status": "active" if active_only else "all",
+        "media_type": media_type,
+        "sort_by": "impressions_high_to_low",
+        "api_key": SEARCHAPI_KEY,
+    }
+
+    try:
+        r = req.get("https://www.searchapi.io/api/v1/search", params=params, timeout=30)
+        data = r.json()
+
+        if "error" in data:
+            return {"error": data["error"]}
+
+        ads = data.get("ads", [])
+        total = data.get("search_information", {}).get("total_results", 0)
+
+        # Simplificar para frontend
+        simplified = []
+        for ad in ads:
+            snap = ad.get("snapshot", {})
+            images = snap.get("images", [])
+            videos = snap.get("videos", [])
+            cards = snap.get("cards", [])
+
+            body = ""
+            if snap.get("body"):
+                body = " ".join(str(b) for b in snap["body"]) if isinstance(snap["body"], list) else str(snap["body"])
+
+            simplified.append({
+                "ad_id": ad.get("ad_archive_id", ""),
+                "page_name": snap.get("page_name", ""),
+                "page_picture": snap.get("page_profile_picture_url", ""),
+                "body": body[:500],
+                "title": snap.get("title", "") or (cards[0].get("title", "") if cards else ""),
+                "cta": cards[0].get("cta_text", "") if cards else "",
+                "link": cards[0].get("link_url", "") if cards else "",
+                "image_url": images[0].get("original_image_url", "") if images else "",
+                "video_url": videos[0].get("video_url", "") if videos else "",
+                "is_active": ad.get("is_active", True),
+                "start_date": ad.get("start_date", ""),
+                "platforms": ad.get("publisher_platform", []),
+                "display_format": snap.get("display_format", ""),
+                "snapshot_url": ad.get("ad_snapshot_url", ""),
+            })
+
+        return {
+            "data": simplified,
+            "total": total,
+            "query": q,
+            "country": country,
+        }
+
+    except Exception as e:
+        return {"error": str(e)}
+
+
+# ============================================================
 # HOOK BANK — Banco de ganchos validados
 # ============================================================
 

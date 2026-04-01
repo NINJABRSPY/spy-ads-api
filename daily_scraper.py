@@ -183,6 +183,17 @@ def run_clickmidas():
         log(f"ClickMidas converter ERRO: {e}")
 
 
+def run_searchapi():
+    """SearchAPI.io — Meta Ad Library oficial"""
+    log("=== SEARCHAPI (Meta Ad Library) ===")
+    try:
+        from searchapi_scraper import run as run_search
+        total = run_search()
+        log(f"SearchAPI: +{total} ads")
+    except Exception as e:
+        log(f"SearchAPI ERRO: {e}")
+
+
 def run_social1():
     """Social1 - TikTok Shop products, videos e creators via Chrome CDP"""
     log("=== SOCIAL1 (TikTok Shop) ===")
@@ -342,6 +353,7 @@ def main():
 
     run_clickmidas()
     run_social1()
+    run_searchapi()
     run_bigspy()
     run_pipiads()
     run_minea()

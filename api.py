@@ -1495,6 +1495,213 @@ def cross_source_signals(
 
 
 # ============================================================
+# UNCLOAK ENGINE — Revelar criativos escondidos
+# ============================================================
+
+def _build_uncloak_data():
+    """Cruza todas as fontes para encontrar criativos escondidos atras de catalogos"""
+    ads = load_latest_data()
+
+    # Agrupar por advertiser
+    by_advertiser = {}
+    for ad in ads:
+        name = (ad.get("advertiser") or "").lower().strip()
+        if not name or len(name) < 3:
+            continue
+        if name not in by_advertiser:
+            by_advertiser[name] = []
+        by_advertiser[name].append(ad)
+
+    # Agrupar por dominio da landing page
+    by_domain = {}
+    for ad in ads:
+        lp = ad.get("landing_page", "") or ""
+        if not lp or len(lp) < 10:
+            continue
+        try:
+            from urllib.parse import urlparse
+            domain = urlparse(lp).hostname
+            if domain:
+                domain = domain.replace("www.", "")
+                if domain not in by_domain:
+                    by_domain[domain] = []
+                by_domain[domain].append(ad)
+        except:
+            pass
+
+    results = []
+
+    for name, ad_list in by_advertiser.items():
+        if len(ad_list) < 2:
+            continue
+
+        sources = list(set(a.get("source", "") for a in ad_list))
+        platforms = list(set(a.get("platform", "") for a in ad_list))
+
+        image_ads = [a for a in ad_list if a.get("image_url") and not a.get("video_url")]
+        video_ads = [a for a in ad_list if a.get("video_url")]
+
+        # Cloaking signals
+        signals = []
+        cloaking_score = 0
+
+        # Signal 1: tem imagem-only com alto impressions (possivel catalogo)
+        high_imp_images = [a for a in image_ads if (a.get("impressions", 0) or 0) > 50000]
+        if high_imp_images:
+            signals.append({
+                "signal": "Anúncios de imagem com alto alcance",
+                "detail": f"{len(high_imp_images)} ads com 50K+ impressões sem vídeo — possível catálogo escondendo criativo",
+                "severity": "high" if len(high_imp_images) > 3 else "medium"
+            })
+            cloaking_score += min(30, len(high_imp_images) * 5)
+
+        # Signal 2: tem video E imagem (possivel reveal)
+        if video_ads and image_ads:
+            signals.append({
+                "signal": "Criativo revelado em outra plataforma",
+                "detail": f"Encontramos {len(video_ads)} vídeos do mesmo anunciante que podem ser o criativo real por trás dos {len(image_ads)} anúncios de imagem",
+                "severity": "critical"
+            })
+            cloaking_score += 30
+
+        # Signal 3: aparece em multiplas fontes
+        if len(sources) >= 2:
+            signals.append({
+                "signal": "Detectado em múltiplas fontes",
+                "detail": f"Presente em {', '.join(sources)} — cross-reference confirma atividade",
+                "severity": "high"
+            })
+            cloaking_score += 20
+
+        # Signal 4: multiplas plataformas
+        if len(platforms) >= 2:
+            signals.append({
+                "signal": "Ativo em múltiplas plataformas",
+                "detail": f"Rodando em {', '.join(platforms)} — criativos podem ser diferentes entre plataformas",
+                "severity": "medium"
+            })
+            cloaking_score += 10
+
+        # Signal 5: alto gasto
+        total_spend = sum(a.get("estimated_spend", 0) or 0 for a in ad_list)
+        if total_spend > 10000:
+            signals.append({
+                "signal": "Alto investimento detectado",
+                "detail": f"Gasto estimado total: ${total_spend:,.0f} — operação de escala",
+                "severity": "high"
+            })
+            cloaking_score += 10
+
+        # Signal 6: muitos dias rodando
+        max_days = max((a.get("days_running", 0) or 0) for a in ad_list)
+        if max_days > 14:
+            signals.append({
+                "signal": "Longevidade alta",
+                "detail": f"Rodando há {max_days} dias — criativo validado e escalado",
+                "severity": "medium"
+            })
+            cloaking_score += 10
+
+        if not signals or cloaking_score < 20:
+            continue
+
+        cloaking_score = min(100, cloaking_score)
+
+        # Selecionar ads representativos
+        top_images = sorted(image_ads, key=lambda x: x.get("impressions", 0) or 0, reverse=True)[:3]
+        top_videos = sorted(video_ads, key=lambda x: x.get("impressions", 0) or 0, reverse=True)[:3]
+
+        # Domains
+        domains = list(set(
+            d.replace("www.", "") for a in ad_list
+            for d in [urlparse(a.get("landing_page", "")).hostname or ""]
+            if d and d != ""
+        ))
+
+        results.append({
+            "advertiser": name.title(),
+            "total_ads": len(ad_list),
+            "image_ads": len(image_ads),
+            "video_ads": len(video_ads),
+            "cloaking_score": cloaking_score,
+            "cloaking_level": "critical" if cloaking_score >= 70 else "high" if cloaking_score >= 50 else "medium" if cloaking_score >= 30 else "low",
+            "signals": signals,
+            "sources": sources,
+            "platforms": platforms,
+            "domains": domains[:5],
+            "estimated_spend": round(total_spend, 2),
+            "max_days_running": max_days,
+            "revealed_videos": top_videos,
+            "catalog_images": top_images,
+            "is_revealed": len(video_ads) > 0 and len(image_ads) > 0,
+        })
+
+    results.sort(key=lambda x: x["cloaking_score"], reverse=True)
+    return results
+
+
+@app.get("/api/uncloak")
+def uncloak_dashboard(
+    min_score: int = Query(30, description="Cloaking score minimo"),
+    revealed_only: bool = Query(False, description="Apenas com criativos revelados"),
+    limit: int = Query(30, ge=1, le=100),
+):
+    """Dashboard de criativos desmascarados — revela ads escondidos atras de catalogos"""
+    results = _build_uncloak_data()
+
+    if min_score:
+        results = [r for r in results if r["cloaking_score"] >= min_score]
+    if revealed_only:
+        results = [r for r in results if r["is_revealed"]]
+
+    # Stats
+    total = len(results)
+    revealed = len([r for r in results if r["is_revealed"]])
+    critical = len([r for r in results if r["cloaking_level"] == "critical"])
+
+    return {
+        "data": results[:limit],
+        "total": total,
+        "revealed_count": revealed,
+        "critical_count": critical,
+        "stats": {
+            "total_suspicious": total,
+            "total_revealed": revealed,
+            "critical": critical,
+            "high": len([r for r in results if r["cloaking_level"] == "high"]),
+            "medium": len([r for r in results if r["cloaking_level"] == "medium"]),
+        }
+    }
+
+
+@app.get("/api/uncloak/search")
+def uncloak_search(
+    q: str = Query(..., description="Nome do anunciante ou dominio"),
+):
+    """Busca especifica — verifica se um anunciante esta usando cloaking"""
+    results = _build_uncloak_data()
+    q_lower = q.lower()
+
+    matched = [r for r in results if
+               q_lower in r["advertiser"].lower() or
+               any(q_lower in d for d in r.get("domains", []))]
+
+    if not matched:
+        return {"found": False, "message": f"Nenhum resultado para '{q}'", "data": []}
+
+    return {"found": True, "total": len(matched), "data": matched}
+
+
+@app.get("/api/uncloak/revealed")
+def uncloak_revealed(limit: int = Query(20, ge=1, le=50)):
+    """Top criativos REVELADOS — catalogos desmascarados com video real encontrado"""
+    results = _build_uncloak_data()
+    revealed = [r for r in results if r["is_revealed"]]
+    revealed.sort(key=lambda x: x["cloaking_score"], reverse=True)
+    return {"data": revealed[:limit], "total": len(revealed)}
+
+
+# ============================================================
 # TIKTOK SHOP (Social1 data)
 # ============================================================
 

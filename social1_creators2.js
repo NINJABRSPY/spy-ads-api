@@ -79,6 +79,51 @@ async function main() {
       await new Promise(r => setTimeout(r, 800));
     }
 
+    // Phase 2: Fetch videos for each creator
+    console.log(`\n--- PHASE 2: CREATOR VIDEOS ---\n`);
+
+    for (let i = 0; i < allCreators.length; i++) {
+      const c = allCreators[i];
+      const cid = c.creator_oecuid;
+      const region = c._region;
+      const handle = c.handle;
+
+      if (!cid) continue;
+
+      const vids = await fetchAPI(`/api/creators/${cid}/videos?limit=12&offset=0&region=${region}&sort=popular&handle=${handle}`);
+
+      if (vids && vids.results && vids.results.length > 0) {
+        allCreators[i].videos = vids.results.map(v => ({
+          video_id: v.video_id,
+          description: (v.description || '').substring(0, 200),
+          views: v.views || 0,
+          likes: v.likes || 0,
+          comments: v.comments || 0,
+          is_ad: v.is_ad || false,
+          time_posted: v.time_posted || '',
+          thumbnail: v.thumbnail || '',
+          video_url: v.video_url || '',
+          gmv: v.gmv || '',
+          insights: v.insights || null,
+        }));
+        allCreators[i].video_count = vids.results.length;
+        allCreators[i].total_views = vids.results.reduce((sum, v) => sum + (v.views || 0), 0);
+      } else {
+        allCreators[i].videos = [];
+        allCreators[i].video_count = 0;
+        allCreators[i].total_views = 0;
+      }
+
+      if ((i + 1) % 10 === 0) {
+        console.log(`  ${i + 1}/${allCreators.length} creators processed`);
+      }
+
+      await new Promise(r => setTimeout(r, 600));
+    }
+
+    const withVideos = allCreators.filter(c => c.video_count > 0).length;
+    console.log(`  ${withVideos}/${allCreators.length} creators with videos\n`);
+
     // Save
     const timestamp = new Date().toISOString().slice(0, 10).replace(/-/g, '');
     const output = {
@@ -86,6 +131,7 @@ async function main() {
       type: 'creators',
       scraped_at: new Date().toISOString(),
       total: allCreators.length,
+      with_videos: withVideos,
       regions: [...new Set(allCreators.map(c => c._region))],
       creators: allCreators,
     };

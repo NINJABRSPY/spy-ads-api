@@ -1661,22 +1661,33 @@ def tiktok_creator_detail(handle: str, region: str = Query("us")):
     """Detalhe de um creator + seus videos"""
     data = load_tiktok_shop()
 
-    # Buscar creator
+    # Buscar creator (dados incluem videos embutidos)
     creator = None
     for c in data.get("creators", []):
         if c.get("handle", "").lower() == handle.lower():
             creator = c
             break
 
-    # Buscar videos desse creator
-    creator_videos = [v for v in data.get("videos", [])
-                      if v.get("creator_handle", "").lower() == handle.lower()]
-    creator_videos.sort(key=lambda x: x.get("views", 0) or 0, reverse=True)
+    if not creator:
+        return {"creator": None, "videos": [], "total_videos": 0}
+
+    # Videos vem embutidos no creator
+    creator_videos = creator.get("videos", [])
+
+    # Se nao tem videos embutidos, buscar nos videos gerais
+    if not creator_videos:
+        creator_videos = [v for v in data.get("videos", [])
+                          if v.get("creator_handle", "").lower() == handle.lower()]
+        creator_videos.sort(key=lambda x: x.get("views", 0) or 0, reverse=True)
+
+    # Retornar creator sem o campo videos (pra nao duplicar)
+    creator_info = {k: v for k, v in creator.items() if k != "videos"}
 
     return {
-        "creator": creator,
+        "creator": creator_info,
         "videos": creator_videos[:24],
-        "total_videos": len(creator_videos),
+        "total_videos": creator.get("video_count", len(creator_videos)),
+        "total_views": creator.get("total_views", 0),
     }
 
 

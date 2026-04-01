@@ -151,6 +151,60 @@ async function main() {
     console.log(`\nVideos total: ${allVideos.length} unique\n`);
 
     // =============================================
+    // PHASE 3: PRODUCT DETAILS + PRODUCT VIDEOS
+    // For top products, fetch detail + associated videos
+    // =============================================
+    console.log('--- PHASE 3: PRODUCT DETAILS + PRODUCT VIDEOS ---\n');
+
+    const productDetails = [];
+    const productVideos = [];
+    // Get top 50 products by views (most relevant ones)
+    const topProducts = [...allProducts]
+      .sort((a, b) => (b.video_views || 0) - (a.video_views || 0))
+      .slice(0, 100);
+
+    for (let i = 0; i < topProducts.length; i++) {
+      const p = topProducts[i];
+      const pid = p.product_id;
+      const region = p._region || 'us';
+
+      // Fetch product detail
+      const detail = await fetchAPI(`/api/products/${pid}?region=${region}`);
+      if (detail && !detail.message) {
+        productDetails.push({ ...detail, _region: region });
+      }
+
+      // Fetch product videos (top 12)
+      const vids = await fetchAPI(`/api/videos/getTopVideos?limit=12&offset=0&days=7&region=${region}&productID=${pid}`);
+      if (vids && vids.results) {
+        for (const v of vids.results) {
+          const uid = `social1:${v.video_id}`;
+          if (!videoIds.has(uid)) {
+            videoIds.add(uid);
+            allVideos.push({
+              ...v,
+              _region: region,
+              _days: 7,
+              _product_id: pid,
+              _scraped_at: new Date().toISOString(),
+            });
+          }
+        }
+        productVideos.push({ product_id: pid, video_count: vids.results.length });
+      }
+
+      if ((i + 1) % 10 === 0) {
+        console.log(`  ${i + 1}/${topProducts.length} products processed (${allVideos.length} total videos)`);
+      }
+
+      await new Promise(r => setTimeout(r, 600));
+    }
+
+    console.log(`  Product details: ${productDetails.length}`);
+    console.log(`  Product videos added: ${productVideos.reduce((a, b) => a + b.video_count, 0)}`);
+    console.log(`  Total videos now: ${allVideos.length}\n`);
+
+    // =============================================
     // SAVE
     // =============================================
     const timestamp = new Date().toISOString().slice(0, 10).replace(/-/g, '');

@@ -1536,6 +1536,36 @@ def tiktok_creators(
     return {"data": creators[:limit], "total": len(creators)}
 
 
+@app.get("/api/tiktok-shop/product/{product_id}")
+def tiktok_product_detail(product_id: str, region: str = Query("us")):
+    """Detalhe de um produto TikTok Shop + videos associados"""
+    # Buscar nos dados locais primeiro
+    data = load_tiktok_shop()
+    local = None
+    for p in data.get("products", []):
+        pid = p.get("product_id", "").replace("tks_", "")
+        if pid == product_id:
+            local = p
+            break
+
+    # Buscar videos associados nos dados locais
+    related_videos = []
+    for v in data.get("videos", []):
+        desc = (v.get("description", "") or "").lower()
+        name = (local.get("name", "") if local else "").lower()
+        # Match por palavras do nome do produto na descricao do video
+        if local and name:
+            words = [w for w in name.split()[:3] if len(w) > 3]
+            if any(w in desc for w in words):
+                related_videos.append(v)
+
+    return {
+        "product": local,
+        "related_videos": related_videos[:12],
+        "total_videos": len(related_videos),
+    }
+
+
 @app.get("/api/tiktok-shop/stats")
 def tiktok_stats():
     """Estatisticas do TikTok Shop"""

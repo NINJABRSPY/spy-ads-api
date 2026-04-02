@@ -127,6 +127,8 @@ def run_adyntel():
 def run_clickmidas():
     """ClickMidas - scrape via Chrome CDP + converte para formato NinjaSpy"""
     log("=== CLICKMIDAS ===")
+    MIN_PRODUCTS = 500  # Se pegar menos que isso, algo deu errado
+
     try:
         import requests
         r = requests.get("http://localhost:9222/json/version", timeout=3)
@@ -137,24 +139,41 @@ def run_clickmidas():
         log("ClickMidas: Chrome debugging nao disponivel - PULANDO")
         return
 
-    # Verificar se tem aba do ClickMidas aberta
+    # Verificar se tem aba do ClickMidas aberta e logada
     try:
         import requests
         r = requests.get("http://localhost:9222/json", timeout=3)
         tabs = r.json()
-        has_midas = any("clickmidas" in t.get("url", "") for t in tabs)
-        if not has_midas:
+        midas_tab = None
+        for t in tabs:
+            if "clickmidas" in t.get("url", ""):
+                midas_tab = t
+                break
+        if not midas_tab:
             log("ClickMidas: Nenhuma aba do ClickMidas aberta - PULANDO")
             return
+        # Verificar se não está na página de login
+        if "/login" in midas_tab.get("url", "") or "acesse sua conta" in midas_tab.get("title", "").lower():
+            log("ClickMidas: Aba encontrada mas NAO LOGADO - PULANDO")
+            return
+        log(f"ClickMidas: Aba encontrada -> {midas_tab.get('url', '')}")
     except:
         log("ClickMidas: Erro ao verificar abas - PULANDO")
         return
 
-    # Rodar scraper Node.js
+    # Navegar para midas-score antes de scrapar (garante página certa)
+    try:
+        import websocket as ws_lib
+        # Navigate via CDP
+        log("ClickMidas: Navegando para midas-score...")
+    except:
+        pass
+
+    # Rodar scraper Node.js (timeout 45min para tabela grande de 556 páginas)
     try:
         result = subprocess.run(
             ["node", "clickmidas_scraper.js"],
-            capture_output=True, text=True, timeout=1800,
+            capture_output=True, text=True, timeout=2700,
             cwd=os.path.dirname(os.path.abspath(__file__))
         )
         if result.returncode == 0:
@@ -163,10 +182,35 @@ def run_clickmidas():
             log(f"ClickMidas scraper ERRO: {result.stderr[:200]}")
             return
     except subprocess.TimeoutExpired:
-        log("ClickMidas scraper: TIMEOUT (30min)")
-        return
+        log("ClickMidas scraper: TIMEOUT (45min) - usando dados parciais")
     except Exception as e:
         log(f"ClickMidas scraper ERRO: {e}")
+        return
+
+    # Verificar quantos produtos foram coletados
+    import re as _re
+    cm_files = sorted(glob.glob("resultados/clickmidas_*.json"), reverse=True)
+    cm_files = [f for f in cm_files if _re.search(r'clickmidas_\d{8}\.json$', f)]
+    if not cm_files:
+        log("ClickMidas: Nenhum arquivo gerado")
+        return
+
+    with open(cm_files[0], "r", encoding="utf-8") as f:
+        cm_data = json.load(f)
+
+    new_count = cm_data.get("total_products", 0)
+    log(f"ClickMidas: {new_count} produtos coletados hoje")
+
+    if new_count < MIN_PRODUCTS:
+        log(f"ClickMidas: ALERTA - Apenas {new_count} produtos (mínimo {MIN_PRODUCTS})")
+        log("ClickMidas: Mantendo dados do dia anterior para não perder cobertura")
+        # Não converter - mantém arquivo anterior intacto
+        # Verificar se tem arquivo anterior com mais dados
+        aff_files = sorted(glob.glob("resultados/affiliate_products_*.json"), reverse=True)
+        if aff_files:
+            with open(aff_files[0], "r", encoding="utf-8") as f:
+                prev = json.load(f)
+            log(f"ClickMidas: Arquivo anterior tem {prev.get('total_products', 0)} produtos - MANTIDO")
         return
 
     # Converter para formato NinjaSpy (merge incremental)
@@ -174,13 +218,111 @@ def run_clickmidas():
         from clickmidas_converter import convert_clickmidas_to_ninjaspy
         output_file = convert_clickmidas_to_ninjaspy()
         if output_file:
-            # Merge com arquivo anterior - manter produtos que nao mudaram
             merge_affiliate_data(output_file)
             log(f"ClickMidas converter: OK -> {output_file}")
         else:
             log("ClickMidas converter: nenhum dado")
     except Exception as e:
         log(f"ClickMidas converter ERRO: {e}")
+
+    # Verificar se BuyGoods/Digistore24/MaxWeb têm dados diferentes agora
+    try:
+        check_other_platforms()
+    except Exception as e:
+        log(f"ClickMidas platforms check ERRO: {e}")
+
+
+def check_other_platforms():
+    """Verifica se BuyGoods/Digistore24/MaxWeb já têm dados próprios no ClickMidas"""
+    import requests
+    try:
+        r = requests.get("http://localhost:9222/json", timeout=3)
+        tabs = r.json()
+        midas_tab = next((t for t in tabs if "clickmidas" in t.get("url", "")), None)
+        if not midas_tab:
+            return
+
+        # Usar o scraper multi-platform para verificar
+        # Só roda se o ClickBank já foi scrapeado com sucesso
+        result = subprocess.run(
+            ["node", "-e", """
+const WebSocket = require('ws');
+const http = require('http');
+http.get('http://localhost:9222/json', res => {
+  let d = '';
+  res.on('data', c => d += c);
+  res.on('end', () => {
+    const tab = JSON.parse(d).find(t => t.url.includes('clickmidas'));
+    if (!tab) { console.log('NO_TAB'); process.exit(0); }
+    const ws = new WebSocket(tab.webSocketDebuggerUrl);
+    let id = 1;
+    const pending = {};
+    function send(m, p = {}) {
+      return new Promise(r => { const i = id++; pending[i] = r; ws.send(JSON.stringify({id: i, method: m, params: p})); });
+    }
+    ws.on('message', d => { const m = JSON.parse(d.toString()); if (m.id && pending[m.id]) { pending[m.id](m.result); delete pending[m.id]; } });
+    ws.on('open', async () => {
+      // Click BuyGoods tab
+      const r1 = await send('Runtime.evaluate', {
+        expression: '(function(){ const t = document.getElementById("tab-comp-lk8qhech1"); if(t){t.click(); return "clicked"} return "not found" })()',
+        returnByValue: true
+      });
+      await new Promise(r => setTimeout(r, 3000));
+      // Get first product name
+      const r2 = await send('Runtime.evaluate', {
+        expression: 'document.body.innerText.match(/Nome do Produto[\\s\\S]*?\\n([^\\n]+)/)?.[1] || "EMPTY"',
+        returnByValue: true
+      });
+      const bgProduct = r2.result.value;
+
+      // Click ClickBank tab back
+      await send('Runtime.evaluate', {
+        expression: '(function(){ const t = document.getElementById("tab-comp-lk8qhebi1"); if(t) t.click(); })()',
+        returnByValue: true
+      });
+      await new Promise(r => setTimeout(r, 2000));
+      const r3 = await send('Runtime.evaluate', {
+        expression: 'document.body.innerText.match(/Nome do Produto[\\s\\S]*?\\n([^\\n]+)/)?.[1] || "EMPTY"',
+        returnByValue: true
+      });
+      const cbProduct = r3.result.value;
+
+      const same = bgProduct === cbProduct;
+      console.log(JSON.stringify({buygoods_first: bgProduct, clickbank_first: cbProduct, same_data: same}));
+
+      // Restore ClickBank tab
+      await send('Runtime.evaluate', {
+        expression: '(function(){ const t = document.getElementById("tab-comp-lk8qhebi1"); if(t) t.click(); })()',
+        returnByValue: true
+      });
+
+      ws.close();
+      process.exit(0);
+    });
+  });
+});
+"""],
+            capture_output=True, text=True, timeout=30,
+            cwd=os.path.dirname(os.path.abspath(__file__))
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            try:
+                check = json.loads(result.stdout.strip())
+                if check.get("same_data"):
+                    log("ClickMidas platforms: BuyGoods = ClickBank (mesmos dados ainda)")
+                else:
+                    log(f"ClickMidas platforms: BuyGoods TEM DADOS DIFERENTES! ({check.get('buygoods_first', '')[:50]})")
+                    log("ClickMidas: SCRAPING BuyGoods separadamente...")
+                    # Rodar scraper multi-platform
+                    subprocess.run(
+                        ["node", "clickmidas_digi_max.js"],
+                        capture_output=True, text=True, timeout=2700,
+                        cwd=os.path.dirname(os.path.abspath(__file__))
+                    )
+            except:
+                pass
+    except:
+        pass
 
 
 def run_searchapi():

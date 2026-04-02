@@ -447,9 +447,29 @@ def merge_affiliate_data(new_file):
         log(f"Merge ERRO: {e}")
 
 
+def compress_unified():
+    """Comprime o unified JSON para caber no GitHub (<100MB)"""
+    import gzip
+    uf = sorted(glob.glob("resultados/unified_*.json"), reverse=True)
+    if not uf:
+        return
+    src = uf[0]
+    dst = "resultados/unified_latest.json.gz"
+    try:
+        with open(src, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        with gzip.open(dst, "wt", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False)
+        size_mb = os.path.getsize(dst) / 1024 / 1024
+        log(f"Compressed: {len(data)} ads -> {dst} ({size_mb:.1f} MB)")
+    except Exception as e:
+        log(f"Compress ERRO: {e}")
+
+
 def push_to_render():
-    """Push automatico para GitHub (Render faz redeploy)"""
-    log("=== PUSH ===")
+    """Comprime dados + push automatico para GitHub"""
+    log("=== COMPRESS + PUSH ===")
+    compress_unified()
     try:
         os.system("git add -A")
         os.system('git commit -m "Daily scrape: ' + datetime.now().strftime("%Y-%m-%d") + '"')

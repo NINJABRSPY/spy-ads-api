@@ -46,11 +46,29 @@ _cache = {"ads": None, "loaded_at": None, "file": None}
 
 def load_latest_data():
     """Carrega dados com cache em memoria - so rele se arquivo mudou"""
+    import gzip
+
+    # Tentar JSON normal primeiro, depois gzip
     files = sorted(glob.glob(f"{OUTPUT_DIR}/unified_*.json"), reverse=True)
-    if not files:
+    gz_files = sorted(glob.glob(f"{OUTPUT_DIR}/unified_*.json.gz"), reverse=True)
+
+    latest = None
+    is_gz = False
+    if files and gz_files:
+        # Usar o mais recente entre os dois
+        if os.path.getmtime(gz_files[0]) >= os.path.getmtime(files[0]):
+            latest = gz_files[0]
+            is_gz = True
+        else:
+            latest = files[0]
+    elif gz_files:
+        latest = gz_files[0]
+        is_gz = True
+    elif files:
+        latest = files[0]
+    else:
         return []
 
-    latest = files[0]
     file_mtime = os.path.getmtime(latest)
 
     # Usar cache se mesmo arquivo e nao mudou
@@ -58,8 +76,12 @@ def load_latest_data():
         return _cache["ads"]
 
     # Carregar e filtrar
-    with open(latest, "r", encoding="utf-8") as f:
-        ads = json.load(f)
+    if is_gz:
+        with gzip.open(latest, "rt", encoding="utf-8") as f:
+            ads = json.load(f)
+    else:
+        with open(latest, "r", encoding="utf-8") as f:
+            ads = json.load(f)
 
     clean = []
     for ad in ads:

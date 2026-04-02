@@ -325,6 +325,54 @@ http.get('http://localhost:9222/json', res => {
         pass
 
 
+def run_adsparo():
+    """AdsParo - via API (token expira rapido, verificar antes)"""
+    log("=== ADSPARO ===")
+    try:
+        from adsparo_client import ADSPARO_TOKEN, search_ads, normalize_adsparo_ad
+        from config import KEYWORDS
+
+        # Testar se token funciona
+        import requests
+        r = requests.post("https://adsparo.com/api/ad/read.php",
+            headers={"authorization": ADSPARO_TOKEN, "content-type": "application/x-www-form-urlencoded"},
+            data={"searchtext": "test", "sortdir": "desc", "minads": "1", "maxads": "1"},
+            timeout=10)
+        result = r.json()
+        if result.get("success") == 0 or "error" in str(result).lower():
+            log(f"AdsParo: Token expirado ou invalido - PULANDO")
+            return
+
+        all_new = []
+        for kw in KEYWORDS[:15]:  # Top 15 keywords
+            ads = search_ads(kw, max_ads=50)
+            for ad in ads:
+                normalized = normalize_adsparo_ad(ad, kw)
+                if normalized.get("ad_id"):
+                    all_new.append(normalized)
+            time.sleep(3)
+
+        if all_new:
+            uf = sorted(glob.glob("resultados/unified_*.json"), reverse=True)
+            if uf:
+                with open(uf[0], "r", encoding="utf-8") as f:
+                    existing = json.load(f)
+                ids = {a.get("ad_id", "") for a in existing if a.get("ad_id")}
+                new = [a for a in all_new if a.get("ad_id") and a["ad_id"] not in ids]
+                if new:
+                    with open(uf[0], "w", encoding="utf-8") as f:
+                        json.dump(existing + new, f, ensure_ascii=False)
+                    log(f"AdsParo: +{len(new)} novos ads (total: {len(existing) + len(new)})")
+                else:
+                    log("AdsParo: sem ads novos")
+            else:
+                log("AdsParo: sem arquivo unified")
+        else:
+            log("AdsParo: nenhum ad coletado")
+    except Exception as e:
+        log(f"AdsParo ERRO: {e}")
+
+
 def run_searchapi():
     """SearchAPI.io — Meta Ad Library oficial"""
     log("=== SEARCHAPI (Meta Ad Library) ===")
@@ -534,6 +582,7 @@ def main():
     run_clickmidas()
     run_social1()
     run_searchapi()
+    run_adsparo()
     run_bigspy()
     run_pipiads()
     run_minea()

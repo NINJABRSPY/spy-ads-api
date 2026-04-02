@@ -21,28 +21,39 @@ ADYNTEL_EMAIL = "felipe_capoart@hotmail.com"
 
 # Keywords para busca geral (BigSpy + Adyntel Meta/TikTok)
 KEYWORDS = [
-    # Originais
-    "dropshipping",
-    "skincare",
-    "fitness",
-    "ecommerce",
-    "marketing digital",
-    "curso online",
-    "suplementos",
-    "moda feminina",
-    "pet shop",
-    "infoproduto",
-    # Novos
-    "afiliado",
-    "renda extra",
-    "trafego pago",
-    "loja virtual",
-    "cosmeticos",
-    "coaching",
-    "mentoria",
-    "investimentos",
-    "saude",
-    "emagrecimento",
+    # BR — Ecommerce/Dropshipping
+    "dropshipping", "loja virtual", "shopee", "ecommerce",
+    "moda feminina", "roupa feminina", "tenis",
+    # BR — Digital/Infoproduto
+    "marketing digital", "curso online", "infoproduto",
+    "afiliado", "renda extra", "trafego pago",
+    "coaching", "mentoria", "investimentos",
+    # BR — Saúde/Beleza
+    "skincare", "cosmeticos", "suplementos",
+    "saude", "emagrecimento", "emagrecer",
+    "cabelo", "academia", "fitness",
+    # BR — Nichos específicos
+    "pet shop", "cachorro", "gato",
+    "cozinha", "receita", "decoracao",
+    "advogado", "dentista", "psicologia",
+    # BR — DR / Nutra
+    "suplemento natural", "dor nas costas",
+    "diabetes natural", "pressao alta",
+    "ansiedade", "insonia", "memoria",
+    # Global — DR Health
+    "weight loss", "blood sugar", "prostate",
+    "testosterone", "joint pain", "brain health",
+    "anti aging", "hair growth", "sleep aid",
+    "gut health", "nail fungus", "vision",
+    # Global — DR Wealth
+    "make money online", "passive income", "crypto",
+    "forex", "affiliate marketing",
+    # Global — DR Other
+    "manifestation", "dog training", "survival",
+    "self defense", "solar generator",
+    # Global — Trending
+    "trending product", "viral product", "winning product",
+    "creatina", "protetor solar", "whey protein",
 ]
 
 # Plataformas BigSpy

@@ -10,24 +10,43 @@ DEVICE_ID = "887465847"
 COOKIE = "uid=NjljNWQ5ZDhmZTJkN2YzOGZkZjcxNWQ3LTI5NTc2OTM0; language=pt; langTip=1"
 
 KEYWORDS = [
+    # Ecommerce / Dropshipping
     "dropshipping", "winning product", "viral product", "trending product",
     "free shipping", "50% off", "buy now", "shop now", "order now",
+    "tiktok made me buy it", "must have", "life hack",
+    # Electronics
     "led lights", "posture corrector", "massage gun", "smart watch",
     "phone case", "wireless earbuds", "kitchen gadgets", "car accessories",
-    "pet toys", "dog training", "cat", "baby monitor",
-    "skincare", "face cream", "serum", "hair growth", "teeth whitening",
+    "robot vacuum", "drone", "projector", "electric bike",
+    # Health / Supplements (DR)
+    "weight loss", "belly fat burner", "keto supplement",
+    "blood sugar support", "prostate supplement",
+    "testosterone booster", "joint pain relief",
+    "brain supplement", "memory boost", "sleep aid",
+    "gut health", "probiotic", "liver detox",
+    "collagen", "anti aging", "hair growth serum",
+    "teeth whitening", "nail fungus treatment",
+    # Beauty
+    "skincare", "face cream", "serum", "dark spots",
+    "wrinkle cream", "vitamin c serum",
+    # Home
     "home decor", "led mirror", "organizer", "wall art",
-    "jewelry", "necklace", "sunglasses", "ring",
-    "gaming", "headset", "mouse pad",
+    "garden tools", "cleaning hack",
+    # Fashion
     "hoodie", "sneakers", "dress", "activewear",
-    "yoga mat", "water bottle", "backpack",
-    "electric bike", "robot vacuum", "drone", "projector",
+    "jewelry", "necklace", "sunglasses",
+    # Pets
+    "dog training", "pet toys", "cat", "dog food",
+    # Gaming
+    "gaming", "headset", "mouse pad",
+    # BR específico
     "frete gratis", "compre agora", "oferta", "promocao",
-    "emagrecimento", "suplemento", "whey", "creatina", "colageno",
+    "emagrecer", "emagrecimento", "suplemento", "whey", "creatina", "colageno",
     "maquiagem", "protetor solar", "creme facial",
     "decoracao", "luminaria", "organizador",
     "roupa feminina", "tenis", "bolsa", "relogio",
     "cachorro", "gato", "brinquedo",
+    "renda extra", "trabalhar em casa",
 ]
 
 MAX_PAGES = 5  # 20 ads/pagina x 5 = 100 por keyword

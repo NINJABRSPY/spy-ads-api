@@ -15,18 +15,65 @@ BASE_URL = "https://www.searchapi.io/api/v1/search"
 OUTPUT_DIR = "resultados"
 DELAY = 2  # seconds between requests
 
-# Keywords para buscar no Meta Ad Library
+# Keywords focadas em Direct Response — o que os grandes players anunciam
 META_KEYWORDS = [
-    "weight loss", "skincare", "fitness", "dropshipping",
-    "supplement", "keto", "anti aging", "hair growth",
-    "dental", "prostate", "testosterone", "diabetes",
-    "manifestation", "make money online", "crypto",
-    "dog training", "anxiety", "sleep", "joint pain",
-    "ecommerce", "curso online", "marketing digital",
-    "emagrecer", "suplemento", "renda extra",
+    # Health / Supplements (maior mercado de DR)
+    "weight loss", "weight loss supplement", "belly fat", "keto diet",
+    "blood sugar", "diabetes supplement", "glucose support",
+    "blood pressure", "heart health", "cholesterol",
+    "prostate health", "prostate supplement", "mens health",
+    "testosterone booster", "male enhancement", "libido",
+    "joint pain", "joint supplement", "arthritis relief",
+    "brain health", "memory supplement", "cognitive",
+    "vision supplement", "eye health", "hearing loss",
+    "sleep supplement", "insomnia", "anxiety relief",
+    "gut health", "probiotic", "digestive",
+    "liver detox", "kidney health", "thyroid support",
+    "anti aging", "collagen supplement", "wrinkle cream",
+    "hair growth", "hair loss treatment", "thinning hair",
+    "teeth whitening", "dental health", "gum disease",
+    "nail fungus", "toenail treatment",
+    "energy supplement", "fatigue relief",
+    "immune support", "inflammation",
+
+    # Beauty / Skincare
+    "skincare", "dark spots", "skin care routine",
+    "anti wrinkle", "face cream", "serum",
+
+    # Wealth / Make Money (segundo maior mercado DR)
+    "make money online", "passive income", "side hustle",
+    "affiliate marketing", "dropshipping", "ecommerce",
+    "crypto trading", "bitcoin", "forex trading",
+    "real estate investing", "stock market",
+    "financial freedom", "debt free",
+
+    # Survival / Prepper
+    "survival kit", "emergency preparedness", "solar generator",
+    "water purification", "self defense",
+
+    # Relationships
+    "save marriage", "get ex back", "dating tips",
+    "attract women", "relationship advice",
+
+    # Manifestation / Spirituality
+    "manifestation", "law of attraction", "abundance",
+    "numerology reading", "astrology",
+
+    # Pets
+    "dog training", "dog food", "pet health",
+
+    # Digital Products / Education
+    "online course", "learn guitar", "language learning",
+
+    # DR Brasil
+    "emagrecer", "suplemento natural", "renda extra",
+    "marketing digital", "curso online", "afiliado",
+    "trafego pago", "ganhar dinheiro", "infoproduto",
+    "saude natural", "dor nas costas", "diabetes natural",
 ]
 
-META_COUNTRIES = ["US", "BR", "GB"]
+# Maiores mercados de Direct Response
+META_COUNTRIES = ["US", "BR", "GB", "CA", "AU", "DE", "FR", "ES"]
 
 
 def meta_search(keyword, country="US", limit=30):

@@ -1822,12 +1822,26 @@ def _build_hook_bank():
     seen = set()
 
     for ad in ads:
+        # Ignorar ads do Social1 (body é dados formatados, não copy real)
+        if ad.get("source") == "social1":
+            continue
+        # Ignorar ads sem copy real
+        if ad.get("ad_type") in ("product", "organic_video"):
+            continue
+
         body = (ad.get("body") or "").strip()
         title = (ad.get("title") or "").strip()
+
+        # Ignorar bodies que são dados, não copy
+        if body.startswith("Units sold:") or body.startswith("{"):
+            continue
 
         # O hook e a primeira frase do body ou o titulo
         text = body or title
         if not text or len(text) < 10:
+            continue
+        # Ignorar templates de ads dinamicos
+        if "{{" in text or "{{product" in text:
             continue
 
         # Extrair primeira frase

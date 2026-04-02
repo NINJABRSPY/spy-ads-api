@@ -1681,7 +1681,7 @@ def meta_ads_search(
     active_only: bool = Query(True),
     media_type: str = Query("all", description="all, video, image"),
 ):
-    """Busca ads oficiais do Meta Ad Library via SearchAPI"""
+    """Busca ads oficiais do Meta Ad Library via SearchAPI — enriquecido com metricas"""
     import requests as req
 
     params = {
@@ -1701,36 +1701,102 @@ def meta_ads_search(
         if "error" in data:
             return {"error": data["error"]}
 
-        ads = data.get("ads", [])
+        ads_raw = data.get("ads", [])
         total = data.get("search_information", {}).get("total_results", 0)
 
-        # Simplificar para frontend
+        # Carregar dados existentes para enriquecimento
+        all_existing = load_latest_data()
+        existing_by_adv = {}
+        for a in all_existing:
+            name = (a.get("advertiser") or "").lower().strip()
+            if name:
+                if name not in existing_by_adv:
+                    existing_by_adv[name] = []
+                existing_by_adv[name].append(a)
+
         simplified = []
-        for ad in ads:
+        for ad in ads_raw:
             snap = ad.get("snapshot", {})
             images = snap.get("images", [])
             videos = snap.get("videos", [])
             cards = snap.get("cards", [])
 
+            body_raw = snap.get("body")
             body = ""
-            if snap.get("body"):
-                body = " ".join(str(b) for b in snap["body"]) if isinstance(snap["body"], list) else str(snap["body"])
+            if body_raw:
+                if isinstance(body_raw, dict):
+                    body = body_raw.get("text", str(body_raw))
+                elif isinstance(body_raw, list):
+                    body = " ".join(b.get("text", str(b)) if isinstance(b, dict) else str(b) for b in body_raw)
+                else:
+                    body = str(body_raw)
+
+            image_url = ""
+            if images and isinstance(images[0], dict):
+                image_url = images[0].get("original_image_url", "")
+
+            video_url = ""
+            if videos and isinstance(videos[0], dict):
+                video_url = videos[0].get("video_hd_url", "") or videos[0].get("video_sd_url", "")
+                if not image_url:
+                    image_url = videos[0].get("video_preview_image_url", "")
+
+            title = snap.get("title", "")
+            if isinstance(title, dict):
+                title = title.get("text", "")
+
+            cta = ""
+            link = ""
+            if cards and isinstance(cards[0], dict):
+                cta = cards[0].get("cta_text", "")
+                link = cards[0].get("link_url", "")
+                if not title:
+                    title = cards[0].get("title", "")
+
+            page_name = snap.get("page_name", "")
+
+            # Enriquecer com metricas dos nossos dados
+            adv_lower = page_name.lower().strip()
+            metrics = {"impressions": 0, "likes": 0, "comments": 0, "engagement": 0,
+                       "heat": 0, "spend": 0, "score": 0, "niche": "", "sources_matched": []}
+            if adv_lower in existing_by_adv:
+                matches = existing_by_adv[adv_lower]
+                metrics["impressions"] = max((a.get("impressions", 0) or 0) for a in matches)
+                metrics["likes"] = max((a.get("likes", 0) or 0) for a in matches)
+                metrics["comments"] = max((a.get("comments", 0) or 0) for a in matches)
+                metrics["engagement"] = max((a.get("total_engagement", 0) or 0) for a in matches)
+                metrics["heat"] = max((a.get("heat", 0) or 0) for a in matches)
+                metrics["spend"] = round(sum((a.get("estimated_spend", 0) or 0) for a in matches), 2)
+                metrics["score"] = max((a.get("potential_score", 0) or 0) for a in matches)
+                metrics["niche"] = next((a.get("ai_niche", "") for a in matches if a.get("ai_niche")), "")
+                metrics["sources_matched"] = list(set(a.get("source", "") for a in matches))
 
             simplified.append({
                 "ad_id": ad.get("ad_archive_id", ""),
-                "page_name": snap.get("page_name", ""),
+                "source": "meta_official",
+                "page_name": page_name,
                 "page_picture": snap.get("page_profile_picture_url", ""),
                 "body": body[:500],
-                "title": snap.get("title", "") or (cards[0].get("title", "") if cards else ""),
-                "cta": cards[0].get("cta_text", "") if cards else "",
-                "link": cards[0].get("link_url", "") if cards else "",
-                "image_url": images[0].get("original_image_url", "") if images else "",
-                "video_url": videos[0].get("video_url", "") if videos else "",
+                "title": title[:200],
+                "cta": cta,
+                "link": link,
+                "image_url": image_url,
+                "video_url": video_url,
                 "is_active": ad.get("is_active", True),
                 "start_date": ad.get("start_date", ""),
                 "platforms": ad.get("publisher_platform", []),
                 "display_format": snap.get("display_format", ""),
-                "snapshot_url": ad.get("ad_snapshot_url", ""),
+                # Metricas enriquecidas
+                "impressions": metrics["impressions"],
+                "likes": metrics["likes"],
+                "comments": metrics["comments"],
+                "total_engagement": metrics["engagement"],
+                "heat": metrics["heat"],
+                "estimated_spend": metrics["spend"],
+                "potential_score": metrics["score"],
+                "niche": metrics["niche"],
+                "matched_sources": metrics["sources_matched"],
+                "is_enriched": len(metrics["sources_matched"]) > 0,
             })
 
         return {
@@ -1738,6 +1804,7 @@ def meta_ads_search(
             "total": total,
             "query": q,
             "country": country,
+            "enriched_count": sum(1 for s in simplified if s["is_enriched"]),
         }
 
     except Exception as e:

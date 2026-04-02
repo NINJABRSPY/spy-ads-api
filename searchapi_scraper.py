@@ -57,6 +57,50 @@ def meta_search(keyword, country="US", limit=30):
         return []
 
 
+def enrich_with_existing_data(normalized_ad, existing_ads_by_advertiser):
+    """Enriquece ad do Meta com métricas dos nossos scrapers (BigSpy, Minea, etc)"""
+    advertiser = (normalized_ad.get("advertiser") or "").lower().strip()
+    if not advertiser or advertiser not in existing_ads_by_advertiser:
+        return normalized_ad
+
+    # Pegar ads do mesmo anunciante que têm métricas
+    matches = existing_ads_by_advertiser[advertiser]
+
+    # Usar as melhores métricas disponíveis
+    best_impressions = max((a.get("impressions", 0) or 0) for a in matches)
+    best_likes = max((a.get("likes", 0) or 0) for a in matches)
+    best_comments = max((a.get("comments", 0) or 0) for a in matches)
+    best_shares = max((a.get("shares", 0) or 0) for a in matches)
+    best_engagement = max((a.get("total_engagement", 0) or 0) for a in matches)
+    best_heat = max((a.get("heat", 0) or 0) for a in matches)
+    best_spend = max((a.get("estimated_spend", 0) or 0) for a in matches)
+    best_score = max((a.get("potential_score", 0) or 0) for a in matches)
+
+    # AI data do melhor match
+    best_ai = max(matches, key=lambda a: a.get("potential_score", 0) or 0)
+
+    normalized_ad["impressions"] = best_impressions if best_impressions > 0 else normalized_ad.get("impressions", 0)
+    normalized_ad["likes"] = best_likes
+    normalized_ad["comments"] = best_comments
+    normalized_ad["shares"] = best_shares
+    normalized_ad["total_engagement"] = best_engagement if best_engagement > 0 else best_likes + best_comments + best_shares
+    normalized_ad["heat"] = best_heat if best_heat > 0 else normalized_ad.get("heat", 0)
+    normalized_ad["estimated_spend"] = best_spend if best_spend > 0 else normalized_ad.get("estimated_spend", 0)
+    normalized_ad["potential_score"] = best_score if best_score > 0 else normalized_ad.get("potential_score", 0)
+
+    # AI enrichment
+    for field in ["ai_niche", "ai_target_audience", "ai_strategy", "ai_hook_type",
+                   "ai_product_type", "ai_copy_quality", "ai_emotion", "ai_language"]:
+        if best_ai.get(field):
+            normalized_ad[field] = best_ai[field]
+
+    # Marcar que foi enriquecido
+    normalized_ad["enriched_from"] = [a.get("source", "") for a in matches[:3]]
+    normalized_ad["enriched_sources_count"] = len(set(a.get("source", "") for a in matches))
+
+    return normalized_ad
+
+
 def normalize_meta_ad(ad, keyword, country):
     """Converte ad do Meta Ad Library para formato unified NinjaSpy"""
     snapshot = ad.get("snapshot", {})
@@ -178,24 +222,49 @@ def normalize_meta_ad(ad, keyword, country):
 
 
 def run_meta_scraper():
-    """Roda o scraper completo do Meta Ad Library"""
+    """Roda o scraper completo do Meta Ad Library + enriquece com dados existentes"""
     print("=== META AD LIBRARY (SearchAPI) ===\n")
+
+    # Carregar ads existentes para enriquecimento
+    print("  Loading existing ads for enrichment...")
+    existing_by_advertiser = {}
+    unified_files = sorted(glob.glob(f"{OUTPUT_DIR}/unified_*.json"), reverse=True)
+    if unified_files:
+        with open(unified_files[0], "r", encoding="utf-8") as f:
+            existing = json.load(f)
+        for a in existing:
+            name = (a.get("advertiser") or "").lower().strip()
+            if name and len(name) > 2:
+                if name not in existing_by_advertiser:
+                    existing_by_advertiser[name] = []
+                existing_by_advertiser[name].append(a)
+        print(f"  Loaded {len(existing_by_advertiser)} advertisers for cross-reference\n")
 
     all_ads = []
     seen_ids = set()
+    enriched_count = 0
 
     for country in META_COUNTRIES:
         for keyword in META_KEYWORDS:
-            print(f"  [{country}] {keyword}...")
+            print(f"  [{country}] {keyword}...", end=" ")
             ads = meta_search(keyword, country)
 
             for ad in ads:
                 normalized = normalize_meta_ad(ad, keyword, country)
                 if normalized["ad_id"] not in seen_ids:
                     seen_ids.add(normalized["ad_id"])
+
+                    # Enriquecer com dados existentes
+                    before = normalized.get("impressions", 0)
+                    normalized = enrich_with_existing_data(normalized, existing_by_advertiser)
+                    if normalized.get("impressions", 0) > before:
+                        enriched_count += 1
+
                     all_ads.append(normalized)
 
             time.sleep(DELAY)
+
+    print(f"\n  Total: {len(all_ads)} unique ads ({enriched_count} enriched with metrics)")
 
     # Save
     timestamp = datetime.now().strftime("%Y%m%d_%H%M")
@@ -203,6 +272,7 @@ def run_meta_scraper():
         "source": "meta_official",
         "scraped_at": datetime.now().isoformat(),
         "total": len(all_ads),
+        "enriched": enriched_count,
         "countries": META_COUNTRIES,
         "keywords": META_KEYWORDS,
         "ads": all_ads,
@@ -212,7 +282,7 @@ def run_meta_scraper():
     with open(filename, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
 
-    print(f"\nMeta Ad Library: {len(all_ads)} unique ads -> {filename}")
+    print(f"  Saved: {filename}")
 
     # Merge with unified
     merge_to_unified(all_ads)

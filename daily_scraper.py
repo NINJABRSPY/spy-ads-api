@@ -413,36 +413,54 @@ def run_social1():
 
 
 def merge_affiliate_data(new_file):
-    """Merge incremental - atualiza produtos existentes, mantem os que nao mudaram"""
+    """Merge incremental - SEMPRE agrega, nunca substitui. Novos atualizam existentes, antigos permanecem."""
     try:
         # Carregar novo
         with open(new_file, "r", encoding="utf-8") as f:
             new_data = json.load(f)
         new_products = {p["name"]: p for p in new_data.get("products", [])}
 
-        # Carregar mais recente anterior (se existir)
+        # Carregar TODOS os arquivos anteriores para não perder nada
         files = sorted(glob.glob("resultados/affiliate_products_*.json"), reverse=True)
         existing_products = {}
         for af in files:
-            if af != new_file:
+            if af == new_file:
+                continue
+            try:
                 with open(af, "r", encoding="utf-8") as f:
                     old_data = json.load(f)
-                existing_products = {p["name"]: p for p in old_data.get("products", [])}
+                for p in old_data.get("products", []):
+                    name = p.get("name", "")
+                    if name and name not in existing_products:
+                        existing_products[name] = p
+            except:
+                continue
+            # Só precisa do mais recente que tenha dados
+            if len(existing_products) > 100:
                 break
 
-        # Merge: novos sobrescrevem, antigos permanecem
+        # REGRA DE OURO: o merge só pode CRESCER, nunca encolher
+        # Se novo tem menos que anterior, manter anterior e só atualizar os que vieram
         merged = {**existing_products, **new_products}
+
+        before_count = len(existing_products)
+        after_count = len(merged)
+
+        if after_count < before_count:
+            log(f"ALERTA: Merge resultaria em MENOS produtos ({after_count} < {before_count}) - ABORTANDO")
+            return
 
         # Salvar no arquivo novo
         new_data["products"] = list(merged.values())
         new_data["total_products"] = len(new_data["products"])
-        new_data["merged_from_previous"] = len(existing_products)
+        new_data["merged_from_previous"] = before_count
         new_data["new_or_updated"] = len(new_products)
 
         with open(new_file, "w", encoding="utf-8") as f:
             json.dump(new_data, f, ensure_ascii=False, indent=2)
 
-        log(f"Merge: {len(merged)} total ({len(new_products)} atualizados, {len(merged) - len(new_products)} mantidos)")
+        new_only = after_count - before_count
+        log(f"Merge: {after_count} total ({len(new_products)} atualizados, {before_count} mantidos, {new_only} novos)")
     except Exception as e:
         log(f"Merge ERRO: {e}")
 

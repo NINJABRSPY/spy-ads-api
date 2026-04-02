@@ -109,3 +109,28 @@
 [2026-03-31 11:23:32] Adyntel: OK
 [2026-03-31 11:23:34] Total: 54686 ads | Fontes: {'bigspy': 48696, 'adyntel_google': 112, 'adyntel_linkedin': 51, 'pipiads': 1419, 'minea': 4376, 'adyntel_meta': 32}
 [2026-03-31 11:23:34] === PUSH ===
+[2026-03-31 11:23:46] Push: OK
+[2026-03-31 11:23:46] Concluido em 323.7 minutos
+[2026-03-31 11:23:46] ============================================================
+[2026-04-01 09:00:02] 
+[2026-04-01 09:00:02] ============================================================
+[2026-04-01 09:00:02]   NinjaSpy Daily Scraper
+[2026-04-01 09:00:02] ============================================================
+[2026-04-01 09:00:02] === TOKENS ===
+[2026-04-01 09:00:02] ALERTA DE TOKENS: AdsParo expira em 1 dias. Renovar token em adsparo_client.py; BigSpy expira em 2 dias. Renovar token em config.py
+[2026-04-01 09:00:02] === CLICKMIDAS ===
+[2026-04-01 09:00:32] ClickMidas scraper: OK
+[2026-04-01 09:00:32] Merge: 88 total (88 atualizados, 0 mantidos)
+[2026-04-01 09:00:32] ClickMidas converter: OK -> resultados/affiliate_products_20260401_0900.json
+[2026-04-01 09:00:32] === BIGSPY ===
+[2026-04-01 20:33:47] BigSpy BR: OK
+[2026-04-02 02:12:27] BigSpy Global: OK
+[2026-04-02 02:12:27] === PIPIADS ===
+[2026-04-02 03:45:16] PiPiAds: OK
+[2026-04-02 03:45:16] === MINEA ===
+[2026-04-02 03:48:24] Minea: Chrome debugging nao disponivel - PULANDO
+[2026-04-02 03:48:24] === ADYNTEL ===
+[2026-04-02 03:51:04] Adyntel: sem ads novos
+[2026-04-02 03:51:04] Adyntel: OK
+[2026-04-02 03:51:06] Total: 71494 ads | Fontes: {'bigspy': 64888, 'adyntel_google': 192, 'adyntel_linkedin': 51, 'pipiads': 1954, 'minea': 4376, 'adyntel_meta': 33}
+[2026-04-02 03:51:06] === PUSH ===

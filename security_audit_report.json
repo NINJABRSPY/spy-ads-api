@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-03-31T17:15:49.453Z",
+  "url": "ninjabrhub.io",
+  "findings": [
+    {
+      "type": "cookie",
+      "severity": "high",
+      "detail": "Cookie \"session-id\": NOT HttpOnly, SameSite=not set"
+    },
+    {
+      "type": "cookie",
+      "severity": "medium",
+      "detail": "Cookie \"__cf_bm\": SameSite=not set"
+    },
+    {
+      "type": "cookie",
+      "severity": "high",
+      "detail": "Cookie \"crisp-client%2Fsession%2F705bb055-9b2b-4206-b1fc-d3f427a746a9\": NOT HttpOnly, NOT Secure, SameSite=not set"
+    },
+    {
+      "type": "storage",
+      "severity": "high",
+      "detail": "Sensitive data in localStorage: \"sb-bbwgequqwrsmbrkdmsxm-auth-token\" (1891 chars)"
+    },
+    {
+      "type": "auth",
+      "severity": "medium",
+      "detail": "No CAPTCHA on login page - vulnerable to brute force"
+    }
+  ]
+}

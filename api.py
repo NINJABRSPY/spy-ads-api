@@ -140,17 +140,61 @@ COMPACT_FIELDS = [
     "ad_type", "first_seen", "last_seen", "days_running",
     "likes", "comments", "shares", "impressions", "total_engagement",
     "heat", "potential_score", "estimated_spend", "country",
-    "ai_niche", "ai_strategy", "ai_copy_quality", "ai_emotion",
+    "ai_niche", "ai_strategy", "ai_copy_quality", "ai_emotion", "ai_language",
     "also_on", "has_store", "store_daily_revenue", "search_keyword",
+    "social1_region", "social1_units_sold", "social1_gmv",
 ]
+
+def _detect_country(ad):
+    """Detecta pais do ad por campo direto, idioma ou keyword"""
+    # Campo direto
+    c = ad.get("country") or ""
+    if c and len(c) == 2:
+        return c.upper()
+    countries = ad.get("all_countries") or []
+    if countries and isinstance(countries, list) and countries[0]:
+        return str(countries[0]).upper()
+    region = ad.get("social1_region") or ""
+    if region:
+        return region.upper()
+
+    # Inferir por idioma
+    lang = (ad.get("ai_language") or "").lower()
+    if lang == "pt":
+        return "BR"
+    elif lang == "es":
+        return "ES"
+    elif lang == "en":
+        return "US"
+    elif lang == "de":
+        return "DE"
+    elif lang == "fr":
+        return "FR"
+    elif lang == "it":
+        return "IT"
+
+    # Inferir por keyword
+    kw = (ad.get("search_keyword") or "").lower()
+    pt_words = ["emagrecer", "suplemento", "renda extra", "trafego", "curso online",
+                "afiliado", "cabelo", "academia", "cozinha", "advogado", "dentista",
+                "shopee", "cachorro", "gato", "decoracao", "roupa feminina", "tenis",
+                "saude", "cosmeticos", "coaching", "mentoria", "investimentos",
+                "infoproduto", "marketing digital", "loja virtual", "emagrecimento"]
+    if any(w in kw for w in pt_words):
+        return "BR"
+
+    return ""
+
 
 @app.get("/api/ads")
 def list_ads(
     platform: str = Query(None, description="facebook, instagram, tiktok, google, linkedin"),
-    source: str = Query(None, description="bigspy, adyntel_meta, adyntel_google, adyntel_linkedin, adyntel_tiktok"),
+    source: str = Query(None, description="bigspy, adyntel_meta, adyntel_google, adyntel_linkedin, adyntel_tiktok, social1, meta_official"),
     keyword: str = Query(None, description="Filtrar por keyword de busca"),
     search: str = Query(None, description="Buscar no texto/titulo do anuncio"),
     niche: str = Query(None, description="Filtrar por nicho IA"),
+    country: str = Query(None, description="Filtrar por pais (US, BR, GB, DE, FR, ES, IT, etc)"),
+    language: str = Query(None, description="Filtrar por idioma (pt, en, es, de, fr)"),
     min_score: int = Query(None, description="Score minimo de potencial"),
     sort: str = Query("collected_at", description="Campo para ordenar"),
     order: str = Query("desc", description="asc ou desc"),
@@ -179,6 +223,12 @@ def list_ads(
                sl in (a.get("advertiser", "") or "").lower()]
     if niche:
         ads = [a for a in ads if niche.lower() in (a.get("ai_niche", "") or "").lower()]
+    if country:
+        country_upper = country.upper()
+        ads = [a for a in ads if _detect_country(a) == country_upper]
+    if language:
+        lang_lower = language.lower()
+        ads = [a for a in ads if (a.get("ai_language") or "").lower() == lang_lower]
     if min_score:
         ads = [a for a in ads if (a.get("potential_score", 0) or 0) >= min_score]
 

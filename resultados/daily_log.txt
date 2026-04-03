@@ -134,3 +134,44 @@
 [2026-04-02 03:51:04] Adyntel: OK
 [2026-04-02 03:51:06] Total: 71494 ads | Fontes: {'bigspy': 64888, 'adyntel_google': 192, 'adyntel_linkedin': 51, 'pipiads': 1954, 'minea': 4376, 'adyntel_meta': 33}
 [2026-04-02 03:51:06] === PUSH ===
+[2026-04-02 03:51:30] Push: OK
+[2026-04-02 03:51:30] Concluido em 1131.5 minutos
+[2026-04-02 03:51:30] ============================================================
+[2026-04-02 09:00:02] 
+[2026-04-02 09:00:02] ============================================================
+[2026-04-02 09:00:02]   NinjaSpy Daily Scraper
+[2026-04-02 09:00:02] ============================================================
+[2026-04-02 09:00:02] === TOKENS ===
+[2026-04-02 09:00:02] ALERTA DE TOKENS: AdsParo expira AMANHA! Renovar token em adsparo_client.py; BigSpy expira em 1 dias. Renovar token em config.py
+[2026-04-02 09:00:02] === CLICKMIDAS ===
+[2026-04-02 09:00:06] ClickMidas: Aba encontrada -> https://www.clickmidas.com.br/midas-score
+[2026-04-02 09:00:06] ClickMidas: Navegando para midas-score...
+[2026-04-02 09:33:40] ClickMidas scraper: OK
+[2026-04-02 09:33:40] ClickMidas: 10632 produtos coletados hoje
+[2026-04-02 09:33:41] Merge: 10632 total (10632 atualizados, 0 mantidos)
+[2026-04-02 09:33:41] ClickMidas converter: OK -> resultados/affiliate_products_20260402_0933.json
+[2026-04-02 09:33:48] ClickMidas platforms: BuyGoods = ClickBank (mesmos dados ainda)
+[2026-04-02 09:33:48] === SOCIAL1 (TikTok Shop) ===
+[2026-04-02 09:53:52] Social1 scraper: TIMEOUT (20min)
+[2026-04-02 09:58:24] === RETOMANDO SCRAPER MANUAL ===
+[2026-04-02 09:58:24] === BIGSPY ===
+[2026-04-02 09:58:52] Social1 creators ERRO: Command '['node', 'social1_creators2.js']' timed out after 300 seconds
+[2026-04-02 09:58:53] Social1 converter: OK -> resultados/tiktok_shop_20260402_0958.json
+[2026-04-02 09:58:57] Social1 -> unified: +3974 ads mesclados
+[2026-04-02 09:58:57] === SEARCHAPI (Meta Ad Library) ===
+[2026-04-02 11:18:27] SearchAPI: +10040 ads
+[2026-04-02 11:18:27] === BIGSPY ===
+[2026-04-02 18:33:24] BigSpy BR: OK
+[2026-04-02 19:04:34] BigSpy BR: OK
+[2026-04-03 04:56:19] BigSpy Global: OK
+[2026-04-03 04:56:19] === PIPIADS ===
+[2026-04-03 05:07:34] BigSpy Global: OK
+[2026-04-03 05:07:34] === PIPIADS ===
+[2026-04-03 06:09:50] PiPiAds: OK
+[2026-04-03 06:09:50] === MINEA ===
+[2026-04-03 06:13:03] Minea: Chrome debugging nao disponivel - PULANDO
+[2026-04-03 06:13:03] === ADYNTEL ===
+[2026-04-03 06:15:07] Adyntel: sem ads novos
+[2026-04-03 06:15:07] Adyntel: OK
+[2026-04-03 06:15:09] Total: 95240 ads | Fontes: {'bigspy': 74612, 'adyntel_google': 192, 'adyntel_linkedin': 51, 'pipiads': 1962, 'minea': 4376, 'adyntel_meta': 33, 'social1': 3974, 'meta_official': 10040}
+[2026-04-03 06:15:09] === PUSH ===

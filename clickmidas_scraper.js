@@ -143,7 +143,18 @@ async function main() {
           returnByValue: true
         });
 
-        const pd = JSON.parse(rowResult.result.value);
+        let pd;
+        try {
+          pd = JSON.parse(rowResult.result.value);
+        } catch {
+          console.log(`  Parse error on page ${page}, skipping.`);
+          continue;
+        }
+
+        if (!pd || !pd.rows || !Array.isArray(pd.rows)) {
+          console.log(`  No rows on page ${page}, skipping.`);
+          continue;
+        }
 
         // Detect stuck pagination
         if (pd.currentPage === lastPageNum && page > 1) {

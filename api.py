@@ -40,6 +40,133 @@ app.add_middleware(
 )
 
 # ============================================================
+# ANTI-SCRAPING — Rate limiting + deteccao de bots
+# ============================================================
+import time as _time
+from collections import defaultdict
+
+# Limites por tipo de comportamento
+RATE_LIMITS = {
+    "normal": {"requests": 60, "window": 60},      # 60 req/min (cliente normal)
+    "search": {"requests": 20, "window": 60},       # 20 buscas/min
+    "heavy": {"requests": 10, "window": 60},         # 10 analises/min (AI, uncloak)
+    "export": {"requests": 5, "window": 60},         # 5 exports/min
+}
+
+# Tracking por IP
+_rate_tracker = defaultdict(lambda: {"counts": defaultdict(list), "warnings": 0, "blocked_until": 0})
+
+# Endpoints pesados
+HEAVY_ENDPOINTS = ["/api/analyze/", "/api/youtube/analyze", "/api/generate-script/", "/api/strategy-room"]
+SEARCH_ENDPOINTS = ["/api/ads", "/api/hooks", "/api/search", "/api/offer-tracker", "/api/uncloak"]
+
+
+def _get_client_ip(request):
+    """Extrai IP real do cliente"""
+    forwarded = request.headers.get("x-forwarded-for", "")
+    if forwarded:
+        return forwarded.split(",")[0].strip()
+    return request.client.host if request.client else "unknown"
+
+
+def _check_rate_limit(ip: str, path: str) -> dict:
+    """Verifica rate limit e retorna status"""
+    now = _time.time()
+    tracker = _rate_tracker[ip]
+
+    # IP bloqueado temporariamente?
+    if tracker["blocked_until"] > now:
+        remaining = int(tracker["blocked_until"] - now)
+        return {"allowed": False, "reason": "blocked", "retry_after": remaining}
+
+    # Determinar tipo de endpoint
+    if any(path.startswith(ep) for ep in HEAVY_ENDPOINTS):
+        limit_type = "heavy"
+    elif any(path.startswith(ep) for ep in SEARCH_ENDPOINTS):
+        limit_type = "search"
+    else:
+        limit_type = "normal"
+
+    limit = RATE_LIMITS[limit_type]
+    window = limit["window"]
+    max_requests = limit["requests"]
+
+    # Limpar requests antigos
+    tracker["counts"][limit_type] = [t for t in tracker["counts"][limit_type] if t > now - window]
+
+    # Verificar limite
+    current = len(tracker["counts"][limit_type])
+    if current >= max_requests:
+        tracker["warnings"] += 1
+
+        # 3 warnings = bloqueio progressivo
+        if tracker["warnings"] >= 10:
+            tracker["blocked_until"] = now + 3600  # 1 hora
+            return {"allowed": False, "reason": "banned_1h", "retry_after": 3600}
+        elif tracker["warnings"] >= 5:
+            tracker["blocked_until"] = now + 300  # 5 min
+            return {"allowed": False, "reason": "cooldown_5m", "retry_after": 300}
+        else:
+            return {"allowed": False, "reason": "rate_limited", "retry_after": 10}
+
+    # Registrar request
+    tracker["counts"][limit_type].append(now)
+
+    # Detectar comportamento de scraper
+    # Scraper: muitos requests em sequencia rapida (< 1s entre cada)
+    all_times = []
+    for times in tracker["counts"].values():
+        all_times.extend(times)
+    all_times.sort()
+    if len(all_times) >= 10:
+        recent = all_times[-10:]
+        avg_interval = (recent[-1] - recent[0]) / 9
+        if avg_interval < 0.5:  # Menos de 0.5s entre requests = bot
+            tracker["warnings"] += 2
+            return {"allowed": False, "reason": "bot_detected", "retry_after": 60}
+
+    return {"allowed": True, "remaining": max_requests - current - 1, "type": limit_type}
+
+
+from starlette.middleware.base import BaseHTTPMiddleware
+from starlette.responses import JSONResponse
+
+class AntiScrapingMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request, call_next):
+        path = request.url.path
+
+        # Skip health check e docs
+        if path in ("/", "/health", "/docs", "/openapi.json"):
+            return await call_next(request)
+
+        ip = _get_client_ip(request)
+        check = _check_rate_limit(ip, path)
+
+        if not check["allowed"]:
+            return JSONResponse(
+                status_code=429,
+                content={
+                    "error": "Rate limit exceeded",
+                    "reason": check["reason"],
+                    "retry_after": check.get("retry_after", 10),
+                    "message": "Muitas requisições. Aguarde antes de tentar novamente."
+                },
+                headers={"Retry-After": str(check.get("retry_after", 10))}
+            )
+
+        response = await call_next(request)
+
+        # Adicionar headers de rate limit
+        if check.get("remaining") is not None:
+            response.headers["X-RateLimit-Remaining"] = str(check["remaining"])
+            response.headers["X-RateLimit-Type"] = check.get("type", "normal")
+
+        return response
+
+app.add_middleware(AntiScrapingMiddleware)
+
+
+# ============================================================
 # CACHE - Carrega dados uma vez, nao a cada request
 # ============================================================
 _cache = {"ads": None, "loaded_at": None, "file": None}

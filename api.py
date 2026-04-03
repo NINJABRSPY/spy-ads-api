@@ -130,17 +130,103 @@ def _check_rate_limit(ip: str, path: str) -> dict:
 
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import JSONResponse
+import httpx
 
-class AntiScrapingMiddleware(BaseHTTPMiddleware):
+# Supabase config para validacao de JWT
+SUPABASE_URL = "https://bbwgequqwrsmbrkdmsxm.supabase.co"
+SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJid2dlcXVxd3JzbWJya2Rtc3htIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNjAxMDksImV4cCI6MjA4NjkzNjEwOX0.Nh0_9bgXmJNFdaK6Faur_L86nELS17hs9OOpJ7vxMoM"
+
+# Endpoints que NAO precisam de autenticacao
+PUBLIC_ENDPOINTS = ["/", "/health", "/docs", "/openapi.json", "/api/sync/status"]
+
+# Cache de tokens validados (evita chamar Supabase a cada request)
+_token_cache = {}  # {token_hash: {"valid": True, "user_id": "...", "expires": timestamp}}
+TOKEN_CACHE_TTL = 300  # 5 minutos de cache
+
+
+async def _validate_supabase_token(token: str) -> dict:
+    """Valida token JWT do Supabase chamando /auth/v1/user"""
+    # Check cache primeiro
+    token_hash = hash(token)
+    now = _time.time()
+    if token_hash in _token_cache:
+        cached = _token_cache[token_hash]
+        if cached["expires"] > now:
+            return cached
+
+    # Validar com Supabase
+    try:
+        async with httpx.AsyncClient() as client:
+            r = await client.get(
+                f"{SUPABASE_URL}/auth/v1/user",
+                headers={
+                    "Authorization": f"Bearer {token}",
+                    "apikey": SUPABASE_ANON_KEY,
+                },
+                timeout=5,
+            )
+            if r.status_code == 200:
+                user = r.json()
+                result = {
+                    "valid": True,
+                    "user_id": user.get("id", ""),
+                    "email": user.get("email", ""),
+                    "expires": now + TOKEN_CACHE_TTL,
+                }
+                _token_cache[token_hash] = result
+                return result
+    except:
+        pass
+
+    return {"valid": False}
+
+
+class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
         path = request.url.path
 
-        # Skip health check e docs
-        if path in ("/", "/health", "/docs", "/openapi.json"):
+        # Endpoints publicos
+        if any(path == ep or path.startswith(ep + "?") for ep in PUBLIC_ENDPOINTS):
             return await call_next(request)
 
+        # ===== AUTENTICACAO =====
+        auth_header = request.headers.get("authorization", "")
+        token = ""
+
+        if auth_header.startswith("Bearer "):
+            token = auth_header[7:]
+        elif request.query_params.get("token"):
+            token = request.query_params.get("token")
+
+        if not token:
+            return JSONResponse(
+                status_code=401,
+                content={
+                    "error": "Authentication required",
+                    "message": "Token de autenticação necessário. Faça login no NinjaBR Hub."
+                }
+            )
+
+        # Validar token
+        auth_result = await _validate_supabase_token(token)
+        if not auth_result.get("valid"):
+            return JSONResponse(
+                status_code=401,
+                content={
+                    "error": "Invalid token",
+                    "message": "Token inválido ou expirado. Faça login novamente."
+                }
+            )
+
+        # Adicionar user_id ao request para tracking
+        request.state.user_id = auth_result.get("user_id", "")
+        request.state.user_email = auth_result.get("email", "")
+
+        # ===== RATE LIMITING =====
         ip = _get_client_ip(request)
-        check = _check_rate_limit(ip, path)
+        # Rate limit por user_id em vez de IP (mais justo)
+        rate_key = auth_result.get("user_id", ip)
+        check = _check_rate_limit(rate_key, path)
 
         if not check["allowed"]:
             return JSONResponse(
@@ -156,14 +242,14 @@ class AntiScrapingMiddleware(BaseHTTPMiddleware):
 
         response = await call_next(request)
 
-        # Adicionar headers de rate limit
+        # Headers de rate limit
         if check.get("remaining") is not None:
             response.headers["X-RateLimit-Remaining"] = str(check["remaining"])
             response.headers["X-RateLimit-Type"] = check.get("type", "normal")
 
         return response
 
-app.add_middleware(AntiScrapingMiddleware)
+app.add_middleware(AuthAndRateLimitMiddleware)
 
 
 # ============================================================

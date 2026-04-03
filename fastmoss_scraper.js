@@ -225,6 +225,70 @@ async function main() {
     console.log(`\n  TOTAL SHOPS: ${allShops.length}\n`);
 
     // ========================================
+    // PHASE 4: CREATIVE CENTER ADS (ROAS + metrics!)
+    // ========================================
+    console.log('--- PHASE 4: CREATIVE CENTER ADS ---\n');
+    const allAds = [];
+    const adIds = new Set();
+
+    // Navigate to creative center first
+    await send('Page.navigate', { url: 'https://www.fastmoss.com/creativecenter/search?region=US' });
+    await new Promise(r => setTimeout(r, 6000));
+
+    // da_type: 1=all, can try different types
+    for (let page = 1; page <= 50; page++) {
+      const data = await fetchAPI(`/api/da/V4/search?page=${page}&pagesize=12&da_type=1&region=${REGION}`);
+
+      if (!data || !data.ad_list || data.ad_list.length === 0) break;
+
+      for (const ad of data.ad_list) {
+        if (!adIds.has(ad.id)) {
+          adIds.add(ad.id);
+          allAds.push(ad);
+        }
+      }
+
+      if (page % 10 === 0 || page === 1) {
+        console.log(`  Page ${page}: ${data.ad_list.length} ads (${allAds.length} total)`);
+      }
+
+      if (data.ad_list.length < 12) break;
+      await new Promise(r => setTimeout(r, DELAY));
+    }
+
+    // Also get Commission Ads specifically
+    console.log('\n  Commission ads...');
+    for (let page = 1; page <= 20; page++) {
+      const data = await fetchAPI(`/api/da/V4/search?page=${page}&pagesize=12&da_type=4&region=${REGION}`);
+      if (!data || !data.ad_list || data.ad_list.length === 0) break;
+
+      let added = 0;
+      for (const ad of data.ad_list) {
+        if (!adIds.has(ad.id)) { adIds.add(ad.id); allAds.push(ad); added++; }
+      }
+      if (page === 1) console.log(`  Commission page 1: +${added}`);
+      if (data.ad_list.length < 12) break;
+      await new Promise(r => setTimeout(r, DELAY));
+    }
+
+    // Hot Product Ads
+    console.log('  Hot product ads...');
+    for (let page = 1; page <= 20; page++) {
+      const data = await fetchAPI(`/api/da/V4/search?page=${page}&pagesize=12&da_type=2&region=${REGION}`);
+      if (!data || !data.ad_list || data.ad_list.length === 0) break;
+
+      let added = 0;
+      for (const ad of data.ad_list) {
+        if (!adIds.has(ad.id)) { adIds.add(ad.id); allAds.push(ad); added++; }
+      }
+      if (page === 1) console.log(`  Hot product page 1: +${added}`);
+      if (data.ad_list.length < 12) break;
+      await new Promise(r => setTimeout(r, DELAY));
+    }
+
+    console.log(`\n  TOTAL ADS: ${allAds.length}\n`);
+
+    // ========================================
     // SAVE
     // ========================================
     const output = {
@@ -235,11 +299,13 @@ async function main() {
         products: allProducts.length,
         creators: allCreators.length,
         shops: allShops.length,
+        ads: allAds.length,
       },
       categories: categories.map(c => ({ code: c.c_code, name: c.c_name, subs: c.sub?.length || 0 })),
       products: allProducts,
       creators: allCreators,
       shops: allShops,
+      ads: allAds,
     };
 
     const filename = `resultados/fastmoss_${timestamp}.json`;
@@ -249,7 +315,16 @@ async function main() {
     console.log(`Products: ${allProducts.length}`);
     console.log(`Creators: ${allCreators.length}`);
     console.log(`Shops: ${allShops.length}`);
+    console.log(`Ads: ${allAds.length}`);
     console.log(`Saved to: ${filename}`);
+
+    if (allAds.length > 0) {
+      console.log('\nTop 5 ads by ROAS:');
+      allAds.sort((a, b) => (b.roas || 0) - (a.roas || 0));
+      allAds.slice(0, 5).forEach((a, i) => {
+        console.log(`  ${i + 1}. ROAS: ${a.roas} | Views: ${a.play_count_show} | Cost: $${a.estimate_cost} | ${(a.desc || '').substring(0, 50)}`);
+      });
+    }
 
     if (allProducts.length > 0) {
       console.log('\nTop 5 products:');

@@ -181,6 +181,38 @@ async def _validate_supabase_token(token: str) -> dict:
     return {"valid": False}
 
 
+_sub_cache = {}  # {user_id: {"active": bool, "expires": timestamp}}
+
+async def _check_subscription(token: str, user_id: str) -> bool:
+    """Verifica se usuario tem assinatura ativa no Supabase"""
+    now = _time.time()
+
+    # Cache 10 minutos
+    if user_id in _sub_cache and _sub_cache[user_id]["expires"] > now:
+        return _sub_cache[user_id]["active"]
+
+    try:
+        async with httpx.AsyncClient() as client:
+            r = await client.get(
+                f"{SUPABASE_URL}/rest/v1/user_subscriptions?user_id=eq.{user_id}&is_active=eq.true&select=id",
+                headers={
+                    "Authorization": f"Bearer {token}",
+                    "apikey": SUPABASE_ANON_KEY,
+                },
+                timeout=5,
+            )
+            if r.status_code == 200:
+                subs = r.json()
+                is_active = len(subs) > 0
+                _sub_cache[user_id] = {"active": is_active, "expires": now + 600}
+                return is_active
+    except:
+        pass
+
+    # Em caso de erro, liberar (fail-open para nao bloquear clientes)
+    return True
+
+
 def _is_trusted_origin(request) -> bool:
     """Verifica se o request vem de uma origem confiavel"""
     origin = request.headers.get("origin", "")
@@ -213,7 +245,7 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
             print(f"[AUTH-WARN] Hub request WITHOUT token on {path}")
             return await call_next(request)
 
-        # ===== REQUESTS DE FORA — exige autenticacao =====
+        # ===== REQUESTS DE FORA — exige autenticacao + assinatura ativa =====
         auth_header = request.headers.get("authorization", "")
         token = ""
 
@@ -242,8 +274,21 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
                 }
             )
 
-        # Rate limit apenas para requests de fora (com token)
-        rate_key = auth_result.get("user_id", _get_client_ip(request))
+        # Verificar assinatura ativa no Supabase
+        user_id = auth_result.get("user_id", "")
+        if user_id:
+            sub_valid = await _check_subscription(token, user_id)
+            if not sub_valid:
+                return JSONResponse(
+                    status_code=403,
+                    content={
+                        "error": "Subscription required",
+                        "message": "Assinatura inativa. Acesse o NinjaBR Hub para ativar."
+                    }
+                )
+
+        # Rate limit para requests de fora (mais restritivo)
+        rate_key = user_id or _get_client_ip(request)
         check = _check_rate_limit(rate_key, path)
 
         if not check["allowed"]:

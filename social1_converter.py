@@ -105,6 +105,8 @@ def convert_social1():
                 "ai_insights": insights_text,
                 "has_insights": len(insights_text) > 0,
                 "period_days": v.get("_days", 1),
+                "thumbnail": v.get("thumbnail", ""),
+                "video_url": v.get("video_url", ""),
             })
 
     # --- CREATORS ---

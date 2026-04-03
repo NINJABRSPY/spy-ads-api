@@ -137,7 +137,7 @@ SUPABASE_URL = "https://bbwgequqwrsmbrkdmsxm.supabase.co"
 SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJid2dlcXVxd3JzbWJya2Rtc3htIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzEzNjAxMDksImV4cCI6MjA4NjkzNjEwOX0.Nh0_9bgXmJNFdaK6Faur_L86nELS17hs9OOpJ7vxMoM"
 
 # Endpoints que NAO precisam de autenticacao
-PUBLIC_ENDPOINTS = ["/", "/health", "/docs", "/openapi.json", "/api/sync/status"]
+PUBLIC_ENDPOINTS = ["/", "/health", "/docs", "/openapi.json", "/api/sync/status", "/api/auth-check"]
 
 # Cache de tokens validados (evita chamar Supabase a cada request)
 _token_cache = {}  # {token_hash: {"valid": True, "user_id": "...", "expires": timestamp}}
@@ -197,8 +197,15 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
         if any(path == ep or path.startswith(ep + "?") for ep in PUBLIC_ENDPOINTS):
             return await call_next(request)
 
-        # ===== ORIGEM CONFIAVEL = LIBERA TUDO =====
+        # ===== ORIGEM CONFIAVEL =====
         if _is_trusted_origin(request):
+            # Logar se token esta sendo enviado (para verificar antes de ativar bloqueio)
+            auth_header = request.headers.get("authorization", "")
+            has_token = auth_header.startswith("Bearer ") and len(auth_header) > 20
+            # TODO: quando confirmado que 100% dos requests tem token, remover fallback
+            if not has_token:
+                # Contar requests sem token vindos do hub (para monitorar)
+                _rate_tracker["__hub_no_token__"]["warnings"] += 1
             return await call_next(request)
 
         # ===== REQUESTS DE FORA — exige autenticacao =====
@@ -344,6 +351,12 @@ def root():
 def health():
     """Health check - mantem a API acordada no Render"""
     return {"status": "ok"}
+
+@app.get("/api/auth-check")
+def auth_check():
+    """Verifica quantos requests do hub vem sem token"""
+    hub_no_token = _rate_tracker.get("__hub_no_token__", {}).get("warnings", 0)
+    return {"hub_requests_without_token": hub_no_token}
 
 # Campos essenciais para listagem (reduz payload ~80%)
 COMPACT_FIELDS = [

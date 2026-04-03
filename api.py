@@ -1884,6 +1884,49 @@ def meta_ads_search(
 
 
 # ============================================================
+# SIMILARWEB TRAFFIC DATA
+# ============================================================
+
+_sw_cache = {"data": None, "loaded_at": None}
+
+def load_similarweb():
+    files = sorted(glob.glob(f"{OUTPUT_DIR}/similarweb_*.json"), reverse=True)
+    if not files:
+        return {}
+    latest = files[0]
+    mtime = os.path.getmtime(latest)
+    if _sw_cache["data"] and _sw_cache["loaded_at"] == mtime:
+        return _sw_cache["data"]
+    with open(latest, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    _sw_cache["data"] = data.get("domains", {})
+    _sw_cache["loaded_at"] = mtime
+    return _sw_cache["data"]
+
+
+@app.get("/api/traffic/{domain}")
+def get_traffic(domain: str):
+    """Dados de tráfego de qualquer domínio via SimilarWeb"""
+    domains = load_similarweb()
+    if domain in domains:
+        return {"domain": domain, "cached": True, **domains[domain]}
+    return {"domain": domain, "cached": False, "message": "Domínio não analisado ainda. Dados serão coletados no próximo ciclo."}
+
+
+@app.get("/api/traffic")
+def list_traffic(
+    sort: str = Query("monthly_visits", description="monthly_visits, global_rank, bounce_rate"),
+    limit: int = Query(20, ge=1, le=100),
+):
+    """Lista todos os domínios analisados com tráfego"""
+    domains = load_similarweb()
+    items = list(domains.values())
+    reverse = sort != "global_rank"
+    items.sort(key=lambda x: x.get(sort, 0) or 0, reverse=reverse)
+    return {"data": items[:limit], "total": len(items)}
+
+
+# ============================================================
 # HOOK BANK — Banco de ganchos validados
 # ============================================================
 

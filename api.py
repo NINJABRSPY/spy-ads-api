@@ -1910,7 +1910,19 @@ def get_traffic(domain: str):
     domains = load_similarweb()
     if domain in domains:
         return {"domain": domain, "cached": True, **domains[domain]}
-    return {"domain": domain, "cached": False, "message": "Domínio não analisado ainda. Dados serão coletados no próximo ciclo."}
+
+    # Try on-demand local server (if running)
+    try:
+        import requests as req
+        r = req.get(f"http://localhost:4000/api/traffic/{domain}", timeout=30)
+        if r.status_code == 200:
+            data = r.json()
+            if data.get("monthly_visits"):
+                return {"domain": domain, "cached": False, "live": True, **data}
+    except:
+        pass
+
+    return {"domain": domain, "cached": False, "message": "Domínio não analisado ainda. Inicie o servidor local SimilarWeb ou aguarde o próximo ciclo."}
 
 
 @app.get("/api/traffic")

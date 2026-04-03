@@ -1,7 +1,7 @@
 {
   "source": "fastmoss",
   "region": "US",
-  "scraped_at": "2026-04-03T03:00:02.635Z",
+  "scraped_at": "2026-04-03T03:12:20.420Z",
   "totals": {
     "products": 15,
     "creators": 15,
@@ -1188,7 +1188,49 @@
       "like_followers_v1_rate_show": "0.7676%",
       "video_28d_interaction_v1_rate_show": "7.71%",
       "follower_28d_grow_v1_rate_show": "0.42%",
-      "_source_type": "top_followers"
+      "_source_type": "top_followers",
+      "_detail_base": {
+        "category": "Public Figure",
+        "selling_categories": [
+          "Fashion"
+        ],
+        "mcn": "",
+        "first_video": "2019/08/11",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 1,
+        "category_rank": 1,
+        "flow_index": 100,
+        "carry_index": 48,
+        "followers": 156714536,
+        "new_followers_28d": 483674,
+        "videos_28d": 0,
+        "lives_28d": 0,
+        "avg_video_views": 0,
+        "avg_live_sold": 0,
+        "avg_live_gmv": 0
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185810
+      }
     },
     {
       "uid": "6614519312189947909",
@@ -1417,7 +1459,47 @@
       "like_followers_v1_rate_show": "0.1023%",
       "video_28d_interaction_v1_rate_show": "6.63%",
       "follower_28d_grow_v1_rate_show": "-0.06%",
-      "_source_type": "top_followers"
+      "_source_type": "top_followers",
+      "_detail_base": {
+        "category": "Public Figure",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2019/10/01",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 2,
+        "category_rank": 2,
+        "flow_index": 100,
+        "carry_index": 30,
+        "followers": 124698315,
+        "new_followers_28d": -76732,
+        "videos_28d": 0,
+        "lives_28d": 0,
+        "avg_video_views": 0,
+        "avg_live_sold": 0,
+        "avg_live_gmv": 0
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185815
+      }
     },
     {
       "uid": "107955",
@@ -1586,7 +1668,47 @@
       "like_followers_v1_rate_show": "0.0488%",
       "video_28d_interaction_v1_rate_show": "-",
       "follower_28d_grow_v1_rate_show": "0.43%",
-      "_source_type": "top_followers"
+      "_source_type": "top_followers",
+      "_detail_base": {
+        "category": "Media & Entertainment",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2018/08/09",
+        "shop_active": false,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 3,
+        "category_rank": 1,
+        "flow_index": 100,
+        "carry_index": 30,
+        "followers": 93554605,
+        "new_followers_28d": 360804,
+        "videos_28d": 0,
+        "lives_28d": 0,
+        "avg_video_views": 0,
+        "avg_live_sold": 0,
+        "avg_live_gmv": 0
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185820
+      }
     },
     {
       "uid": "6748458643983238149",
@@ -1775,7 +1897,47 @@
       "like_followers_v1_rate_show": "0.26%",
       "video_28d_interaction_v1_rate_show": "1.15%",
       "follower_28d_grow_v1_rate_show": "-0.15%",
-      "_source_type": "top_followers"
+      "_source_type": "top_followers",
+      "_detail_base": {
+        "category": "Public Figure",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2020/04/11",
+        "shop_active": false,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 4,
+        "category_rank": 3,
+        "flow_index": 100,
+        "carry_index": 30,
+        "followers": 92511788,
+        "new_followers_28d": -129999,
+        "videos_28d": 0,
+        "lives_28d": 0,
+        "avg_video_views": 0,
+        "avg_live_sold": 0,
+        "avg_live_gmv": 0
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185826
+      }
     },
     {
       "uid": "6703550784929793030",
@@ -2004,7 +2166,47 @@
       "like_followers_v1_rate_show": "0.5971%",
       "video_28d_interaction_v1_rate_show": "0.91%",
       "follower_28d_grow_v1_rate_show": "-0.07%",
-      "_source_type": "top_followers"
+      "_source_type": "top_followers",
+      "_detail_base": {
+        "category": "Public Figure",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2019/07/11",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 77820,
+        "category_rank": 102844,
+        "flow_index": 107366,
+        "carry_index": 194892,
+        "followers": 88275320,
+        "new_followers_28d": 128891,
+        "videos_28d": 73414,
+        "lives_28d": 51676,
+        "avg_video_views": 188224,
+        "avg_live_sold": 188529,
+        "avg_live_gmv": 172959
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185831
+      }
     },
     {
       "uid": "6596805238354558982",
@@ -2128,7 +2330,47 @@
       "like_followers_v1_rate_show": "0.5092%",
       "video_28d_interaction_v1_rate_show": "10.24%",
       "follower_28d_grow_v1_rate_show": "-0.05%",
-      "_source_type": "top_followers"
+      "_source_type": "top_followers",
+      "_detail_base": {
+        "category": "Public Figure",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2020/01/09",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 64606,
+        "category_rank": 145662,
+        "flow_index": 168726,
+        "carry_index": 135043,
+        "followers": 83683374,
+        "new_followers_28d": 126100,
+        "videos_28d": 189524,
+        "lives_28d": 197946,
+        "avg_video_views": 10545507,
+        "avg_live_sold": 86668,
+        "avg_live_gmv": 172777
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185836
+      }
     },
     {
       "uid": "68616495085350913",
@@ -2342,7 +2584,47 @@
       "like_followers_v1_rate_show": "0.1522%",
       "video_28d_interaction_v1_rate_show": "3.04%",
       "follower_28d_grow_v1_rate_show": "-",
-      "_source_type": "top_followers"
+      "_source_type": "top_followers",
+      "_detail_base": {
+        "category": "Other",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2016/03/16",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 91768,
+        "category_rank": 84574,
+        "flow_index": 179440,
+        "carry_index": 141025,
+        "followers": 82511357,
+        "new_followers_28d": 92673,
+        "videos_28d": 176655,
+        "lives_28d": 56593,
+        "avg_video_views": 88801,
+        "avg_live_sold": 92044,
+        "avg_live_gmv": 119676
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185841
+      }
     },
     {
       "uid": "6745191554350760966",
@@ -2476,7 +2758,47 @@
       "like_followers_v1_rate_show": "0.0831%",
       "video_28d_interaction_v1_rate_show": "-",
       "follower_28d_grow_v1_rate_show": "-0.11%",
-      "_source_type": "top_followers"
+      "_source_type": "top_followers",
+      "_detail_base": {
+        "category": "Public Figure",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2019/11/22",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 128324,
+        "category_rank": 53019,
+        "flow_index": 193987,
+        "carry_index": 165458,
+        "followers": 79690716,
+        "new_followers_28d": -2039,
+        "videos_28d": 87454,
+        "lives_28d": 60892,
+        "avg_video_views": 65210,
+        "avg_live_sold": 181727,
+        "avg_live_gmv": 73360
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185846
+      }
     },
     {
       "uid": "6727327145951183878",
@@ -2705,7 +3027,47 @@
       "like_followers_v1_rate_show": "0.0842%",
       "video_28d_interaction_v1_rate_show": "-",
       "follower_28d_grow_v1_rate_show": "-",
-      "_source_type": "top_followers"
+      "_source_type": "top_followers",
+      "_detail_base": {
+        "category": "Public Figure",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2019/10/03",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 55309,
+        "category_rank": 106024,
+        "flow_index": 54541,
+        "carry_index": 50737,
+        "followers": 79520879,
+        "new_followers_28d": 81462,
+        "videos_28d": 113763,
+        "lives_28d": 64661,
+        "avg_video_views": 55463,
+        "avg_live_sold": 97757,
+        "avg_live_gmv": 157979
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185852
+      }
     },
     {
       "uid": "6879693940111901701",
@@ -2914,7 +3276,47 @@
       "like_followers_v1_rate_show": "0.0717%",
       "video_28d_interaction_v1_rate_show": "7.05%",
       "follower_28d_grow_v1_rate_show": "0.07%",
-      "_source_type": "top_followers"
+      "_source_type": "top_followers",
+      "_detail_base": {
+        "category": "Clothing & Accessories",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2020/11/12",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 150240,
+        "category_rank": 184328,
+        "flow_index": 93735,
+        "carry_index": 118145,
+        "followers": 74540675,
+        "new_followers_28d": 137766,
+        "videos_28d": 141615,
+        "lives_28d": 158853,
+        "avg_video_views": 192389,
+        "avg_live_sold": 109968,
+        "avg_live_gmv": 142293
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185858
+      }
     },
     {
       "uid": "6759945674786407429",
@@ -3199,7 +3601,47 @@
       },
       "video_sale_amount_show": "$25.7m",
       "live_sale_amount_show": "$129.8m",
-      "_source_type": "ecommerce"
+      "_source_type": "ecommerce",
+      "_detail_base": {
+        "category": "Sports, Fitness & Outdoors",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2023/05/10",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 120145,
+        "category_rank": 128277,
+        "flow_index": 63762,
+        "carry_index": 166047,
+        "followers": 5657192,
+        "new_followers_28d": 79001,
+        "videos_28d": 124723,
+        "lives_28d": 117721,
+        "avg_video_views": 78877,
+        "avg_live_sold": 56166,
+        "avg_live_gmv": 171832
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185864
+      }
     },
     {
       "uid": "7171976636321448966",
@@ -3466,7 +3908,51 @@
       },
       "video_sale_amount_show": "$1.4b",
       "live_sale_amount_show": "$525.2k",
-      "_source_type": "ecommerce"
+      "_source_type": "ecommerce",
+      "_detail_base": {
+        "category": "Shopping & Retail",
+        "selling_categories": [
+          "Fashion",
+          "Electronics",
+          "Home & Lifestyle"
+        ],
+        "mcn": "",
+        "first_video": "2024/04/23",
+        "shop_active": false,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 70143,
+        "category_rank": 78982,
+        "flow_index": 134217,
+        "carry_index": 100681,
+        "followers": 10162260,
+        "new_followers_28d": 285910,
+        "videos_28d": 102129,
+        "lives_28d": 197297,
+        "avg_video_views": 65725,
+        "avg_live_sold": 73607,
+        "avg_live_gmv": 181148
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185869
+      }
     },
     {
       "uid": "6868131936855819269",
@@ -3731,7 +4217,47 @@
       },
       "video_sale_amount_show": "$487.2k",
       "live_sale_amount_show": "$8.2k",
-      "_source_type": "ecommerce"
+      "_source_type": "ecommerce",
+      "_detail_base": {
+        "category": "Beauty",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2023/10/11",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 158243,
+        "category_rank": 149989,
+        "flow_index": 85242,
+        "carry_index": 96094,
+        "followers": 5669305,
+        "new_followers_28d": 187600,
+        "videos_28d": 102249,
+        "lives_28d": 191964,
+        "avg_video_views": 2569568,
+        "avg_live_sold": 190850,
+        "avg_live_gmv": 73937
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185875
+      }
     },
     {
       "uid": "318921406472306688",
@@ -3987,7 +4513,47 @@
       },
       "video_sale_amount_show": "$6.9m",
       "live_sale_amount_show": "$608.7m",
-      "_source_type": "ecommerce"
+      "_source_type": "ecommerce",
+      "_detail_base": {
+        "category": "Media & Entertainment",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2021/06/19",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 158868,
+        "category_rank": 60902,
+        "flow_index": 68565,
+        "carry_index": 52553,
+        "followers": 4564757,
+        "new_followers_28d": 55441,
+        "videos_28d": 66814,
+        "lives_28d": 72704,
+        "avg_video_views": 56712,
+        "avg_live_sold": 110737,
+        "avg_live_gmv": 100148
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185880
+      }
     },
     {
       "uid": "6917523249614308357",
@@ -4239,7 +4805,47 @@
       },
       "video_sale_amount_show": "$1.0m",
       "live_sale_amount_show": "$961.8m",
-      "_source_type": "ecommerce"
+      "_source_type": "ecommerce",
+      "_detail_base": {
+        "category": "Beauty",
+        "selling_categories": [],
+        "mcn": "",
+        "first_video": "2021/07/29",
+        "shop_active": true,
+        "region": "United States"
+      },
+      "_detail_index": {
+        "region_rank": 190049,
+        "category_rank": 103138,
+        "flow_index": 139344,
+        "carry_index": 89767,
+        "followers": 4002145,
+        "new_followers_28d": 144691,
+        "videos_28d": 126063,
+        "lives_28d": 174018,
+        "avg_video_views": 18773574,
+        "avg_live_sold": 115700,
+        "avg_live_gmv": 82731
+      },
+      "_detail_stats": {
+        "total_gmv": 496153.25,
+        "video_gmv": 108835.32,
+        "live_gmv": 387317.93,
+        "country_rank": 848,
+        "total_videos": 2610,
+        "total_views": 613689848,
+        "avg_views": 550430,
+        "avg_engagement_rate": "10.9%",
+        "live_count": 33,
+        "live_avg_time": "04:00:32",
+        "live_avg_viewers": 149280,
+        "live_peak_viewers": 8944,
+        "video_gpm": 10.95,
+        "live_gpm": 90.7
+      },
+      "_detail_contact": {
+        "update_at": 1775185886
+      }
     }
   ],
   "shops": [

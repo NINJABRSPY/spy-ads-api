@@ -191,7 +191,81 @@ async function main() {
       await new Promise(r => setTimeout(r, DELAY));
     }
 
-    console.log(`\n  TOTAL CREATORS: ${allCreators.length}\n`);
+    // Enrich each creator with detail data
+    console.log(`\n  Enriching ${allCreators.length} creators with detail data...`);
+    for (let i = 0; i < allCreators.length; i++) {
+      const c = allCreators[i];
+      const uid = c.uid;
+      if (!uid) continue;
+
+      // Base info
+      const base = await fetchAPI(`/api/author/v3/detail/baseInfo?uid=${uid}`);
+      if (base) {
+        c._detail_base = {
+          category: base.category_name || '',
+          selling_categories: base.market_category_l1_name || [],
+          mcn: base.mcn?.company_name || '',
+          first_video: base.first_video_time || '',
+          shop_active: base.show_shop_tab === 1,
+          region: base.region_name || '',
+        };
+      }
+      await new Promise(r => setTimeout(r, 800));
+
+      // Index (rankings, avg GMV)
+      const idx = await fetchAPI(`/api/author/v3/detail/authorIndex?uid=${uid}`);
+      if (idx) {
+        c._detail_index = {
+          region_rank: idx.region_rank || 0,
+          category_rank: idx.category_rank || 0,
+          flow_index: idx.flow_index || 0,
+          carry_index: idx.carry_index || 0,
+          followers: idx.follower_count || 0,
+          new_followers_28d: idx.follower_28_count || 0,
+          videos_28d: idx.aweme_28_count || 0,
+          lives_28d: idx.live_28_count || 0,
+          avg_video_views: idx.video_28_avg_play_count || 0,
+          avg_live_sold: idx.live_28_avg_sold_count || 0,
+          avg_live_gmv: idx.live_28_avg_sale_amount || 0,
+        };
+      }
+      await new Promise(r => setTimeout(r, 800));
+
+      // Stats (GMV, total views)
+      const stats = await fetchAPI(`/api/author/v3/detail/getStatInfo?uid=${uid}`);
+      if (stats) {
+        c._detail_stats = {
+          total_gmv: stats.goods_sale_amount || 0,
+          video_gmv: stats.video_sale_amount || 0,
+          live_gmv: stats.live_sale_amount || 0,
+          country_rank: stats.goods_sale_country_rank || 0,
+          total_videos: stats.aweme_total_count || 0,
+          total_views: stats.aweme_play_count || 0,
+          avg_views: stats.aweme_avg_play_count || 0,
+          avg_engagement_rate: stats.aweme_avg_interaction_rate || '',
+          live_count: stats.live_count || 0,
+          live_avg_time: stats.live_avg_time_show || '',
+          live_avg_viewers: stats.live_avg_user_count || 0,
+          live_peak_viewers: stats.live_max_peak_count || 0,
+          video_gpm: stats.aweme_min_gpm || 0,
+          live_gpm: stats.live_gpm_min || 0,
+        };
+      }
+      await new Promise(r => setTimeout(r, 800));
+
+      // Contact
+      const contact = await fetchAPI(`/api/author/v3/detail/authorContact?uid=${uid}`);
+      if (contact) {
+        c._detail_contact = contact;
+      }
+      await new Promise(r => setTimeout(r, 800));
+
+      if ((i + 1) % 5 === 0 || i === 0) {
+        console.log(`  ${i + 1}/${allCreators.length} enriched`);
+      }
+    }
+
+    console.log(`\n  TOTAL CREATORS: ${allCreators.length} (enriched)\n`);
 
     // ========================================
     // PHASE 3: SHOPS

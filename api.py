@@ -181,6 +181,14 @@ async def _validate_supabase_token(token: str) -> dict:
     return {"valid": False}
 
 
+def _is_trusted_origin(request) -> bool:
+    """Verifica se o request vem de uma origem confiavel"""
+    origin = request.headers.get("origin", "")
+    referer = request.headers.get("referer", "")
+    combined = (origin + referer).lower()
+    return "ninjabrhub" in combined or "lovable" in combined or "localhost" in combined
+
+
 class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request, call_next):
         path = request.url.path
@@ -189,7 +197,11 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
         if any(path == ep or path.startswith(ep + "?") for ep in PUBLIC_ENDPOINTS):
             return await call_next(request)
 
-        # ===== AUTENTICACAO =====
+        # ===== ORIGEM CONFIAVEL = LIBERA TUDO =====
+        if _is_trusted_origin(request):
+            return await call_next(request)
+
+        # ===== REQUESTS DE FORA — exige autenticacao =====
         auth_header = request.headers.get("authorization", "")
         token = ""
 
@@ -199,11 +211,6 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
             token = request.query_params.get("token")
 
         if not token:
-            # Permitir requests do hub sem token temporariamente (ate Lovable implementar)
-            origin = request.headers.get("origin", "")
-            referer = request.headers.get("referer", "")
-            if "ninjabrhub" in origin or "ninjabrhub" in referer or "lovable" in origin or "lovable" in referer:
-                return await call_next(request)
             return JSONResponse(
                 status_code=401,
                 content={
@@ -223,25 +230,9 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
                 }
             )
 
-        # Adicionar user_id ao request para tracking
-        request.state.user_id = auth_result.get("user_id", "")
-        request.state.user_email = auth_result.get("email", "")
-
-        # ===== RATE LIMITING =====
-        ip = _get_client_ip(request)
-        # Se veio do hub sem token, usar IP mas com limite mais alto
-        origin = request.headers.get("origin", "")
-        is_hub = "ninjabrhub" in origin or "lovable" in origin
-        if auth_result.get("valid"):
-            rate_key = auth_result.get("user_id", ip)
-        else:
-            rate_key = ip
-
-        # Hub tem limites mais altos (carrega varias coisas ao mesmo tempo)
-        if is_hub and rate_key == ip:
-            check = {"allowed": True, "remaining": 999, "type": "hub"}
-        else:
-            check = _check_rate_limit(rate_key, path)
+        # Rate limit apenas para requests de fora (com token)
+        rate_key = auth_result.get("user_id", _get_client_ip(request))
+        check = _check_rate_limit(rate_key, path)
 
         if not check["allowed"]:
             return JSONResponse(
@@ -255,14 +246,7 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
                 headers={"Retry-After": str(check.get("retry_after", 10))}
             )
 
-        response = await call_next(request)
-
-        # Headers de rate limit
-        if check.get("remaining") is not None:
-            response.headers["X-RateLimit-Remaining"] = str(check["remaining"])
-            response.headers["X-RateLimit-Type"] = check.get("type", "normal")
-
-        return response
+        return await call_next(request)
 
 app.add_middleware(AuthAndRateLimitMiddleware)
 

@@ -199,6 +199,11 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
             token = request.query_params.get("token")
 
         if not token:
+            # Permitir requests do hub sem token temporariamente (ate Lovable implementar)
+            origin = request.headers.get("origin", "")
+            referer = request.headers.get("referer", "")
+            if "ninjabrhub" in origin or "ninjabrhub" in referer:
+                return await call_next(request)
             return JSONResponse(
                 status_code=401,
                 content={

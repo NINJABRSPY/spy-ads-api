@@ -205,10 +205,33 @@ function extractMetrics(data, domain) {
   return (metrics.monthly_visits || metrics.global_rank) ? metrics : null;
 }
 
+// Security
+const ALLOWED_ORIGINS = [
+  'https://ninjabrhub.io',
+  'https://www.ninjabrhub.io',
+  'http://localhost:5173',  // Lovable dev
+  'http://localhost:3000',  // Local dev
+];
+const API_SECRET = 'njspy_traffic_2026_x9k';  // Token de seguranca
+
 // HTTP Server
 const server = http.createServer(async (req, res) => {
-  // CORS
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  const origin = req.headers.origin || req.headers.referer || '';
+  const isAllowed = ALLOWED_ORIGINS.some(o => origin.startsWith(o));
+  const hasToken = new URL(req.url, `http://localhost:${PORT}`).searchParams.get('key') === API_SECRET;
+
+  // CORS — só para origens permitidas
+  if (isAllowed) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else if (hasToken) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+  } else {
+    // Bloquear requests de origens desconhecidas sem token
+    res.writeHead(403, { 'Content-Type': 'application/json' });
+    res.end(JSON.stringify({ error: 'Acesso negado. Origem nao autorizada.' }));
+    console.log(`[BLOCKED] Origin: ${origin} | IP: ${req.socket.remoteAddress}`);
+    return;
+  }
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', '*');
   if (req.method === 'OPTIONS') { res.writeHead(204); res.end(); return; }

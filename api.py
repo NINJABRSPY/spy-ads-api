@@ -2736,6 +2736,37 @@ def tiktok_creator_detail(handle: str, region: str = Query("us")):
     }
 
 
+@app.get("/api/tiktok-shop/shops")
+def tiktok_shops(
+    sort: str = Query("total_gmv", description="total_gmv, day7_gmv, rating, total_sold, creators_count"),
+    order: str = Query("desc"),
+    limit: int = Query(20, ge=1, le=50),
+):
+    """Top lojas do TikTok Shop com trend de vendas"""
+    data = load_tiktok_shop()
+    shops = data.get("shops", [])
+    reverse = order == "desc"
+    shops.sort(key=lambda x: x.get(sort, 0) or 0, reverse=reverse)
+    return {"data": shops[:limit], "total": len(shops)}
+
+
+@app.get("/api/tiktok-shop/ads")
+def tiktok_ads_roas(
+    sort: str = Query("roas", description="roas, views, estimated_cost, likes"),
+    order: str = Query("desc"),
+    commission_only: bool = Query(False),
+    limit: int = Query(20, ge=1, le=50),
+):
+    """Ads do TikTok com ROAS real — dados exclusivos"""
+    data = load_tiktok_shop()
+    ads = data.get("tiktok_ads", [])
+    if commission_only:
+        ads = [a for a in ads if a.get("is_commission")]
+    reverse = order == "desc"
+    ads.sort(key=lambda x: x.get(sort, 0) or 0, reverse=reverse)
+    return {"data": ads[:limit], "total": len(ads)}
+
+
 @app.get("/api/tiktok-shop/stats")
 def tiktok_stats():
     """Estatisticas do TikTok Shop"""
@@ -2757,14 +2788,24 @@ def tiktok_stats():
     total_views = sum(v.get("views", 0) or 0 for v in videos)
     with_insights = sum(1 for v in videos if v.get("has_insights"))
 
+    shops = data.get("shops", [])
+    tiktok_ads = data.get("tiktok_ads", [])
+    total_shop_gmv = sum(s.get("total_gmv", 0) or 0 for s in shops)
+    avg_roas = round(sum(a.get("roas", 0) or 0 for a in tiktok_ads) / max(len(tiktok_ads), 1), 2)
+
     return {
         "total_products": len(products),
         "total_videos": len(videos),
         "total_creators": len(creators),
+        "total_shops": len(shops),
+        "total_tiktok_ads": len(tiktok_ads),
         "total_gmv": round(total_gmv, 2),
         "total_units_sold": total_units,
         "total_video_views": total_views,
+        "total_shop_gmv": round(total_shop_gmv, 2),
+        "avg_roas": avg_roas,
         "videos_with_insights": with_insights,
+        "has_fastmoss": data.get("fastmoss_integrated", False),
         "by_category": dict(sorted(categories.items(), key=lambda x: x[1], reverse=True)[:15]),
         "by_region": dict(sorted(regions.items(), key=lambda x: x[1], reverse=True)),
     }

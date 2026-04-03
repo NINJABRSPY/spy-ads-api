@@ -1,0 +1,6287 @@
+{
+  "source": "fastmoss",
+  "region": "US",
+  "scraped_at": "2026-04-03T01:39:21.417Z",
+  "totals": {
+    "products": 15,
+    "creators": 15,
+    "shops": 20
+  },
+  "categories": [
+    {
+      "code": "14",
+      "name": "Beauty & Personal Care",
+      "subs": 12
+    },
+    {
+      "code": "2",
+      "name": "Womenswear & Underwear",
+      "subs": 7
+    },
+    {
+      "code": "25",
+      "name": "Health",
+      "subs": 5
+    },
+    {
+      "code": "8",
+      "name": "Fashion Accessories",
+      "subs": 7
+    },
+    {
+      "code": "9",
+      "name": "Sports & Outdoor",
+      "subs": 11
+    },
+    {
+      "code": "16",
+      "name": "Phones & Electronics",
+      "subs": 9
+    },
+    {
+      "code": "10",
+      "name": "Home Supplies",
+      "subs": 7
+    },
+    {
+      "code": "24",
+      "name": "Food & Beverages",
+      "subs": 8
+    },
+    {
+      "code": "23",
+      "name": "Automotive & Motorcycle",
+      "subs": 11
+    },
+    {
+      "code": "3",
+      "name": "Menswear & Underwear",
+      "subs": 6
+    },
+    {
+      "code": "30",
+      "name": "Collectibles",
+      "subs": 5
+    },
+    {
+      "code": "19",
+      "name": "Toys & Hobbies",
+      "subs": 8
+    },
+    {
+      "code": "11",
+      "name": "Kitchenware",
+      "subs": 9
+    },
+    {
+      "code": "22",
+      "name": "Home Improvement",
+      "subs": 9
+    },
+    {
+      "code": "15",
+      "name": "Computers & Office Equipment",
+      "subs": 7
+    },
+    {
+      "code": "7",
+      "name": "Luggage & Bags",
+      "subs": 5
+    },
+    {
+      "code": "6",
+      "name": "Shoes",
+      "subs": 3
+    },
+    {
+      "code": "21",
+      "name": "Tools & Hardware",
+      "subs": 8
+    },
+    {
+      "code": "12",
+      "name": "Textiles & Soft Furnishings",
+      "subs": 3
+    },
+    {
+      "code": "13",
+      "name": "Household Appliances",
+      "subs": 4
+    },
+    {
+      "code": "17",
+      "name": "Pet Supplies",
+      "subs": 12
+    },
+    {
+      "code": "28",
+      "name": "Jewelry Accessories & Derivatives",
+      "subs": 13
+    },
+    {
+      "code": "26",
+      "name": "Books, Magazines & Audio",
+      "subs": 9
+    },
+    {
+      "code": "18",
+      "name": "Baby & Maternity",
+      "subs": 10
+    },
+    {
+      "code": "20",
+      "name": "Furniture",
+      "subs": 4
+    },
+    {
+      "code": "4",
+      "name": "Kids' Fashion",
+      "subs": 5
+    },
+    {
+      "code": "5",
+      "name": "Muslim Fashion",
+      "subs": 9
+    },
+    {
+      "code": "31",
+      "name": "Pre-Owned",
+      "subs": 9
+    },
+    {
+      "code": "27",
+      "name": "Virtual Products",
+      "subs": 1
+    }
+  ],
+  "products": [
+    {
+      "product_id": "1729508370969629931",
+      "sold_count": 6485,
+      "sale_amount": 136185,
+      "yd_sold_count": 6485,
+      "yd_sale_amount": 136185,
+      "is_sshop": "0",
+      "total_sold_count": 89475,
+      "total_sale_amount": 1942881,
+      "off_shelves": 0,
+      "launch_time": "2026-03-18 13:11:24",
+      "sold_count_inc_rate": "2.03%",
+      "aweme_count": 86,
+      "live_count": 32,
+      "author_count": 89,
+      "title": "[NEW] [medicube] PDRN Pink Collagen Volume Multi Balm | All In One Volufiline, PDRN, NAD Stick for Youthful-Looking, Helping Look of Fine Lines, Firming Care, Anti-Aging Care | For Under-Eyes, Neck, Forehead, Smile Lines, Lip Care | Korean Skincare",
+      "cover": "https://s.500fd.com/tt_product/f7088654cd124ddbb53b7d7a5cdecaa5~tplv-fhlh96nyum-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$21.00  - 7,599.00",
+      "commission_rate": "15%",
+      "all_category_name": [
+        "Beauty & Personal Care",
+        "Skincare",
+        "Skin Care Kits"
+      ],
+      "category_name": [
+        "Skin Care Kits"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1729508370969629931?region=US&local=en",
+      "source": "TikTok Shop",
+      "ctime": "2026-03-18 13:11:24",
+      "total_author_count": 1132,
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/3fda6fbf695c4a8792a3059b4e1546e3~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "seller_id": "7495514739648989419",
+        "name": "medicube US Store",
+        "sold_count": 4310513,
+        "is_sshop": "0",
+        "sold_count_show": "4.3m"
+      },
+      "is_collect": 0,
+      "sold_count_show": "6.4k",
+      "sale_amount_show": "$136.1k",
+      "yd_sold_count_show": "6.4k",
+      "yd_sale_amount_show": "$136.1k",
+      "total_sold_count_show": "89.4k",
+      "total_sale_amount_show": "$1.9m",
+      "sold_count_inc_rate_show": "2.03%",
+      "aweme_count_show": "86",
+      "live_count_show": "32",
+      "author_count_show": "89",
+      "region_name": "United States",
+      "commission_rate_show": "15%",
+      "total_author_count_show": "1.1k",
+      "_source_type": "top_selling"
+    },
+    {
+      "product_id": "1731494860163420306",
+      "sold_count": 6420,
+      "sale_amount": 109075.8,
+      "yd_sold_count": 6420,
+      "yd_sale_amount": 109075.8,
+      "is_sshop": "0",
+      "total_sold_count": 128387,
+      "total_sale_amount": 2314335.36,
+      "off_shelves": 0,
+      "launch_time": "2025-07-24 12:44:17",
+      "sold_count_inc_rate": "139.2%",
+      "aweme_count": 21,
+      "live_count": 20,
+      "author_count": 31,
+      "title": "LeeFar Cutting Drink Mix – | Strawberry Açaí Flavor – 30 Servings",
+      "cover": "https://s.500fd.com/tt_product/f2aea5155ec1450ab44738195d8bfde8~tplv-fhlh96nyum-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$16.99",
+      "commission_rate": "25%",
+      "all_category_name": [
+        "Health",
+        "Food Supplements",
+        "Wellness Supplements"
+      ],
+      "category_name": [
+        "Wellness Supplements"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1731494860163420306?region=US&local=en",
+      "source": null,
+      "ctime": "2025-07-24 12:44:17",
+      "total_author_count": 1799,
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/b9d2d6bdad654b3682011ee1377da302~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "seller_id": "7495459650259355794",
+        "name": "Leefar Nutrition Co.",
+        "sold_count": 305379,
+        "is_sshop": "0",
+        "sold_count_show": "305.3k"
+      },
+      "is_collect": 0,
+      "sold_count_show": "6.4k",
+      "sale_amount_show": "$109.0k",
+      "yd_sold_count_show": "6.4k",
+      "yd_sale_amount_show": "$109.0k",
+      "total_sold_count_show": "128.3k",
+      "total_sale_amount_show": "$2.3m",
+      "sold_count_inc_rate_show": "139.2%",
+      "aweme_count_show": "21",
+      "live_count_show": "20",
+      "author_count_show": "31",
+      "region_name": "United States",
+      "commission_rate_show": "25%",
+      "total_author_count_show": "1.8k",
+      "_source_type": "top_selling"
+    },
+    {
+      "product_id": "1731493330376168096",
+      "sold_count": 5942,
+      "sale_amount": 100954.58,
+      "yd_sold_count": 5942,
+      "yd_sale_amount": 100954.58,
+      "is_sshop": "0",
+      "total_sold_count": 156361,
+      "total_sale_amount": 2668043.33,
+      "off_shelves": 0,
+      "launch_time": "2025-07-24 12:44:08",
+      "sold_count_inc_rate": "76.06%",
+      "aweme_count": 49,
+      "live_count": 25,
+      "author_count": 44,
+      "title": "LeeFar Cutting Drink Mix –| Strawberry Açaí Flavor – 30 Servings",
+      "cover": "https://s.500fd.com/tt_product/4e3945cc1ae043f29009264b96e2c75b~tplv-fhlh96nyum-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$16.99",
+      "commission_rate": "25%",
+      "all_category_name": [
+        "Health",
+        "Food Supplements",
+        "Wellness Supplements"
+      ],
+      "category_name": [
+        "Wellness Supplements"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1731493330376168096?region=US&local=en",
+      "source": null,
+      "ctime": "2025-07-24 12:44:08",
+      "total_author_count": 2445,
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/a9d06cb7643243439826c6643d5b6cee~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "seller_id": "7495951453623650976",
+        "name": "Leefar Supplements",
+        "sold_count": 307397,
+        "is_sshop": "0",
+        "sold_count_show": "307.4k"
+      },
+      "is_collect": 0,
+      "sold_count_show": "5.9k",
+      "sale_amount_show": "$100.9k",
+      "yd_sold_count_show": "5.9k",
+      "yd_sale_amount_show": "$100.9k",
+      "total_sold_count_show": "156.3k",
+      "total_sale_amount_show": "$2.6m",
+      "sold_count_inc_rate_show": "76.06%",
+      "aweme_count_show": "49",
+      "live_count_show": "25",
+      "author_count_show": "44",
+      "region_name": "United States",
+      "commission_rate_show": "25%",
+      "total_author_count_show": "2.4k",
+      "_source_type": "top_selling"
+    },
+    {
+      "product_id": "1729448464509734958",
+      "sold_count": 5746,
+      "sale_amount": 146350.62,
+      "yd_sold_count": 5746,
+      "yd_sale_amount": 146350.62,
+      "is_sshop": "0",
+      "total_sold_count": 1103074,
+      "total_sale_amount": 29637511.82,
+      "off_shelves": 0,
+      "launch_time": "2024-03-28 15:38:46",
+      "sold_count_inc_rate": "5.32%",
+      "aweme_count": 27,
+      "live_count": 59,
+      "author_count": 65,
+      "title": "Toplux Magnesium Complex 8 Essential Magnesium Supplement 1000mg",
+      "cover": "https://s.500fd.com/tt_product/0b7d3556b58d451daa2fab65d1eedf91~tplv-fhlh96nyum-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$25.47",
+      "commission_rate": "30%",
+      "all_category_name": [
+        "Health",
+        "Food Supplements",
+        "Wellness Supplements"
+      ],
+      "category_name": [
+        "Wellness Supplements"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1729448464509734958?region=US&local=en",
+      "source": "TikTok Shop",
+      "ctime": "2024-03-28 15:38:46",
+      "total_author_count": 10255,
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/35e90bd8b9764783a6b730c75daebc18~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "seller_id": "7495620301677955118",
+        "name": "Toplux Nutrition",
+        "sold_count": 2023482,
+        "is_sshop": "0",
+        "sold_count_show": "2.0m"
+      },
+      "is_collect": 0,
+      "sold_count_show": "5.7k",
+      "sale_amount_show": "$146.3k",
+      "yd_sold_count_show": "5.7k",
+      "yd_sale_amount_show": "$146.3k",
+      "total_sold_count_show": "1.1m",
+      "total_sale_amount_show": "$29.6m",
+      "sold_count_inc_rate_show": "5.32%",
+      "aweme_count_show": "27",
+      "live_count_show": "59",
+      "author_count_show": "65",
+      "region_name": "United States",
+      "commission_rate_show": "30%",
+      "total_author_count_show": "10.2k",
+      "_source_type": "top_selling"
+    },
+    {
+      "product_id": "1732164626458252048",
+      "sold_count": 3496,
+      "sale_amount": 69885.04,
+      "yd_sold_count": 3496,
+      "yd_sale_amount": 69885.04,
+      "is_sshop": "0",
+      "total_sold_count": 107018,
+      "total_sale_amount": 2183040.11,
+      "off_shelves": 0,
+      "launch_time": "2026-01-15 07:32:51",
+      "sold_count_inc_rate": "7.5%",
+      "aweme_count": 30,
+      "live_count": 12,
+      "author_count": 30,
+      "title": "Hismile iD Stain Whitening Mouthwash for White Teeth, Freshens Breath with Essential Oils 237ml",
+      "cover": "https://s.500fd.com/tt_product/b63c2a2f45164ed882a8a33ffa869b9b~tplv-fhlh96nyum-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$19.99",
+      "commission_rate": "20%",
+      "all_category_name": [
+        "Beauty & Personal Care",
+        "Nasal & Oral Care",
+        "Mouthwash"
+      ],
+      "category_name": [
+        "Mouthwash"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1732164626458252048?region=US&local=en",
+      "source": null,
+      "ctime": "2026-01-15 07:32:51",
+      "total_author_count": 1562,
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/09944f333b154da39ab82c3e820cdd7f~tplv-fhlh96nyum-resize-png:300:300.png",
+        "seller_id": "7495362921314224912",
+        "name": "Hismile US",
+        "sold_count": 498803,
+        "is_sshop": "0",
+        "sold_count_show": "498.8k"
+      },
+      "is_collect": 0,
+      "sold_count_show": "3.5k",
+      "sale_amount_show": "$69.8k",
+      "yd_sold_count_show": "3.5k",
+      "yd_sale_amount_show": "$69.8k",
+      "total_sold_count_show": "107.0k",
+      "total_sale_amount_show": "$2.1m",
+      "sold_count_inc_rate_show": "7.5%",
+      "aweme_count_show": "30",
+      "live_count_show": "12",
+      "author_count_show": "30",
+      "region_name": "United States",
+      "commission_rate_show": "20%",
+      "total_author_count_show": "1.5k",
+      "_source_type": "top_selling"
+    },
+    {
+      "product_id": "1729439403414032705",
+      "sold_count": 3148,
+      "sale_amount": 28457.92,
+      "yd_sold_count": 3148,
+      "yd_sale_amount": 28457.92,
+      "is_sshop": "1",
+      "total_sold_count": 45064,
+      "total_sale_amount": 361880.81,
+      "off_shelves": 0,
+      "launch_time": "2024-02-08 18:36:38",
+      "sold_count_inc_rate": "390.34%",
+      "aweme_count": 0,
+      "live_count": 9,
+      "author_count": 8,
+      "title": "Women's Fashion Casual Plain Midi Dress, Slim-Fitting Sleeveless Design, Perfect for Daily Wear, Stylish and Comfortable",
+      "cover": "https://s.500fd.com/tt_product/7415e70e943f40fcad6ce6c171b5aaac~tplv-fhlh96nyum-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$9.04  - 12.04",
+      "commission_rate": "8%",
+      "all_category_name": [
+        "Womenswear & Underwear",
+        "Women's Dresses",
+        "Casual Dresses"
+      ],
+      "category_name": [
+        "Casual Dresses"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1729439403414032705?region=US&local=en",
+      "source": "TikTok Shop",
+      "ctime": "2024-02-08 18:36:38",
+      "total_author_count": 788,
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/dd8393c5faa44ed3b97712e90207f364~tplv-aphluv4xwc-resize-png:300:300.png",
+        "seller_id": "8646979663327891777",
+        "name": "in da club",
+        "sold_count": 246973,
+        "is_sshop": "1",
+        "sold_count_show": "246.9k"
+      },
+      "is_collect": 0,
+      "sold_count_show": "3.1k",
+      "sale_amount_show": "$28.4k",
+      "yd_sold_count_show": "3.1k",
+      "yd_sale_amount_show": "$28.4k",
+      "total_sold_count_show": "45.0k",
+      "total_sale_amount_show": "$361.8k",
+      "sold_count_inc_rate_show": "390.34%",
+      "aweme_count_show": "0",
+      "live_count_show": "9",
+      "author_count_show": "8",
+      "region_name": "United States",
+      "commission_rate_show": "8%",
+      "total_author_count_show": "788",
+      "_source_type": "top_selling"
+    },
+    {
+      "product_id": "1729718141631565851",
+      "sold_count": 3079,
+      "sale_amount": 70817,
+      "yd_sold_count": 3079,
+      "yd_sale_amount": 70817,
+      "is_sshop": "0",
+      "total_sold_count": 654479,
+      "total_sale_amount": 14634316.1,
+      "off_shelves": 0,
+      "launch_time": "2024-11-07 23:14:22",
+      "sold_count_inc_rate": "-14.47%",
+      "aweme_count": 11,
+      "live_count": 9,
+      "author_count": 16,
+      "title": "[Dr.Melaxin Official] Calcium Multi Balm Eye Care Routine Korean Skin Care Anti-aging Cosmetics Collagen Eye Stick 9g",
+      "cover": "https://s.500fd.com/tt_product/d425676493a24893b97f3b6235c2b142~tplv-fhlh96nyum-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$23.00",
+      "commission_rate": "15%",
+      "all_category_name": [
+        "Beauty & Personal Care",
+        "Skincare",
+        "Moisturizers & Mists"
+      ],
+      "category_name": [
+        "Moisturizers & Mists"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1729718141631565851?region=US&local=en",
+      "source": "TikTok Shop",
+      "ctime": "2024-11-07 23:14:22",
+      "total_author_count": 5872,
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/35249ab76437453aa1154620ca308b66~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "seller_id": "7495830785034323995",
+        "name": "Dr.Melaxin",
+        "sold_count": 3348758,
+        "is_sshop": "0",
+        "sold_count_show": "3.3m"
+      },
+      "is_collect": 0,
+      "sold_count_show": "3.0k",
+      "sale_amount_show": "$70.8k",
+      "yd_sold_count_show": "3.0k",
+      "yd_sale_amount_show": "$70.8k",
+      "total_sold_count_show": "654.4k",
+      "total_sale_amount_show": "$14.6m",
+      "sold_count_inc_rate_show": "-14.47%",
+      "aweme_count_show": "11",
+      "live_count_show": "9",
+      "author_count_show": "16",
+      "region_name": "United States",
+      "commission_rate_show": "15%",
+      "total_author_count_show": "5.8k",
+      "_source_type": "top_selling"
+    },
+    {
+      "product_id": "1731406217255686451",
+      "sold_count": 2411,
+      "sale_amount": 48195.89,
+      "yd_sold_count": 2411,
+      "yd_sale_amount": 48195.89,
+      "is_sshop": "0",
+      "total_sold_count": 452041,
+      "total_sale_amount": 8959452.97,
+      "off_shelves": 0,
+      "launch_time": "2025-07-25 13:10:01",
+      "sold_count_inc_rate": "-4.7%",
+      "aweme_count": 9,
+      "live_count": 9,
+      "author_count": 12,
+      "title": "OEAK Women Jelly Bras Wirefree Full Coverage No Underwire Everyday Bras Comfortable Wireless Padded Tshirt Bra",
+      "cover": "https://s.500fd.com/tt_product/7f7fbb2860a94844a431a0e09d494090~tplv-fhlh96nyum-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$19.99  - 20.99",
+      "commission_rate": "10%",
+      "all_category_name": [
+        "Womenswear & Underwear",
+        "Women's Underwear",
+        "Bras"
+      ],
+      "category_name": [
+        "Bras"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1731406217255686451?region=US&local=en",
+      "source": null,
+      "ctime": "2025-07-25 13:10:01",
+      "total_author_count": 2048,
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/6fe9824d7f7e4636b2aae17e0eb87fab~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "seller_id": "7495342967492151603",
+        "name": "OEAK Apparel",
+        "sold_count": 964642,
+        "is_sshop": "0",
+        "sold_count_show": "964.6k"
+      },
+      "is_collect": 0,
+      "sold_count_show": "2.4k",
+      "sale_amount_show": "$48.2k",
+      "yd_sold_count_show": "2.4k",
+      "yd_sale_amount_show": "$48.2k",
+      "total_sold_count_show": "452.0k",
+      "total_sale_amount_show": "$8.9m",
+      "sold_count_inc_rate_show": "-4.7%",
+      "aweme_count_show": "9",
+      "live_count_show": "9",
+      "author_count_show": "12",
+      "region_name": "United States",
+      "commission_rate_show": "10%",
+      "total_author_count_show": "2.0k",
+      "_source_type": "top_selling"
+    },
+    {
+      "product_id": "1731879234948338174",
+      "sold_count": 2335,
+      "sale_amount": 39671.65,
+      "yd_sold_count": 2335,
+      "yd_sale_amount": 39671.65,
+      "is_sshop": "0",
+      "total_sold_count": 565500,
+      "total_sale_amount": 10802571.44,
+      "off_shelves": 0,
+      "launch_time": "2025-11-10 23:46:59",
+      "sold_count_inc_rate": "58.52%",
+      "aweme_count": 12,
+      "live_count": 13,
+      "author_count": 19,
+      "title": "DRDENT Purple Teeth Whitening Strips - 7/21 Whitening Sessions - Safe for Enamel - Non Sensitive Teeth Whitening - Peroxide-Free",
+      "cover": "https://s.500fd.com/tt_product/a2438659330e4657a1c5d4bed3a69496~tplv-fhlh96nyum-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$16.99  - 39.99",
+      "commission_rate": "15%",
+      "all_category_name": [
+        "Beauty & Personal Care",
+        "Nasal & Oral Care",
+        "Teeth Whitening\t"
+      ],
+      "category_name": [
+        "Teeth Whitening\t"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1731879234948338174?region=US&local=en",
+      "source": null,
+      "ctime": "2025-11-10 23:46:59",
+      "total_author_count": 5178,
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/a11f13aa845547968f5d7d5b6fba0bc7~tplv-omjb5zjo8w-resize-png:300:300.png",
+        "seller_id": "7496035262963943934",
+        "name": "DR DENT",
+        "sold_count": 597443,
+        "is_sshop": "0",
+        "sold_count_show": "597.4k"
+      },
+      "is_collect": 0,
+      "sold_count_show": "2.3k",
+      "sale_amount_show": "$39.6k",
+      "yd_sold_count_show": "2.3k",
+      "yd_sale_amount_show": "$39.6k",
+      "total_sold_count_show": "565.5k",
+      "total_sale_amount_show": "$10.8m",
+      "sold_count_inc_rate_show": "58.52%",
+      "aweme_count_show": "12",
+      "live_count_show": "13",
+      "author_count_show": "19",
+      "region_name": "United States",
+      "commission_rate_show": "15%",
+      "total_author_count_show": "5.1k",
+      "_source_type": "top_selling"
+    },
+    {
+      "product_id": "1731997246433955867",
+      "sold_count": 2308,
+      "sale_amount": 159252,
+      "yd_sold_count": 2308,
+      "yd_sale_amount": 159252,
+      "is_sshop": "0",
+      "total_sold_count": 282731,
+      "total_sale_amount": 18806115.3,
+      "off_shelves": 0,
+      "launch_time": "2025-11-04 11:38:55",
+      "sold_count_inc_rate": "27.94%",
+      "aweme_count": 10,
+      "live_count": 33,
+      "author_count": 27,
+      "title": "[Dr.Melaxin Official] Gifted Collagen Boost Set Pore Spot Skin Care Calcium Collagen Volume Firming Balm for Enhanced Skin Health routine",
+      "cover": "https://s.500fd.com/tt_product/08dfff00178f4178a8ab6ab1431c5281~tplv-fhlh96nyum-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$69.00",
+      "commission_rate": "15%",
+      "all_category_name": [
+        "Beauty & Personal Care",
+        "Skincare",
+        "Skin Care Kits"
+      ],
+      "category_name": [
+        "Skin Care Kits"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1731997246433955867?region=US&local=en",
+      "source": "TikTok Shop",
+      "ctime": "2025-11-04 11:38:55",
+      "total_author_count": 2887,
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/35249ab76437453aa1154620ca308b66~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "seller_id": "7495830785034323995",
+        "name": "Dr.Melaxin",
+        "sold_count": 3348758,
+        "is_sshop": "0",
+        "sold_count_show": "3.3m"
+      },
+      "is_collect": 0,
+      "sold_count_show": "2.3k",
+      "sale_amount_show": "$159.2k",
+      "yd_sold_count_show": "2.3k",
+      "yd_sale_amount_show": "$159.2k",
+      "total_sold_count_show": "282.7k",
+      "total_sale_amount_show": "$18.8m",
+      "sold_count_inc_rate_show": "27.94%",
+      "aweme_count_show": "10",
+      "live_count_show": "33",
+      "author_count_show": "27",
+      "region_name": "United States",
+      "commission_rate_show": "15%",
+      "total_author_count_show": "2.8k",
+      "_source_type": "top_selling"
+    },
+    {
+      "product_id": "1729384282250514779",
+      "sold_count": 355,
+      "sale_amount": 12421.45,
+      "yd_sold_count": 355,
+      "yd_sale_amount": 12421.45,
+      "total_sold_count": 2197,
+      "total_sale_amount": 76873.03,
+      "author_count": 11,
+      "total_author_count": 23,
+      "aweme_count": 14,
+      "live_count": 11,
+      "title": "Popdarts Pro Pack (Bleen & Yurple)",
+      "cover": "https://s.500fd.com/tt_product/51ce302aa9394f33888e920b2fd042b5~tplv-omjb5zjo8w-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$34.99",
+      "commission_rate": "10%",
+      "category_name": [
+        "Sports & Outdoor"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1729384282250514779?region=US&local=en",
+      "source": "TikTok Shop",
+      "ctime": "2023-04-29 06:18:09",
+      "sold_count_inc_rate": "13.84%",
+      "sold_count_inc_rate_show": "13.84%",
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/3d17aa2a22e542cb8597350d379cf13d~tplv-omjb5zjo8w-resize-png:300:300.png",
+        "seller_id": "7494971074604009819",
+        "name": "Popdarts Game",
+        "sold_count": 2849,
+        "sold_count_show": "2.8k"
+      },
+      "sold_count_show": "355",
+      "sale_amount_show": "$12.4k",
+      "yd_sold_count_show": "355",
+      "yd_sale_amount_show": "$12.4k",
+      "total_sold_count_show": "2.2k",
+      "total_sale_amount_show": "$76.8k",
+      "author_count_show": "11",
+      "total_author_count_show": "23",
+      "aweme_count_show": "14",
+      "live_count_show": "11",
+      "region_name": "United States",
+      "_source_type": "category_top",
+      "_category": "Beauty & Personal Care"
+    },
+    {
+      "product_id": "1729384201251295402",
+      "sold_count": 270,
+      "sale_amount": 9447.3,
+      "yd_sold_count": 270,
+      "yd_sale_amount": 9447.3,
+      "total_sold_count": 894,
+      "total_sale_amount": 31270.54,
+      "author_count": 10,
+      "total_author_count": 30,
+      "aweme_count": 0,
+      "live_count": 11,
+      "title": "Pack of 2 Cell Phone Seats - Cell Phone Mount for Cup Holder - Holds Any Phone Vertical or Horizontal - Fits In Cup Holder - Amazingly Leaves Room For Drink - MADE IN AMERICA by a Veteran-Owned Business",
+      "cover": "https://s.500fd.com/tt_product/aa052cb59110455e94fbdce53b96f196~tplv-omjb5zjo8w-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$34.99",
+      "commission_rate": "50%",
+      "category_name": [
+        "Phones & Electronics"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1729384201251295402?region=US&local=en",
+      "source": "TikTok Shop",
+      "ctime": "2023-04-20 01:39:13",
+      "sold_count_inc_rate": "13.84%",
+      "sold_count_inc_rate_show": "13.84%",
+      "shop_info": {
+        "avatar": "https://s.500fd.com/default/shop_default.png",
+        "seller_id": "7494983329385580714",
+        "name": "Cell Phone Seat",
+        "sold_count": 3806,
+        "sold_count_show": "3.8k"
+      },
+      "sold_count_show": "270",
+      "sale_amount_show": "$9.4k",
+      "yd_sold_count_show": "270",
+      "yd_sale_amount_show": "$9.4k",
+      "total_sold_count_show": "894",
+      "total_sale_amount_show": "$31.2k",
+      "author_count_show": "10",
+      "total_author_count_show": "30",
+      "aweme_count_show": "0",
+      "live_count_show": "11",
+      "region_name": "United States",
+      "_source_type": "category_top",
+      "_category": "Beauty & Personal Care"
+    },
+    {
+      "product_id": "1729384061098168377",
+      "sold_count": 160,
+      "sale_amount": 1912,
+      "yd_sold_count": 160,
+      "yd_sale_amount": 1912,
+      "total_sold_count": 14880,
+      "total_sale_amount": 150749.25,
+      "author_count": 0,
+      "total_author_count": 1,
+      "aweme_count": 0,
+      "live_count": 0,
+      "title": "Lion Latch travel jewelry box",
+      "cover": "https://s.500fd.com/tt_product/51ce302aa9394f33888e920b2fd042b5~tplv-omjb5zjo8w-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$11.95 - 35.50",
+      "commission_rate": "-",
+      "category_name": [
+        "Fashion Accessories"
+      ],
+      "detail_url": "",
+      "source": null,
+      "ctime": "2023-03-10 08:48:49",
+      "sold_count_inc_rate": "13.84%",
+      "sold_count_inc_rate_show": "13.84%",
+      "shop_info": {
+        "avatar": "https://s.500fd.com/default/shop_default.png",
+        "seller_id": "7494958519896606777",
+        "name": "Lion Latch",
+        "sold_count": 15167,
+        "sold_count_show": "15.1k"
+      },
+      "sold_count_show": "160",
+      "sale_amount_show": "$1.9k",
+      "yd_sold_count_show": "160",
+      "yd_sale_amount_show": "$1.9k",
+      "total_sold_count_show": "14.8k",
+      "total_sale_amount_show": "$150.7k",
+      "author_count_show": "0",
+      "total_author_count_show": "1",
+      "aweme_count_show": "0",
+      "live_count_show": "0",
+      "region_name": "United States",
+      "_source_type": "category_top",
+      "_category": "Beauty & Personal Care"
+    },
+    {
+      "product_id": "1729384285812265350",
+      "sold_count": 147,
+      "sale_amount": 5586,
+      "yd_sold_count": 147,
+      "yd_sale_amount": 5586,
+      "total_sold_count": 555,
+      "total_sale_amount": 21090,
+      "author_count": 2,
+      "total_author_count": 3,
+      "aweme_count": 0,
+      "live_count": 3,
+      "title": "Tarotorial Tarot Training Deck - Classic Edition",
+      "cover": "https://s.500fd.com/tt_product/51ce302aa9394f33888e920b2fd042b5~tplv-omjb5zjo8w-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$38.00",
+      "commission_rate": "2%",
+      "category_name": [
+        "Books"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1729384285812265350?region=US&local=en",
+      "source": "TikTok Shop",
+      "ctime": "2023-05-05 15:22:07",
+      "sold_count_inc_rate": "13.84%",
+      "sold_count_inc_rate_show": "13.84%",
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/a4a4981e3bcd450caded0da52fdc6800~tplv-omjb5zjo8w-resize-png:300:300.png",
+        "seller_id": "7495031507026020742",
+        "name": "Raven and Rogue",
+        "sold_count": 648,
+        "sold_count_show": "648"
+      },
+      "sold_count_show": "147",
+      "sale_amount_show": "$5.5k",
+      "yd_sold_count_show": "147",
+      "yd_sale_amount_show": "$5.5k",
+      "total_sold_count_show": "555",
+      "total_sale_amount_show": "$21.0k",
+      "author_count_show": "2",
+      "total_author_count_show": "3",
+      "aweme_count_show": "0",
+      "live_count_show": "3",
+      "region_name": "United States",
+      "_source_type": "category_top",
+      "_category": "Beauty & Personal Care"
+    },
+    {
+      "product_id": "1729384243523719914",
+      "sold_count": 121,
+      "sale_amount": 1450.79,
+      "yd_sold_count": 121,
+      "yd_sale_amount": 1450.79,
+      "total_sold_count": 673,
+      "total_sale_amount": 8069.27,
+      "author_count": 5,
+      "total_author_count": 9,
+      "aweme_count": 0,
+      "live_count": 7,
+      "title": "Scrub Daddy Color Sponge - Scratch-Free Multipurpose Dish Sponge Color Variety Pack - BPA Free & Made with Polymer Foam - Stain, Mold & Odor Resistant Kitchen Sponge (3 Count)",
+      "cover": "https://s.500fd.com/tt_product/51ce302aa9394f33888e920b2fd042b5~tplv-omjb5zjo8w-resize-jpeg:800:800.jpeg",
+      "region": "US",
+      "currency": "USD",
+      "real_price": "$11.99",
+      "commission_rate": "5%",
+      "category_name": [
+        "Home Supplies"
+      ],
+      "detail_url": "https://shop.tiktok.com/view/product/1729384243523719914?region=US&local=en",
+      "source": "TikTok Shop",
+      "ctime": "2023-04-15 02:00:09",
+      "sold_count_inc_rate": "13.84%",
+      "sold_count_inc_rate_show": "13.84%",
+      "shop_info": {
+        "avatar": "https://s.500fd.com/tt_shop/5841c4f3414d4b6dbec7f894d748dbb3~tplv-omjb5zjo8w-resize-png:300:300.png",
+        "seller_id": "7494870167389571818",
+        "name": "Snuggle Store",
+        "sold_count": 8036,
+        "sold_count_show": "8.0k"
+      },
+      "sold_count_show": "121",
+      "sale_amount_show": "$1.4k",
+      "yd_sold_count_show": "121",
+      "yd_sale_amount_show": "$1.4k",
+      "total_sold_count_show": "673",
+      "total_sale_amount_show": "$8.0k",
+      "author_count_show": "5",
+      "total_author_count_show": "9",
+      "aweme_count_show": "0",
+      "live_count_show": "7",
+      "region_name": "United States",
+      "_source_type": "category_top",
+      "_category": "Beauty & Personal Care"
+    }
+  ],
+  "creators": [
+    {
+      "uid": "5831967",
+      "nickname": "charli d’amelio",
+      "unique_id": "charlidamelio",
+      "avatar": "https://s.500fd.com/tt_author/ee31de49ddf64b45c5b2e3c55fbd0ea4~tplv-tiktokx-cropcenter:100:100.jpeg",
+      "region": "US",
+      "category": [
+        "Public Figure"
+      ],
+      "aweme_count": 3024,
+      "aweme_30d_count": 0,
+      "follower_count": 156696621,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 0,
+      "avg_digg_count": 3864562,
+      "avg_play_count": 34767563,
+      "verify_type": "1",
+      "follower_28d_count": 483674,
+      "total_favorited_28d_count": 0,
+      "video_sale_amount": 117.29,
+      "live_sale_amount": 0,
+      "interact_rate": "11.12%",
+      "market_category_l1_name": [
+        "Fashion"
+      ],
+      "live_type": 2,
+      "is_ecommerce": 1,
+      "contact": [
+        {
+          "code": 3,
+          "name": "Email",
+          "cover": "https://cdn.500fd.com/public_web/email230616.png"
+        },
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        },
+        {
+          "code": 10,
+          "name": "Bio",
+          "cover": null
+        }
+      ],
+      "sale_amount_list": {
+        "list": [],
+        "total": 0,
+        "total_show": ""
+      },
+      "sale_count_list": [],
+      "fansPortrait": {
+        "uid": "5831967",
+        "follower_genders": [
+          {
+            "key": "female",
+            "value": 71,
+            "show": "71%"
+          },
+          {
+            "key": "male",
+            "value": 29,
+            "show": "29%"
+          }
+        ],
+        "follower_ages": [
+          {
+            "key": "other",
+            "value": 38,
+            "show": "38%"
+          },
+          {
+            "key": "18-24",
+            "value": 29,
+            "show": "29%"
+          },
+          {
+            "key": "25-34",
+            "value": 15,
+            "show": "15%"
+          },
+          {
+            "key": "13-17",
+            "value": 8,
+            "show": "8%"
+          },
+          {
+            "key": "35-44",
+            "value": 6,
+            "show": "6%"
+          }
+        ],
+        "state_distribution": [
+          {
+            "key": "CALIFORNIA",
+            "value": "26.69",
+            "show": "26.69%"
+          },
+          {
+            "key": "TEXAS",
+            "value": "24.52",
+            "show": "24.52%"
+          },
+          {
+            "key": "NEW YORK",
+            "value": "19.66",
+            "show": "19.66%"
+          },
+          {
+            "key": "FLORIDA",
+            "value": "17.80",
+            "show": "17.80%"
+          },
+          {
+            "key": "ILLINOIS",
+            "value": "11.32",
+            "show": "11.32%"
+          }
+        ],
+        "follower_genders_max": {
+          "key": "female",
+          "value": 71,
+          "show": "71%"
+        },
+        "follower_ages_max": {
+          "key": "other",
+          "value": 38,
+          "show": "38%"
+        },
+        "state_distribution_max": {
+          "key": "CALIFORNIA",
+          "value": "26.69",
+          "show": "26.69%"
+        },
+        "spread": {
+          "0": {
+            "uid": "5831967",
+            "follower_genders": "[{\"key\":\"female\",\"value\":\"0.7106\"},{\"key\":\"male\",\"value\":\"0.2894\"}]",
+            "follower_ages": "[{\"key\":\"other\",\"value\":\"0.3757\"},{\"key\":\"18-24\",\"value\":\"0.2918\"},{\"key\":\"25-34\",\"value\":\"0.1482\"},{\"key\":\"13-17\",\"value\":\"0.0783\"},{\"key\":\"35-44\",\"value\":\"0.0599\"}]",
+            "state_distribution": "[{\"key\": \"CALIFORNIA\", \"value\": \"1009\"}, {\"key\": \"TEXAS\", \"value\": \"927\"}, {\"key\": \"NEW YORK\", \"value\": \"743\"}, {\"key\": \"FLORIDA\", \"value\": \"673\"}, {\"key\": \"ILLINOIS\", \"value\": \"428\"}]"
+          },
+          "follower_genders": "[{\"key\":\"female\",\"value\":0.71},{\"key\":\"male\",\"value\":0.29}]",
+          "follower_ages": "[{\"key\":\"other\",\"value\":0.38},{\"key\":\"18-24\",\"value\":0.29},{\"key\":\"25-34\",\"value\":0.15},{\"key\":\"13-17\",\"value\":0.08},{\"key\":\"35-44\",\"value\":0.06}]",
+          "state_distribution": "{\"CALIFORNIA\":1009,\"TEXAS\":927,\"NEW YORK\":743,\"FLORIDA\":673,\"ILLINOIS\":428}"
+        }
+      },
+      "sale_category_l3_json": [
+        {
+          "leaf_category_id": 601405,
+          "rank_number": 1
+        }
+      ],
+      "sale_category_l1_name": [
+        "Shoes"
+      ],
+      "sale_category_l2_name": [
+        "Women's Shoes"
+      ],
+      "sale_category_l3_name": [
+        " Slippers"
+      ],
+      "first_video_time": 1565460651,
+      "sale_paly_count": 12400000,
+      "avg_28d_sale_play_count": 0,
+      "avg_28d_play_count": 460107,
+      "like_followers_rate": "0.7676%",
+      "video_28d_interaction_rate": "7.71%",
+      "follower_28d_grow_rate": "0.42%",
+      "sale_28d_amount": 0,
+      "sale_28d_count": 0,
+      "video_28d_sale_amount": 0,
+      "live_28d_sale_amount": 0,
+      "play_28d_sale_count": 0,
+      "sale_play_90d_gmv": 0,
+      "sale_live_90d_gmv": 0,
+      "avg_28d_video_like_count": 35103,
+      "avg_28d_sale_video_like_count": 0,
+      "video_90d_sale_gmv_amount": 0,
+      "live_90d_sale_gmv_amount": 0,
+      "prod_video_28d_count": 0,
+      "prod_live_28d_count": 0,
+      "interaction_v1_rate": "11.61%",
+      "like_followers_v1_rate": "0.7676%",
+      "video_28d_interaction_v1_rate": "7.71%",
+      "follower_28d_grow_v1_rate": "0.42%",
+      "like_followers_than": 76.76,
+      "video_28d_sale_proportion": 0,
+      "live_28d_sale_proportion": 0,
+      "prod_video_28d_count_proportion": 0,
+      "prod_live_28d_count_proportion": 0,
+      "is_collect": 0,
+      "region_name": "United States",
+      "aweme_count_show": "3.0k",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "156.7m",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "0",
+      "avg_digg_count_show": "3.8m",
+      "avg_play_count_show": "34.7m",
+      "follower_28d_count_show": "483.6k",
+      "total_favorited_28d_count_show": "0",
+      "video_sale_amount_show": "$117.29",
+      "live_sale_amount_show": "$0",
+      "interact_rate_show": "11.12%",
+      "sale_paly_count_show": "12.4m",
+      "avg_28d_sale_play_count_show": "0",
+      "avg_28d_play_count_show": "460.1k",
+      "like_followers_rate_show": "0.7676%",
+      "video_28d_interaction_rate_show": "7.71%",
+      "follower_28d_grow_rate_show": "0.42%",
+      "sale_28d_amount_show": "$0",
+      "sale_28d_count_show": "0",
+      "video_28d_sale_amount_show": "$0",
+      "live_28d_sale_amount_show": "$0",
+      "play_28d_sale_count_show": "0",
+      "avg_28d_video_like_count_show": "35.1k",
+      "avg_28d_sale_video_like_count_show": "0",
+      "video_90d_sale_gmv_amount_show": "$0",
+      "live_90d_sale_gmv_amount_show": "$0",
+      "prod_video_28d_count_show": "0",
+      "prod_live_28d_count_show": "0",
+      "interaction_v1_rate_show": "11.61%",
+      "like_followers_v1_rate_show": "0.7676%",
+      "video_28d_interaction_v1_rate_show": "7.71%",
+      "follower_28d_grow_v1_rate_show": "0.42%",
+      "_source_type": "top_followers"
+    },
+    {
+      "uid": "6614519312189947909",
+      "nickname": "MrBeast",
+      "unique_id": "mrbeast",
+      "avatar": "https://s.500fd.com/tt_author/1e2348ca19d394037718e3b1d3fc2958~tplv-tiktokx-cropcenter:1080:1080.jpeg",
+      "region": "US",
+      "category": [
+        "Public Figure"
+      ],
+      "aweme_count": 452,
+      "aweme_30d_count": 0,
+      "follower_count": 124658384,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 0,
+      "avg_digg_count": 3181129,
+      "avg_play_count": 35317780,
+      "verify_type": "1",
+      "follower_28d_count": -76732,
+      "total_favorited_28d_count": 0,
+      "video_sale_amount": 0,
+      "live_sale_amount": 0,
+      "interact_rate": "9.01%",
+      "market_category_l1_name": [],
+      "live_type": 4,
+      "is_ecommerce": 0,
+      "contact": [
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        },
+        {
+          "code": 8,
+          "name": "Facebook",
+          "cover": "https://cdn.500fd.com/public_web/facebook230616.png"
+        },
+        {
+          "code": 10,
+          "name": "Bio",
+          "cover": null
+        }
+      ],
+      "sale_amount_list": {
+        "list": [],
+        "total": 0,
+        "total_show": ""
+      },
+      "sale_count_list": [],
+      "fansPortrait": {
+        "uid": "6614519312189947909",
+        "follower_genders": [
+          {
+            "key": "male",
+            "value": 65,
+            "show": "65%"
+          },
+          {
+            "key": "female",
+            "value": 35,
+            "show": "35%"
+          }
+        ],
+        "follower_ages": [
+          {
+            "key": "18-24",
+            "value": 39,
+            "show": "39%"
+          },
+          {
+            "key": "25-34",
+            "value": 27,
+            "show": "27%"
+          },
+          {
+            "key": "35-44",
+            "value": 10,
+            "show": "10%"
+          },
+          {
+            "key": "13-17",
+            "value": 10,
+            "show": "10%"
+          },
+          {
+            "key": "other",
+            "value": 7,
+            "show": "7%"
+          }
+        ],
+        "state_distribution": [
+          {
+            "key": "Texas",
+            "value": "11.86",
+            "show": "11.86%"
+          },
+          {
+            "key": "Ohio",
+            "value": "3.58",
+            "show": "3.58%"
+          },
+          {
+            "key": "Iowa",
+            "value": "1.10",
+            "show": "1.10%"
+          },
+          {
+            "key": "Utah",
+            "value": "1.11",
+            "show": "1.11%"
+          },
+          {
+            "key": "Idaho",
+            "value": "0.46",
+            "show": "0.46%"
+          },
+          {
+            "key": "Maine",
+            "value": "0.29",
+            "show": "0.29%"
+          },
+          {
+            "key": "Alaska",
+            "value": "0.18",
+            "show": "0.18%"
+          },
+          {
+            "key": "Hawaii",
+            "value": "0.33",
+            "show": "0.33%"
+          }
+        ],
+        "follower_genders_max": {
+          "key": "male",
+          "value": 65,
+          "show": "65%"
+        },
+        "follower_ages_max": {
+          "key": "18-24",
+          "value": 39,
+          "show": "39%"
+        },
+        "state_distribution_max": {
+          "key": "Texas",
+          "value": "11.86",
+          "show": "11.86%"
+        },
+        "spread": {
+          "0": {
+            "uid": "6614519312189947909",
+            "follower_genders": "[{\"key\":\"male\",\"value\":\"0.6524\"},{\"key\":\"female\",\"value\":\"0.3476\"}]",
+            "follower_ages": "[{\"key\":\"18-24\",\"value\":\"0.3900\"},{\"key\":\"25-34\",\"value\":\"0.2693\"},{\"key\":\"35-44\",\"value\":\"0.1043\"},{\"key\":\"13-17\",\"value\":\"0.1007\"},{\"key\":\"other\",\"value\":\"0.0657\"}]",
+            "state_distribution": "{\"US\": {\"Iowa\": \"203912\", \"Ohio\": \"663507\", \"Utah\": \"205127\", \"Idaho\": \"84425\", \"Maine\": \"53612\", \"Texas\": \"2199533\", \"Alaska\": \"33730\", \"Hawaii\": \"60850\", \"Kansas\": \"168050\", \"Nevada\": \"188592\", \"Oregon\": \"211257\", \"Alabama\": \"257439\", \"Arizona\": \"424311\", \"Georgia\": \"775800\", \"Indiana\": \"400993\", \"Montana\": \"45617\", \"Vermont\": \"26914\", \"Wyoming\": \"28935\", \"Arkansas\": \"149160\", \"Colorado\": \"343237\", \"Delaware\": \"48825\", \"Illinois\": \"913833\", \"Kentucky\": \"315699\", \"Maryland\": \"333651\", \"Michigan\": \"625077\", \"Missouri\": \"347300\", \"Nebraska\": \"115345\", \"New York\": \"1240017\", \"Oklahoma\": \"224764\", \"Virginia\": \"495488\", \"Louisiana\": \"271937\", \"Minnesota\": \"284856\", \"Tennessee\": \"389837\", \"Wisconsin\": \"297536\", \"California\": \"2297779\", \"New Jersey\": \"516680\", \"New Mexico\": \"141345\", \"Washington\": \"408970\", \"Connecticut\": \"194099\", \"Mississippi\": \"142866\", \"North Dakota\": \"42848\", \"Pennsylvania\": \"738923\", \"Rhode Island\": \"65517\", \"South Dakota\": \"50004\", \"Massachusetts\": \"380210\", \"New Hampshire\": \"60850\", \"West Virginia\": \"94920\", \"North Carolina\": \"672733\", \"South Carolina\": \"250745\", \"District of Columbia\": \"51118\"}}"
+          },
+          "follower_genders": "[{\"key\":\"male\",\"value\":0.65},{\"key\":\"female\",\"value\":0.35}]",
+          "follower_ages": "[{\"key\":\"18-24\",\"value\":0.39},{\"key\":\"25-34\",\"value\":0.27},{\"key\":\"35-44\",\"value\":0.1},{\"key\":\"13-17\",\"value\":0.1},{\"key\":\"other\",\"value\":0.07}]",
+          "state_distribution": "{\"Iowa\":\"203912\",\"Ohio\":\"663507\",\"Utah\":\"205127\",\"Idaho\":\"84425\",\"Maine\":\"53612\",\"Texas\":\"2199533\",\"Alaska\":\"33730\",\"Hawaii\":\"60850\",\"Kansas\":\"168050\",\"Nevada\":\"188592\",\"Oregon\":\"211257\",\"Alabama\":\"257439\",\"Arizona\":\"424311\",\"Georgia\":\"775800\",\"Indiana\":\"400993\",\"Montana\":\"45617\",\"Vermont\":\"26914\",\"Wyoming\":\"28935\",\"Arkansas\":\"149160\",\"Colorado\":\"343237\",\"Delaware\":\"48825\",\"Illinois\":\"913833\",\"Kentucky\":\"315699\",\"Maryland\":\"333651\",\"Michigan\":\"625077\",\"Missouri\":\"347300\",\"Nebraska\":\"115345\",\"New York\":\"1240017\",\"Oklahoma\":\"224764\",\"Virginia\":\"495488\",\"Louisiana\":\"271937\",\"Minnesota\":\"284856\",\"Tennessee\":\"389837\",\"Wisconsin\":\"297536\",\"California\":\"2297779\",\"New Jersey\":\"516680\",\"New Mexico\":\"141345\",\"Washington\":\"408970\",\"Connecticut\":\"194099\",\"Mississippi\":\"142866\",\"North Dakota\":\"42848\",\"Pennsylvania\":\"738923\",\"Rhode Island\":\"65517\",\"South Dakota\":\"50004\",\"Massachusetts\":\"380210\",\"New Hampshire\":\"60850\",\"West Virginia\":\"94920\",\"North Carolina\":\"672733\",\"South Carolina\":\"250745\",\"District of Columbia\":\"51118\"}"
+        }
+      },
+      "sale_category_l3_json": [],
+      "sale_category_l1_name": [],
+      "sale_category_l2_name": [],
+      "sale_category_l3_name": [],
+      "first_video_time": 1569872077,
+      "sale_paly_count": 0,
+      "avg_28d_sale_play_count": 0,
+      "avg_28d_play_count": 1045145,
+      "like_followers_rate": "0.1023%",
+      "video_28d_interaction_rate": "6.63%",
+      "follower_28d_grow_rate": "-0.06%",
+      "sale_28d_amount": 0,
+      "sale_28d_count": 0,
+      "video_28d_sale_amount": 0,
+      "live_28d_sale_amount": 0,
+      "play_28d_sale_count": 0,
+      "sale_play_90d_gmv": 0,
+      "sale_live_90d_gmv": 0,
+      "avg_28d_video_like_count": 61081,
+      "avg_28d_sale_video_like_count": 0,
+      "video_90d_sale_gmv_amount": 0,
+      "live_90d_sale_gmv_amount": 0,
+      "prod_video_28d_count": 0,
+      "prod_live_28d_count": 0,
+      "interaction_v1_rate": "9.47%",
+      "like_followers_v1_rate": "0.1023%",
+      "video_28d_interaction_v1_rate": "6.63%",
+      "follower_28d_grow_v1_rate": "-0.06%",
+      "like_followers_than": 10.23,
+      "video_28d_sale_proportion": 0,
+      "live_28d_sale_proportion": 0,
+      "prod_video_28d_count_proportion": 0,
+      "prod_live_28d_count_proportion": 0,
+      "is_collect": 0,
+      "region_name": "United States",
+      "aweme_count_show": "452",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "124.6m",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "0",
+      "avg_digg_count_show": "3.1m",
+      "avg_play_count_show": "35.3m",
+      "follower_28d_count_show": "-76.7k",
+      "total_favorited_28d_count_show": "0",
+      "video_sale_amount_show": "$0",
+      "live_sale_amount_show": "$0",
+      "interact_rate_show": "9.01%",
+      "sale_paly_count_show": "0",
+      "avg_28d_sale_play_count_show": "0",
+      "avg_28d_play_count_show": "1.0m",
+      "like_followers_rate_show": "0.1023%",
+      "video_28d_interaction_rate_show": "6.63%",
+      "follower_28d_grow_rate_show": "-0.06%",
+      "sale_28d_amount_show": "$0",
+      "sale_28d_count_show": "0",
+      "video_28d_sale_amount_show": "$0",
+      "live_28d_sale_amount_show": "$0",
+      "play_28d_sale_count_show": "0",
+      "avg_28d_video_like_count_show": "61.0k",
+      "avg_28d_sale_video_like_count_show": "0",
+      "video_90d_sale_gmv_amount_show": "$0",
+      "live_90d_sale_gmv_amount_show": "$0",
+      "prod_video_28d_count_show": "0",
+      "prod_live_28d_count_show": "0",
+      "interaction_v1_rate_show": "9.47%",
+      "like_followers_v1_rate_show": "0.1023%",
+      "video_28d_interaction_v1_rate_show": "6.63%",
+      "follower_28d_grow_v1_rate_show": "-0.06%",
+      "_source_type": "top_followers"
+    },
+    {
+      "uid": "107955",
+      "nickname": "TikTok",
+      "unique_id": "tiktok",
+      "avatar": "https://s.500fd.com/tt_author/ba67b11de451691939223e9d978e613a~tplv-tiktokx-cropcenter:1080:1080.jpeg",
+      "region": "US",
+      "category": [
+        "Media & Entertainment"
+      ],
+      "aweme_count": 1420,
+      "aweme_30d_count": 0,
+      "follower_count": 93524102,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 0,
+      "avg_digg_count": 110680,
+      "avg_play_count": 7651552,
+      "verify_type": "2",
+      "follower_28d_count": 360804,
+      "total_favorited_28d_count": 0,
+      "video_sale_amount": 0,
+      "live_sale_amount": 0,
+      "interact_rate": "1.45%",
+      "market_category_l1_name": [],
+      "live_type": 0,
+      "is_ecommerce": 0,
+      "contact": [
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        },
+        {
+          "code": 10,
+          "name": "Bio",
+          "cover": null
+        }
+      ],
+      "sale_amount_list": {
+        "list": [],
+        "total": 0,
+        "total_show": ""
+      },
+      "sale_count_list": [],
+      "fansPortrait": {
+        "uid": "107955",
+        "follower_genders": [
+          {
+            "key": "female",
+            "value": 59,
+            "show": "59%"
+          },
+          {
+            "key": "male",
+            "value": 41,
+            "show": "41%"
+          }
+        ],
+        "follower_ages": [
+          {
+            "key": "25-34",
+            "value": 43,
+            "show": "43%"
+          },
+          {
+            "key": "18-24",
+            "value": 35,
+            "show": "35%"
+          },
+          {
+            "key": "35+",
+            "value": 22,
+            "show": "22%"
+          }
+        ],
+        "state_distribution": [],
+        "follower_genders_max": {
+          "key": "female",
+          "value": 59,
+          "show": "59%"
+        },
+        "follower_ages_max": {
+          "key": "25-34",
+          "value": 43,
+          "show": "43%"
+        },
+        "state_distribution_max": {},
+        "spread": {
+          "0": {
+            "uid": "107955",
+            "follower_genders": "[{\"key\":\"female\",\"value\":\"0.5861\"},{\"key\":\"male\",\"value\":\"0.4137\"}]",
+            "follower_ages": "[{\"key\":\"35+\",\"value\":\"0.2211\"},{\"key\":\"18-24\",\"value\":\"0.3518\"},{\"key\":\"25-34\",\"value\":\"0.4271\"}]",
+            "state_distribution": null
+          },
+          "follower_genders": "[{\"key\":\"female\",\"value\":0.59},{\"key\":\"male\",\"value\":0.41}]",
+          "follower_ages": "[{\"key\":\"35+\",\"value\":0.22},{\"key\":\"18-24\",\"value\":0.35},{\"key\":\"25-34\",\"value\":0.43}]",
+          "state_distribution": "[]"
+        }
+      },
+      "sale_category_l3_json": [],
+      "sale_category_l1_name": [],
+      "sale_category_l2_name": [],
+      "sale_category_l3_name": [],
+      "first_video_time": 1533760474,
+      "sale_paly_count": 0,
+      "avg_28d_sale_play_count": 0,
+      "avg_28d_play_count": 0,
+      "like_followers_rate": "0.0488%",
+      "video_28d_interaction_rate": "-",
+      "follower_28d_grow_rate": "0.43%",
+      "sale_28d_amount": 0,
+      "sale_28d_count": 0,
+      "video_28d_sale_amount": 0,
+      "live_28d_sale_amount": 0,
+      "play_28d_sale_count": 0,
+      "sale_play_90d_gmv": 0,
+      "sale_live_90d_gmv": 0,
+      "avg_28d_video_like_count": 0,
+      "avg_28d_sale_video_like_count": 0,
+      "video_90d_sale_gmv_amount": 0,
+      "live_90d_sale_gmv_amount": 0,
+      "prod_video_28d_count": 0,
+      "prod_live_28d_count": 0,
+      "interaction_v1_rate": "1.58%",
+      "like_followers_v1_rate": "0.0488%",
+      "video_28d_interaction_v1_rate": "-",
+      "follower_28d_grow_v1_rate": "0.43%",
+      "like_followers_than": 4.88,
+      "video_28d_sale_proportion": 0,
+      "live_28d_sale_proportion": 0,
+      "prod_video_28d_count_proportion": 0,
+      "prod_live_28d_count_proportion": 0,
+      "is_collect": 0,
+      "region_name": "United States",
+      "aweme_count_show": "1.4k",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "93.5m",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "0",
+      "avg_digg_count_show": "110.6k",
+      "avg_play_count_show": "7.6m",
+      "follower_28d_count_show": "360.8k",
+      "total_favorited_28d_count_show": "0",
+      "video_sale_amount_show": "$0",
+      "live_sale_amount_show": "$0",
+      "interact_rate_show": "1.45%",
+      "sale_paly_count_show": "0",
+      "avg_28d_sale_play_count_show": "0",
+      "avg_28d_play_count_show": "0",
+      "like_followers_rate_show": "0.0488%",
+      "video_28d_interaction_rate_show": "-",
+      "follower_28d_grow_rate_show": "0.43%",
+      "sale_28d_amount_show": "$0",
+      "sale_28d_count_show": "0",
+      "video_28d_sale_amount_show": "$0",
+      "live_28d_sale_amount_show": "$0",
+      "play_28d_sale_count_show": "0",
+      "avg_28d_video_like_count_show": "0",
+      "avg_28d_sale_video_like_count_show": "0",
+      "video_90d_sale_gmv_amount_show": "$0",
+      "live_90d_sale_gmv_amount_show": "$0",
+      "prod_video_28d_count_show": "0",
+      "prod_live_28d_count_show": "0",
+      "interaction_v1_rate_show": "1.58%",
+      "like_followers_v1_rate_show": "0.0488%",
+      "video_28d_interaction_v1_rate_show": "-",
+      "follower_28d_grow_v1_rate_show": "0.43%",
+      "_source_type": "top_followers"
+    },
+    {
+      "uid": "6748458643983238149",
+      "nickname": "Bella Poarch",
+      "unique_id": "bellapoarch",
+      "avatar": "https://s.500fd.com/tt_author/d8b707e8ab71dc4c0adcf27e4c841ade~tplv-tiktokx-cropcenter:1080:1080.jpeg",
+      "region": "US",
+      "category": [
+        "Public Figure"
+      ],
+      "aweme_count": 67,
+      "aweme_30d_count": 0,
+      "follower_count": 92516483,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 0,
+      "avg_digg_count": 2698893,
+      "avg_play_count": 29231014,
+      "verify_type": "1",
+      "follower_28d_count": -129999,
+      "total_favorited_28d_count": 0,
+      "video_sale_amount": 0,
+      "live_sale_amount": 0,
+      "interact_rate": "9.22%",
+      "market_category_l1_name": [],
+      "live_type": 0,
+      "is_ecommerce": 0,
+      "contact": [
+        {
+          "code": 3,
+          "name": "Email",
+          "cover": "https://cdn.500fd.com/public_web/email230616.png"
+        },
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        },
+        {
+          "code": 8,
+          "name": "Facebook",
+          "cover": "https://cdn.500fd.com/public_web/facebook230616.png"
+        },
+        {
+          "code": 10,
+          "name": "Bio",
+          "cover": null
+        }
+      ],
+      "sale_amount_list": {
+        "list": [],
+        "total": 0,
+        "total_show": ""
+      },
+      "sale_count_list": [],
+      "fansPortrait": {
+        "uid": "6748458643983238149",
+        "follower_genders": [
+          {
+            "key": "female",
+            "value": 53,
+            "show": "53%"
+          },
+          {
+            "key": "male",
+            "value": 47,
+            "show": "47%"
+          }
+        ],
+        "follower_ages": [
+          {
+            "key": "18-24",
+            "value": 37,
+            "show": "37%"
+          },
+          {
+            "key": "25-34",
+            "value": 23,
+            "show": "23%"
+          },
+          {
+            "key": "other",
+            "value": 18,
+            "show": "18%"
+          },
+          {
+            "key": "13-17",
+            "value": 10,
+            "show": "10%"
+          },
+          {
+            "key": "35-44",
+            "value": 8,
+            "show": "8%"
+          }
+        ],
+        "state_distribution": [],
+        "follower_genders_max": {
+          "key": "female",
+          "value": 53,
+          "show": "53%"
+        },
+        "follower_ages_max": {
+          "key": "18-24",
+          "value": 37,
+          "show": "37%"
+        },
+        "state_distribution_max": {},
+        "spread": {
+          "0": {
+            "uid": "6748458643983238149",
+            "follower_genders": "[{\"key\":\"female\",\"value\":\"0.5301\"},{\"key\":\"male\",\"value\":\"0.4699\"}]",
+            "follower_ages": "[{\"key\":\"18-24\",\"value\":\"0.3690\"},{\"key\":\"25-34\",\"value\":\"0.2279\"},{\"key\":\"other\",\"value\":\"0.1801\"},{\"key\":\"13-17\",\"value\":\"0.1009\"},{\"key\":\"35-44\",\"value\":\"0.0779\"}]",
+            "state_distribution": null
+          },
+          "follower_genders": "[{\"key\":\"female\",\"value\":0.53},{\"key\":\"male\",\"value\":0.47}]",
+          "follower_ages": "[{\"key\":\"18-24\",\"value\":0.37},{\"key\":\"25-34\",\"value\":0.23},{\"key\":\"other\",\"value\":0.18},{\"key\":\"13-17\",\"value\":0.1},{\"key\":\"35-44\",\"value\":0.08}]",
+          "state_distribution": "[]"
+        }
+      },
+      "sale_category_l3_json": [],
+      "sale_category_l1_name": [],
+      "sale_category_l2_name": [],
+      "sale_category_l3_name": [],
+      "first_video_time": 1586569547,
+      "sale_paly_count": 0,
+      "avg_28d_sale_play_count": 0,
+      "avg_28d_play_count": 300000,
+      "like_followers_rate": "0.26%",
+      "video_28d_interaction_rate": "1.15%",
+      "follower_28d_grow_rate": "-0.15%",
+      "sale_28d_amount": 0,
+      "sale_28d_count": 0,
+      "video_28d_sale_amount": 0,
+      "live_28d_sale_amount": 0,
+      "play_28d_sale_count": 0,
+      "sale_play_90d_gmv": 0,
+      "sale_live_90d_gmv": 0,
+      "avg_28d_video_like_count": 3400,
+      "avg_28d_sale_video_like_count": 0,
+      "video_90d_sale_gmv_amount": 0,
+      "live_90d_sale_gmv_amount": 0,
+      "prod_video_28d_count": 0,
+      "prod_live_28d_count": 0,
+      "interaction_v1_rate": "9.63%",
+      "like_followers_v1_rate": "0.26%",
+      "video_28d_interaction_v1_rate": "1.15%",
+      "follower_28d_grow_v1_rate": "-0.15%",
+      "like_followers_than": 26,
+      "video_28d_sale_proportion": 0,
+      "live_28d_sale_proportion": 0,
+      "prod_video_28d_count_proportion": 0,
+      "prod_live_28d_count_proportion": 0,
+      "is_collect": 0,
+      "region_name": "United States",
+      "aweme_count_show": "67",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "92.5m",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "0",
+      "avg_digg_count_show": "2.7m",
+      "avg_play_count_show": "29.2m",
+      "follower_28d_count_show": "-130.0k",
+      "total_favorited_28d_count_show": "0",
+      "video_sale_amount_show": "$0",
+      "live_sale_amount_show": "$0",
+      "interact_rate_show": "9.22%",
+      "sale_paly_count_show": "0",
+      "avg_28d_sale_play_count_show": "0",
+      "avg_28d_play_count_show": "300.0k",
+      "like_followers_rate_show": "0.26%",
+      "video_28d_interaction_rate_show": "1.15%",
+      "follower_28d_grow_rate_show": "-0.15%",
+      "sale_28d_amount_show": "$0",
+      "sale_28d_count_show": "0",
+      "video_28d_sale_amount_show": "$0",
+      "live_28d_sale_amount_show": "$0",
+      "play_28d_sale_count_show": "0",
+      "avg_28d_video_like_count_show": "3.4k",
+      "avg_28d_sale_video_like_count_show": "0",
+      "video_90d_sale_gmv_amount_show": "$0",
+      "live_90d_sale_gmv_amount_show": "$0",
+      "prod_video_28d_count_show": "0",
+      "prod_live_28d_count_show": "0",
+      "interaction_v1_rate_show": "9.63%",
+      "like_followers_v1_rate_show": "0.26%",
+      "video_28d_interaction_v1_rate_show": "1.15%",
+      "follower_28d_grow_v1_rate_show": "-0.15%",
+      "_source_type": "top_followers"
+    },
+    {
+      "uid": "6703550784929793030",
+      "nickname": "Addison",
+      "unique_id": "addisonre",
+      "avatar": "https://s.500fd.com/tt_author/dcae33749cedf02e0700c0cb3523cb94~tplv-tiktokx-cropcenter:300:300.jpeg",
+      "region": "US",
+      "category": [
+        "Public Figure"
+      ],
+      "aweme_count": 398,
+      "aweme_30d_count": 0,
+      "follower_count": 88148570,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 0,
+      "avg_digg_count": 3346050,
+      "avg_play_count": 28498718,
+      "verify_type": "1",
+      "follower_28d_count": -66727,
+      "total_favorited_28d_count": 0,
+      "video_sale_amount": 0,
+      "live_sale_amount": 0,
+      "interact_rate": "11.74%",
+      "market_category_l1_name": [],
+      "live_type": 4,
+      "is_ecommerce": 0,
+      "contact": [
+        {
+          "code": 3,
+          "name": "Email",
+          "cover": "https://cdn.500fd.com/public_web/email230616.png"
+        },
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        },
+        {
+          "code": 10,
+          "name": "Bio",
+          "cover": null
+        }
+      ],
+      "sale_amount_list": {
+        "list": [],
+        "total": 0,
+        "total_show": ""
+      },
+      "sale_count_list": [],
+      "fansPortrait": {
+        "uid": "6703550784929793030",
+        "follower_genders": [
+          {
+            "key": "female",
+            "value": 68,
+            "show": "68%"
+          },
+          {
+            "key": "male",
+            "value": 32,
+            "show": "32%"
+          }
+        ],
+        "follower_ages": [
+          {
+            "key": "other",
+            "value": 41,
+            "show": "41%"
+          },
+          {
+            "key": "18-24",
+            "value": 28,
+            "show": "28%"
+          },
+          {
+            "key": "25-34",
+            "value": 15,
+            "show": "15%"
+          },
+          {
+            "key": "13-17",
+            "value": 6,
+            "show": "6%"
+          },
+          {
+            "key": "35-44",
+            "value": 6,
+            "show": "6%"
+          }
+        ],
+        "state_distribution": [
+          {
+            "key": "Texas",
+            "value": "10.86",
+            "show": "10.86%"
+          },
+          {
+            "key": "Ohio",
+            "value": "3.73",
+            "show": "3.73%"
+          },
+          {
+            "key": "Iowa",
+            "value": "0.99",
+            "show": "0.99%"
+          },
+          {
+            "key": "Utah",
+            "value": "0.75",
+            "show": "0.75%"
+          },
+          {
+            "key": "Idaho",
+            "value": "0.34",
+            "show": "0.34%"
+          },
+          {
+            "key": "Maine",
+            "value": "0.32",
+            "show": "0.32%"
+          },
+          {
+            "key": "Alaska",
+            "value": "0.13",
+            "show": "0.13%"
+          },
+          {
+            "key": "Hawaii",
+            "value": "0.32",
+            "show": "0.32%"
+          }
+        ],
+        "follower_genders_max": {
+          "key": "female",
+          "value": 68,
+          "show": "68%"
+        },
+        "follower_ages_max": {
+          "key": "other",
+          "value": 41,
+          "show": "41%"
+        },
+        "state_distribution_max": {
+          "key": "Texas",
+          "value": "10.86",
+          "show": "10.86%"
+        },
+        "spread": {
+          "0": {
+            "uid": "6703550784929793030",
+            "follower_genders": "[{\"key\":\"female\",\"value\":\"0.6768\"},{\"key\":\"male\",\"value\":\"0.3232\"}]",
+            "follower_ages": "[{\"key\":\"other\",\"value\":\"0.4088\"},{\"key\":\"18-24\",\"value\":\"0.2785\"},{\"key\":\"25-34\",\"value\":\"0.1522\"},{\"key\":\"13-17\",\"value\":\"0.0602\"},{\"key\":\"35-44\",\"value\":\"0.0590\"}]",
+            "state_distribution": "{\"US\": {\"Iowa\": \"123498\", \"Ohio\": \"465346\", \"Utah\": \"93898\", \"Idaho\": \"42193\", \"Maine\": \"39396\", \"Texas\": \"1354007\", \"Alaska\": \"16573\", \"Hawaii\": \"39529\", \"Kansas\": \"94261\", \"Nevada\": \"107822\", \"Oregon\": \"114113\", \"Alabama\": \"190138\", \"Arizona\": \"251096\", \"Georgia\": \"542669\", \"Indiana\": \"250650\", \"Montana\": \"24671\", \"Vermont\": \"19230\", \"Wyoming\": \"15389\", \"Arkansas\": \"95012\", \"Colorado\": \"189338\", \"Delaware\": \"38317\", \"Illinois\": \"627491\", \"Kentucky\": \"213405\", \"Maryland\": \"264597\", \"Michigan\": \"413313\", \"Missouri\": \"216007\", \"Nebraska\": \"70010\", \"New York\": \"988516\", \"Oklahoma\": \"138429\", \"Virginia\": \"329020\", \"Louisiana\": \"202756\", \"Minnesota\": \"192575\", \"Tennessee\": \"264354\", \"Wisconsin\": \"186931\", \"California\": \"1473333\", \"New Jersey\": \"437544\", \"New Mexico\": \"72091\", \"Washington\": \"233420\", \"Connecticut\": \"158248\", \"Mississippi\": \"109894\", \"North Dakota\": \"24728\", \"Pennsylvania\": \"566242\", \"Rhode Island\": \"58370\", \"South Dakota\": \"27886\", \"Massachusetts\": \"315184\", \"New Hampshire\": \"46738\", \"West Virginia\": \"65259\", \"North Carolina\": \"437850\", \"South Carolina\": \"183200\", \"District of Columbia\": \"40667\"}}"
+          },
+          "follower_genders": "[{\"key\":\"female\",\"value\":0.68},{\"key\":\"male\",\"value\":0.32}]",
+          "follower_ages": "[{\"key\":\"other\",\"value\":0.41},{\"key\":\"18-24\",\"value\":0.28},{\"key\":\"25-34\",\"value\":0.15},{\"key\":\"13-17\",\"value\":0.06},{\"key\":\"35-44\",\"value\":0.06}]",
+          "state_distribution": "{\"Iowa\":\"123498\",\"Ohio\":\"465346\",\"Utah\":\"93898\",\"Idaho\":\"42193\",\"Maine\":\"39396\",\"Texas\":\"1354007\",\"Alaska\":\"16573\",\"Hawaii\":\"39529\",\"Kansas\":\"94261\",\"Nevada\":\"107822\",\"Oregon\":\"114113\",\"Alabama\":\"190138\",\"Arizona\":\"251096\",\"Georgia\":\"542669\",\"Indiana\":\"250650\",\"Montana\":\"24671\",\"Vermont\":\"19230\",\"Wyoming\":\"15389\",\"Arkansas\":\"95012\",\"Colorado\":\"189338\",\"Delaware\":\"38317\",\"Illinois\":\"627491\",\"Kentucky\":\"213405\",\"Maryland\":\"264597\",\"Michigan\":\"413313\",\"Missouri\":\"216007\",\"Nebraska\":\"70010\",\"New York\":\"988516\",\"Oklahoma\":\"138429\",\"Virginia\":\"329020\",\"Louisiana\":\"202756\",\"Minnesota\":\"192575\",\"Tennessee\":\"264354\",\"Wisconsin\":\"186931\",\"California\":\"1473333\",\"New Jersey\":\"437544\",\"New Mexico\":\"72091\",\"Washington\":\"233420\",\"Connecticut\":\"158248\",\"Mississippi\":\"109894\",\"North Dakota\":\"24728\",\"Pennsylvania\":\"566242\",\"Rhode Island\":\"58370\",\"South Dakota\":\"27886\",\"Massachusetts\":\"315184\",\"New Hampshire\":\"46738\",\"West Virginia\":\"65259\",\"North Carolina\":\"437850\",\"South Carolina\":\"183200\",\"District of Columbia\":\"40667\"}"
+        }
+      },
+      "sale_category_l3_json": [],
+      "sale_category_l1_name": [],
+      "sale_category_l2_name": [],
+      "sale_category_l3_name": [],
+      "first_video_time": 1562789222,
+      "sale_paly_count": 0,
+      "avg_28d_sale_play_count": 0,
+      "avg_28d_play_count": 200000,
+      "like_followers_rate": "0.5971%",
+      "video_28d_interaction_rate": "0.91%",
+      "follower_28d_grow_rate": "-0.07%",
+      "sale_28d_amount": 0,
+      "sale_28d_count": 0,
+      "video_28d_sale_amount": 0,
+      "live_28d_sale_amount": 0,
+      "play_28d_sale_count": 0,
+      "sale_play_90d_gmv": 0,
+      "sale_live_90d_gmv": 0,
+      "avg_28d_video_like_count": 1800,
+      "avg_28d_sale_video_like_count": 0,
+      "video_90d_sale_gmv_amount": 0,
+      "live_90d_sale_gmv_amount": 0,
+      "prod_video_28d_count": 0,
+      "prod_live_28d_count": 0,
+      "interaction_v1_rate": "12.06%",
+      "like_followers_v1_rate": "0.5971%",
+      "video_28d_interaction_v1_rate": "0.91%",
+      "follower_28d_grow_v1_rate": "-0.07%",
+      "like_followers_than": 59.71,
+      "video_28d_sale_proportion": 0,
+      "live_28d_sale_proportion": 0,
+      "prod_video_28d_count_proportion": 0,
+      "prod_live_28d_count_proportion": 0,
+      "is_collect": 0,
+      "region_name": "United States",
+      "aweme_count_show": "398",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "88.1m",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "0",
+      "avg_digg_count_show": "3.3m",
+      "avg_play_count_show": "28.5m",
+      "follower_28d_count_show": "-66.7k",
+      "total_favorited_28d_count_show": "0",
+      "video_sale_amount_show": "$0",
+      "live_sale_amount_show": "$0",
+      "interact_rate_show": "11.74%",
+      "sale_paly_count_show": "0",
+      "avg_28d_sale_play_count_show": "0",
+      "avg_28d_play_count_show": "200.0k",
+      "like_followers_rate_show": "0.5971%",
+      "video_28d_interaction_rate_show": "0.91%",
+      "follower_28d_grow_rate_show": "-0.07%",
+      "sale_28d_amount_show": "$0",
+      "sale_28d_count_show": "0",
+      "video_28d_sale_amount_show": "$0",
+      "live_28d_sale_amount_show": "$0",
+      "play_28d_sale_count_show": "0",
+      "avg_28d_video_like_count_show": "1.8k",
+      "avg_28d_sale_video_like_count_show": "0",
+      "video_90d_sale_gmv_amount_show": "$0",
+      "live_90d_sale_gmv_amount_show": "$0",
+      "prod_video_28d_count_show": "0",
+      "prod_live_28d_count_show": "0",
+      "interaction_v1_rate_show": "12.06%",
+      "like_followers_v1_rate_show": "0.5971%",
+      "video_28d_interaction_v1_rate_show": "0.91%",
+      "follower_28d_grow_v1_rate_show": "-0.07%",
+      "_source_type": "top_followers"
+    },
+    {
+      "uid": "6596805238354558982",
+      "nickname": "Kimberly Loaiza",
+      "unique_id": "kimberly.loaiza",
+      "avatar": "https://s.500fd.com/tt_author/726b18c408f4fe6f235256e55b02542a~tplv-tiktokx-cropcenter:300:300.jpeg",
+      "region": "US",
+      "category": [
+        "Public Figure"
+      ],
+      "aweme_count": 2177,
+      "aweme_30d_count": 0,
+      "follower_count": 83630669,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 1,
+      "avg_digg_count": 1593414,
+      "avg_play_count": 15762188,
+      "verify_type": "1",
+      "follower_28d_count": -41413,
+      "total_favorited_28d_count": 0,
+      "video_sale_amount": 0,
+      "live_sale_amount": 0,
+      "interact_rate": "10.11%",
+      "market_category_l1_name": [],
+      "live_type": 4,
+      "is_ecommerce": 0,
+      "contact": [
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        },
+        {
+          "code": 10,
+          "name": "Bio",
+          "cover": null
+        }
+      ],
+      "sale_amount_list": {
+        "list": [],
+        "total": 0,
+        "total_show": ""
+      },
+      "sale_count_list": [],
+      "fansPortrait": {
+        "uid": "6596805238354558982",
+        "follower_genders": [],
+        "follower_ages": [],
+        "state_distribution": [],
+        "follower_genders_max": {},
+        "follower_ages_max": {},
+        "state_distribution_max": {},
+        "spread": []
+      },
+      "sale_category_l3_json": [],
+      "sale_category_l1_name": [],
+      "sale_category_l2_name": [],
+      "sale_category_l3_name": [],
+      "first_video_time": 1578508972,
+      "sale_paly_count": 0,
+      "avg_28d_sale_play_count": 0,
+      "avg_28d_play_count": 2057564,
+      "like_followers_rate": "0.5092%",
+      "video_28d_interaction_rate": "10.24%",
+      "follower_28d_grow_rate": "-0.05%",
+      "sale_28d_amount": 0,
+      "sale_28d_count": 0,
+      "video_28d_sale_amount": 0,
+      "live_28d_sale_amount": 0,
+      "play_28d_sale_count": 0,
+      "sale_play_90d_gmv": 0,
+      "sale_live_90d_gmv": 0,
+      "avg_28d_video_like_count": 207469,
+      "avg_28d_sale_video_like_count": 0,
+      "video_90d_sale_gmv_amount": 0,
+      "live_90d_sale_gmv_amount": 0,
+      "prod_video_28d_count": 0,
+      "prod_live_28d_count": 0,
+      "interaction_v1_rate": "10.31%",
+      "like_followers_v1_rate": "0.5092%",
+      "video_28d_interaction_v1_rate": "10.24%",
+      "follower_28d_grow_v1_rate": "-0.05%",
+      "like_followers_than": 50.92,
+      "video_28d_sale_proportion": 0,
+      "live_28d_sale_proportion": 0,
+      "prod_video_28d_count_proportion": 0,
+      "prod_live_28d_count_proportion": 0,
+      "is_collect": 0,
+      "region_name": "United States",
+      "aweme_count_show": "2.1k",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "83.6m",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "1",
+      "avg_digg_count_show": "1.5m",
+      "avg_play_count_show": "15.7m",
+      "follower_28d_count_show": "-41.4k",
+      "total_favorited_28d_count_show": "0",
+      "video_sale_amount_show": "$0",
+      "live_sale_amount_show": "$0",
+      "interact_rate_show": "10.11%",
+      "sale_paly_count_show": "0",
+      "avg_28d_sale_play_count_show": "0",
+      "avg_28d_play_count_show": "2.0m",
+      "like_followers_rate_show": "0.5092%",
+      "video_28d_interaction_rate_show": "10.24%",
+      "follower_28d_grow_rate_show": "-0.05%",
+      "sale_28d_amount_show": "$0",
+      "sale_28d_count_show": "0",
+      "video_28d_sale_amount_show": "$0",
+      "live_28d_sale_amount_show": "$0",
+      "play_28d_sale_count_show": "0",
+      "avg_28d_video_like_count_show": "207.4k",
+      "avg_28d_sale_video_like_count_show": "0",
+      "video_90d_sale_gmv_amount_show": "$0",
+      "live_90d_sale_gmv_amount_show": "$0",
+      "prod_video_28d_count_show": "0",
+      "prod_live_28d_count_show": "0",
+      "interaction_v1_rate_show": "10.31%",
+      "like_followers_v1_rate_show": "0.5092%",
+      "video_28d_interaction_v1_rate_show": "10.24%",
+      "follower_28d_grow_v1_rate_show": "-0.05%",
+      "_source_type": "top_followers"
+    },
+    {
+      "uid": "68616495085350913",
+      "nickname": "Zach King",
+      "unique_id": "zachking",
+      "avatar": "https://s.500fd.com/tt_author/smgf5f369c884044a8df770614bbfd64717~tplv-tiktokx-cropcenter:1080:1080.jpeg",
+      "region": "US",
+      "category": [
+        "Other"
+      ],
+      "aweme_count": 593,
+      "aweme_30d_count": 0,
+      "follower_count": 82343267,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 0,
+      "avg_digg_count": 2280155,
+      "avg_play_count": 40272111,
+      "verify_type": "1",
+      "follower_28d_count": 0,
+      "total_favorited_28d_count": 0,
+      "video_sale_amount": 0,
+      "live_sale_amount": 0,
+      "interact_rate": "5.66%",
+      "market_category_l1_name": [],
+      "live_type": 4,
+      "is_ecommerce": 0,
+      "contact": [
+        {
+          "code": 3,
+          "name": "Email",
+          "cover": "https://cdn.500fd.com/public_web/email230616.png"
+        },
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        },
+        {
+          "code": 10,
+          "name": "Bio",
+          "cover": null
+        }
+      ],
+      "sale_amount_list": {
+        "list": [],
+        "total": 0,
+        "total_show": ""
+      },
+      "sale_count_list": [],
+      "fansPortrait": {
+        "uid": "68616495085350913",
+        "follower_genders": [
+          {
+            "key": "female",
+            "value": 57.14,
+            "show": "57.14%"
+          },
+          {
+            "key": "male",
+            "value": 42.86,
+            "show": "42.86%"
+          }
+        ],
+        "follower_ages": [
+          {
+            "key": "35-44",
+            "value": 34,
+            "show": "34%"
+          },
+          {
+            "key": "55+",
+            "value": 27,
+            "show": "27%"
+          },
+          {
+            "key": "45-54",
+            "value": 26,
+            "show": "26%"
+          },
+          {
+            "key": "25-34",
+            "value": 9,
+            "show": "9%"
+          },
+          {
+            "key": "18-24",
+            "value": 3,
+            "show": "3%"
+          }
+        ],
+        "state_distribution": [
+          {
+            "key": "TEXAS",
+            "value": "29.00",
+            "show": "29.00%"
+          },
+          {
+            "key": "CALIFORNIA",
+            "value": "21.01",
+            "show": "21.01%"
+          },
+          {
+            "key": "NEW YORK",
+            "value": "19.01",
+            "show": "19.01%"
+          },
+          {
+            "key": "GEORGIA",
+            "value": "15.99",
+            "show": "15.99%"
+          },
+          {
+            "key": "FLORIDA",
+            "value": "14.99",
+            "show": "14.99%"
+          }
+        ],
+        "follower_genders_max": {
+          "key": "female",
+          "value": 57.14,
+          "show": "57.14%"
+        },
+        "follower_ages_max": {
+          "key": "35-44",
+          "value": 34,
+          "show": "34%"
+        },
+        "state_distribution_max": {
+          "key": "TEXAS",
+          "value": "29.00",
+          "show": "29.00%"
+        },
+        "spread": {
+          "0": {
+            "uid": "68616495085350913",
+            "follower_genders": "[{\"key\":\"male\",\"value\":\"0.2141\"},{\"key\":\"female\",\"value\":\"0.2765\"}]",
+            "follower_ages": "[{\"key\":\"35-44\",\"value\":\"0.3402\"},{\"key\":\"55+\",\"value\":\"0.2749\"},{\"key\":\"45-54\",\"value\":\"0.2611\"},{\"key\":\"25-34\",\"value\":\"0.0927\"},{\"key\":\"18-24\",\"value\":\"0.0309\"}]",
+            "state_distribution": "[{\"key\": \"TEXAS\", \"value\": \"958\"}, {\"key\": \"CALIFORNIA\", \"value\": \"694\"}, {\"key\": \"NEW YORK\", \"value\": \"628\"}, {\"key\": \"GEORGIA\", \"value\": \"528\"}, {\"key\": \"FLORIDA\", \"value\": \"495\"}]"
+          },
+          "follower_genders": "[{\"key\":\"male\",\"value\":0.21},{\"key\":\"female\",\"value\":0.28}]",
+          "follower_ages": "[{\"key\":\"35-44\",\"value\":0.34},{\"key\":\"55+\",\"value\":0.27},{\"key\":\"45-54\",\"value\":0.26},{\"key\":\"25-34\",\"value\":0.09},{\"key\":\"18-24\",\"value\":0.03}]",
+          "state_distribution": "{\"TEXAS\":958,\"CALIFORNIA\":694,\"NEW YORK\":628,\"GEORGIA\":528,\"FLORIDA\":495}"
+        }
+      },
+      "sale_category_l3_json": [],
+      "sale_category_l1_name": [],
+      "sale_category_l2_name": [],
+      "sale_category_l3_name": [],
+      "first_video_time": 1458083320,
+      "sale_paly_count": 0,
+      "avg_28d_sale_play_count": 0,
+      "avg_28d_play_count": 1850000,
+      "like_followers_rate": "0.1522%",
+      "video_28d_interaction_rate": "3.04%",
+      "follower_28d_grow_rate": "-",
+      "sale_28d_amount": 0,
+      "sale_28d_count": 0,
+      "video_28d_sale_amount": 0,
+      "live_28d_sale_amount": 0,
+      "play_28d_sale_count": 0,
+      "sale_play_90d_gmv": 0,
+      "sale_live_90d_gmv": 0,
+      "avg_28d_video_like_count": 55150,
+      "avg_28d_sale_video_like_count": 0,
+      "video_90d_sale_gmv_amount": 0,
+      "live_90d_sale_gmv_amount": 0,
+      "prod_video_28d_count": 0,
+      "prod_live_28d_count": 0,
+      "interaction_v1_rate": "5.76%",
+      "like_followers_v1_rate": "0.1522%",
+      "video_28d_interaction_v1_rate": "3.04%",
+      "follower_28d_grow_v1_rate": "-",
+      "like_followers_than": 15.22,
+      "video_28d_sale_proportion": 0,
+      "live_28d_sale_proportion": 0,
+      "prod_video_28d_count_proportion": 0,
+      "prod_live_28d_count_proportion": 0,
+      "is_collect": 0,
+      "region_name": "United States",
+      "aweme_count_show": "593",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "82.3m",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "0",
+      "avg_digg_count_show": "2.2m",
+      "avg_play_count_show": "40.2m",
+      "follower_28d_count_show": "0",
+      "total_favorited_28d_count_show": "0",
+      "video_sale_amount_show": "$0",
+      "live_sale_amount_show": "$0",
+      "interact_rate_show": "5.66%",
+      "sale_paly_count_show": "0",
+      "avg_28d_sale_play_count_show": "0",
+      "avg_28d_play_count_show": "1.8m",
+      "like_followers_rate_show": "0.1522%",
+      "video_28d_interaction_rate_show": "3.04%",
+      "follower_28d_grow_rate_show": "-",
+      "sale_28d_amount_show": "$0",
+      "sale_28d_count_show": "0",
+      "video_28d_sale_amount_show": "$0",
+      "live_28d_sale_amount_show": "$0",
+      "play_28d_sale_count_show": "0",
+      "avg_28d_video_like_count_show": "55.1k",
+      "avg_28d_sale_video_like_count_show": "0",
+      "video_90d_sale_gmv_amount_show": "$0",
+      "live_90d_sale_gmv_amount_show": "$0",
+      "prod_video_28d_count_show": "0",
+      "prod_live_28d_count_show": "0",
+      "interaction_v1_rate_show": "5.76%",
+      "like_followers_v1_rate_show": "0.1522%",
+      "video_28d_interaction_v1_rate_show": "3.04%",
+      "follower_28d_grow_v1_rate_show": "-",
+      "_source_type": "top_followers"
+    },
+    {
+      "uid": "6745191554350760966",
+      "nickname": "The Rock",
+      "unique_id": "therock",
+      "avatar": "https://s.500fd.com/tt_author/7310325298631802885~c5_300x300.jpeg",
+      "region": "US",
+      "category": [
+        "Public Figure"
+      ],
+      "aweme_count": 491,
+      "aweme_30d_count": 0,
+      "follower_count": 79544483,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 0,
+      "avg_digg_count": 1304269,
+      "avg_play_count": 10818497,
+      "verify_type": "1",
+      "follower_28d_count": -95901,
+      "total_favorited_28d_count": 0,
+      "video_sale_amount": 0,
+      "live_sale_amount": 0,
+      "interact_rate": "12.06%",
+      "market_category_l1_name": [],
+      "live_type": 4,
+      "is_ecommerce": 0,
+      "contact": [
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        },
+        {
+          "code": 10,
+          "name": "Bio",
+          "cover": null
+        }
+      ],
+      "sale_amount_list": {
+        "list": [],
+        "total": 0,
+        "total_show": ""
+      },
+      "sale_count_list": [],
+      "fansPortrait": {
+        "uid": "6745191554350760966",
+        "follower_genders": [],
+        "follower_ages": [],
+        "state_distribution": [],
+        "follower_genders_max": {},
+        "follower_ages_max": {},
+        "state_distribution_max": {},
+        "spread": {
+          "0": {
+            "uid": "6745191554350760966",
+            "follower_genders": null,
+            "follower_ages": null,
+            "state_distribution": null
+          },
+          "follower_genders": [],
+          "follower_ages": [],
+          "state_distribution": "[]"
+        }
+      },
+      "sale_category_l3_json": [],
+      "sale_category_l1_name": [],
+      "sale_category_l2_name": [],
+      "sale_category_l3_name": [],
+      "first_video_time": 1574431007,
+      "sale_paly_count": 0,
+      "avg_28d_sale_play_count": 0,
+      "avg_28d_play_count": 0,
+      "like_followers_rate": "0.0831%",
+      "video_28d_interaction_rate": "-",
+      "follower_28d_grow_rate": "-0.11%",
+      "sale_28d_amount": 0,
+      "sale_28d_count": 0,
+      "video_28d_sale_amount": 0,
+      "live_28d_sale_amount": 0,
+      "play_28d_sale_count": 0,
+      "sale_play_90d_gmv": 0,
+      "sale_live_90d_gmv": 0,
+      "avg_28d_video_like_count": 0,
+      "avg_28d_sale_video_like_count": 0,
+      "video_90d_sale_gmv_amount": 0,
+      "live_90d_sale_gmv_amount": 0,
+      "prod_video_28d_count": 0,
+      "prod_live_28d_count": 0,
+      "interaction_v1_rate": "12.5%",
+      "like_followers_v1_rate": "0.0831%",
+      "video_28d_interaction_v1_rate": "-",
+      "follower_28d_grow_v1_rate": "-0.11%",
+      "like_followers_than": 8.31,
+      "video_28d_sale_proportion": 0,
+      "live_28d_sale_proportion": 0,
+      "prod_video_28d_count_proportion": 0,
+      "prod_live_28d_count_proportion": 0,
+      "is_collect": 0,
+      "region_name": "United States",
+      "aweme_count_show": "491",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "79.5m",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "0",
+      "avg_digg_count_show": "1.3m",
+      "avg_play_count_show": "10.8m",
+      "follower_28d_count_show": "-95.9k",
+      "total_favorited_28d_count_show": "0",
+      "video_sale_amount_show": "$0",
+      "live_sale_amount_show": "$0",
+      "interact_rate_show": "12.06%",
+      "sale_paly_count_show": "0",
+      "avg_28d_sale_play_count_show": "0",
+      "avg_28d_play_count_show": "0",
+      "like_followers_rate_show": "0.0831%",
+      "video_28d_interaction_rate_show": "-",
+      "follower_28d_grow_rate_show": "-0.11%",
+      "sale_28d_amount_show": "$0",
+      "sale_28d_count_show": "0",
+      "video_28d_sale_amount_show": "$0",
+      "live_28d_sale_amount_show": "$0",
+      "play_28d_sale_count_show": "0",
+      "avg_28d_video_like_count_show": "0",
+      "avg_28d_sale_video_like_count_show": "0",
+      "video_90d_sale_gmv_amount_show": "$0",
+      "live_90d_sale_gmv_amount_show": "$0",
+      "prod_video_28d_count_show": "0",
+      "prod_live_28d_count_show": "0",
+      "interaction_v1_rate_show": "12.5%",
+      "like_followers_v1_rate_show": "0.0831%",
+      "video_28d_interaction_v1_rate_show": "-",
+      "follower_28d_grow_v1_rate_show": "-0.11%",
+      "_source_type": "top_followers"
+    },
+    {
+      "uid": "6727327145951183878",
+      "nickname": "Will Smith",
+      "unique_id": "willsmith",
+      "avatar": "https://s.500fd.com/tt_author/6b73291201289543d115071ba64de75a~tplv-tiktokx-cropcenter:100:100.jpeg",
+      "region": "US",
+      "category": [
+        "Public Figure"
+      ],
+      "aweme_count": 441,
+      "aweme_30d_count": 0,
+      "follower_count": 79347501,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 0,
+      "avg_digg_count": 1603389,
+      "avg_play_count": 13605671,
+      "verify_type": "1",
+      "follower_28d_count": 0,
+      "total_favorited_28d_count": 0,
+      "video_sale_amount": 0,
+      "live_sale_amount": 0,
+      "interact_rate": "11.78%",
+      "market_category_l1_name": [],
+      "live_type": 4,
+      "is_ecommerce": 0,
+      "contact": [
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        },
+        {
+          "code": 8,
+          "name": "Facebook",
+          "cover": "https://cdn.500fd.com/public_web/facebook230616.png"
+        },
+        {
+          "code": 10,
+          "name": "Bio",
+          "cover": null
+        }
+      ],
+      "sale_amount_list": {
+        "list": [],
+        "total": 0,
+        "total_show": ""
+      },
+      "sale_count_list": [],
+      "fansPortrait": {
+        "uid": "6727327145951183878",
+        "follower_genders": [
+          {
+            "key": "male",
+            "value": 52,
+            "show": "52%"
+          },
+          {
+            "key": "female",
+            "value": 48,
+            "show": "48%"
+          }
+        ],
+        "follower_ages": [
+          {
+            "key": "18-24",
+            "value": 27,
+            "show": "27%"
+          },
+          {
+            "key": "25-34",
+            "value": 27,
+            "show": "27%"
+          },
+          {
+            "key": "other",
+            "value": 16,
+            "show": "16%"
+          },
+          {
+            "key": "35-44",
+            "value": 16,
+            "show": "16%"
+          },
+          {
+            "key": "45-54",
+            "value": 6,
+            "show": "6%"
+          }
+        ],
+        "state_distribution": [
+          {
+            "key": "Texas",
+            "value": "12.14",
+            "show": "12.14%"
+          },
+          {
+            "key": "Ohio",
+            "value": "3.66",
+            "show": "3.66%"
+          },
+          {
+            "key": "Iowa",
+            "value": "0.99",
+            "show": "0.99%"
+          },
+          {
+            "key": "Utah",
+            "value": "0.97",
+            "show": "0.97%"
+          },
+          {
+            "key": "Idaho",
+            "value": "0.42",
+            "show": "0.42%"
+          },
+          {
+            "key": "Maine",
+            "value": "0.28",
+            "show": "0.28%"
+          },
+          {
+            "key": "Alaska",
+            "value": "0.18",
+            "show": "0.18%"
+          },
+          {
+            "key": "Hawaii",
+            "value": "0.29",
+            "show": "0.29%"
+          }
+        ],
+        "follower_genders_max": {
+          "key": "male",
+          "value": 52,
+          "show": "52%"
+        },
+        "follower_ages_max": {
+          "key": "18-24",
+          "value": 27,
+          "show": "27%"
+        },
+        "state_distribution_max": {
+          "key": "Texas",
+          "value": "12.14",
+          "show": "12.14%"
+        },
+        "spread": {
+          "0": {
+            "uid": "6727327145951183878",
+            "follower_genders": "[{\"key\":\"male\",\"value\":\"0.5188\"},{\"key\":\"female\",\"value\":\"0.4812\"}]",
+            "follower_ages": "[{\"key\":\"18-24\",\"value\":\"0.2728\"},{\"key\":\"25-34\",\"value\":\"0.2675\"},{\"key\":\"other\",\"value\":\"0.1607\"},{\"key\":\"35-44\",\"value\":\"0.1553\"},{\"key\":\"45-54\",\"value\":\"0.0627\"}]",
+            "state_distribution": "{\"US\": {\"Iowa\": \"125636\", \"Ohio\": \"465177\", \"Utah\": \"122676\", \"Idaho\": \"52707\", \"Maine\": \"35013\", \"Texas\": \"1541534\", \"Alaska\": \"23073\", \"Hawaii\": \"36762\", \"Kansas\": \"107547\", \"Nevada\": \"125796\", \"Oregon\": \"137805\", \"Alabama\": \"213110\", \"Arizona\": \"276839\", \"Georgia\": \"623991\", \"Indiana\": \"271394\", \"Montana\": \"29239\", \"Vermont\": \"17456\", \"Wyoming\": \"19900\", \"Arkansas\": \"113464\", \"Colorado\": \"237516\", \"Delaware\": \"36649\", \"Illinois\": \"623631\", \"Kentucky\": \"218079\", \"Maryland\": \"257489\", \"Michigan\": \"438059\", \"Missouri\": \"253058\", \"Nebraska\": \"70817\", \"New York\": \"836183\", \"Oklahoma\": \"162685\", \"Virginia\": \"351017\", \"Louisiana\": \"205129\", \"Minnesota\": \"172245\", \"Tennessee\": \"296483\", \"Wisconsin\": \"183215\", \"California\": \"1364440\", \"New Jersey\": \"333538\", \"New Mexico\": \"97395\", \"Washington\": \"272746\", \"Connecticut\": \"127149\", \"Mississippi\": \"124580\", \"North Dakota\": \"23698\", \"Pennsylvania\": \"514810\", \"Rhode Island\": \"47429\", \"South Dakota\": \"27339\", \"Massachusetts\": \"250204\", \"New Hampshire\": \"38755\", \"West Virginia\": \"62915\", \"North Carolina\": \"484373\", \"South Carolina\": \"195165\", \"District of Columbia\": \"47764\"}}"
+          },
+          "follower_genders": "[{\"key\":\"male\",\"value\":0.52},{\"key\":\"female\",\"value\":0.48}]",
+          "follower_ages": "[{\"key\":\"18-24\",\"value\":0.27},{\"key\":\"25-34\",\"value\":0.27},{\"key\":\"other\",\"value\":0.16},{\"key\":\"35-44\",\"value\":0.16},{\"key\":\"45-54\",\"value\":0.06}]",
+          "state_distribution": "{\"Iowa\":\"125636\",\"Ohio\":\"465177\",\"Utah\":\"122676\",\"Idaho\":\"52707\",\"Maine\":\"35013\",\"Texas\":\"1541534\",\"Alaska\":\"23073\",\"Hawaii\":\"36762\",\"Kansas\":\"107547\",\"Nevada\":\"125796\",\"Oregon\":\"137805\",\"Alabama\":\"213110\",\"Arizona\":\"276839\",\"Georgia\":\"623991\",\"Indiana\":\"271394\",\"Montana\":\"29239\",\"Vermont\":\"17456\",\"Wyoming\":\"19900\",\"Arkansas\":\"113464\",\"Colorado\":\"237516\",\"Delaware\":\"36649\",\"Illinois\":\"623631\",\"Kentucky\":\"218079\",\"Maryland\":\"257489\",\"Michigan\":\"438059\",\"Missouri\":\"253058\",\"Nebraska\":\"70817\",\"New York\":\"836183\",\"Oklahoma\":\"162685\",\"Virginia\":\"351017\",\"Louisiana\":\"205129\",\"Minnesota\":\"172245\",\"Tennessee\":\"296483\",\"Wisconsin\":\"183215\",\"California\":\"1364440\",\"New Jersey\":\"333538\",\"New Mexico\":\"97395\",\"Washington\":\"272746\",\"Connecticut\":\"127149\",\"Mississippi\":\"124580\",\"North Dakota\":\"23698\",\"Pennsylvania\":\"514810\",\"Rhode Island\":\"47429\",\"South Dakota\":\"27339\",\"Massachusetts\":\"250204\",\"New Hampshire\":\"38755\",\"West Virginia\":\"62915\",\"North Carolina\":\"484373\",\"South Carolina\":\"195165\",\"District of Columbia\":\"47764\"}"
+        }
+      },
+      "sale_category_l3_json": [],
+      "sale_category_l1_name": [],
+      "sale_category_l2_name": [],
+      "sale_category_l3_name": [],
+      "first_video_time": 1570057730,
+      "sale_paly_count": 0,
+      "avg_28d_sale_play_count": 0,
+      "avg_28d_play_count": 0,
+      "like_followers_rate": "0.0842%",
+      "video_28d_interaction_rate": "-",
+      "follower_28d_grow_rate": "-",
+      "sale_28d_amount": 0,
+      "sale_28d_count": 0,
+      "video_28d_sale_amount": 0,
+      "live_28d_sale_amount": 0,
+      "play_28d_sale_count": 0,
+      "sale_play_90d_gmv": 0,
+      "sale_live_90d_gmv": 0,
+      "avg_28d_video_like_count": 0,
+      "avg_28d_sale_video_like_count": 0,
+      "video_90d_sale_gmv_amount": 0,
+      "live_90d_sale_gmv_amount": 0,
+      "prod_video_28d_count": 0,
+      "prod_live_28d_count": 0,
+      "interaction_v1_rate": "12.1%",
+      "like_followers_v1_rate": "0.0842%",
+      "video_28d_interaction_v1_rate": "-",
+      "follower_28d_grow_v1_rate": "-",
+      "like_followers_than": 8.42,
+      "video_28d_sale_proportion": 0,
+      "live_28d_sale_proportion": 0,
+      "prod_video_28d_count_proportion": 0,
+      "prod_live_28d_count_proportion": 0,
+      "is_collect": 0,
+      "region_name": "United States",
+      "aweme_count_show": "441",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "79.3m",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "0",
+      "avg_digg_count_show": "1.6m",
+      "avg_play_count_show": "13.6m",
+      "follower_28d_count_show": "0",
+      "total_favorited_28d_count_show": "0",
+      "video_sale_amount_show": "$0",
+      "live_sale_amount_show": "$0",
+      "interact_rate_show": "11.78%",
+      "sale_paly_count_show": "0",
+      "avg_28d_sale_play_count_show": "0",
+      "avg_28d_play_count_show": "0",
+      "like_followers_rate_show": "0.0842%",
+      "video_28d_interaction_rate_show": "-",
+      "follower_28d_grow_rate_show": "-",
+      "sale_28d_amount_show": "$0",
+      "sale_28d_count_show": "0",
+      "video_28d_sale_amount_show": "$0",
+      "live_28d_sale_amount_show": "$0",
+      "play_28d_sale_count_show": "0",
+      "avg_28d_video_like_count_show": "0",
+      "avg_28d_sale_video_like_count_show": "0",
+      "video_90d_sale_gmv_amount_show": "$0",
+      "live_90d_sale_gmv_amount_show": "$0",
+      "prod_video_28d_count_show": "0",
+      "prod_live_28d_count_show": "0",
+      "interaction_v1_rate_show": "12.1%",
+      "like_followers_v1_rate_show": "0.0842%",
+      "video_28d_interaction_v1_rate_show": "-",
+      "follower_28d_grow_v1_rate_show": "-",
+      "_source_type": "top_followers"
+    },
+    {
+      "uid": "6879693940111901701",
+      "nickname": "BILLIE EILISH",
+      "unique_id": "billieeilish",
+      "avatar": "https://s.500fd.com/tt_author/a67f9744439872cde91754ff64b8a97d~tplv-tiktokx-cropcenter:1080:1080.jpeg",
+      "region": "US",
+      "category": [
+        "Clothing & Accessories"
+      ],
+      "aweme_count": 74,
+      "aweme_30d_count": 0,
+      "follower_count": 74430281,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 0,
+      "avg_digg_count": 7141357,
+      "avg_play_count": 58857747,
+      "verify_type": "1",
+      "follower_28d_count": 55874,
+      "total_favorited_28d_count": 0,
+      "video_sale_amount": 0,
+      "live_sale_amount": 0,
+      "interact_rate": "12.13%",
+      "market_category_l1_name": [],
+      "live_type": 4,
+      "is_ecommerce": 0,
+      "contact": [
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        },
+        {
+          "code": 10,
+          "name": "Bio",
+          "cover": null
+        }
+      ],
+      "sale_amount_list": {
+        "list": [],
+        "total": 0,
+        "total_show": ""
+      },
+      "sale_count_list": [],
+      "fansPortrait": {
+        "uid": "6879693940111901701",
+        "follower_genders": [
+          {
+            "key": "female",
+            "value": 68.75,
+            "show": "68.75%"
+          },
+          {
+            "key": "male",
+            "value": 31.25,
+            "show": "31.25%"
+          }
+        ],
+        "follower_ages": [
+          {
+            "key": "18-24",
+            "value": 43,
+            "show": "43%"
+          },
+          {
+            "key": "25-34",
+            "value": 26,
+            "show": "26%"
+          },
+          {
+            "key": "35-44",
+            "value": 18,
+            "show": "18%"
+          },
+          {
+            "key": "45-54",
+            "value": 9,
+            "show": "9%"
+          },
+          {
+            "key": "55+",
+            "value": 4,
+            "show": "4%"
+          }
+        ],
+        "state_distribution": [
+          {
+            "key": "CALIFORNIA",
+            "value": "28.57",
+            "show": "28.57%"
+          },
+          {
+            "key": "TEXAS",
+            "value": "26.81",
+            "show": "26.81%"
+          },
+          {
+            "key": "NEW YORK",
+            "value": "17.37",
+            "show": "17.37%"
+          },
+          {
+            "key": "FLORIDA",
+            "value": "16.50",
+            "show": "16.50%"
+          },
+          {
+            "key": "ILLINOIS",
+            "value": "10.75",
+            "show": "10.75%"
+          }
+        ],
+        "follower_genders_max": {
+          "key": "female",
+          "value": 68.75,
+          "show": "68.75%"
+        },
+        "follower_ages_max": {
+          "key": "18-24",
+          "value": 43,
+          "show": "43%"
+        },
+        "state_distribution_max": {
+          "key": "CALIFORNIA",
+          "value": "28.57",
+          "show": "28.57%"
+        },
+        "spread": {
+          "0": {
+            "uid": "6879693940111901701",
+            "follower_genders": "[{\"key\":\"male\",\"value\":\"0.2972\"},{\"key\":\"female\",\"value\":\"0.6639\"}]",
+            "follower_ages": "[{\"key\":\"18-24\",\"value\":\"0.4341\"},{\"key\":\"25-34\",\"value\":\"0.2618\"},{\"key\":\"35-44\",\"value\":\"0.1785\"},{\"key\":\"45-54\",\"value\":\"0.0870\"},{\"key\":\"55+\",\"value\":\"0.0383\"}]",
+            "state_distribution": "[{\"key\": \"CALIFORNIA\", \"value\": \"1084\"}, {\"key\": \"TEXAS\", \"value\": \"1017\"}, {\"key\": \"NEW YORK\", \"value\": \"659\"}, {\"key\": \"FLORIDA\", \"value\": \"626\"}, {\"key\": \"ILLINOIS\", \"value\": \"408\"}]"
+          },
+          "follower_genders": "[{\"key\":\"male\",\"value\":0.3},{\"key\":\"female\",\"value\":0.66}]",
+          "follower_ages": "[{\"key\":\"18-24\",\"value\":0.43},{\"key\":\"25-34\",\"value\":0.26},{\"key\":\"35-44\",\"value\":0.18},{\"key\":\"45-54\",\"value\":0.09},{\"key\":\"55+\",\"value\":0.04}]",
+          "state_distribution": "{\"CALIFORNIA\":1084,\"TEXAS\":1017,\"NEW YORK\":659,\"FLORIDA\":626,\"ILLINOIS\":408}"
+        }
+      },
+      "sale_category_l3_json": [],
+      "sale_category_l1_name": [],
+      "sale_category_l2_name": [],
+      "sale_category_l3_name": [],
+      "first_video_time": 1605153535,
+      "sale_paly_count": 0,
+      "avg_28d_sale_play_count": 0,
+      "avg_28d_play_count": 874285,
+      "like_followers_rate": "0.0717%",
+      "video_28d_interaction_rate": "7.05%",
+      "follower_28d_grow_rate": "0.07%",
+      "sale_28d_amount": 0,
+      "sale_28d_count": 0,
+      "video_28d_sale_amount": 0,
+      "live_28d_sale_amount": 0,
+      "play_28d_sale_count": 0,
+      "sale_play_90d_gmv": 0,
+      "sale_live_90d_gmv": 0,
+      "avg_28d_video_like_count": 60471,
+      "avg_28d_sale_video_like_count": 0,
+      "video_90d_sale_gmv_amount": 0,
+      "live_90d_sale_gmv_amount": 0,
+      "prod_video_28d_count": 0,
+      "prod_live_28d_count": 0,
+      "interaction_v1_rate": "12.45%",
+      "like_followers_v1_rate": "0.0717%",
+      "video_28d_interaction_v1_rate": "7.05%",
+      "follower_28d_grow_v1_rate": "0.07%",
+      "like_followers_than": 7.17,
+      "video_28d_sale_proportion": 0,
+      "live_28d_sale_proportion": 0,
+      "prod_video_28d_count_proportion": 0,
+      "prod_live_28d_count_proportion": 0,
+      "is_collect": 0,
+      "region_name": "United States",
+      "aweme_count_show": "74",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "74.4m",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "0",
+      "avg_digg_count_show": "7.1m",
+      "avg_play_count_show": "58.8m",
+      "follower_28d_count_show": "55.8k",
+      "total_favorited_28d_count_show": "0",
+      "video_sale_amount_show": "$0",
+      "live_sale_amount_show": "$0",
+      "interact_rate_show": "12.13%",
+      "sale_paly_count_show": "0",
+      "avg_28d_sale_play_count_show": "0",
+      "avg_28d_play_count_show": "874.2k",
+      "like_followers_rate_show": "0.0717%",
+      "video_28d_interaction_rate_show": "7.05%",
+      "follower_28d_grow_rate_show": "0.07%",
+      "sale_28d_amount_show": "$0",
+      "sale_28d_count_show": "0",
+      "video_28d_sale_amount_show": "$0",
+      "live_28d_sale_amount_show": "$0",
+      "play_28d_sale_count_show": "0",
+      "avg_28d_video_like_count_show": "60.4k",
+      "avg_28d_sale_video_like_count_show": "0",
+      "video_90d_sale_gmv_amount_show": "$0",
+      "live_90d_sale_gmv_amount_show": "$0",
+      "prod_video_28d_count_show": "0",
+      "prod_live_28d_count_show": "0",
+      "interaction_v1_rate_show": "12.45%",
+      "like_followers_v1_rate_show": "0.0717%",
+      "video_28d_interaction_v1_rate_show": "7.05%",
+      "follower_28d_grow_v1_rate_show": "0.07%",
+      "_source_type": "top_followers"
+    },
+    {
+      "uid": "6759945674786407429",
+      "nickname": "Simone Biles",
+      "unique_id": "simonebilesowens",
+      "avatar": "https://s.500fd.com/tt_author/3ec10511157c8c7b9ad0e18bc6f54442~c5_720x720.jpeg",
+      "region": "US",
+      "category": [
+        "运动"
+      ],
+      "aweme_count": 79,
+      "aweme_30d_count": 0,
+      "follower_count": 5312912,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 9,
+      "avg_digg_count": 1922003,
+      "avg_play_count": 21943992,
+      "verify_type": "1",
+      "interact_rate": "8.76%",
+      "follower_28d_count": 3799229,
+      "total_favorited_28d_count": 0,
+      "market_category_l1_name": [],
+      "contact": [
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        }
+      ],
+      "is_collect": 0,
+      "region_name": "美国",
+      "aweme_count_show": "79",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "531.29万",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "9",
+      "avg_digg_count_show": "192.20万",
+      "avg_play_count_show": "2194.39万",
+      "interact_rate_show": "8.76%",
+      "follower_28d_count_show": "379.92万",
+      "total_favorited_28d_count_show": "0",
+      "sale_28d_count_show": "13.27万",
+      "avg_28d_play_count_show": "34.42万",
+      "like_followers_than": 30.75,
+      "interaction_v1_rate": "8.76%",
+      "first_video_time": 1574940582,
+      "video_sale_amount": 25786881,
+      "live_sale_amount": 129892343,
+      "sale_category_l3_name": [
+        "面部护理套装",
+        "面膜",
+        "女士香水",
+        "遮瑕与粉底",
+        "保湿乳液、乳霜与喷雾",
+        "私密处清洁用品",
+        "头发与头皮养护",
+        "洗发护发",
+        "定妆喷雾",
+        "爽肤水、化妆水",
+        "身体霜、乳",
+        "除毛乳、除毛蜜蜡&除毛器",
+        "沐浴露与香皂",
+        "口红与唇彩",
+        "洗面乳",
+        "脸部防晒霜与晒后修复",
+        "身体护理套装",
+        "男女通用香水",
+        "芳香理疗精油",
+        "美妆套装",
+        "美容保健食品",
+        "保健食品",
+        "冲调饮品",
+        "妆前乳与眼影打底膏",
+        "痘痘、粉刺护理",
+        "面部美容仪器",
+        "手足膜",
+        "漱口水",
+        "保湿油、按摩油",
+        "面部精华液",
+        "香水",
+        "面部磨砂膏与去角质",
+        "卸妆",
+        "唇部护理",
+        "护手足霜、乳液与磨砂膏",
+        "婴儿洗衣液",
+        "布丁与果冻",
+        "BB霜与CC霜",
+        "身体除臭&防汗剂",
+        "身体磨砂膏、去角质",
+        "腮红",
+        "酸奶和发酵乳",
+        "香水套装",
+        "染发用品",
+        "运动套袖&软防护",
+        "饼干，曲奇与威化饼",
+        "眼部护理",
+        "茶",
+        "牙齿美白",
+        "睫毛膏",
+        "男士护肤品",
+        "巧克力与巧克力零食",
+        "干粮零食",
+        "抗真菌",
+        "卷、直发器",
+        "糖浆与浓缩物",
+        "摩丝、啫喱",
+        "婴儿护肤品",
+        "指甲油",
+        "咖啡",
+        "散粉",
+        "驱虫剂",
+        "鼻部护理",
+        "眼线笔与唇线笔",
+        "体重秤",
+        "电动剃须刀",
+        "眉笔&眉粉&眉胶",
+        "不插电造型工具"
+      ],
+      "sale_count_list": {
+        "list": [
+          {
+            "key": "2025-06-03",
+            "value": 2988,
+            "show": "2.9k"
+          },
+          {
+            "key": "2025-06-04",
+            "value": 3810,
+            "show": "3.8k"
+          },
+          {
+            "key": "2025-06-05",
+            "value": 7299,
+            "show": "7.3k"
+          },
+          {
+            "key": "2025-06-06",
+            "value": 7770,
+            "show": "7.7k"
+          },
+          {
+            "key": "2025-06-07",
+            "value": 5580,
+            "show": "5.5k"
+          },
+          {
+            "key": "2025-06-08",
+            "value": 3967,
+            "show": "3.9k"
+          },
+          {
+            "key": "2025-06-09",
+            "value": 4602,
+            "show": "4.6k"
+          },
+          {
+            "key": "2025-06-10",
+            "value": 3172,
+            "show": "3.1k"
+          },
+          {
+            "key": "2025-06-11",
+            "value": 4447,
+            "show": "4.4k"
+          },
+          {
+            "key": "2025-06-12",
+            "value": 1659,
+            "show": "1.6k"
+          },
+          {
+            "key": "2025-06-13",
+            "value": 3268,
+            "show": "3.2k"
+          },
+          {
+            "key": "2025-06-14",
+            "value": 2282,
+            "show": "2.2k"
+          },
+          {
+            "key": "2025-06-15",
+            "value": 1965,
+            "show": "1.9k"
+          },
+          {
+            "key": "2025-06-16",
+            "value": 5830,
+            "show": "5.8k"
+          },
+          {
+            "key": "2025-06-17",
+            "value": 4886,
+            "show": "4.8k"
+          },
+          {
+            "key": "2025-06-18",
+            "value": 4195,
+            "show": "4.2k"
+          },
+          {
+            "key": "2025-06-19",
+            "value": 4311,
+            "show": "4.3k"
+          },
+          {
+            "key": "2025-06-20",
+            "value": 4197,
+            "show": "4.2k"
+          },
+          {
+            "key": "2025-06-21",
+            "value": 4143,
+            "show": "4.1k"
+          },
+          {
+            "key": "2025-06-22",
+            "value": 3578,
+            "show": "3.5k"
+          },
+          {
+            "key": "2025-06-23",
+            "value": 5227,
+            "show": "5.2k"
+          },
+          {
+            "key": "2025-06-24",
+            "value": 4662,
+            "show": "4.6k"
+          },
+          {
+            "key": "2025-06-25",
+            "value": 6217,
+            "show": "6.2k"
+          },
+          {
+            "key": "2025-06-26",
+            "value": 6304,
+            "show": "6.3k"
+          },
+          {
+            "key": "2025-06-27",
+            "value": 7692,
+            "show": "7.6k"
+          },
+          {
+            "key": "2025-06-28",
+            "value": 5858,
+            "show": "5.8k"
+          },
+          {
+            "key": "2025-06-29",
+            "value": 6223,
+            "show": "6.2k"
+          },
+          {
+            "key": "2025-06-30",
+            "value": 6618,
+            "show": "6.6k"
+          }
+        ],
+        "total": 132750,
+        "total_show": "132.7k"
+      },
+      "fansPortrait": {
+        "follower_genders_max": {
+          "key": "female",
+          "value": 73,
+          "show": "73%"
+        },
+        "follower_ages_max": {
+          "key": "25-34",
+          "value": 50,
+          "show": "50%"
+        },
+        "state_distribution_max": {
+          "key": "WEST JAVA",
+          "value": "33.73",
+          "show": "33.73%"
+        }
+      },
+      "video_sale_amount_show": "$25.7m",
+      "live_sale_amount_show": "$129.8m",
+      "_source_type": "ecommerce"
+    },
+    {
+      "uid": "7171976636321448966",
+      "nickname": "Barbie_Leilla💖🧠💕🦋",
+      "unique_id": "new_sileilla",
+      "avatar": "https://s.500fd.com/tt_author/da113ab580f45978ae4e49729ca81d14~c5_300x300.jpeg",
+      "region": "US",
+      "category": [
+        "其他"
+      ],
+      "aweme_count": 755,
+      "aweme_30d_count": 0,
+      "follower_count": 3583283,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 18,
+      "avg_digg_count": 14649,
+      "avg_play_count": 167314,
+      "verify_type": "1",
+      "interact_rate": "8.76%",
+      "follower_28d_count": 3211072,
+      "total_favorited_28d_count": 0,
+      "market_category_l1_name": [
+        "服饰",
+        "家居生活",
+        "电子"
+      ],
+      "contact": [
+        {
+          "code": 3,
+          "name": "Email",
+          "cover": "https://cdn.500fd.com/public_web/email230616.png"
+        },
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        }
+      ],
+      "is_collect": 0,
+      "region_name": "美国",
+      "aweme_count_show": "755",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "358.32万",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "18",
+      "avg_digg_count_show": "1.46万",
+      "avg_play_count_show": "16.73万",
+      "interact_rate_show": "8.76%",
+      "follower_28d_count_show": "321.10万",
+      "total_favorited_28d_count_show": "0",
+      "sale_28d_count_show": "9.44万",
+      "avg_28d_play_count_show": "2.78万",
+      "like_followers_than": 1.69,
+      "interaction_v1_rate": "5.51%",
+      "first_video_time": 1650982321,
+      "video_sale_amount": 1454143554,
+      "live_sale_amount": 525215,
+      "sale_category_l3_name": [
+        "保温杯",
+        "饮具配件",
+        "饭盒",
+        "清洁海绵与百洁布",
+        "女士单肩包及斜挎包",
+        "烘焙盘",
+        "水瓶",
+        "收纳瓶罐",
+        "运动水壶",
+        "碗",
+        "玻璃刮",
+        "餐具套装",
+        "奶瓶清洁用品",
+        "马克杯",
+        "调味工具",
+        "油壶",
+        "饭盒包",
+        "玻璃杯",
+        "露营厨具",
+        "收纳架",
+        "汤锅",
+        "炒勺、锅铲",
+        "禽肉处理工具",
+        "盘",
+        "不带电水壶与水罐",
+        "水果、蔬菜工具",
+        "冰淇淋工具",
+        "杯与碟",
+        "保鲜容器/保鲜器皿",
+        "酒壶",
+        "意面及披萨工具",
+        "咖啡壶",
+        "女士钱包",
+        "女士托特包",
+        "厨房刀具及配件的套装",
+        "切菜板",
+        "一次性餐具",
+        "筷子",
+        "平底锅、炒锅",
+        "收纳篮",
+        "餐巾纸&湿巾"
+      ],
+      "sale_count_list": {
+        "list": [
+          {
+            "key": "2025-06-03",
+            "value": 3007,
+            "show": "3.0k"
+          },
+          {
+            "key": "2025-06-04",
+            "value": 2707,
+            "show": "2.7k"
+          },
+          {
+            "key": "2025-06-05",
+            "value": 3270,
+            "show": "3.2k"
+          },
+          {
+            "key": "2025-06-06",
+            "value": 3661,
+            "show": "3.6k"
+          },
+          {
+            "key": "2025-06-07",
+            "value": 2658,
+            "show": "2.6k"
+          },
+          {
+            "key": "2025-06-08",
+            "value": 2400,
+            "show": "2.4k"
+          },
+          {
+            "key": "2025-06-09",
+            "value": 1137,
+            "show": "1.1k"
+          },
+          {
+            "key": "2025-06-10",
+            "value": 18,
+            "show": "18"
+          },
+          {
+            "key": "2025-06-11",
+            "value": 3856,
+            "show": "3.8k"
+          },
+          {
+            "key": "2025-06-12",
+            "value": 65,
+            "show": "65"
+          },
+          {
+            "key": "2025-06-13",
+            "value": 49,
+            "show": "49"
+          },
+          {
+            "key": "2025-06-14",
+            "value": 48,
+            "show": "48"
+          },
+          {
+            "key": "2025-06-15",
+            "value": 2335,
+            "show": "2.3k"
+          },
+          {
+            "key": "2025-06-16",
+            "value": 5410,
+            "show": "5.4k"
+          },
+          {
+            "key": "2025-06-17",
+            "value": 6789,
+            "show": "6.7k"
+          },
+          {
+            "key": "2025-06-18",
+            "value": 5422,
+            "show": "5.4k"
+          },
+          {
+            "key": "2025-06-19",
+            "value": 5638,
+            "show": "5.6k"
+          },
+          {
+            "key": "2025-06-20",
+            "value": 4606,
+            "show": "4.6k"
+          },
+          {
+            "key": "2025-06-21",
+            "value": 4506,
+            "show": "4.5k"
+          },
+          {
+            "key": "2025-06-22",
+            "value": 4865,
+            "show": "4.8k"
+          },
+          {
+            "key": "2025-06-23",
+            "value": 6293,
+            "show": "6.2k"
+          },
+          {
+            "key": "2025-06-24",
+            "value": 4720,
+            "show": "4.7k"
+          },
+          {
+            "key": "2025-06-25",
+            "value": 4480,
+            "show": "4.4k"
+          },
+          {
+            "key": "2025-06-26",
+            "value": 5477,
+            "show": "5.4k"
+          },
+          {
+            "key": "2025-06-27",
+            "value": 3942,
+            "show": "3.9k"
+          },
+          {
+            "key": "2025-06-28",
+            "value": 735,
+            "show": "735"
+          },
+          {
+            "key": "2025-06-29",
+            "value": 3454,
+            "show": "3.4k"
+          },
+          {
+            "key": "2025-06-30",
+            "value": 2852,
+            "show": "2.8k"
+          }
+        ],
+        "total": 94400,
+        "total_show": "94.4k"
+      },
+      "fansPortrait": {
+        "follower_genders_max": {
+          "key": "female",
+          "value": 71,
+          "show": "71%"
+        },
+        "follower_ages_max": {
+          "key": "25-34",
+          "value": 44,
+          "show": "44%"
+        },
+        "state_distribution_max": {
+          "key": "METRO MANILA",
+          "value": "34.61",
+          "show": "34.61%"
+        }
+      },
+      "video_sale_amount_show": "$1.4b",
+      "live_sale_amount_show": "$525.2k",
+      "_source_type": "ecommerce"
+    },
+    {
+      "uid": "6868131936855819269",
+      "nickname": "leah.kateb",
+      "unique_id": "leah.kateb",
+      "avatar": "https://s.500fd.com/tt_author/dcfd58fecbecc7efb11373f7a77f7084~c5_720x720.jpeg",
+      "region": "US",
+      "category": [
+        "其他"
+      ],
+      "aweme_count": 91,
+      "aweme_30d_count": 0,
+      "follower_count": 3612607,
+      "follower_30d_count": 0,
+      "fdindex": 0,
+      "aweme_28d_count": 43,
+      "avg_digg_count": 732637,
+      "avg_play_count": 7293677,
+      "verify_type": "1",
+      "interact_rate": "10.04%",
+      "follower_28d_count": 2551385,
+      "total_favorited_28d_count": 0,
+      "market_category_l1_name": [],
+      "contact": [
+        {
+          "code": 3,
+          "name": "Email",
+          "cover": "https://cdn.500fd.com/public_web/email230616.png"
+        }
+      ],
+      "is_collect": 0,
+      "region_name": "美国",
+      "aweme_count_show": "91",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "361.26万",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "43",
+      "avg_digg_count_show": "73.26万",
+      "avg_play_count_show": "729.36万",
+      "interact_rate_show": "10.04%",
+      "follower_28d_count_show": "255.13万",
+      "total_favorited_28d_count_show": "0",
+      "sale_28d_count_show": "7.50万",
+      "avg_28d_play_count_show": "16.08万",
+      "like_followers_than": 23.96,
+      "interaction_v1_rate": "11.31%",
+      "first_video_time": 1682143774,
+      "video_sale_amount": 487272,
+      "live_sale_amount": 8226,
+      "sale_category_l3_name": [
+        "咖啡",
+        "美容保健食品",
+        "保健食品",
+        "身体防晒",
+        "保湿乳液、乳霜与喷雾",
+        "茶",
+        "即食泡面",
+        "面膜",
+        "防晒衣",
+        "BB霜与CC霜",
+        "身体霜、乳",
+        "男士袜子",
+        "香料与调味料",
+        "糖与甜味剂",
+        "蜜糖与枫糖浆",
+        "染发用品",
+        "口腔喷剂",
+        "脸部防晒霜与晒后修复",
+        "冲调饮品",
+        "健康仪器与测试仪",
+        "唇部护理",
+        "面部护理套装",
+        "咖啡替代饮料",
+        "头发与头皮养护",
+        "爽肤水、化妆水",
+        "洗面乳",
+        "沐浴露与香皂",
+        "健身保健食品",
+        "男士内裤",
+        "医用口罩",
+        "遮瑕与粉底",
+        "代餐与蛋白质饮料",
+        "面部精华液",
+        "除毛乳、除毛蜜蜡&除毛器",
+        "牙膏",
+        "身体护理套装",
+        "男士手动剃须工具",
+        "面部美容仪器",
+        "男士T恤",
+        "运动外套&卫衣",
+        "痘痘、粉刺护理",
+        "巧克力和麦芽饮料",
+        "护手足霜、乳液与磨砂膏",
+        "男女通用香水",
+        "定妆喷雾",
+        "饼干，曲奇与威化饼",
+        "身体除臭&防汗剂",
+        "糖浆与浓缩物"
+      ],
+      "sale_count_list": {
+        "list": [
+          {
+            "key": "2025-06-03",
+            "value": 1190,
+            "show": "1.1k"
+          },
+          {
+            "key": "2025-06-04",
+            "value": 989,
+            "show": "989"
+          },
+          {
+            "key": "2025-06-05",
+            "value": 2933,
+            "show": "2.9k"
+          },
+          {
+            "key": "2025-06-06",
+            "value": 2502,
+            "show": "2.5k"
+          },
+          {
+            "key": "2025-06-07",
+            "value": 3374,
+            "show": "3.3k"
+          },
+          {
+            "key": "2025-06-08",
+            "value": 1836,
+            "show": "1.8k"
+          },
+          {
+            "key": "2025-06-09",
+            "value": 1223,
+            "show": "1.2k"
+          },
+          {
+            "key": "2025-06-10",
+            "value": 1675,
+            "show": "1.6k"
+          },
+          {
+            "key": "2025-06-11",
+            "value": 1344,
+            "show": "1.3k"
+          },
+          {
+            "key": "2025-06-12",
+            "value": 1485,
+            "show": "1.4k"
+          },
+          {
+            "key": "2025-06-13",
+            "value": 1554,
+            "show": "1.5k"
+          },
+          {
+            "key": "2025-06-14",
+            "value": 2170,
+            "show": "2.1k"
+          },
+          {
+            "key": "2025-06-15",
+            "value": 2047,
+            "show": "2.0k"
+          },
+          {
+            "key": "2025-06-16",
+            "value": 3287,
+            "show": "3.2k"
+          },
+          {
+            "key": "2025-06-17",
+            "value": 4468,
+            "show": "4.4k"
+          },
+          {
+            "key": "2025-06-18",
+            "value": 1050,
+            "show": "1.0k"
+          },
+          {
+            "key": "2025-06-19",
+            "value": 6260,
+            "show": "6.2k"
+          },
+          {
+            "key": "2025-06-20",
+            "value": 4184,
+            "show": "4.1k"
+          },
+          {
+            "key": "2025-06-21",
+            "value": 4398,
+            "show": "4.4k"
+          },
+          {
+            "key": "2025-06-22",
+            "value": 3479,
+            "show": "3.4k"
+          },
+          {
+            "key": "2025-06-23",
+            "value": 4025,
+            "show": "4.0k"
+          },
+          {
+            "key": "2025-06-24",
+            "value": 3264,
+            "show": "3.2k"
+          },
+          {
+            "key": "2025-06-25",
+            "value": 2810,
+            "show": "2.8k"
+          },
+          {
+            "key": "2025-06-26",
+            "value": 2691,
+            "show": "2.6k"
+          },
+          {
+            "key": "2025-06-27",
+            "value": 3393,
+            "show": "3.3k"
+          },
+          {
+            "key": "2025-06-28",
+            "value": 3440,
+            "show": "3.4k"
+          },
+          {
+            "key": "2025-06-29",
+            "value": 1929,
+            "show": "1.9k"
+          },
+          {
+            "key": "2025-06-30",
+            "value": 2060,
+            "show": "2.0k"
+          }
+        ],
+        "total": 75060,
+        "total_show": "75.0k"
+      },
+      "fansPortrait": {
+        "follower_genders_max": {
+          "key": "female",
+          "value": 50,
+          "show": "50%"
+        },
+        "follower_ages_max": {
+          "key": "25-34",
+          "value": 29,
+          "show": "29%"
+        },
+        "state_distribution_max": {
+          "key": "BANGKOK",
+          "value": "71.18",
+          "show": "71.18%"
+        }
+      },
+      "video_sale_amount_show": "$487.2k",
+      "live_sale_amount_show": "$8.2k",
+      "_source_type": "ecommerce"
+    },
+    {
+      "uid": "318921406472306688",
+      "nickname": "NBC Olympics & Paralympics",
+      "unique_id": "nbcolympics",
+      "avatar": "https://s.500fd.com/tt_author/8f1cfa845ecea82bfdaf34111c4a555c~c5_720x720.webp",
+      "region": "US",
+      "category": [
+        "媒体"
+      ],
+      "aweme_count": 4367,
+      "aweme_30d_count": 0,
+      "follower_count": 4259171,
+      "follower_30d_count": 0,
+      "fdindex": 127,
+      "aweme_28d_count": 190,
+      "avg_digg_count": 25662,
+      "avg_play_count": 566676,
+      "verify_type": "1",
+      "interact_rate": "4.53%",
+      "follower_28d_count": 1900602,
+      "total_favorited_28d_count": 0,
+      "market_category_l1_name": [],
+      "contact": [
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        }
+      ],
+      "is_collect": 0,
+      "region_name": "美国",
+      "aweme_count_show": "4367",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "425.91万",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "190",
+      "avg_digg_count_show": "2.56万",
+      "avg_play_count_show": "56.66万",
+      "interact_rate_show": "4.53%",
+      "follower_28d_count_show": "190.06万",
+      "total_favorited_28d_count_show": "0",
+      "sale_28d_count_show": "7.34万",
+      "avg_28d_play_count_show": "3.37万",
+      "like_followers_than": 11.1,
+      "interaction_v1_rate": "9.77%",
+      "first_video_time": 1732507757,
+      "video_sale_amount": 6924594,
+      "live_sale_amount": 608778836,
+      "sale_category_l3_name": [
+        "面膜",
+        "身体霜、乳",
+        "不插电造型工具",
+        "身体磨砂膏、去角质",
+        "身体防晒",
+        "身体敷膜",
+        "卸妆",
+        "脸部防晒霜与晒后修复",
+        "化妆工具",
+        "洗面乳",
+        "沐浴露与香皂",
+        "假睫毛与胶水",
+        "面部护理工具",
+        "口红与唇彩",
+        "头发与头皮养护",
+        "腮红",
+        "痘痘、粉刺护理",
+        "高光与修容",
+        "面部磨砂膏与去角质",
+        "保湿乳液、乳霜与喷雾",
+        "身体除臭&防汗剂",
+        "面部精华液",
+        "爽肤水、化妆水",
+        "睫毛膏",
+        "唇部护理",
+        "洗发护发",
+        "身体护理套装",
+        "鼻部清洁用品",
+        "保湿油、按摩油",
+        "除毛乳、除毛蜜蜡&除毛器",
+        "眼影",
+        "脱发产品",
+        "定妆喷雾",
+        "散粉",
+        "碗",
+        "运动马甲",
+        "男士保暖内衣",
+        "女士半身裙",
+        "美妆套装"
+      ],
+      "sale_count_list": {
+        "list": [
+          {
+            "key": "2025-06-03",
+            "value": 189,
+            "show": "189"
+          },
+          {
+            "key": "2025-06-04",
+            "value": 567,
+            "show": "567"
+          },
+          {
+            "key": "2025-06-05",
+            "value": 657,
+            "show": "657"
+          },
+          {
+            "key": "2025-06-06",
+            "value": 448,
+            "show": "448"
+          },
+          {
+            "key": "2025-06-07",
+            "value": 816,
+            "show": "816"
+          },
+          {
+            "key": "2025-06-08",
+            "value": 1192,
+            "show": "1.1k"
+          },
+          {
+            "key": "2025-06-09",
+            "value": 1350,
+            "show": "1.3k"
+          },
+          {
+            "key": "2025-06-10",
+            "value": 1371,
+            "show": "1.3k"
+          },
+          {
+            "key": "2025-06-11",
+            "value": 1510,
+            "show": "1.5k"
+          },
+          {
+            "key": "2025-06-12",
+            "value": 1,
+            "show": "1"
+          },
+          {
+            "key": "2025-06-13",
+            "value": 3,
+            "show": "3"
+          },
+          {
+            "key": "2025-06-14",
+            "value": 3,
+            "show": "3"
+          },
+          {
+            "key": "2025-06-15",
+            "value": 1150,
+            "show": "1.1k"
+          },
+          {
+            "key": "2025-06-16",
+            "value": 3111,
+            "show": "3.1k"
+          },
+          {
+            "key": "2025-06-17",
+            "value": 5958,
+            "show": "5.9k"
+          },
+          {
+            "key": "2025-06-18",
+            "value": 3160,
+            "show": "3.1k"
+          },
+          {
+            "key": "2025-06-19",
+            "value": 5282,
+            "show": "5.2k"
+          },
+          {
+            "key": "2025-06-20",
+            "value": 3030,
+            "show": "3.0k"
+          },
+          {
+            "key": "2025-06-21",
+            "value": 2957,
+            "show": "2.9k"
+          },
+          {
+            "key": "2025-06-22",
+            "value": 5049,
+            "show": "5.0k"
+          },
+          {
+            "key": "2025-06-23",
+            "value": 4080,
+            "show": "4.0k"
+          },
+          {
+            "key": "2025-06-24",
+            "value": 1785,
+            "show": "1.7k"
+          },
+          {
+            "key": "2025-06-25",
+            "value": 5636,
+            "show": "5.6k"
+          },
+          {
+            "key": "2025-06-26",
+            "value": 5673,
+            "show": "5.6k"
+          },
+          {
+            "key": "2025-06-27",
+            "value": 4087,
+            "show": "4.0k"
+          },
+          {
+            "key": "2025-06-28",
+            "value": 1234,
+            "show": "1.2k"
+          },
+          {
+            "key": "2025-06-29",
+            "value": 7168,
+            "show": "7.1k"
+          },
+          {
+            "key": "2025-06-30",
+            "value": 6011,
+            "show": "6.0k"
+          }
+        ],
+        "total": 73478,
+        "total_show": "73.4k"
+      },
+      "fansPortrait": {
+        "follower_genders_max": {
+          "key": "female",
+          "value": 47,
+          "show": "47%"
+        },
+        "follower_ages_max": {
+          "key": "18-24",
+          "value": 38,
+          "show": "38%"
+        },
+        "state_distribution_max": {
+          "key": "HA NOI",
+          "value": "42.19",
+          "show": "42.19%"
+        }
+      },
+      "video_sale_amount_show": "$6.9m",
+      "live_sale_amount_show": "$608.7m",
+      "_source_type": "ecommerce"
+    },
+    {
+      "uid": "6917523249614308357",
+      "nickname": "suni",
+      "unique_id": "sunisalee_",
+      "avatar": "https://s.500fd.com/tt_author/152969d6814aefbd93ffb10441ab6eaf~c5_720x720.webp",
+      "region": "US",
+      "category": [
+        "美妆护理"
+      ],
+      "aweme_count": 181,
+      "aweme_30d_count": 0,
+      "follower_count": 3497719,
+      "follower_30d_count": 0,
+      "fdindex": 108,
+      "aweme_28d_count": 13,
+      "avg_digg_count": 891163,
+      "avg_play_count": 7725745,
+      "verify_type": "1",
+      "interact_rate": "11.53%",
+      "follower_28d_count": 1855644,
+      "total_favorited_28d_count": 0,
+      "market_category_l1_name": [],
+      "contact": [
+        {
+          "code": 1,
+          "name": "Instagram",
+          "cover": "https://cdn.500fd.com/public_web/ins230616.png"
+        }
+      ],
+      "is_collect": 0,
+      "region_name": "美国",
+      "aweme_count_show": "181",
+      "aweme_30d_count_show": "0",
+      "follower_count_show": "349.77万",
+      "follower_30d_count_show": "0",
+      "aweme_28d_count_show": "13",
+      "avg_digg_count_show": "89.11万",
+      "avg_play_count_show": "772.57万",
+      "interact_rate_show": "11.53%",
+      "follower_28d_count_show": "185.56万",
+      "total_favorited_28d_count_show": "0",
+      "sale_28d_count_show": "6.99万",
+      "avg_28d_play_count_show": "14.89万",
+      "like_followers_than": 15.66,
+      "interaction_v1_rate": "8.16%",
+      "first_video_time": 1690261230,
+      "video_sale_amount": 1078823,
+      "live_sale_amount": 961865532,
+      "sale_category_l3_name": [
+        "餐巾纸&湿巾",
+        "厕所用纸 & 湿巾",
+        "坚果和豌豆",
+        "干粮零食",
+        "厨房用纸&湿巾",
+        "车锁与安全",
+        "豆类与五谷杂粮",
+        "运动手套",
+        "积木玩具",
+        "料理包",
+        "足球鞋",
+        "车辆模型",
+        "雨衣",
+        "数学玩具",
+        "薯片和膨化零食",
+        "摩托车配件",
+        "香料与调味料",
+        "重量训练器材",
+        "泳池、水上和沙滩玩具",
+        "烹饪酱汁",
+        "晾衣架",
+        "手工艺玩具",
+        "罐装与包装食品",
+        "家用清洁剂",
+        "冲调饮品",
+        "运动袜",
+        "咖啡",
+        "防护面罩",
+        "垃圾袋",
+        "过家家玩具",
+        "健身仪器",
+        "除尘掸/掸头",
+        "运动套装",
+        "足球用品",
+        "玩具枪"
+      ],
+      "sale_count_list": {
+        "list": [
+          {
+            "key": "2025-06-03",
+            "value": 0,
+            "show": "0"
+          },
+          {
+            "key": "2025-06-04",
+            "value": 0,
+            "show": "0"
+          },
+          {
+            "key": "2025-06-05",
+            "value": 93,
+            "show": "93"
+          },
+          {
+            "key": "2025-06-06",
+            "value": 1,
+            "show": "1"
+          },
+          {
+            "key": "2025-06-07",
+            "value": 0,
+            "show": "0"
+          },
+          {
+            "key": "2025-06-08",
+            "value": 4,
+            "show": "4"
+          },
+          {
+            "key": "2025-06-09",
+            "value": 32,
+            "show": "32"
+          },
+          {
+            "key": "2025-06-10",
+            "value": 0,
+            "show": "0"
+          },
+          {
+            "key": "2025-06-11",
+            "value": 15,
+            "show": "15"
+          },
+          {
+            "key": "2025-06-12",
+            "value": 1,
+            "show": "1"
+          },
+          {
+            "key": "2025-06-13",
+            "value": 2,
+            "show": "2"
+          },
+          {
+            "key": "2025-06-14",
+            "value": 57,
+            "show": "57"
+          },
+          {
+            "key": "2025-06-15",
+            "value": 1481,
+            "show": "1.4k"
+          },
+          {
+            "key": "2025-06-16",
+            "value": 1193,
+            "show": "1.1k"
+          },
+          {
+            "key": "2025-06-17",
+            "value": 7061,
+            "show": "7.0k"
+          },
+          {
+            "key": "2025-06-18",
+            "value": 2322,
+            "show": "2.3k"
+          },
+          {
+            "key": "2025-06-19",
+            "value": 5233,
+            "show": "5.2k"
+          },
+          {
+            "key": "2025-06-20",
+            "value": 4271,
+            "show": "4.2k"
+          },
+          {
+            "key": "2025-06-21",
+            "value": 4607,
+            "show": "4.6k"
+          },
+          {
+            "key": "2025-06-22",
+            "value": 4338,
+            "show": "4.3k"
+          },
+          {
+            "key": "2025-06-23",
+            "value": 2851,
+            "show": "2.8k"
+          },
+          {
+            "key": "2025-06-24",
+            "value": 6168,
+            "show": "6.1k"
+          },
+          {
+            "key": "2025-06-25",
+            "value": 5812,
+            "show": "5.8k"
+          },
+          {
+            "key": "2025-06-26",
+            "value": 4368,
+            "show": "4.3k"
+          },
+          {
+            "key": "2025-06-27",
+            "value": 8358,
+            "show": "8.3k"
+          },
+          {
+            "key": "2025-06-28",
+            "value": 3138,
+            "show": "3.1k"
+          },
+          {
+            "key": "2025-06-29",
+            "value": 4869,
+            "show": "4.8k"
+          },
+          {
+            "key": "2025-06-30",
+            "value": 3621,
+            "show": "3.6k"
+          }
+        ],
+        "total": 69896,
+        "total_show": "69.9k"
+      },
+      "fansPortrait": {
+        "follower_genders_max": {
+          "key": "female",
+          "value": 58,
+          "show": "58%"
+        },
+        "follower_ages_max": {
+          "key": "25-34",
+          "value": 35,
+          "show": "35%"
+        },
+        "state_distribution_max": {
+          "key": "BANGKOK",
+          "value": "68.80",
+          "show": "68.80%"
+        }
+      },
+      "video_sale_amount_show": "$1.0m",
+      "live_sale_amount_show": "$961.8m",
+      "_source_type": "ecommerce"
+    }
+  ],
+  "shops": [
+    {
+      "seller_id": "7495514739648989419",
+      "trend": [
+        {
+          "dt": "2026-03-26",
+          "region": "US",
+          "inc_sold_count": 18685,
+          "region_name": "United States",
+          "inc_sold_count_show": "18.6k"
+        },
+        {
+          "dt": "2026-03-27",
+          "region": "US",
+          "inc_sold_count": 17571,
+          "region_name": "United States",
+          "inc_sold_count_show": "17.5k"
+        },
+        {
+          "dt": "2026-03-28",
+          "region": "US",
+          "inc_sold_count": 17647,
+          "region_name": "United States",
+          "inc_sold_count_show": "17.6k"
+        },
+        {
+          "dt": "2026-03-29",
+          "region": "US",
+          "inc_sold_count": 17925,
+          "region_name": "United States",
+          "inc_sold_count_show": "17.9k"
+        },
+        {
+          "dt": "2026-03-30",
+          "region": "US",
+          "inc_sold_count": 18802,
+          "region_name": "United States",
+          "inc_sold_count_show": "18.8k"
+        },
+        {
+          "dt": "2026-03-31",
+          "region": "US",
+          "inc_sold_count": 15143,
+          "region_name": "United States",
+          "inc_sold_count_show": "15.1k"
+        },
+        {
+          "dt": "2026-04-01",
+          "region": "US",
+          "inc_sold_count": 18794,
+          "region_name": "United States",
+          "inc_sold_count_show": "18.7k"
+        }
+      ],
+      "shop_info": {
+        "id": "7495514739648989419",
+        "seller_id": "7495514739648989419",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "APR US INC",
+        "currency": "",
+        "name": "medicube US Store",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/3fda6fbf695c4a8792a3059b4e1546e3~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "category_name": "Beauty & Personal Care",
+        "cid": -100,
+        "category_list": [
+          "Beauty & Personal Care",
+          "Luggage & Bags",
+          "Health"
+        ],
+        "region_name": "United States"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 4294021,
+      "on_sell_product_count": 141,
+      "sales_author_count": 97404,
+      "sale_amount": 235668489,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 235668489,
+        "global_day7_sale_amount": 6862841,
+        "region_name": "United States",
+        "global_sale_amount_show": "$235.6m",
+        "global_day7_sale_amount_show": "$6.8m"
+      },
+      "shop_rating": 4.7,
+      "new_product_rate": "0.42%",
+      "shop_type": 1,
+      "day7_sold_count": 124567,
+      "day7_sale_amount": 6862841,
+      "day7_product_count": 136,
+      "query_category_name": "Other",
+      "is_collect": 0,
+      "region_name": "United States",
+      "sold_count_show": "4.2m",
+      "on_sell_product_count_show": "141",
+      "sales_author_count_show": "97.4k",
+      "sale_amount_show": "$235.6m",
+      "new_product_rate_show": "0.42%",
+      "day7_sold_count_show": "124.5k",
+      "day7_sale_amount_show": "$6.8m",
+      "day7_product_count_show": "136"
+    },
+    {
+      "seller_id": "7495830785034323995",
+      "trend": [
+        {
+          "dt": "2026-03-26",
+          "region": "US",
+          "inc_sold_count": 15489,
+          "region_name": "United States",
+          "inc_sold_count_show": "15.4k"
+        },
+        {
+          "dt": "2026-03-27",
+          "region": "US",
+          "inc_sold_count": 17907,
+          "region_name": "United States",
+          "inc_sold_count_show": "17.9k"
+        },
+        {
+          "dt": "2026-03-28",
+          "region": "US",
+          "inc_sold_count": 17407,
+          "region_name": "United States",
+          "inc_sold_count_show": "17.4k"
+        },
+        {
+          "dt": "2026-03-29",
+          "region": "US",
+          "inc_sold_count": 14902,
+          "region_name": "United States",
+          "inc_sold_count_show": "14.9k"
+        },
+        {
+          "dt": "2026-03-30",
+          "region": "US",
+          "inc_sold_count": 16439,
+          "region_name": "United States",
+          "inc_sold_count_show": "16.4k"
+        },
+        {
+          "dt": "2026-03-31",
+          "region": "US",
+          "inc_sold_count": 15201,
+          "region_name": "United States",
+          "inc_sold_count_show": "15.2k"
+        },
+        {
+          "dt": "2026-04-01",
+          "region": "US",
+          "inc_sold_count": 15643,
+          "region_name": "United States",
+          "inc_sold_count_show": "15.6k"
+        }
+      ],
+      "shop_info": {
+        "id": "7495830785034323995",
+        "seller_id": "7495830785034323995",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "BRAND501 US Corp.",
+        "currency": "",
+        "name": "Dr.Melaxin",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/35249ab76437453aa1154620ca308b66~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "category_name": "Beauty & Personal Care",
+        "cid": -100,
+        "category_list": [
+          "Beauty & Personal Care"
+        ],
+        "region_name": "United States"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 3335225,
+      "on_sell_product_count": 118,
+      "sales_author_count": 42615,
+      "sale_amount": 127130403,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 127130403,
+        "global_day7_sale_amount": 4065254,
+        "region_name": "United States",
+        "global_sale_amount_show": "$127.1m",
+        "global_day7_sale_amount_show": "$4.0m"
+      },
+      "shop_rating": 4.3,
+      "new_product_rate": "0.05%",
+      "shop_type": 1,
+      "day7_sold_count": 112988,
+      "day7_sale_amount": 4065254,
+      "day7_product_count": 116,
+      "query_category_name": "Other",
+      "is_collect": 0,
+      "region_name": "United States",
+      "sold_count_show": "3.3m",
+      "on_sell_product_count_show": "118",
+      "sales_author_count_show": "42.6k",
+      "sale_amount_show": "$127.1m",
+      "new_product_rate_show": "0.05%",
+      "day7_sold_count_show": "112.9k",
+      "day7_sale_amount_show": "$4.0m",
+      "day7_product_count_show": "116"
+    },
+    {
+      "seller_id": "7495150597721263036",
+      "trend": [
+        {
+          "dt": "2026-03-26",
+          "region": "US",
+          "inc_sold_count": 17035,
+          "region_name": "United States",
+          "inc_sold_count_show": "17.0k"
+        },
+        {
+          "dt": "2026-03-27",
+          "region": "US",
+          "inc_sold_count": 15169,
+          "region_name": "United States",
+          "inc_sold_count_show": "15.1k"
+        },
+        {
+          "dt": "2026-03-28",
+          "region": "US",
+          "inc_sold_count": 17544,
+          "region_name": "United States",
+          "inc_sold_count_show": "17.5k"
+        },
+        {
+          "dt": "2026-03-29",
+          "region": "US",
+          "inc_sold_count": 14721,
+          "region_name": "United States",
+          "inc_sold_count_show": "14.7k"
+        },
+        {
+          "dt": "2026-03-30",
+          "region": "US",
+          "inc_sold_count": 20690,
+          "region_name": "United States",
+          "inc_sold_count_show": "20.6k"
+        },
+        {
+          "dt": "2026-03-31",
+          "region": "US",
+          "inc_sold_count": 12079,
+          "region_name": "United States",
+          "inc_sold_count_show": "12.0k"
+        },
+        {
+          "dt": "2026-04-01",
+          "region": "US",
+          "inc_sold_count": 9323,
+          "region_name": "United States",
+          "inc_sold_count_show": "9.3k"
+        }
+      ],
+      "shop_info": {
+        "id": "7495150597721263036",
+        "seller_id": "7495150597721263036",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "Tarte Cosmetics",
+        "currency": "USD",
+        "name": "Tarte Cosmetics",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/d08849cce29e49f1bdbfd6f303b52153~tplv-fhlh96nyum-resize-png:300:300.png",
+        "category_name": "Beauty & Personal Care",
+        "cid": -100,
+        "category_list": [
+          "Beauty & Personal Care"
+        ],
+        "region_name": "United States"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 7240299,
+      "on_sell_product_count": 134,
+      "sales_author_count": 84996,
+      "sale_amount": 240430832,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 240430832,
+        "global_day7_sale_amount": 3619892,
+        "region_name": "United States",
+        "global_sale_amount_show": "$240.4m",
+        "global_day7_sale_amount_show": "$3.6m"
+      },
+      "shop_rating": 4.7,
+      "new_product_rate": "0.07%",
+      "shop_type": 1,
+      "day7_sold_count": 106561,
+      "day7_sale_amount": 3619892,
+      "day7_product_count": 131,
+      "query_category_name": "Other",
+      "is_collect": 0,
+      "region_name": "United States",
+      "sold_count_show": "7.2m",
+      "on_sell_product_count_show": "134",
+      "sales_author_count_show": "85.0k",
+      "sale_amount_show": "$240.4m",
+      "new_product_rate_show": "0.07%",
+      "day7_sold_count_show": "106.5k",
+      "day7_sale_amount_show": "$3.6m",
+      "day7_product_count_show": "131"
+    },
+    {
+      "seller_id": "7495500842223700917",
+      "trend": [
+        {
+          "dt": "2026-03-26",
+          "region": "US",
+          "inc_sold_count": 13547,
+          "region_name": "United States",
+          "inc_sold_count_show": "13.5k"
+        },
+        {
+          "dt": "2026-03-27",
+          "region": "US",
+          "inc_sold_count": 15776,
+          "region_name": "United States",
+          "inc_sold_count_show": "15.7k"
+        },
+        {
+          "dt": "2026-03-28",
+          "region": "US",
+          "inc_sold_count": 13968,
+          "region_name": "United States",
+          "inc_sold_count_show": "13.9k"
+        },
+        {
+          "dt": "2026-03-29",
+          "region": "US",
+          "inc_sold_count": 13876,
+          "region_name": "United States",
+          "inc_sold_count_show": "13.8k"
+        },
+        {
+          "dt": "2026-03-30",
+          "region": "US",
+          "inc_sold_count": 13559,
+          "region_name": "United States",
+          "inc_sold_count_show": "13.5k"
+        },
+        {
+          "dt": "2026-03-31",
+          "region": "US",
+          "inc_sold_count": 12607,
+          "region_name": "United States",
+          "inc_sold_count_show": "12.6k"
+        },
+        {
+          "dt": "2026-04-01",
+          "region": "US",
+          "inc_sold_count": 12703,
+          "region_name": "United States",
+          "inc_sold_count_show": "12.7k"
+        }
+      ],
+      "shop_info": {
+        "id": "7495500842223700917",
+        "seller_id": "7495500842223700917",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "Caffeine, Candles & Chaos",
+        "currency": "",
+        "name": "Caffeine, Candles & Chaos",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/1206329e49a246e3abfe25f6c9dd2773~tplv-fhlh96nyum-resize-png:300:300.png",
+        "category_name": "Food & Beverages",
+        "cid": -100,
+        "category_list": [
+          "Food & Beverages",
+          "Kitchenware"
+        ],
+        "region_name": "United States"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 3986570,
+      "on_sell_product_count": 14,
+      "sales_author_count": 5906,
+      "sale_amount": 13771881,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 13771881,
+        "global_day7_sale_amount": 533346,
+        "region_name": "United States",
+        "global_sale_amount_show": "$13.7m",
+        "global_day7_sale_amount_show": "$533.3k"
+      },
+      "shop_rating": 4.8,
+      "new_product_rate": "-",
+      "shop_type": 0,
+      "day7_sold_count": 96036,
+      "day7_sale_amount": 533346,
+      "day7_product_count": 15,
+      "query_category_name": "Other",
+      "is_collect": 0,
+      "region_name": "United States",
+      "sold_count_show": "3.9m",
+      "on_sell_product_count_show": "14",
+      "sales_author_count_show": "5.9k",
+      "sale_amount_show": "$13.7m",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "96.0k",
+      "day7_sale_amount_show": "$533.3k",
+      "day7_product_count_show": "15"
+    },
+    {
+      "seller_id": "7495304734897637668",
+      "trend": [
+        {
+          "dt": "2026-03-26",
+          "region": "US",
+          "inc_sold_count": 6974,
+          "region_name": "United States",
+          "inc_sold_count_show": "6.9k"
+        },
+        {
+          "dt": "2026-03-27",
+          "region": "US",
+          "inc_sold_count": 11103,
+          "region_name": "United States",
+          "inc_sold_count_show": "11.1k"
+        },
+        {
+          "dt": "2026-03-28",
+          "region": "US",
+          "inc_sold_count": 11031,
+          "region_name": "United States",
+          "inc_sold_count_show": "11.0k"
+        },
+        {
+          "dt": "2026-03-29",
+          "region": "US",
+          "inc_sold_count": 10739,
+          "region_name": "United States",
+          "inc_sold_count_show": "10.7k"
+        },
+        {
+          "dt": "2026-03-30",
+          "region": "US",
+          "inc_sold_count": 12915,
+          "region_name": "United States",
+          "inc_sold_count_show": "12.9k"
+        },
+        {
+          "dt": "2026-03-31",
+          "region": "US",
+          "inc_sold_count": 8366,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.3k"
+        },
+        {
+          "dt": "2026-04-01",
+          "region": "US",
+          "inc_sold_count": 9358,
+          "region_name": "United States",
+          "inc_sold_count_show": "9.3k"
+        }
+      ],
+      "shop_info": {
+        "id": "7495304734897637668",
+        "seller_id": "7495304734897637668",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "HK DFS LIMITED",
+        "currency": "USD",
+        "name": "Halara US",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/6ab8e70428ec44a8b5937ff8610f4e75~tplv-fhlh96nyum-resize-png:300:300.png",
+        "category_name": "Sports & Outdoor",
+        "cid": -100,
+        "category_list": [
+          "Sports & Outdoor",
+          "Fashion Accessories",
+          "Womenswear & Underwear",
+          "Beauty & Personal Care"
+        ],
+        "region_name": "United States"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 6990191,
+      "on_sell_product_count": 406,
+      "sales_author_count": 52051,
+      "sale_amount": 250194416,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 250194416,
+        "global_day7_sale_amount": 2630328,
+        "region_name": "United States",
+        "global_sale_amount_show": "$250.1m",
+        "global_day7_sale_amount_show": "$2.6m"
+      },
+      "shop_rating": 4.2,
+      "new_product_rate": "-",
+      "shop_type": 1,
+      "day7_sold_count": 70486,
+      "day7_sale_amount": 2630328,
+      "day7_product_count": 279,
+      "query_category_name": "Other",
+      "is_collect": 0,
+      "region_name": "United States",
+      "sold_count_show": "6.9m",
+      "on_sell_product_count_show": "406",
+      "sales_author_count_show": "52.0k",
+      "sale_amount_show": "$250.1m",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "70.4k",
+      "day7_sale_amount_show": "$2.6m",
+      "day7_product_count_show": "279"
+    },
+    {
+      "seller_id": "7495620301677955118",
+      "trend": [
+        {
+          "dt": "2026-03-26",
+          "region": "US",
+          "inc_sold_count": 8295,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.2k"
+        },
+        {
+          "dt": "2026-03-27",
+          "region": "US",
+          "inc_sold_count": 9369,
+          "region_name": "United States",
+          "inc_sold_count_show": "9.3k"
+        },
+        {
+          "dt": "2026-03-28",
+          "region": "US",
+          "inc_sold_count": 9752,
+          "region_name": "United States",
+          "inc_sold_count_show": "9.7k"
+        },
+        {
+          "dt": "2026-03-29",
+          "region": "US",
+          "inc_sold_count": 8772,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.7k"
+        },
+        {
+          "dt": "2026-03-30",
+          "region": "US",
+          "inc_sold_count": 11128,
+          "region_name": "United States",
+          "inc_sold_count_show": "11.1k"
+        },
+        {
+          "dt": "2026-03-31",
+          "region": "US",
+          "inc_sold_count": 9832,
+          "region_name": "United States",
+          "inc_sold_count_show": "9.8k"
+        },
+        {
+          "dt": "2026-04-01",
+          "region": "US",
+          "inc_sold_count": 8727,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.7k"
+        }
+      ],
+      "shop_info": {
+        "id": "7495620301677955118",
+        "seller_id": "7495620301677955118",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "Lux Global Inc",
+        "currency": "USD",
+        "name": "Toplux Nutrition",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/35e90bd8b9764783a6b730c75daebc18~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "category_name": "Health",
+        "cid": -100,
+        "category_list": [
+          "Health"
+        ],
+        "region_name": "United States"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 1968622,
+      "on_sell_product_count": 25,
+      "sales_author_count": 20162,
+      "sale_amount": 50175618,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 50175618,
+        "global_day7_sale_amount": 1682703,
+        "region_name": "United States",
+        "global_sale_amount_show": "$50.1m",
+        "global_day7_sale_amount_show": "$1.6m"
+      },
+      "shop_rating": 4.5,
+      "new_product_rate": "-",
+      "shop_type": 1,
+      "day7_sold_count": 65875,
+      "day7_sale_amount": 1682703,
+      "day7_product_count": 24,
+      "query_category_name": "Other",
+      "is_collect": 0,
+      "region_name": "United States",
+      "sold_count_show": "1.9m",
+      "on_sell_product_count_show": "25",
+      "sales_author_count_show": "20.1k",
+      "sale_amount_show": "$50.1m",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "65.8k",
+      "day7_sale_amount_show": "$1.6m",
+      "day7_product_count_show": "24"
+    },
+    {
+      "seller_id": "7494949083499694765",
+      "trend": [
+        {
+          "dt": "2026-03-26",
+          "region": "US",
+          "inc_sold_count": 8237,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.2k"
+        },
+        {
+          "dt": "2026-03-27",
+          "region": "US",
+          "inc_sold_count": 8445,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.4k"
+        },
+        {
+          "dt": "2026-03-28",
+          "region": "US",
+          "inc_sold_count": 8515,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.5k"
+        },
+        {
+          "dt": "2026-03-29",
+          "region": "US",
+          "inc_sold_count": 8158,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.1k"
+        },
+        {
+          "dt": "2026-03-30",
+          "region": "US",
+          "inc_sold_count": 9785,
+          "region_name": "United States",
+          "inc_sold_count_show": "9.7k"
+        },
+        {
+          "dt": "2026-03-31",
+          "region": "US",
+          "inc_sold_count": 7043,
+          "region_name": "United States",
+          "inc_sold_count_show": "7.0k"
+        },
+        {
+          "dt": "2026-04-01",
+          "region": "US",
+          "inc_sold_count": 7258,
+          "region_name": "United States",
+          "inc_sold_count_show": "7.2k"
+        }
+      ],
+      "shop_info": {
+        "id": "7494949083499694765",
+        "seller_id": "7494949083499694765",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "DPL Trading Inc",
+        "currency": "USD",
+        "name": "Micro Ingredients",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/5959296c496c421791fa78fa45cfd017~tplv-fhlh96nyum-resize-png:300:300.png",
+        "category_name": "Health",
+        "cid": -100,
+        "category_list": [
+          "Health",
+          "Kitchenware",
+          "Computers & Office Equipment",
+          "Beauty & Personal Care",
+          "Menswear & Underwear",
+          "Food & Beverages",
+          "Household Appliances"
+        ],
+        "region_name": "United States"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 6869900,
+      "on_sell_product_count": 286,
+      "sales_author_count": 70931,
+      "sale_amount": 213093961,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 213093961,
+        "global_day7_sale_amount": 1828581,
+        "region_name": "United States",
+        "global_sale_amount_show": "$213.0m",
+        "global_day7_sale_amount_show": "$1.8m"
+      },
+      "shop_rating": 4.8,
+      "new_product_rate": "0.26%",
+      "shop_type": 1,
+      "day7_sold_count": 57441,
+      "day7_sale_amount": 1828581,
+      "day7_product_count": 257,
+      "query_category_name": "Other",
+      "is_collect": 0,
+      "region_name": "United States",
+      "sold_count_show": "6.8m",
+      "on_sell_product_count_show": "286",
+      "sales_author_count_show": "70.9k",
+      "sale_amount_show": "$213.0m",
+      "new_product_rate_show": "0.26%",
+      "day7_sold_count_show": "57.4k",
+      "day7_sale_amount_show": "$1.8m",
+      "day7_product_count_show": "257"
+    },
+    {
+      "seller_id": "7495832567110863806",
+      "trend": [
+        {
+          "dt": "2026-03-26",
+          "region": "US",
+          "inc_sold_count": 10286,
+          "region_name": "United States",
+          "inc_sold_count_show": "10.2k"
+        },
+        {
+          "dt": "2026-03-27",
+          "region": "US",
+          "inc_sold_count": 9082,
+          "region_name": "United States",
+          "inc_sold_count_show": "9.0k"
+        },
+        {
+          "dt": "2026-03-28",
+          "region": "US",
+          "inc_sold_count": 9916,
+          "region_name": "United States",
+          "inc_sold_count_show": "9.9k"
+        },
+        {
+          "dt": "2026-03-29",
+          "region": "US",
+          "inc_sold_count": 8505,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.5k"
+        },
+        {
+          "dt": "2026-03-30",
+          "region": "US",
+          "inc_sold_count": 7557,
+          "region_name": "United States",
+          "inc_sold_count_show": "7.5k"
+        },
+        {
+          "dt": "2026-03-31",
+          "region": "US",
+          "inc_sold_count": 5920,
+          "region_name": "United States",
+          "inc_sold_count_show": "5.9k"
+        },
+        {
+          "dt": "2026-04-01",
+          "region": "US",
+          "inc_sold_count": 5666,
+          "region_name": "United States",
+          "inc_sold_count_show": "5.6k"
+        }
+      ],
+      "shop_info": {
+        "id": "7495832567110863806",
+        "seller_id": "7495832567110863806",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "Crocs Inc",
+        "currency": "",
+        "name": "Crocs",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/0e1e83bcdab948b9aa9e6474e87a8a80~tplv-fhlh96nyum-resize-png:300:300.png",
+        "category_name": "Shoes",
+        "cid": -100,
+        "category_list": [
+          "Shoes",
+          "Pet Supplies",
+          "Home Supplies",
+          "Menswear & Underwear",
+          "Luggage & Bags",
+          "Home Improvement",
+          "Womenswear & Underwear",
+          "Sports & Outdoor",
+          "Kids' Fashion",
+          "Phones & Electronics"
+        ],
+        "region_name": "United States"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 1899385,
+      "on_sell_product_count": 126,
+      "sales_author_count": 33999,
+      "sale_amount": 87837368,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 87837368,
+        "global_day7_sale_amount": 2672448,
+        "region_name": "United States",
+        "global_sale_amount_show": "$87.8m",
+        "global_day7_sale_amount_show": "$2.6m"
+      },
+      "shop_rating": 4.6,
+      "new_product_rate": "-",
+      "shop_type": 1,
+      "day7_sold_count": 56932,
+      "day7_sale_amount": 2672448,
+      "day7_product_count": 128,
+      "query_category_name": "Other",
+      "is_collect": 0,
+      "region_name": "United States",
+      "sold_count_show": "1.9m",
+      "on_sell_product_count_show": "126",
+      "sales_author_count_show": "34.0k",
+      "sale_amount_show": "$87.8m",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "56.9k",
+      "day7_sale_amount_show": "$2.6m",
+      "day7_product_count_show": "128"
+    },
+    {
+      "seller_id": "7495079418085345590",
+      "trend": [
+        {
+          "dt": "2026-03-26",
+          "region": "US",
+          "inc_sold_count": 7404,
+          "region_name": "United States",
+          "inc_sold_count_show": "7.4k"
+        },
+        {
+          "dt": "2026-03-27",
+          "region": "US",
+          "inc_sold_count": 7022,
+          "region_name": "United States",
+          "inc_sold_count_show": "7.0k"
+        },
+        {
+          "dt": "2026-03-28",
+          "region": "US",
+          "inc_sold_count": 6833,
+          "region_name": "United States",
+          "inc_sold_count_show": "6.8k"
+        },
+        {
+          "dt": "2026-03-29",
+          "region": "US",
+          "inc_sold_count": 7387,
+          "region_name": "United States",
+          "inc_sold_count_show": "7.3k"
+        },
+        {
+          "dt": "2026-03-30",
+          "region": "US",
+          "inc_sold_count": 8493,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.4k"
+        },
+        {
+          "dt": "2026-03-31",
+          "region": "US",
+          "inc_sold_count": 8066,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.0k"
+        },
+        {
+          "dt": "2026-04-01",
+          "region": "US",
+          "inc_sold_count": 6392,
+          "region_name": "United States",
+          "inc_sold_count_show": "6.3k"
+        }
+      ],
+      "shop_info": {
+        "id": "7495079418085345590",
+        "seller_id": "7495079418085345590",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "Based Bodyworks LLC",
+        "currency": "USD",
+        "name": "BASED",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/c4e48f5ff0b242968e1d6212f3ab93f0~tplv-omjb5zjo8w-resize-png:300:300.png",
+        "category_name": "Beauty & Personal Care",
+        "cid": -100,
+        "category_list": [
+          "Beauty & Personal Care"
+        ],
+        "region_name": "United States"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 2022058,
+      "on_sell_product_count": 39,
+      "sales_author_count": 16982,
+      "sale_amount": 57871596,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 57871596,
+        "global_day7_sale_amount": 1957280,
+        "region_name": "United States",
+        "global_sale_amount_show": "$57.8m",
+        "global_day7_sale_amount_show": "$1.9m"
+      },
+      "shop_rating": 4.6,
+      "new_product_rate": "5.47%",
+      "shop_type": 1,
+      "day7_sold_count": 51597,
+      "day7_sale_amount": 1957280,
+      "day7_product_count": 44,
+      "query_category_name": "Other",
+      "is_collect": 0,
+      "region_name": "United States",
+      "sold_count_show": "2.0m",
+      "on_sell_product_count_show": "39",
+      "sales_author_count_show": "16.9k",
+      "sale_amount_show": "$57.8m",
+      "new_product_rate_show": "5.47%",
+      "day7_sold_count_show": "51.6k",
+      "day7_sale_amount_show": "$1.9m",
+      "day7_product_count_show": "44"
+    },
+    {
+      "seller_id": "7495342967492151603",
+      "trend": [
+        {
+          "dt": "2026-03-26",
+          "region": "US",
+          "inc_sold_count": 6559,
+          "region_name": "United States",
+          "inc_sold_count_show": "6.5k"
+        },
+        {
+          "dt": "2026-03-27",
+          "region": "US",
+          "inc_sold_count": 7806,
+          "region_name": "United States",
+          "inc_sold_count_show": "7.8k"
+        },
+        {
+          "dt": "2026-03-28",
+          "region": "US",
+          "inc_sold_count": 8360,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.3k"
+        },
+        {
+          "dt": "2026-03-29",
+          "region": "US",
+          "inc_sold_count": 7872,
+          "region_name": "United States",
+          "inc_sold_count_show": "7.8k"
+        },
+        {
+          "dt": "2026-03-30",
+          "region": "US",
+          "inc_sold_count": 8438,
+          "region_name": "United States",
+          "inc_sold_count_show": "8.4k"
+        },
+        {
+          "dt": "2026-03-31",
+          "region": "US",
+          "inc_sold_count": 5027,
+          "region_name": "United States",
+          "inc_sold_count_show": "5.0k"
+        },
+        {
+          "dt": "2026-04-01",
+          "region": "US",
+          "inc_sold_count": 5355,
+          "region_name": "United States",
+          "inc_sold_count_show": "5.3k"
+        }
+      ],
+      "shop_info": {
+        "id": "7495342967492151603",
+        "seller_id": "7495342967492151603",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "AFFORDO, INC",
+        "currency": "USD",
+        "name": "OEAK Apparel",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/6fe9824d7f7e4636b2aae17e0eb87fab~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "category_name": "Womenswear & Underwear",
+        "cid": -100,
+        "category_list": [
+          "Womenswear & Underwear",
+          "Pet Supplies",
+          "Textiles & Soft Furnishings",
+          "Sports & Outdoor",
+          "Shoes"
+        ],
+        "region_name": "United States"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 946798,
+      "on_sell_product_count": 40,
+      "sales_author_count": 11617,
+      "sale_amount": 18730995,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 18730995,
+        "global_day7_sale_amount": 1088245,
+        "region_name": "United States",
+        "global_sale_amount_show": "$18.7m",
+        "global_day7_sale_amount_show": "$1.0m"
+      },
+      "shop_rating": 4.4,
+      "new_product_rate": "-",
+      "shop_type": 1,
+      "day7_sold_count": 49417,
+      "day7_sale_amount": 1088245,
+      "day7_product_count": 40,
+      "query_category_name": "Other",
+      "is_collect": 0,
+      "region_name": "United States",
+      "sold_count_show": "946.8k",
+      "on_sell_product_count_show": "40",
+      "sales_author_count_show": "11.6k",
+      "sale_amount_show": "$18.7m",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "49.4k",
+      "day7_sale_amount_show": "$1.0m",
+      "day7_product_count_show": "40"
+    },
+    {
+      "seller_id": "7495957719634971278",
+      "trend": [
+        {
+          "dt": "2025-05-05",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-06",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-07",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-08",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-09",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-10",
+          "region": "",
+          "inc_sold_count": 5,
+          "inc_sold_count_show": "5"
+        },
+        {
+          "dt": "2025-05-11",
+          "region": "",
+          "inc_sold_count": 5,
+          "inc_sold_count_show": "5"
+        }
+      ],
+      "shop_info": {
+        "id": "7495957719634971278",
+        "seller_id": "7495957719634971278",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "Los Angeles Gemz L.L.C",
+        "currency": "",
+        "name": "LA Gemz",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/b5ee444eb17e413f961803e7d4834e67~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "category_name": "收藏品",
+        "cid": -100,
+        "category_list": [
+          "收藏品",
+          "收藏品",
+          "电脑办公"
+        ],
+        "region_name": "美国"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 192,
+      "on_sell_product_count": 13,
+      "sales_author_count": 2,
+      "sale_amount": 7721,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 7721,
+        "global_day7_sale_amount": 500,
+        "region_name": "美国",
+        "global_sale_amount_show": "$7721",
+        "global_day7_sale_amount_show": "$500"
+      },
+      "shop_rating": 5,
+      "new_product_rate": "-",
+      "shop_type": 0,
+      "day7_sold_count": 10,
+      "day7_sale_amount": 500,
+      "day7_product_count": 1,
+      "query_category_name": "其它",
+      "is_collect": 0,
+      "region_name": "美国",
+      "sold_count_show": "192",
+      "on_sell_product_count_show": "13",
+      "sales_author_count_show": "2",
+      "sale_amount_show": "$7721",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "10",
+      "day7_sale_amount_show": "$500",
+      "day7_product_count_show": "1"
+    },
+    {
+      "seller_id": "7495305197262244760",
+      "trend": [
+        {
+          "dt": "2025-05-05",
+          "region": "",
+          "inc_sold_count": 3,
+          "inc_sold_count_show": "3"
+        },
+        {
+          "dt": "2025-05-06",
+          "region": "",
+          "inc_sold_count": 2,
+          "inc_sold_count_show": "2"
+        },
+        {
+          "dt": "2025-05-07",
+          "region": "",
+          "inc_sold_count": 1,
+          "inc_sold_count_show": "1"
+        },
+        {
+          "dt": "2025-05-08",
+          "region": "",
+          "inc_sold_count": 2,
+          "inc_sold_count_show": "2"
+        },
+        {
+          "dt": "2025-05-09",
+          "region": "",
+          "inc_sold_count": 5,
+          "inc_sold_count_show": "5"
+        },
+        {
+          "dt": "2025-05-10",
+          "region": "",
+          "inc_sold_count": 4,
+          "inc_sold_count_show": "4"
+        },
+        {
+          "dt": "2025-05-11",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        }
+      ],
+      "shop_info": {
+        "id": "7495305197262244760",
+        "seller_id": "7495305197262244760",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "ALLI LLC",
+        "currency": "USD",
+        "name": "NAELI Naturals",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/051e9fd275f94333a4192594bab2c7fe~tplv-omjb5zjo8w-resize-png:300:300.png",
+        "category_name": "美妆个护",
+        "cid": -100,
+        "category_list": [
+          "美妆个护",
+          "美妆个护"
+        ],
+        "region_name": "美国"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 4906,
+      "on_sell_product_count": 9,
+      "sales_author_count": 164,
+      "sale_amount": 149282,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 149282,
+        "global_day7_sale_amount": 500,
+        "region_name": "美国",
+        "global_sale_amount_show": "$14.92万",
+        "global_day7_sale_amount_show": "$500"
+      },
+      "shop_rating": 4.5,
+      "new_product_rate": "-",
+      "shop_type": 1,
+      "day7_sold_count": 17,
+      "day7_sale_amount": 500,
+      "day7_product_count": 2,
+      "query_category_name": "其它",
+      "is_collect": 0,
+      "region_name": "美国",
+      "sold_count_show": "4906",
+      "on_sell_product_count_show": "9",
+      "sales_author_count_show": "164",
+      "sale_amount_show": "$14.92万",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "17",
+      "day7_sale_amount_show": "$500",
+      "day7_product_count_show": "2"
+    },
+    {
+      "seller_id": "7495888193681787604",
+      "trend": [
+        {
+          "dt": "2025-05-05",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-06",
+          "region": "",
+          "inc_sold_count": 1,
+          "inc_sold_count_show": "1"
+        },
+        {
+          "dt": "2025-05-07",
+          "region": "",
+          "inc_sold_count": 3,
+          "inc_sold_count_show": "3"
+        },
+        {
+          "dt": "2025-05-08",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-09",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-10",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-11",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        }
+      ],
+      "shop_info": {
+        "id": "7495888193681787604",
+        "seller_id": "7495888193681787604",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "BINGHAM VENTURES, INC.",
+        "currency": "USD",
+        "name": "Leif Louisa",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/587383daaf8a4eaaa4dfb4c8f2b5944f~tplv-omjb5zjo8w-resize-png:300:300.png",
+        "category_name": "鞋靴",
+        "cid": -100,
+        "category_list": [
+          "鞋靴",
+          "鞋靴"
+        ],
+        "region_name": "美国"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 43,
+      "on_sell_product_count": 7,
+      "sales_author_count": 0,
+      "sale_amount": 5266,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 5266,
+        "global_day7_sale_amount": 500,
+        "region_name": "美国",
+        "global_sale_amount_show": "$5266",
+        "global_day7_sale_amount_show": "$500"
+      },
+      "shop_rating": 5,
+      "new_product_rate": "-",
+      "shop_type": 0,
+      "day7_sold_count": 4,
+      "day7_sale_amount": 500,
+      "day7_product_count": 2,
+      "query_category_name": "其它",
+      "is_collect": 0,
+      "region_name": "美国",
+      "sold_count_show": "43",
+      "on_sell_product_count_show": "7",
+      "sales_author_count_show": "0",
+      "sale_amount_show": "$5266",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "4",
+      "day7_sale_amount_show": "$500",
+      "day7_product_count_show": "2"
+    },
+    {
+      "seller_id": "7496061878539291349",
+      "trend": [
+        {
+          "dt": "2025-05-05",
+          "region": "",
+          "inc_sold_count": 1,
+          "inc_sold_count_show": "1"
+        },
+        {
+          "dt": "2025-05-06",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-07",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-08",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-09",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-10",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-11",
+          "region": "",
+          "inc_sold_count": 1,
+          "inc_sold_count_show": "1"
+        }
+      ],
+      "shop_info": {
+        "id": "7496061878539291349",
+        "seller_id": "7496061878539291349",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "Diamond Dust Beauty",
+        "currency": "USD",
+        "name": "Diamond Dust Beauty",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/587383daaf8a4eaaa4dfb4c8f2b5944f~tplv-omjb5zjo8w-resize-webp:300:300.webp",
+        "category_name": "五金工具",
+        "cid": -100,
+        "category_list": [
+          "五金工具",
+          "五金工具"
+        ],
+        "region_name": "美国"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 8,
+      "on_sell_product_count": 1,
+      "sales_author_count": 1,
+      "sale_amount": 1750,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 1750,
+        "global_day7_sale_amount": 500,
+        "region_name": "美国",
+        "global_sale_amount_show": "$1750",
+        "global_day7_sale_amount_show": "$500"
+      },
+      "shop_rating": 0,
+      "new_product_rate": "-",
+      "shop_type": 0,
+      "day7_sold_count": 2,
+      "day7_sale_amount": 500,
+      "day7_product_count": 1,
+      "query_category_name": "其它",
+      "is_collect": 0,
+      "region_name": "美国",
+      "sold_count_show": "8",
+      "on_sell_product_count_show": "1",
+      "sales_author_count_show": "1",
+      "sale_amount_show": "$1750",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "2",
+      "day7_sale_amount_show": "$500",
+      "day7_product_count_show": "1"
+    },
+    {
+      "seller_id": "7494695127357884655",
+      "trend": [
+        {
+          "dt": "2025-05-05",
+          "region": "",
+          "inc_sold_count": 5,
+          "inc_sold_count_show": "5"
+        },
+        {
+          "dt": "2025-05-06",
+          "region": "",
+          "inc_sold_count": 4,
+          "inc_sold_count_show": "4"
+        },
+        {
+          "dt": "2025-05-07",
+          "region": "",
+          "inc_sold_count": 2,
+          "inc_sold_count_show": "2"
+        },
+        {
+          "dt": "2025-05-08",
+          "region": "",
+          "inc_sold_count": 4,
+          "inc_sold_count_show": "4"
+        },
+        {
+          "dt": "2025-05-09",
+          "region": "",
+          "inc_sold_count": 1,
+          "inc_sold_count_show": "1"
+        },
+        {
+          "dt": "2025-05-10",
+          "region": "",
+          "inc_sold_count": 4,
+          "inc_sold_count_show": "4"
+        },
+        {
+          "dt": "2025-05-11",
+          "region": "",
+          "inc_sold_count": 3,
+          "inc_sold_count_show": "3"
+        }
+      ],
+      "shop_info": {
+        "id": "7494695127357884655",
+        "seller_id": "7494695127357884655",
+        "is_sshop": 0,
+        "region": "MY",
+        "seller_company": "DLARAAISHAH SDN. BHD.",
+        "currency": "MYR",
+        "name": "DLARAAISHAH",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/57ce9f2c48a64c2caa591aa3b0d5b619~tplv-aphluv4xwc-resize-webp:300:300.webp",
+        "category_name": "女装与女士内衣",
+        "cid": -100,
+        "category_list": [
+          "女装与女士内衣",
+          "穆斯林时尚",
+          "女装与女士内衣",
+          "男装与男士内衣"
+        ],
+        "region_name": "马来西亚"
+      },
+      "region": "MY",
+      "currency_unit": "RM",
+      "sold_count": 4931,
+      "on_sell_product_count": 94,
+      "sales_author_count": 55,
+      "sale_amount": 364003,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 78959,
+        "global_day7_sale_amount": 500,
+        "region_name": "美国",
+        "global_sale_amount_show": "$7.89万",
+        "global_day7_sale_amount_show": "$500"
+      },
+      "shop_rating": 3.7,
+      "new_product_rate": "-",
+      "shop_type": 0,
+      "day7_sold_count": 23,
+      "day7_sale_amount": 2305,
+      "day7_product_count": 8,
+      "query_category_name": "其它",
+      "is_collect": 0,
+      "region_name": "马来西亚",
+      "sold_count_show": "4931",
+      "on_sell_product_count_show": "94",
+      "sales_author_count_show": "55",
+      "sale_amount_show": "RM36.40万",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "23",
+      "day7_sale_amount_show": "RM2305",
+      "day7_product_count_show": "8"
+    },
+    {
+      "seller_id": "7496003166127295226",
+      "trend": [
+        {
+          "dt": "2025-05-05",
+          "region": "",
+          "inc_sold_count": 2,
+          "inc_sold_count_show": "2"
+        },
+        {
+          "dt": "2025-05-06",
+          "region": "",
+          "inc_sold_count": 5,
+          "inc_sold_count_show": "5"
+        },
+        {
+          "dt": "2025-05-07",
+          "region": "",
+          "inc_sold_count": 3,
+          "inc_sold_count_show": "3"
+        },
+        {
+          "dt": "2025-05-08",
+          "region": "",
+          "inc_sold_count": 0,
+          "inc_sold_count_show": "0"
+        },
+        {
+          "dt": "2025-05-09",
+          "region": "",
+          "inc_sold_count": 6,
+          "inc_sold_count_show": "6"
+        },
+        {
+          "dt": "2025-05-10",
+          "region": "",
+          "inc_sold_count": 2,
+          "inc_sold_count_show": "2"
+        },
+        {
+          "dt": "2025-05-11",
+          "region": "",
+          "inc_sold_count": 4,
+          "inc_sold_count_show": "4"
+        }
+      ],
+      "shop_info": {
+        "id": "7496003166127295226",
+        "seller_id": "7496003166127295226",
+        "is_sshop": 0,
+        "region": "US",
+        "seller_company": "",
+        "currency": "USD",
+        "name": "HEM.Studios",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/36f61edcdc7c421292833dab447abae4~tplv-omjb5zjo8w-resize-png:300:300.png",
+        "category_name": "男装与男士内衣",
+        "cid": -100,
+        "category_list": [
+          "男装与男士内衣",
+          "男装与男士内衣"
+        ],
+        "region_name": "美国"
+      },
+      "region": "US",
+      "currency_unit": "$",
+      "sold_count": 57,
+      "on_sell_product_count": 12,
+      "sales_author_count": 0,
+      "sale_amount": 1050,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 1050,
+        "global_day7_sale_amount": 500,
+        "region_name": "美国",
+        "global_sale_amount_show": "$1050",
+        "global_day7_sale_amount_show": "$500"
+      },
+      "shop_rating": 0,
+      "new_product_rate": "-",
+      "shop_type": 0,
+      "day7_sold_count": 22,
+      "day7_sale_amount": 500,
+      "day7_product_count": 2,
+      "query_category_name": "其它",
+      "is_collect": 0,
+      "region_name": "美国",
+      "sold_count_show": "57",
+      "on_sell_product_count_show": "12",
+      "sales_author_count_show": "0",
+      "sale_amount_show": "$1050",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "22",
+      "day7_sale_amount_show": "$500",
+      "day7_product_count_show": "2"
+    },
+    {
+      "seller_id": "8646973635860530337",
+      "trend": [
+        {
+          "dt": "2025-05-05",
+          "region": "",
+          "inc_sold_count": 13,
+          "inc_sold_count_show": "13"
+        },
+        {
+          "dt": "2025-05-06",
+          "region": "",
+          "inc_sold_count": 21,
+          "inc_sold_count_show": "21"
+        },
+        {
+          "dt": "2025-05-07",
+          "region": "",
+          "inc_sold_count": 14,
+          "inc_sold_count_show": "14"
+        },
+        {
+          "dt": "2025-05-08",
+          "region": "",
+          "inc_sold_count": 13,
+          "inc_sold_count_show": "13"
+        },
+        {
+          "dt": "2025-05-09",
+          "region": "",
+          "inc_sold_count": 12,
+          "inc_sold_count_show": "12"
+        },
+        {
+          "dt": "2025-05-10",
+          "region": "",
+          "inc_sold_count": 7,
+          "inc_sold_count_show": "7"
+        },
+        {
+          "dt": "2025-05-11",
+          "region": "",
+          "inc_sold_count": 13,
+          "inc_sold_count_show": "13"
+        }
+      ],
+      "shop_info": {
+        "id": "8646973635860530337",
+        "seller_id": "8646973635860530337",
+        "is_sshop": 0,
+        "region": "TH",
+        "seller_company": "Yangquan Nacheng Trading Co., Ltd.",
+        "currency": "THB",
+        "name": "Xiaolamei.th",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/60854ac46d404a9292dcaef56e697bce~tplv-aphluv4xwc-resize-png:300:300.png",
+        "category_name": "女装与女士内衣",
+        "cid": -100,
+        "category_list": [
+          "女装与女士内衣",
+          "女装与女士内衣"
+        ],
+        "region_name": "泰国"
+      },
+      "region": "TH",
+      "currency_unit": "฿",
+      "sold_count": 15304,
+      "on_sell_product_count": 957,
+      "sales_author_count": 1195,
+      "sale_amount": 2666238,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 76792,
+        "global_day7_sale_amount": 499,
+        "region_name": "美国",
+        "global_sale_amount_show": "$7.67万",
+        "global_day7_sale_amount_show": "$499"
+      },
+      "shop_rating": 4.3,
+      "new_product_rate": "-",
+      "shop_type": 1,
+      "day7_sold_count": 93,
+      "day7_sale_amount": 17359,
+      "day7_product_count": 22,
+      "query_category_name": "其它",
+      "is_collect": 0,
+      "region_name": "泰国",
+      "sold_count_show": "1.53万",
+      "on_sell_product_count_show": "957",
+      "sales_author_count_show": "1195",
+      "sale_amount_show": "฿266.62万",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "93",
+      "day7_sale_amount_show": "฿1.73万",
+      "day7_product_count_show": "22"
+    },
+    {
+      "seller_id": "7494083638745204044",
+      "trend": [
+        {
+          "dt": "2025-05-05",
+          "region": "",
+          "inc_sold_count": 31,
+          "inc_sold_count_show": "31"
+        },
+        {
+          "dt": "2025-05-06",
+          "region": "",
+          "inc_sold_count": 36,
+          "inc_sold_count_show": "36"
+        },
+        {
+          "dt": "2025-05-07",
+          "region": "",
+          "inc_sold_count": 26,
+          "inc_sold_count_show": "26"
+        },
+        {
+          "dt": "2025-05-08",
+          "region": "",
+          "inc_sold_count": 30,
+          "inc_sold_count_show": "30"
+        },
+        {
+          "dt": "2025-05-09",
+          "region": "",
+          "inc_sold_count": 29,
+          "inc_sold_count_show": "29"
+        },
+        {
+          "dt": "2025-05-10",
+          "region": "",
+          "inc_sold_count": 31,
+          "inc_sold_count_show": "31"
+        },
+        {
+          "dt": "2025-05-11",
+          "region": "",
+          "inc_sold_count": 80,
+          "inc_sold_count_show": "80"
+        }
+      ],
+      "shop_info": {
+        "id": "7494083638745204044",
+        "seller_id": "7494083638745204044",
+        "is_sshop": 0,
+        "region": "ID",
+        "seller_company": "PT EKA CATRA INDONESIA",
+        "currency": "IDR",
+        "name": "Toko Pasti Puas Depok",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/c81f87b4d1f64335a87f6c6bdbb30d8b~tplv-aphluv4xwc-resize-webp:300:300.webp",
+        "category_name": "厨房用品",
+        "cid": -100,
+        "category_list": [
+          "厨房用品",
+          "汽车与摩托车",
+          "家纺布艺",
+          "电脑办公",
+          "食品饮料",
+          "母婴用品",
+          "穆斯林时尚",
+          "居家日用",
+          "男装与男士内衣",
+          "图书&杂志&音频",
+          "家电",
+          "玩具和爱好",
+          "五金工具",
+          "箱包",
+          "家装建材",
+          "保健",
+          "厨房用品",
+          "家具",
+          "运动与户外",
+          "时尚配件",
+          "美妆个护",
+          "儿童时尚",
+          "手机与数码"
+        ],
+        "region_name": "印度尼西亚"
+      },
+      "region": "ID",
+      "currency_unit": "Rp",
+      "sold_count": 13695,
+      "on_sell_product_count": 2182,
+      "sales_author_count": 574,
+      "sale_amount": 313081883,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 20886,
+        "global_day7_sale_amount": 499,
+        "region_name": "美国",
+        "global_sale_amount_show": "$2.08万",
+        "global_day7_sale_amount_show": "$499"
+      },
+      "shop_rating": 4.5,
+      "new_product_rate": "-",
+      "shop_type": 0,
+      "day7_sold_count": 263,
+      "day7_sale_amount": 7494900,
+      "day7_product_count": 55,
+      "query_category_name": "其它",
+      "is_collect": 0,
+      "region_name": "印度尼西亚",
+      "sold_count_show": "1.36万",
+      "on_sell_product_count_show": "2182",
+      "sales_author_count_show": "574",
+      "sale_amount_show": "Rp3.13亿",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "263",
+      "day7_sale_amount_show": "Rp749.49万",
+      "day7_product_count_show": "55"
+    },
+    {
+      "seller_id": "7495303939195767031",
+      "trend": [
+        {
+          "dt": "2025-05-05",
+          "region": "",
+          "inc_sold_count": 15,
+          "inc_sold_count_show": "15"
+        },
+        {
+          "dt": "2025-05-06",
+          "region": "",
+          "inc_sold_count": 24,
+          "inc_sold_count_show": "24"
+        },
+        {
+          "dt": "2025-05-07",
+          "region": "",
+          "inc_sold_count": 27,
+          "inc_sold_count_show": "27"
+        },
+        {
+          "dt": "2025-05-08",
+          "region": "",
+          "inc_sold_count": 15,
+          "inc_sold_count_show": "15"
+        },
+        {
+          "dt": "2025-05-09",
+          "region": "",
+          "inc_sold_count": 31,
+          "inc_sold_count_show": "31"
+        },
+        {
+          "dt": "2025-05-10",
+          "region": "",
+          "inc_sold_count": 7,
+          "inc_sold_count_show": "7"
+        },
+        {
+          "dt": "2025-05-11",
+          "region": "",
+          "inc_sold_count": 16,
+          "inc_sold_count_show": "16"
+        }
+      ],
+      "shop_info": {
+        "id": "7495303939195767031",
+        "seller_id": "7495303939195767031",
+        "is_sshop": 0,
+        "region": "GB",
+        "seller_company": "JUNGLE MALL LTD",
+        "currency": "GBP",
+        "name": "JungleMall",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/431b59f130ac4915bdfd16bd171b8d13~tplv-tulkllf4y5-resize-webp:300:300.webp",
+        "category_name": "时尚配件",
+        "cid": -100,
+        "category_list": [
+          "时尚配件",
+          "珠宝与衍生品",
+          "五金工具",
+          "箱包",
+          "家装建材",
+          "时尚配件",
+          "保健",
+          "女装与女士内衣",
+          "运动与户外",
+          "母婴用品",
+          "手机与数码"
+        ],
+        "region_name": "英国"
+      },
+      "region": "GB",
+      "currency_unit": "£",
+      "sold_count": 2894,
+      "on_sell_product_count": 43,
+      "sales_author_count": 22,
+      "sale_amount": 16841,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 20883,
+        "global_day7_sale_amount": 499,
+        "region_name": "美国",
+        "global_sale_amount_show": "$2.08万",
+        "global_day7_sale_amount_show": "$499"
+      },
+      "shop_rating": 4,
+      "new_product_rate": "-",
+      "shop_type": 1,
+      "day7_sold_count": 135,
+      "day7_sale_amount": 403,
+      "day7_product_count": 10,
+      "query_category_name": "其它",
+      "is_collect": 0,
+      "region_name": "英国",
+      "sold_count_show": "2894",
+      "on_sell_product_count_show": "43",
+      "sales_author_count_show": "22",
+      "sale_amount_show": "£1.68万",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "135",
+      "day7_sale_amount_show": "£403",
+      "day7_product_count_show": "10"
+    },
+    {
+      "seller_id": "7495861958539250170",
+      "trend": [
+        {
+          "dt": "2025-05-05",
+          "region": "",
+          "inc_sold_count": 5,
+          "inc_sold_count_show": "5"
+        },
+        {
+          "dt": "2025-05-06",
+          "region": "",
+          "inc_sold_count": 8,
+          "inc_sold_count_show": "8"
+        },
+        {
+          "dt": "2025-05-07",
+          "region": "",
+          "inc_sold_count": 20,
+          "inc_sold_count_show": "20"
+        },
+        {
+          "dt": "2025-05-08",
+          "region": "",
+          "inc_sold_count": 14,
+          "inc_sold_count_show": "14"
+        },
+        {
+          "dt": "2025-05-09",
+          "region": "",
+          "inc_sold_count": 22,
+          "inc_sold_count_show": "22"
+        },
+        {
+          "dt": "2025-05-10",
+          "region": "",
+          "inc_sold_count": 17,
+          "inc_sold_count_show": "17"
+        },
+        {
+          "dt": "2025-05-11",
+          "region": "",
+          "inc_sold_count": 19,
+          "inc_sold_count_show": "19"
+        }
+      ],
+      "shop_info": {
+        "id": "7495861958539250170",
+        "seller_id": "7495861958539250170",
+        "is_sshop": 0,
+        "region": "VN",
+        "seller_company": "",
+        "currency": "VND",
+        "name": "Tổng kho kính mắt thời trang08",
+        "off_shelves": 0,
+        "avatar": "https://s.500fd.com/tt_shop/92ab69ce706d4695a90ec85d8abae3db~tplv-o3syd03w52-resize-webp:300:300.webp",
+        "category_name": "时尚配件",
+        "cid": -100,
+        "category_list": [
+          "时尚配件",
+          "时尚配件",
+          "女装与女士内衣",
+          "男装与男士内衣",
+          "儿童时尚"
+        ],
+        "region_name": "越南"
+      },
+      "region": "VN",
+      "currency_unit": "₫",
+      "sold_count": 4027,
+      "on_sell_product_count": 63,
+      "sales_author_count": 350,
+      "sale_amount": 589293900,
+      "global": {
+        "region": "US",
+        "global_sale_amount": 25085,
+        "global_day7_sale_amount": 499,
+        "region_name": "美国",
+        "global_sale_amount_show": "$2.50万",
+        "global_day7_sale_amount_show": "$499"
+      },
+      "shop_rating": 4.5,
+      "new_product_rate": "-",
+      "shop_type": 1,
+      "day7_sold_count": 105,
+      "day7_sale_amount": 11745000,
+      "day7_product_count": 5,
+      "query_category_name": "其它",
+      "is_collect": 0,
+      "region_name": "越南",
+      "sold_count_show": "4027",
+      "on_sell_product_count_show": "63",
+      "sales_author_count_show": "350",
+      "sale_amount_show": "5.89亿₫",
+      "new_product_rate_show": "-",
+      "day7_sold_count_show": "105",
+      "day7_sale_amount_show": "1174.50万₫",
+      "day7_product_count_show": "5"
+    }
+  ]
+}

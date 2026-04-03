@@ -202,7 +202,7 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
             # Permitir requests do hub sem token temporariamente (ate Lovable implementar)
             origin = request.headers.get("origin", "")
             referer = request.headers.get("referer", "")
-            if "ninjabrhub" in origin or "ninjabrhub" in referer:
+            if "ninjabrhub" in origin or "ninjabrhub" in referer or "lovable" in origin or "lovable" in referer:
                 return await call_next(request)
             return JSONResponse(
                 status_code=401,
@@ -229,9 +229,19 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
 
         # ===== RATE LIMITING =====
         ip = _get_client_ip(request)
-        # Rate limit por user_id em vez de IP (mais justo)
-        rate_key = auth_result.get("user_id", ip)
-        check = _check_rate_limit(rate_key, path)
+        # Se veio do hub sem token, usar IP mas com limite mais alto
+        origin = request.headers.get("origin", "")
+        is_hub = "ninjabrhub" in origin or "lovable" in origin
+        if auth_result.get("valid"):
+            rate_key = auth_result.get("user_id", ip)
+        else:
+            rate_key = ip
+
+        # Hub tem limites mais altos (carrega varias coisas ao mesmo tempo)
+        if is_hub and rate_key == ip:
+            check = {"allowed": True, "remaining": 999, "type": "hub"}
+        else:
+            check = _check_rate_limit(rate_key, path)
 
         if not check["allowed"]:
             return JSONResponse(

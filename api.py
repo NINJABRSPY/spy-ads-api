@@ -197,16 +197,19 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
         if any(path == ep or path.startswith(ep + "?") for ep in PUBLIC_ENDPOINTS):
             return await call_next(request)
 
-        # ===== ORIGEM CONFIAVEL =====
+        # ===== ORIGEM CONFIAVEL — ainda exige token mas sem rate limit =====
         if _is_trusted_origin(request):
-            # Logar se token esta sendo enviado (para verificar antes de ativar bloqueio)
             auth_header = request.headers.get("authorization", "")
-            has_token = auth_header.startswith("Bearer ") and len(auth_header) > 20
-            # TODO: quando confirmado que 100% dos requests tem token, remover fallback
-            if not has_token:
-                # Contar requests sem token vindos do hub (para monitorar)
-                _rate_tracker["__hub_no_token__"]["warnings"] += 1
-            return await call_next(request)
+            token = auth_header[7:] if auth_header.startswith("Bearer ") else ""
+            if token:
+                auth_result = await _validate_supabase_token(token)
+                if auth_result.get("valid"):
+                    return await call_next(request)
+            # Token ausente ou invalido do hub
+            return JSONResponse(
+                status_code=401,
+                content={"error": "Authentication required", "message": "Faça login no NinjaBR Hub."}
+            )
 
         # ===== REQUESTS DE FORA — exige autenticacao =====
         auth_header = request.headers.get("authorization", "")

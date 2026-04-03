@@ -226,64 +226,100 @@ async function main() {
 
     // ========================================
     // PHASE 4: CREATIVE CENTER ADS (ROAS + metrics!)
+    // Strategy: query by category × ad type × period to maximize unique results
     // ========================================
     console.log('--- PHASE 4: CREATIVE CENTER ADS ---\n');
     const allAds = [];
     const adIds = new Set();
 
-    // Navigate to creative center first
+    // Navigate to creative center
     await send('Page.navigate', { url: 'https://www.fastmoss.com/creativecenter/search?region=US' });
     await new Promise(r => setTimeout(r, 6000));
 
-    // da_type: 1=all, can try different types
-    for (let page = 1; page <= 50; page++) {
-      const data = await fetchAPI(`/api/da/V4/search?page=${page}&pagesize=12&da_type=1&region=${REGION}`);
+    // Get ad filter info (categories for ads)
+    const adFilterData = await fetchAPI(`/api/da/V4/filterInfo?region=${REGION}`);
+    const adCategories = adFilterData?.category || [];
+    console.log(`  Ad categories: ${adCategories.length}`);
 
-      if (!data || !data.ad_list || data.ad_list.length === 0) break;
+    // da_type: 1=all, 2=hot product, 3=shop ads, 4=commission ads
+    const adTypes = [
+      { type: 1, name: 'All' },
+      { type: 2, name: 'Hot Product' },
+      { type: 3, name: 'Shop Ads' },
+      { type: 4, name: 'Commission' },
+    ];
 
-      for (const ad of data.ad_list) {
-        if (!adIds.has(ad.id)) {
-          adIds.add(ad.id);
-          allAds.push(ad);
+    // Sort options for variety
+    const sortOptions = [
+      { field: 'play_count', order: '1,2', name: 'views' },
+      { field: 'roas', order: '7,2', name: 'roas' },
+      { field: 'digg_count', order: '2,2', name: 'likes' },
+    ];
+
+    // Period options
+    const periods = ['7', '28', '90'];
+
+    // 1. Global by type × sort
+    for (const adType of adTypes) {
+      for (const sort of sortOptions) {
+        const data = await fetchAPI(
+          `/api/da/V4/search?page=1&pagesize=12&da_type=${adType.type}&region=${REGION}&order=${sort.order}`
+        );
+        if (data?.ad_list) {
+          let added = 0;
+          for (const ad of data.ad_list) {
+            if (!adIds.has(ad.id)) { adIds.add(ad.id); allAds.push(ad); added++; }
+          }
+          if (added > 0) console.log(`  ${adType.name} by ${sort.name}: +${added} (${allAds.length} total)`);
         }
+        await new Promise(r => setTimeout(r, DELAY));
       }
+    }
 
-      if (page % 10 === 0 || page === 1) {
-        console.log(`  Page ${page}: ${data.ad_list.length} ads (${allAds.length} total)`);
+    // 2. By category (top 15 categories)
+    const catCodes = adCategories.slice(0, 15).map(c => c.c_code || c.code);
+    for (const catCode of catCodes) {
+      const catName = adCategories.find(c => (c.c_code || c.code) === catCode)?.c_name || catCode;
+      for (const adType of [adTypes[0], adTypes[3]]) { // All + Commission per category
+        const data = await fetchAPI(
+          `/api/da/V4/search?page=1&pagesize=12&da_type=${adType.type}&region=${REGION}&category=${catCode}`
+        );
+        if (data?.ad_list) {
+          let added = 0;
+          for (const ad of data.ad_list) {
+            if (!adIds.has(ad.id)) { adIds.add(ad.id); allAds.push(ad); added++; }
+          }
+          if (added > 0) console.log(`  ${catName} (${adType.name}): +${added}`);
+        }
+        await new Promise(r => setTimeout(r, DELAY));
       }
+    }
 
-      if (data.ad_list.length < 12) break;
+    // 3. By period
+    for (const period of periods) {
+      const data = await fetchAPI(
+        `/api/da/V4/search?page=1&pagesize=12&da_type=1&region=${REGION}&date_type=${period}`
+      );
+      if (data?.ad_list) {
+        let added = 0;
+        for (const ad of data.ad_list) {
+          if (!adIds.has(ad.id)) { adIds.add(ad.id); allAds.push(ad); added++; }
+        }
+        if (added > 0) console.log(`  Last ${period}d: +${added}`);
+      }
       await new Promise(r => setTimeout(r, DELAY));
     }
 
-    // Also get Commission Ads specifically
-    console.log('\n  Commission ads...');
-    for (let page = 1; page <= 20; page++) {
-      const data = await fetchAPI(`/api/da/V4/search?page=${page}&pagesize=12&da_type=4&region=${REGION}`);
-      if (!data || !data.ad_list || data.ad_list.length === 0) break;
-
+    // 4. High ROAS specifically
+    const roasData = await fetchAPI(
+      `/api/da/V4/search?page=1&pagesize=12&da_type=1&region=${REGION}&order=7,2&roas_min=2`
+    );
+    if (roasData?.ad_list) {
       let added = 0;
-      for (const ad of data.ad_list) {
+      for (const ad of roasData.ad_list) {
         if (!adIds.has(ad.id)) { adIds.add(ad.id); allAds.push(ad); added++; }
       }
-      if (page === 1) console.log(`  Commission page 1: +${added}`);
-      if (data.ad_list.length < 12) break;
-      await new Promise(r => setTimeout(r, DELAY));
-    }
-
-    // Hot Product Ads
-    console.log('  Hot product ads...');
-    for (let page = 1; page <= 20; page++) {
-      const data = await fetchAPI(`/api/da/V4/search?page=${page}&pagesize=12&da_type=2&region=${REGION}`);
-      if (!data || !data.ad_list || data.ad_list.length === 0) break;
-
-      let added = 0;
-      for (const ad of data.ad_list) {
-        if (!adIds.has(ad.id)) { adIds.add(ad.id); allAds.push(ad); added++; }
-      }
-      if (page === 1) console.log(`  Hot product page 1: +${added}`);
-      if (data.ad_list.length < 12) break;
-      await new Promise(r => setTimeout(r, DELAY));
+      if (added > 0) console.log(`  High ROAS (>2x): +${added}`);
     }
 
     console.log(`\n  TOTAL ADS: ${allAds.length}\n`);

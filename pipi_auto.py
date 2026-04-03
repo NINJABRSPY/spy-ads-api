@@ -120,6 +120,7 @@ def normalize(item, keyword):
         'pipi_cpm': item.get('min_cpm', 0),
         'pipi_cpa': item.get('min_cpa', 0),
         'estimated_spend': round((item.get('min_cpm', 0) or 0) * (item.get('play_count', 0) or 0) / 1000, 2) if item.get('min_cpm') else 0,
+        'landing_page': item.get('link_url', '') or item.get('landing_page', '') or item.get('destination_url', '') or '',
         'search_keyword': keyword,
         'collected_at': datetime.now().strftime('%Y-%m-%d %H:%M'),
     }

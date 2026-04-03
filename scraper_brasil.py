@@ -89,7 +89,7 @@ def normalize(ad, keyword):
         "title": ad.get("title", ""),
         "body": (ad.get("body", "") or ad.get("message", "") or "")[:800],
         "cta": ad.get("call_to_action", ""),
-        "landing_page": "",
+        "landing_page": ad.get("link_url", "") or ad.get("landing_page_url", "") or ad.get("destination_url", "") or ad.get("website_url", "") or "",
         "image_url": image_url or ad.get("preview_img_url", ""),
         "video_url": video_url,
         "first_seen": datetime.fromtimestamp(ad["first_seen"]).strftime("%Y-%m-%d") if ad.get("first_seen") else "",

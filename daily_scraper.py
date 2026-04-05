@@ -325,6 +325,17 @@ http.get('http://localhost:9222/json', res => {
         pass
 
 
+def run_youtube_transcriber():
+    """YouTube Mass Transcriber — transcreve vídeos e indexa para busca"""
+    log("=== YOUTUBE TRANSCRIBER ===")
+    try:
+        from youtube_transcriber import run as run_yt
+        count = run_yt()
+        log(f"YouTube Transcriber: +{count} novos transcritos")
+    except Exception as e:
+        log(f"YouTube Transcriber ERRO: {e}")
+
+
 def run_adsparo():
     """AdsParo - via API (token expira rapido, verificar antes)"""
     log("=== ADSPARO ===")
@@ -582,6 +593,7 @@ def main():
     run_clickmidas()
     run_social1()
     run_searchapi()
+    run_youtube_transcriber()
     run_adsparo()
     run_bigspy()
     run_pipiads()

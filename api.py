@@ -1847,6 +1847,114 @@ def cross_source_signals(
 
 SEARCHAPI_KEY = "ZFDmiHTH75sZT3wjDBc7vGay"
 
+# Transcript search index
+_transcript_cache = {"data": None, "loaded_at": None}
+
+def load_transcripts():
+    files = sorted(glob.glob(f"{OUTPUT_DIR}/transcript_index.json"), reverse=True)
+    if not files:
+        return {}
+    latest = files[0]
+    mtime = os.path.getmtime(latest)
+    if _transcript_cache["data"] and _transcript_cache["loaded_at"] == mtime:
+        return _transcript_cache["data"]
+    with open(latest, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    _transcript_cache["data"] = data.get("videos", {})
+    _transcript_cache["loaded_at"] = mtime
+    return _transcript_cache["data"]
+
+
+@app.get("/api/youtube/transcript-search")
+def transcript_search(
+    q: str = Query(..., description="Buscar palavra FALADA nos videos"),
+    language: str = Query(None, description="Filtrar por idioma (en, pt)"),
+    min_views: int = Query(None, description="Views minimos"),
+    limit: int = Query(20, ge=1, le=50),
+    page: int = Query(1, ge=1),
+):
+    """Busca por transcrição — encontra videos onde a keyword é FALADA"""
+    videos = load_transcripts()
+    q_lower = q.lower()
+
+    results = []
+    for vid_id, v in videos.items():
+        transcript = (v.get("transcript") or "").lower()
+        if q_lower not in transcript:
+            continue
+
+        if language and v.get("language") != language:
+            continue
+        if min_views and (v.get("views", 0) or 0) < min_views:
+            continue
+
+        # Find snippet where the keyword appears
+        idx = transcript.find(q_lower)
+        start = max(0, idx - 80)
+        end = min(len(transcript), idx + len(q_lower) + 80)
+        snippet = "..." + transcript[start:end].strip() + "..."
+        # Highlight the keyword
+        snippet = snippet.replace(q_lower, f"**{q_lower}**")
+
+        # Count occurrences
+        count = transcript.count(q_lower)
+
+        results.append({
+            "video_id": v.get("video_id", ""),
+            "title": v.get("title", ""),
+            "channel_name": v.get("channel_name", ""),
+            "channel_verified": v.get("channel_verified", False),
+            "views": v.get("views", 0),
+            "link": v.get("link", ""),
+            "embed_url": f"https://www.youtube.com/embed/{v.get('video_id', '')}",
+            "thumbnail": v.get("thumbnail", ""),
+            "published": v.get("published", ""),
+            "duration": v.get("duration", ""),
+            "language": v.get("language", ""),
+            "keyword_count": count,
+            "snippet": snippet,
+            "word_count": v.get("word_count", 0),
+            "keyword": v.get("keyword", ""),
+        })
+
+    # Sort by keyword count (most mentions first), then views
+    results.sort(key=lambda x: (x["keyword_count"], x["views"]), reverse=True)
+
+    total = len(results)
+    start = (page - 1) * limit
+
+    return {
+        "query": q,
+        "total_results": total,
+        "total_transcribed": len(videos),
+        "data": results[start:start + limit],
+        "page": page,
+        "pages": (total + limit - 1) // limit if total > 0 else 0,
+    }
+
+
+@app.get("/api/youtube/transcript-stats")
+def transcript_stats():
+    """Estatisticas do banco de transcricoes"""
+    videos = load_transcripts()
+    langs = {}
+    keywords = {}
+    total_words = 0
+    for v in videos.values():
+        lang = v.get("language", "?")
+        langs[lang] = langs.get(lang, 0) + 1
+        kw = v.get("keyword", "?")
+        keywords[kw] = keywords.get(kw, 0) + 1
+        total_words += v.get("word_count", 0)
+
+    return {
+        "total_transcribed": len(videos),
+        "total_words": total_words,
+        "by_language": dict(sorted(langs.items(), key=lambda x: x[1], reverse=True)),
+        "by_keyword": dict(sorted(keywords.items(), key=lambda x: x[1], reverse=True)[:20]),
+    }
+
+
 @app.get("/api/youtube/search")
 def youtube_search(
     q: str = Query(..., description="Keyword de busca"),

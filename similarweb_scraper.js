@@ -240,6 +240,78 @@ function extractMetrics(data, domain) {
     metrics.top_referrals = refs.Data.map(r => ({
       domain: r.Domain,
       share: Math.round((r.Share || 0) * 1000) / 10,
+      change: Math.round((r.Change || 0) * 100) / 100,
+    })).slice(0, 10);
+  }
+
+  // Social breakdown (YouTube, Facebook, etc)
+  const social = data['widgetApi/WebsiteOverviewDesktop/TrafficSourcesSocial/PieChart'];
+  if (social?.Data?.[domain]) {
+    const s = social.Data[domain];
+    metrics.social_breakdown = {};
+    for (const [platform, info] of Object.entries(s)) {
+      metrics.social_breakdown[platform] = Math.round((info.Share || 0) * 1000) / 10;
+    }
+  }
+
+  // Branded vs Non-branded search
+  const branded = data['widgetApi/TrafficSourcesSearchV2/BrandedKeywords/WebsitePerformance/PieChart'];
+  if (branded?.Data?.[domain]) {
+    const b = branded.Data[domain];
+    const total = (b.Branded || 0) + (b.NoneBranded || 0);
+    metrics.branded_search = {
+      branded_pct: total > 0 ? Math.round((b.Branded || 0) / total * 100) : 0,
+      non_branded_pct: total > 0 ? Math.round((b.NoneBranded || 0) / total * 100) : 0,
+      branded_visits: Math.round(b.Branded || 0),
+      non_branded_visits: Math.round(b.NoneBranded || 0),
+    };
+  }
+
+  // Search keywords
+  const keywords = data['widgetApi/SearchKeywordsV2/WebsitePerformance/Table'];
+  if (keywords?.Data) {
+    metrics.top_keywords = keywords.Data.map(k => ({
+      keyword: k.SearchTerm,
+      share: Math.round((k.TotalShare || 0) * 1000) / 10,
+      visits: Math.round(k.TotalVisits || 0),
+    })).slice(0, 10);
+  }
+
+  // Ad publishers (display advertising)
+  const adIntel = data['api/AdIntelligence/Advertiser/Publishers/breakdown'];
+  if (adIntel?.records) {
+    metrics.ad_publishers = adIntel.records.map(r => ({
+      domain: r.entity,
+      impressions_share: Math.round((r.impressionsShare || 0) * 1000) / 10,
+      category: r.category,
+    })).slice(0, 10);
+  }
+
+  // Referral categories
+  const refCats = data['widgetApi/WebsiteOverviewDesktop/TopReferringCategories/Table'];
+  if (refCats?.Data) {
+    metrics.referral_categories = refCats.Data.map(c => ({
+      category: c.Category?.replace(/_/g, ' '),
+      share: Math.round((c.Share || 0) * 1000) / 10,
+    })).slice(0, 5);
+  }
+
+  // Traffic destinations (where users go after)
+  const destRefs = data['widgetApi/WebsiteOverviewDesktop/TrafficDestinationReferrals/Table'];
+  if (destRefs?.Data) {
+    metrics.exit_destinations = destRefs.Data.map(d => ({
+      domain: d.Domain,
+      share: Math.round((d.Share || 0) * 1000) / 10,
+    })).slice(0, 5);
+  }
+
+  // Competitors (from engagement table)
+  const competitors = data['widgetApi/WebsiteOverview/EngagementVisits/Table'];
+  if (competitors?.Data) {
+    metrics.competitors = competitors.Data.filter(c => c.Domain !== domain).map(c => ({
+      domain: c.Domain,
+      visits: Math.round(c.TotalVisits || 0),
+      change: Math.round((c.Change || 0) * 100) / 100,
     })).slice(0, 5);
   }
 

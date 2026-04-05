@@ -302,7 +302,21 @@ const server = http.createServer(async (req, res) => {
 
   // GET /api/traffic/domain.com
   if (url.pathname.startsWith('/api/traffic/')) {
-    const domain = url.pathname.replace('/api/traffic/', '').replace(/\/$/, '');
+    let domain = url.pathname.replace('/api/traffic/', '').replace(/\/$/, '');
+    // Limpar: remover protocolo, www, path, subdomínios comuns
+    domain = domain.replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '');
+    // Extrair domínio raiz (ex: pt.velunapets.com → velunapets.com)
+    const parts = domain.split('.');
+    if (parts.length > 2) {
+      // Manter últimos 2 segmentos (domain.tld), exceto .co.uk, .com.br etc
+      const twoLast = parts.slice(-2).join('.');
+      const threeLast = parts.slice(-3).join('.');
+      if (['co.uk', 'com.br', 'com.au', 'co.jp', 'co.kr', 'com.mx'].includes(twoLast)) {
+        domain = parts.slice(-3).join('.');
+      } else {
+        domain = twoLast;
+      }
+    }
     if (!domain) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ error: 'Domain required' }));

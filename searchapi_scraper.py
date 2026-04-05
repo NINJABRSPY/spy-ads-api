@@ -360,11 +360,118 @@ def merge_to_unified(new_ads):
         print(f"No new ads to merge ({len(new_ads)} already exist)")
 
 
+YOUTUBE_KEYWORDS = [
+    # DR Health
+    "weight loss supplement review", "blood sugar supplement",
+    "prostate health supplement", "joint pain relief",
+    "brain supplement review", "testosterone booster review",
+    "anti aging supplement", "gut health supplement",
+    "sleep supplement", "anxiety natural remedy",
+    # DR Wealth
+    "make money online 2026", "affiliate marketing tutorial",
+    "dropshipping tutorial", "passive income ideas",
+    "crypto trading strategy",
+    # DR Other
+    "manifestation meditation", "dog training tips",
+    "survival prepping", "solar generator review",
+    # BR
+    "suplemento emagrecer", "renda extra online",
+    "marketing digital tutorial",
+]
+
+
+def run_youtube_scraper():
+    """Scrape YouTube videos por keyword — encontra VSLs e ads"""
+    print("\n=== YOUTUBE ADS SPY (SearchAPI) ===\n")
+
+    all_videos = []
+    seen_ids = set()
+
+    for keyword in YOUTUBE_KEYWORDS:
+        print(f"  [YT] {keyword}...", end=" ")
+        try:
+            r = requests.get(BASE_URL, params={
+                "engine": "youtube",
+                "q": keyword,
+                "num": 20,
+                "api_key": API_KEY,
+            }, timeout=15)
+            data = r.json()
+            videos = data.get("video_results", [])
+
+            added = 0
+            for v in videos:
+                vid_id = v.get("id", "")
+                if vid_id and vid_id not in seen_ids:
+                    seen_ids.add(vid_id)
+                    channel = v.get("channel", {})
+                    all_videos.append({
+                        "ad_id": f"youtube_{vid_id}",
+                        "source": "youtube_search",
+                        "platform": "youtube",
+                        "advertiser": channel.get("title", ""),
+                        "advertiser_image": channel.get("thumbnail", ""),
+                        "title": v.get("title", ""),
+                        "body": (v.get("description", "") or "")[:500],
+                        "cta": "",
+                        "landing_page": v.get("link", ""),
+                        "image_url": v.get("thumbnail", ""),
+                        "video_url": v.get("link", ""),
+                        "first_seen": v.get("published_time", ""),
+                        "last_seen": datetime.now().strftime("%Y-%m-%d"),
+                        "is_active": True,
+                        "likes": 0,
+                        "comments": 0,
+                        "shares": 0,
+                        "impressions": v.get("views", 0),
+                        "days_running": 0,
+                        "heat": min(1000, (v.get("views", 0) or 0) // 1000),
+                        "ad_type": "video",
+                        "video_duration": 0,
+                        "total_engagement": v.get("views", 0),
+                        "search_keyword": keyword,
+                        "collected_at": datetime.now().isoformat(),
+                        "potential_score": min(10, round((v.get("views", 0) or 0) / 100000)),
+                        "country": "",
+                        "youtube_channel_id": channel.get("id", ""),
+                        "youtube_channel_verified": channel.get("is_verified", False),
+                        "youtube_duration": v.get("length", ""),
+                    })
+                    added += 1
+
+            print(f"{added} new")
+        except Exception as e:
+            print(f"ERROR: {e}")
+
+        time.sleep(DELAY)
+
+    print(f"\nYouTube: {len(all_videos)} unique videos")
+
+    # Save
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+    output = {
+        "source": "youtube_search",
+        "scraped_at": datetime.now().isoformat(),
+        "total": len(all_videos),
+        "keywords": YOUTUBE_KEYWORDS,
+        "videos": all_videos,
+    }
+    filename = f"{OUTPUT_DIR}/youtube_search_{timestamp}.json"
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(output, f, ensure_ascii=False, indent=2)
+
+    # Merge with unified
+    merge_to_unified(all_videos)
+
+    return len(all_videos)
+
+
 def run():
     """Executa todos os scrapers do SearchAPI"""
     total = 0
     total += run_meta_scraper()
-    print(f"\n=== SEARCHAPI TOTAL: {total} new ads ===")
+    total += run_youtube_scraper()
+    print(f"\n=== SEARCHAPI TOTAL: {total} new ads/videos ===")
     return total
 
 

@@ -1847,6 +1847,123 @@ def cross_source_signals(
 
 SEARCHAPI_KEY = "ZFDmiHTH75sZT3wjDBc7vGay"
 
+@app.get("/api/youtube/search")
+def youtube_search(
+    q: str = Query(..., description="Keyword de busca"),
+    num: int = Query(20, ge=1, le=50),
+):
+    """Busca videos no YouTube por keyword — encontra VSLs e ads"""
+    import requests as req
+    try:
+        r = req.get("https://www.searchapi.io/api/v1/search", params={
+            "engine": "youtube",
+            "q": q,
+            "num": num,
+            "api_key": SEARCHAPI_KEY,
+        }, timeout=15)
+        data = r.json()
+        videos = data.get("video_results", [])
+
+        results = []
+        for v in videos:
+            channel = v.get("channel", {})
+            results.append({
+                "video_id": v.get("id", ""),
+                "title": v.get("title", ""),
+                "description": (v.get("description", "") or "")[:300],
+                "views": v.get("views", 0),
+                "link": v.get("link", ""),
+                "thumbnail": v.get("thumbnail", ""),
+                "published": v.get("published_time", ""),
+                "duration": v.get("length", ""),
+                "channel_name": channel.get("title", ""),
+                "channel_id": channel.get("id", ""),
+                "channel_verified": channel.get("is_verified", False),
+                "channel_thumbnail": channel.get("thumbnail", ""),
+            })
+
+        return {
+            "query": q,
+            "total_results": data.get("search_information", {}).get("total_results", 0),
+            "data": results,
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.get("/api/youtube/channel/{channel_id}")
+def youtube_channel_videos(
+    channel_id: str,
+    num: int = Query(20, ge=1, le=50),
+):
+    """Lista videos de um canal do YouTube — espionar anunciantes"""
+    import requests as req
+    try:
+        r = req.get("https://www.searchapi.io/api/v1/search", params={
+            "engine": "youtube_channel_videos",
+            "channel_id": channel_id,
+            "num": num,
+            "api_key": SEARCHAPI_KEY,
+        }, timeout=15)
+        data = r.json()
+
+        channel_info = data.get("channel", {})
+        videos = []
+        for v in data.get("videos", []):
+            videos.append({
+                "video_id": v.get("id", ""),
+                "title": v.get("title", ""),
+                "views": v.get("views", 0),
+                "link": v.get("link", ""),
+                "thumbnail": v.get("thumbnail", ""),
+                "published": v.get("published_time", ""),
+                "duration": v.get("length", ""),
+            })
+
+        return {
+            "channel": {
+                "name": channel_info.get("title", ""),
+                "subscribers": channel_info.get("subscribers", 0),
+                "videos_count": channel_info.get("videos", 0),
+                "description": channel_info.get("description", ""),
+                "thumbnail": channel_info.get("thumbnail", ""),
+            },
+            "videos": videos,
+            "total": len(videos),
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.get("/api/youtube/comments/{video_id}")
+def youtube_comments(
+    video_id: str,
+    num: int = Query(20, ge=1, le=50),
+):
+    """Comentarios de um video — entender objecoes do publico"""
+    import requests as req
+    try:
+        # First get video info for comment count
+        r = req.get("https://www.searchapi.io/api/v1/search", params={
+            "engine": "youtube_video",
+            "video_id": video_id,
+            "api_key": SEARCHAPI_KEY,
+        }, timeout=15)
+        data = r.json()
+
+        video = data.get("video", {})
+        comments_data = data.get("comments", [])
+
+        return {
+            "video_id": video_id,
+            "title": video.get("title", ""),
+            "total_comments": data.get("comment", {}).get("total", 0),
+            "comments": comments_data[:num] if isinstance(comments_data, list) else [],
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
 @app.get("/api/youtube/analyze")
 def youtube_analyze(url: str = Query(..., description="URL ou ID do video do YouTube")):
     """Analisa um video do YouTube — metadata completa + transcrição"""

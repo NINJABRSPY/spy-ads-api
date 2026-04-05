@@ -2716,10 +2716,24 @@ def daily_briefing():
 
         "hot_niches": dict(sorted(niche_count.items(), key=lambda x: x[1], reverse=True)[:10]),
 
+        "velocity_rockets": [{
+            "advertiser": a.get("advertiser", ""),
+            "title": (a.get("title") or "")[:80],
+            "platform": a.get("platform", ""),
+            "impressions": a.get("impressions", 0),
+            "days_running": a.get("days_running", 0),
+            "velocity_per_day": round((a.get("impressions", 0) or 0) / max(int(a.get("days_running", 1) or 1), 1)),
+        } for a in sorted(
+            [a for a in ads if 1 <= (a.get("days_running", 0) or 0) <= 5 and (a.get("impressions", 0) or 0) > 30000],
+            key=lambda x: (x.get("impressions", 0) or 0) / max(int(x.get("days_running", 1) or 1), 1),
+            reverse=True
+        )[:5]],
+
         "total_monitored": {
             "ads": len(ads),
             "affiliates": len(affiliates),
-            "sources": 7,
+            "sources": 12,
+            "transcripts": len(load_transcripts()),
         }
     }
 
@@ -2893,6 +2907,185 @@ def offer_search(q: str = Query(..., description="Buscar oferta especifica")):
         "sources": sources,
         "top_angles": [{"hook": h, "count": c} for h, c in top_angles],
         "top_ads": matched[:20],
+    }
+
+
+# ============================================================
+# VELOCITY ALERT — Ads escalando AGORA
+# ============================================================
+
+@app.get("/api/velocity")
+def velocity_alerts(
+    min_impressions: int = Query(10000, description="Impressoes minimas"),
+    max_days: int = Query(7, description="Maximo de dias rodando"),
+    platform: str = Query(None),
+    niche: str = Query(None),
+    country: str = Query(None),
+    limit: int = Query(30, ge=1, le=100),
+):
+    """Ads que estão ESCALANDO agora — poucos dias rodando + muitas impressões"""
+    ads = load_latest_data()
+
+    # Filtrar: ads recentes com alto volume
+    rockets = []
+    for ad in ads:
+        days = int(ad.get("days_running", 0) or 0)
+        impressions = int(ad.get("impressions", 0) or 0)
+        if days > max_days or days < 1 or impressions < min_impressions:
+            continue
+        if platform and ad.get("platform") != platform:
+            continue
+        if niche and niche.lower() not in (ad.get("ai_niche", "") or "").lower():
+            continue
+        if country and _detect_country(ad) != country.upper():
+            continue
+
+        # Velocity score: impressões por dia
+        velocity = round(impressions / max(days, 1))
+
+        # Explosion score (0-100): quanto mais impressões em menos dias, mais explosivo
+        explosion = min(100, int(
+            min(40, impressions / 50000 * 10) +
+            min(30, (8 - days) * 5) +
+            min(15, (ad.get("likes", 0) or 0) / 500) +
+            min(15, (ad.get("total_engagement", 0) or 0) / 1000)
+        ))
+
+        rockets.append({
+            **{k: ad.get(k) for k in [
+                "ad_id", "source", "platform", "advertiser", "advertiser_image",
+                "title", "body", "cta", "landing_page", "image_url", "video_url",
+                "ad_type", "first_seen", "last_seen", "days_running",
+                "likes", "comments", "shares", "impressions", "total_engagement",
+                "heat", "potential_score", "ai_niche", "search_keyword", "country",
+            ]},
+            "velocity_per_day": velocity,
+            "explosion_score": explosion,
+        })
+
+    rockets.sort(key=lambda x: x["explosion_score"], reverse=True)
+
+    # Stats
+    platforms = {}
+    niches = {}
+    for r in rockets:
+        p = r.get("platform", "?")
+        platforms[p] = platforms.get(p, 0) + 1
+        n = r.get("ai_niche", "?")
+        if n:
+            niches[n] = niches.get(n, 0) + 1
+
+    return {
+        "data": rockets[:limit],
+        "total": len(rockets),
+        "stats": {
+            "by_platform": dict(sorted(platforms.items(), key=lambda x: x[1], reverse=True)[:10]),
+            "by_niche": dict(sorted(niches.items(), key=lambda x: x[1], reverse=True)[:10]),
+            "avg_velocity": round(sum(r["velocity_per_day"] for r in rockets) / max(len(rockets), 1)) if rockets else 0,
+        }
+    }
+
+
+# ============================================================
+# ANGLE DETECTOR — Descobre quais ângulos funcionam por nicho
+# ============================================================
+
+@app.get("/api/angles")
+def angle_detector(
+    niche: str = Query(None, description="Nicho para analisar (skincare, weight loss, etc)"),
+    keyword: str = Query(None, description="Keyword para analisar"),
+    platform: str = Query(None),
+    limit: int = Query(50, ge=1, le=200),
+):
+    """Detecta quais ÂNGULOS de copy estão funcionando num nicho"""
+    ads = load_latest_data()
+
+    # Filtrar por nicho/keyword
+    filtered = []
+    for ad in ads:
+        body = (ad.get("body") or "").strip()
+        title = (ad.get("title") or "").strip()
+        if not body and not title:
+            continue
+        if ad.get("source") == "social1":
+            continue
+
+        match = False
+        if niche and niche.lower() in (ad.get("ai_niche", "") or ad.get("search_keyword", "") or "").lower():
+            match = True
+        if keyword and keyword.lower() in (body + " " + title + " " + (ad.get("search_keyword", "") or "")).lower():
+            match = True
+        if not niche and not keyword:
+            match = True
+
+        if match:
+            if platform and ad.get("platform") != platform:
+                continue
+            filtered.append(ad)
+
+    if not filtered:
+        return {"error": "Nenhum ad encontrado para esse nicho/keyword", "total": 0}
+
+    # Classificar ângulos
+    angles = {
+        "testimonial": {"keywords": ["before and after", "antes e depois", "testimonial", "depoimento", "review", "i lost", "eu perdi", "changed my life", "mudou minha vida", "my results", "meus resultados"], "count": 0, "top_ads": [], "label": "Depoimento / Antes e Depois"},
+        "authority": {"keywords": ["doctor", "dr.", "médico", "scientist", "study", "estudo", "research", "pesquisa", "harvard", "clinical", "clínico", "expert", "especialista", "approved", "aprovado"], "count": 0, "top_ads": [], "label": "Autoridade / Médico / Estudo"},
+        "secret_ingredient": {"keywords": ["secret", "segredo", "ingredient", "ingrediente", "discovered", "descobriu", "ancient", "antigo", "breakthrough", "revolutionary", "hidden", "escondido", "nobody knows", "ninguem sabe"], "count": 0, "top_ads": [], "label": "Ingrediente Secreto / Descoberta"},
+        "urgency_scarcity": {"keywords": ["limited", "limitado", "last chance", "última chance", "only today", "só hoje", "selling out", "esgotando", "hurry", "corra", "exclusive", "exclusivo", "ends today", "termina hoje", "few left", "poucos restam"], "count": 0, "top_ads": [], "label": "Urgência / Escassez"},
+        "pain_problem": {"keywords": ["tired of", "cansado de", "struggling", "sofrendo", "frustrated", "frustrado", "sick of", "pain", "dor", "problem", "problema", "can't sleep", "insomnia", "embarrassing", "vergonha", "worried", "preocupado"], "count": 0, "top_ads": [], "label": "Dor / Problema"},
+        "benefit_result": {"keywords": ["lose weight", "emagrecer", "boost energy", "energia", "look younger", "mais jovem", "save money", "economizar", "earn", "ganhar", "transform", "transformar", "finally", "finalmente", "guaranteed", "garantido"], "count": 0, "top_ads": [], "label": "Benefício / Resultado"},
+        "curiosity": {"keywords": ["you won't believe", "você não vai acreditar", "shocking", "chocante", "this is why", "é por isso", "the truth about", "a verdade sobre", "what they don't tell", "o que não te contam", "weird trick", "truque estranho", "banned", "proibido"], "count": 0, "top_ads": [], "label": "Curiosidade / Choque"},
+        "social_proof": {"keywords": ["million", "milhão", "thousands", "milhares", "best seller", "mais vendido", "rated", "avaliado", "trending", "viral", "everyone", "todo mundo", "celebrities", "famosos", "recommended", "recomendado"], "count": 0, "top_ads": [], "label": "Prova Social / Números"},
+        "story": {"keywords": ["i was", "eu era", "my story", "minha história", "one day", "um dia", "happened to me", "aconteceu comigo", "when i", "quando eu", "i remember", "eu lembro", "years ago", "anos atrás", "journey", "jornada"], "count": 0, "top_ads": [], "label": "Storytelling / História Pessoal"},
+        "educational": {"keywords": ["how to", "como", "tutorial", "step by step", "passo a passo", "guide", "guia", "learn", "aprenda", "tips", "dicas", "strategy", "estratégia", "method", "método", "course", "curso"], "count": 0, "top_ads": [], "label": "Educacional / How-to"},
+    }
+
+    unclassified = 0
+    for ad in filtered:
+        text = ((ad.get("body") or "") + " " + (ad.get("title") or "")).lower()
+        classified = False
+
+        for angle_key, angle in angles.items():
+            for kw in angle["keywords"]:
+                if kw in text:
+                    angle["count"] += 1
+                    if len(angle["top_ads"]) < 3:
+                        angle["top_ads"].append({
+                            "ad_id": ad.get("ad_id", ""),
+                            "title": (ad.get("title") or "")[:80],
+                            "advertiser": ad.get("advertiser", ""),
+                            "impressions": ad.get("impressions", 0),
+                            "platform": ad.get("platform", ""),
+                        })
+                    classified = True
+                    break
+
+        if not classified:
+            unclassified += 1
+
+    # Build results
+    total_classified = sum(a["count"] for a in angles.values())
+    results = []
+    for key, angle in angles.items():
+        if angle["count"] == 0:
+            continue
+        pct = round(angle["count"] / max(total_classified, 1) * 100, 1)
+        results.append({
+            "angle": key,
+            "label": angle["label"],
+            "count": angle["count"],
+            "percentage": pct,
+            "top_ads": angle["top_ads"],
+        })
+
+    results.sort(key=lambda x: x["count"], reverse=True)
+
+    return {
+        "niche": niche or keyword or "all",
+        "total_ads_analyzed": len(filtered),
+        "total_classified": total_classified,
+        "unclassified": unclassified,
+        "angles": results,
     }
 
 

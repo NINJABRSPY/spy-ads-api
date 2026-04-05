@@ -1862,7 +1862,7 @@ def youtube_search(
             "api_key": SEARCHAPI_KEY,
         }, timeout=15)
         data = r.json()
-        videos = data.get("video_results", [])
+        videos = data.get("videos", []) or data.get("video_results", [])
 
         results = []
         for v in videos:

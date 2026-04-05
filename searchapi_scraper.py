@@ -397,7 +397,7 @@ def run_youtube_scraper():
                 "api_key": API_KEY,
             }, timeout=15)
             data = r.json()
-            videos = data.get("video_results", [])
+            videos = data.get("videos", []) or data.get("video_results", [])
 
             added = 0
             for v in videos:

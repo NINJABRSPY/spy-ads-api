@@ -1867,13 +1867,22 @@ def youtube_search(
         results = []
         for v in videos:
             channel = v.get("channel", {})
+            # Thumbnail pode ser string ou objeto {static, rich}
+            thumb = v.get("thumbnail", "")
+            if isinstance(thumb, dict):
+                thumb = thumb.get("rich") or thumb.get("static") or ""
+            # Video embed URL para reproduzir inline
+            vid_id = v.get("id", "")
+            embed_url = f"https://www.youtube.com/embed/{vid_id}" if vid_id else ""
+
             results.append({
-                "video_id": v.get("id", ""),
+                "video_id": vid_id,
                 "title": v.get("title", ""),
                 "description": (v.get("description", "") or "")[:300],
                 "views": v.get("views", 0),
                 "link": v.get("link", ""),
-                "thumbnail": v.get("thumbnail", ""),
+                "embed_url": embed_url,
+                "thumbnail": thumb,
                 "published": v.get("published_time", ""),
                 "duration": v.get("length", ""),
                 "channel_name": channel.get("title", ""),

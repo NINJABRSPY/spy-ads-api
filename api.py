@@ -1955,6 +1955,147 @@ def transcript_stats():
     }
 
 
+@app.get("/api/google-ads/{domain}")
+def google_ads_spy(domain: str, region: str = Query("US")):
+    """Google Ads oficiais de qualquer domínio — via Google Ads Transparency"""
+    import requests as req
+    try:
+        r = req.get("https://www.searchapi.io/api/v1/search", params={
+            "engine": "google_ads_transparency_center",
+            "domain": domain,
+            "region": region,
+            "num": 40,
+            "api_key": SEARCHAPI_KEY,
+        }, timeout=15)
+        data = r.json()
+        ads = data.get("ad_creatives", [])
+
+        results = []
+        for ad in ads:
+            advertiser = ad.get("advertiser", {})
+            results.append({
+                "ad_id": ad.get("id", ""),
+                "domain": ad.get("target_domain", domain),
+                "advertiser_name": advertiser.get("name", ""),
+                "advertiser_id": advertiser.get("id", ""),
+                "format": ad.get("format", ""),
+                "image": ad.get("image", {}).get("link", "") if ad.get("image") else "",
+                "first_shown": ad.get("first_shown_datetime", ""),
+                "last_shown": ad.get("last_shown_datetime", ""),
+                "total_days": ad.get("total_days_shown", 0),
+                "details_link": ad.get("details_link", ""),
+            })
+
+        return {
+            "domain": domain,
+            "region": region,
+            "total": data.get("search_information", {}).get("total_results", len(results)),
+            "data": results,
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.get("/api/google-trends")
+def google_trends(
+    q: str = Query(..., description="Keyword para analisar tendencia"),
+    geo: str = Query("", description="Pais (US, BR, GB, etc)"),
+    time: str = Query("today 12-m", description="Periodo (today 12-m, today 3-m, today 1-m)"),
+):
+    """Google Trends — volume de busca ao longo do tempo"""
+    import requests as req
+    try:
+        r = req.get("https://www.searchapi.io/api/v1/search", params={
+            "engine": "google_trends",
+            "q": q,
+            "geo": geo,
+            "data_type": "TIMESERIES",
+            "time": time,
+            "api_key": SEARCHAPI_KEY,
+        }, timeout=15)
+        data = r.json()
+
+        timeline = data.get("interest_over_time", {}).get("timeline_data", [])
+        points = []
+        for point in timeline:
+            values = point.get("values", [{}])
+            points.append({
+                "date": point.get("date", ""),
+                "value": values[0].get("extracted_value", 0) if values else 0,
+            })
+
+        # Calculate trend (growing or declining)
+        if len(points) >= 4:
+            recent_avg = sum(p["value"] for p in points[-4:]) / 4
+            older_avg = sum(p["value"] for p in points[:4]) / 4
+            trend = "rising" if recent_avg > older_avg * 1.1 else "declining" if recent_avg < older_avg * 0.9 else "stable"
+            change_pct = round((recent_avg - older_avg) / max(older_avg, 1) * 100)
+        else:
+            trend = "unknown"
+            change_pct = 0
+
+        # Related queries
+        related = data.get("related_queries", {})
+        rising_queries = []
+        if related.get("rising"):
+            rising_queries = [{"query": q.get("query", ""), "value": q.get("extracted_value", 0)} for q in related["rising"][:10]]
+
+        return {
+            "query": q,
+            "geo": geo or "Worldwide",
+            "period": time,
+            "trend": trend,
+            "change_pct": change_pct,
+            "data_points": points,
+            "peak_value": max(p["value"] for p in points) if points else 0,
+            "current_value": points[-1]["value"] if points else 0,
+            "rising_queries": rising_queries,
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.get("/api/linkedin-ads")
+def linkedin_ads_search(
+    q: str = Query(..., description="Keyword de busca"),
+):
+    """LinkedIn Ad Library — ads oficiais do LinkedIn"""
+    import requests as req
+    try:
+        r = req.get("https://www.searchapi.io/api/v1/search", params={
+            "engine": "linkedin_ad_library",
+            "q": q,
+            "api_key": SEARCHAPI_KEY,
+        }, timeout=15)
+        data = r.json()
+        ads = data.get("ads", [])
+
+        results = []
+        for ad in ads:
+            advertiser = ad.get("advertiser", {})
+            content = ad.get("content", {})
+            results.append({
+                "ad_id": ad.get("id", ""),
+                "advertiser_name": advertiser.get("name", ""),
+                "advertiser_position": advertiser.get("position", ""),
+                "advertiser_thumbnail": advertiser.get("thumbnail", ""),
+                "ad_type": ad.get("ad_type", ""),
+                "headline": content.get("headline", ""),
+                "description": content.get("description", ""),
+                "cta": content.get("cta", ""),
+                "image": content.get("image", ""),
+                "link": ad.get("link", ""),
+            })
+
+        return {
+            "query": q,
+            "total": data.get("search_information", {}).get("total_results", len(results)),
+            "data": results,
+        }
+    except Exception as e:
+        return {"error": str(e)}
+
+
 @app.get("/api/youtube/search")
 def youtube_search(
     q: str = Query(..., description="Keyword de busca"),

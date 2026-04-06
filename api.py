@@ -3111,6 +3111,132 @@ def _ai_predict(prompt, max_tokens=2000):
     return {"error": "All AI providers failed"}
 
 
+@app.get("/api/predict/dashboard")
+def predict_dashboard():
+    """Dashboard preditivo — analisa os TOP nichos automaticamente e preve o futuro de cada um"""
+    ads = load_latest_data()
+    affiliates = load_affiliate_products()
+
+    # Identificar os top nichos do nosso banco
+    niche_data = {}
+    for ad in ads:
+        kw = (ad.get("search_keyword") or ad.get("ai_niche") or "").lower().strip()
+        if not kw or len(kw) < 3 or kw in ("tiktok shop", "tiktok"):
+            continue
+        if kw not in niche_data:
+            niche_data[kw] = {"total": 0, "impressions": 0, "rockets": 0, "sources": set(), "days_list": []}
+        nd = niche_data[kw]
+        nd["total"] += 1
+        nd["impressions"] += int(ad.get("impressions", 0) or 0)
+        nd["sources"].add(ad.get("source", ""))
+        days = int(ad.get("days_running", 0) or 0)
+        if days > 0:
+            nd["days_list"].append(days)
+        if 1 <= days <= 7 and (ad.get("impressions", 0) or 0) > 10000:
+            nd["rockets"] += 1
+
+    # Calcular scores e selecionar top 15 mais interessantes
+    scored = []
+    for kw, nd in niche_data.items():
+        if nd["total"] < 5:
+            continue
+        avg_days = sum(nd["days_list"]) / len(nd["days_list"]) if nd["days_list"] else 0
+        freshness = sum(1 for d in nd["days_list"] if d <= 7) / max(nd["total"], 1)
+        score = (
+            nd["rockets"] * 10 +
+            len(nd["sources"]) * 5 +
+            min(20, nd["total"] / 10) +
+            freshness * 30
+        )
+        scored.append({
+            "niche": kw,
+            "total_ads": nd["total"],
+            "total_impressions": nd["impressions"],
+            "rockets": nd["rockets"],
+            "sources": len(nd["sources"]),
+            "freshness_pct": round(freshness * 100),
+            "avg_days": round(avg_days, 1),
+            "interest_score": round(score),
+        })
+
+    scored.sort(key=lambda x: x["interest_score"], reverse=True)
+    top_niches = scored[:15]
+
+    # Para cada top nicho, gerar previsao com IA
+    # Coletar Google Trends para os top 5
+    import requests as req
+    for niche in top_niches[:5]:
+        try:
+            r = req.get("https://www.searchapi.io/api/v1/search", params={
+                "engine": "google_trends", "q": niche["niche"], "data_type": "TIMESERIES",
+                "time": "today 3-m", "api_key": SEARCHAPI_KEY,
+            }, timeout=10)
+            trends = r.json().get("interest_over_time", {}).get("timeline_data", [])
+            if trends:
+                values = [t["values"][0]["extracted_value"] for t in trends if t.get("values")]
+                if len(values) >= 4:
+                    recent = sum(values[-4:]) / 4
+                    older = sum(values[:4]) / 4
+                    niche["google_trend"] = "rising" if recent > older * 1.1 else "declining" if recent < older * 0.9 else "stable"
+                    niche["trend_change"] = round((recent - older) / max(older, 1) * 100)
+                    niche["trend_current"] = values[-1]
+                else:
+                    niche["google_trend"] = "unknown"
+        except:
+            niche["google_trend"] = "unknown"
+
+    # Affiliate products match
+    for niche in top_niches:
+        kw = niche["niche"]
+        matched = [p for p in affiliates if kw in (p.get("name", "") or "").lower() or kw in (p.get("niche", "") or "").lower()]
+        niche["affiliate_count"] = len(matched)
+        if matched:
+            best = max(matched, key=lambda p: p.get("ninja_score", 0) or 0)
+            niche["top_product"] = best.get("name", "")
+            niche["top_product_score"] = best.get("ninja_score", 0)
+            niche["saturation_zone"] = best.get("saturation_zone", "")
+
+    # Generate AI predictions for top 5
+    context_parts = []
+    for n in top_niches[:5]:
+        context_parts.append(f"- {n['niche'].upper()}: {n['total_ads']} ads, {n['rockets']} escalando, {n['sources']} fontes, {n['freshness_pct']}% recentes, Google Trends: {n.get('google_trend','?')} ({n.get('trend_change','?')}%), Afiliados: {n.get('affiliate_count',0)}, Zona: {n.get('saturation_zone','?')}")
+
+    ai_context = "\n".join(context_parts)
+
+    predictions = _ai_predict(f"""DADOS REAIS DE 15 FONTES DE SPY ADS — TOP 5 NICHOS MAIS ATIVOS:
+
+{ai_context}
+
+Para CADA um dos 5 nichos acima, faca uma previsao. Retorne JSON:
+{{
+  "predictions": [
+    {{
+      "niche": "nome do nicho",
+      "status": "EXPLODING/HOT/WARMING/STABLE/COOLING/SATURATED",
+      "emoji": "emoji que representa (🔥🚀📈➡️📉❄️⚠️)",
+      "action": "ENTER_NOW/WAIT/MONITOR/AVOID/EXIT",
+      "confidence": 85,
+      "headline": "frase impactante de 1 linha que resume a previsao",
+      "prediction": "previsao em 2 frases sobre o que vai acontecer",
+      "opportunity": "oportunidade especifica em 1 frase",
+      "risk": "risco principal em 1 frase",
+      "tip": "dica pratica em 1 frase para quem quer entrar"
+    }}
+  ],
+  "market_summary": "resumo geral do mercado em 2 frases",
+  "hottest_niche": "qual nicho tem mais potencial agora",
+  "avoid_niche": "qual nicho evitar"
+}}""", max_tokens=2000)
+
+    return {
+        "generated_at": datetime.now().isoformat(),
+        "total_ads_analyzed": len(ads),
+        "total_niches_found": len(scored),
+        "top_niches": top_niches,
+        "ai_predictions": predictions,
+    }
+
+
 @app.get("/api/predict")
 def predict_market(
     q: str = Query(..., description="Produto, nicho ou keyword para prever"),

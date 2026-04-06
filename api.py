@@ -3074,9 +3074,30 @@ def offer_search(q: str = Query(..., description="Buscar oferta especifica")):
 
 def _ai_predict(prompt, max_tokens=2000):
     """Chama DeepSeek para previsao preditiva"""
-    return _ai_call(f"""Voce e um analista de inteligencia de mercado especializado em marketing digital, direct response e e-commerce. Analise os dados de 15 fontes e faca previsoes precisas. Retorne APENAS JSON valido.
-
-{prompt}""", max_tokens=max_tokens)
+    import requests as req
+    try:
+        r = req.post("https://api.deepseek.com/chat/completions", json={
+            "model": "deepseek-chat",
+            "messages": [
+                {"role": "system", "content": "Voce e um analista de inteligencia de mercado. Analise dados de 15 fontes de spy ads e faca previsoes. Retorne APENAS JSON valido sem markdown."},
+                {"role": "user", "content": prompt}
+            ],
+            "max_tokens": max_tokens,
+            "temperature": 0.2,
+        }, headers={
+            "Authorization": "Bearer sk-75b1ddd6be014170a52a790133025c07",
+            "Content-Type": "application/json",
+        }, timeout=45)
+        data = r.json()
+        text = data["choices"][0]["message"]["content"].strip()
+        text = text.replace("```json", "").replace("```", "").strip()
+        start = text.find("{")
+        end = text.rfind("}") + 1
+        if start >= 0 and end > start:
+            return json.loads(text[start:end])
+        return {"raw": text}
+    except Exception as e:
+        return {"error": str(e)}
 
 
 @app.get("/api/predict")

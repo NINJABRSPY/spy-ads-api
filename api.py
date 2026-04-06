@@ -3069,6 +3069,160 @@ def offer_search(q: str = Query(..., description="Buscar oferta especifica")):
 
 
 # ============================================================
+# PREDICTIVE AI — Previsao de mercado cruzando 15 fontes
+# ============================================================
+
+OPENROUTER_KEY = "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"
+OPENROUTER_MODEL = "qwen/qwen-plus"
+
+def _ai_predict(prompt, max_tokens=2000):
+    """Chama LLM via OpenRouter para previsao"""
+    import requests as req
+    try:
+        r = req.post("https://openrouter.ai/api/v1/chat/completions", json={
+            "model": OPENROUTER_MODEL,
+            "messages": [
+                {"role": "system", "content": "Voce e um analista de inteligencia de mercado especializado em marketing digital, direct response e e-commerce. Voce analisa dados de 15 fontes de spy ads para fazer previsoes de mercado. Sempre retorne JSON valido."},
+                {"role": "user", "content": prompt}
+            ],
+            "max_tokens": max_tokens,
+            "temperature": 0.3,
+        }, headers={
+            "Authorization": f"Bearer {OPENROUTER_KEY}",
+            "Content-Type": "application/json",
+        }, timeout=30)
+        text = r.json()["choices"][0]["message"]["content"].strip()
+        text = text.replace("```json", "").replace("```", "").strip()
+        start = text.find("{")
+        end = text.rfind("}") + 1
+        if start >= 0 and end > start:
+            return json.loads(text[start:end])
+        return {"raw": text}
+    except Exception as e:
+        return {"error": str(e)}
+
+
+@app.get("/api/predict")
+def predict_market(
+    q: str = Query(..., description="Produto, nicho ou keyword para prever"),
+):
+    """IA Preditiva — Cruza 15 fontes e preve o futuro do mercado"""
+    ads = load_latest_data()
+    affiliates = load_affiliate_products()
+
+    q_lower = q.lower()
+
+    # Coletar dados de todas as fontes
+    # 1. Ads relacionados
+    matched_ads = [a for a in ads if q_lower in (
+        (a.get("title", "") or "") + " " + (a.get("body", "") or "") + " " +
+        (a.get("search_keyword", "") or "") + " " + (a.get("ai_niche", "") or "")
+    ).lower()]
+    total_ads = len(matched_ads)
+
+    # Metricas dos ads
+    avg_impressions = round(sum(a.get("impressions", 0) or 0 for a in matched_ads) / max(total_ads, 1))
+    avg_days = round(sum(a.get("days_running", 0) or 0 for a in matched_ads) / max(total_ads, 1))
+    sources = list(set(a.get("source", "") for a in matched_ads))
+    platforms = list(set(a.get("platform", "") for a in matched_ads))
+
+    # Velocity (ads recentes escalando)
+    rockets = [a for a in matched_ads if 1 <= (a.get("days_running", 0) or 0) <= 7 and (a.get("impressions", 0) or 0) > 10000]
+
+    # 2. Produtos afiliados
+    matched_products = [p for p in affiliates if q_lower in (p.get("name", "") or "").lower() or q_lower in (p.get("niche", "") or "").lower()]
+
+    # 3. Hooks
+    hooks = _build_hook_bank()
+    matched_hooks = [h for h in hooks if q_lower in h.get("hook", "").lower()]
+
+    # 4. Google Trends (on-demand)
+    trends_data = None
+    try:
+        import requests as req
+        r = req.get("https://www.searchapi.io/api/v1/search", params={
+            "engine": "google_trends", "q": q, "data_type": "TIMESERIES",
+            "time": "today 3-m", "api_key": SEARCHAPI_KEY,
+        }, timeout=10)
+        trends = r.json().get("interest_over_time", {}).get("timeline_data", [])
+        if trends:
+            values = [t["values"][0]["extracted_value"] for t in trends if t.get("values")]
+            trends_data = {
+                "current": values[-1] if values else 0,
+                "peak": max(values) if values else 0,
+                "avg": round(sum(values) / len(values)) if values else 0,
+                "trend": "rising" if len(values) >= 4 and sum(values[-4:]) / 4 > sum(values[:4]) / 4 * 1.1 else "declining" if len(values) >= 4 and sum(values[-4:]) / 4 < sum(values[:4]) / 4 * 0.9 else "stable",
+            }
+    except:
+        pass
+
+    # 5. Uncloak
+    uncloak = _build_uncloak_data()
+    matched_uncloak = [u for u in uncloak if q_lower in u.get("advertiser", "").lower()]
+
+    # Build context for AI
+    context = f"""DADOS DE MERCADO PARA "{q}" (coletados de 15 fontes em tempo real):
+
+ADS ENCONTRADOS: {total_ads} anuncios
+- Plataformas: {', '.join(platforms)}
+- Fontes: {', '.join(sources)}
+- Media de impressoes: {avg_impressions:,}
+- Media de dias rodando: {avg_days}
+- Ads escalando agora (< 7 dias, > 10K imp): {len(rockets)}
+
+PRODUTOS DE AFILIACAO: {len(matched_products)} encontrados
+{chr(10).join(f'- {p.get("name","")}: score {p.get("ninja_score",0)}, tendencia 7d: {p.get("trend_7d",0)}, zona: {p.get("saturation_zone","")}' for p in matched_products[:5])}
+
+GOOGLE TRENDS: {json.dumps(trends_data) if trends_data else 'Nao disponivel'}
+
+HOOKS VALIDADOS: {len(matched_hooks)} hooks usando essa keyword
+
+CLOAKING: {len(matched_uncloak)} anunciantes com sinais de cloaking
+
+VELOCIDADE: {len(rockets)} ads novos escalando nos ultimos 7 dias"""
+
+    # Call AI for prediction
+    prediction = _ai_predict(f"""{context}
+
+Baseado nesses dados REAIS de 15 fontes, faca uma previsao completa para o mercado de "{q}".
+
+Retorne JSON:
+{{
+  "market_status": "HOT/WARMING/STABLE/COOLING/SATURATED",
+  "confidence": 85,
+  "prediction_30d": "O que vai acontecer nos proximos 30 dias",
+  "prediction_90d": "O que vai acontecer nos proximos 90 dias",
+  "opportunity_window": "Janela de oportunidade: X dias/semanas",
+  "recommended_action": "ENTER_NOW/WAIT/AVOID/EXIT",
+  "risk_level": "LOW/MEDIUM/HIGH",
+  "risks": ["risco 1", "risco 2"],
+  "opportunities": ["oportunidade 1", "oportunidade 2"],
+  "best_angle": "Melhor angulo de copy baseado nos dados",
+  "best_platform": "Melhor plataforma para comecar",
+  "estimated_competition": "BAIXA/MEDIA/ALTA",
+  "similar_markets": ["mercado similar 1 para diversificar", "mercado 2"],
+  "key_insight": "O insight mais importante que poucos percebem",
+  "summary": "Resumo executivo em 3 frases"
+}}""")
+
+    return {
+        "query": q,
+        "data_collected": {
+            "total_ads": total_ads,
+            "sources": sources,
+            "platforms": platforms,
+            "avg_impressions": avg_impressions,
+            "velocity_rockets": len(rockets),
+            "affiliate_products": len(matched_products),
+            "hooks": len(matched_hooks),
+            "trends": trends_data,
+            "uncloak_signals": len(matched_uncloak),
+        },
+        "prediction": prediction,
+    }
+
+
+# ============================================================
 # VELOCITY ALERT — Ads escalando AGORA
 # ============================================================
 

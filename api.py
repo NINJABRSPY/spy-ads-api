@@ -3072,32 +3072,43 @@ def offer_search(q: str = Query(..., description="Buscar oferta especifica")):
 # PREDICTIVE AI — Previsao de mercado cruzando 15 fontes
 # ============================================================
 
+OPENROUTER_KEY = "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"
+
 def _ai_predict(prompt, max_tokens=2000):
-    """Chama DeepSeek para previsao preditiva"""
+    """Chama OpenRouter (modelo premium) para previsao preditiva, fallback DeepSeek"""
     import requests as req
-    try:
-        r = req.post("https://api.deepseek.com/chat/completions", json={
-            "model": "deepseek-chat",
-            "messages": [
-                {"role": "system", "content": "Voce e um analista de inteligencia de mercado. Analise dados de 15 fontes de spy ads e faca previsoes. Retorne APENAS JSON valido sem markdown."},
-                {"role": "user", "content": prompt}
-            ],
-            "max_tokens": max_tokens,
-            "temperature": 0.2,
-        }, headers={
-            "Authorization": "Bearer sk-75b1ddd6be014170a52a790133025c07",
-            "Content-Type": "application/json",
-        }, timeout=45)
-        data = r.json()
-        text = data["choices"][0]["message"]["content"].strip()
-        text = text.replace("```json", "").replace("```", "").strip()
-        start = text.find("{")
-        end = text.rfind("}") + 1
-        if start >= 0 and end > start:
-            return json.loads(text[start:end])
-        return {"raw": text}
-    except Exception as e:
-        return {"error": str(e)}
+
+    # Try OpenRouter first (better model)
+    for api_url, api_key, model in [
+        ("https://openrouter.ai/api/v1/chat/completions", OPENROUTER_KEY, "qwen/qwen-plus"),
+        ("https://api.deepseek.com/chat/completions", "sk-75b1ddd6be014170a52a790133025c07", "deepseek-chat"),
+    ]:
+        try:
+            r = req.post(api_url, json={
+                "model": model,
+                "messages": [
+                    {"role": "system", "content": "Voce e um analista senior de inteligencia de mercado especializado em marketing digital, direct response, e-commerce e afiliados. Voce analisa dados REAIS de 15 fontes de spy ads para fazer previsoes precisas e acionaveis. SEMPRE retorne APENAS JSON valido sem markdown, sem explicacao, apenas o JSON puro."},
+                    {"role": "user", "content": prompt}
+                ],
+                "max_tokens": max_tokens,
+                "temperature": 0.2,
+            }, headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            }, timeout=45)
+            data = r.json()
+            if "choices" not in data:
+                continue
+            text = data["choices"][0]["message"]["content"].strip()
+            text = text.replace("```json", "").replace("```", "").strip()
+            start = text.find("{")
+            end = text.rfind("}") + 1
+            if start >= 0 and end > start:
+                return json.loads(text[start:end])
+        except:
+            continue
+
+    return {"error": "All AI providers failed"}
 
 
 @app.get("/api/predict")

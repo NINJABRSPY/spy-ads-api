@@ -492,10 +492,12 @@ def list_ads(
         ads = [a for a in ads if kw in (a.get("search_keyword", "") or "").lower()]
     if search:
         sl = search.lower()
+        words = sl.split()
         ads = [a for a in ads if
-               sl in (a.get("title", "") or "").lower() or
-               sl in (a.get("body", "") or "").lower() or
-               sl in (a.get("advertiser", "") or "").lower()]
+               sl in ((a.get("title", "") or "") + " " + (a.get("body", "") or "") + " " +
+                      (a.get("advertiser", "") or "") + " " + (a.get("search_keyword", "") or "") + " " +
+                      (a.get("ai_niche", "") or "")).lower()
+               or all(w in ((a.get("title", "") or "") + " " + (a.get("body", "") or "")).lower() for w in words)]
     if niche:
         ads = [a for a in ads if niche.lower() in (a.get("ai_niche", "") or "").lower()]
     if country:
@@ -563,15 +565,30 @@ def trending(
 
 @app.get("/api/search")
 def search_ads(q: str = Query(..., description="Termo de busca")):
-    """Busca livre nos anuncios"""
+    """Busca ampla — busca em titulo, body, advertiser, keyword, nicho"""
     ads = load_latest_data()
     q_lower = q.lower()
-    results = [a for a in ads if
-               q_lower in (a.get("title", "") or "").lower() or
-               q_lower in (a.get("body", "") or "").lower() or
-               q_lower in (a.get("advertiser", "") or "").lower() or
-               q_lower in (a.get("cta", "") or "").lower()]
-    return {"data": results, "total": len(results), "query": q}
+    words = q_lower.split()
+
+    results = []
+    for a in ads:
+        text = (
+            (a.get("title", "") or "") + " " +
+            (a.get("body", "") or "") + " " +
+            (a.get("advertiser", "") or "") + " " +
+            (a.get("search_keyword", "") or "") + " " +
+            (a.get("ai_niche", "") or "") + " " +
+            (a.get("cta", "") or "")
+        ).lower()
+
+        # Match: all words must appear OR exact phrase
+        if q_lower in text or all(w in text for w in words):
+            results.append(a)
+
+    # Sort by impressions
+    results.sort(key=lambda x: x.get("impressions", 0) or 0, reverse=True)
+
+    return {"data": results[:100], "total": len(results), "query": q}
 
 @app.get("/api/top-advertisers")
 def top_advertisers(

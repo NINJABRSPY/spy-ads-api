@@ -3117,40 +3117,53 @@ def predict_dashboard():
     ads = load_latest_data()
     affiliates = load_affiliate_products()
 
-    # Nichos genericos para ignorar (plataformas, termos vagos)
-    IGNORE_NICHES = {
-        "shopee", "ecommerce", "ecommerce brasil", "dropshipping", "dropshipping brasil",
-        "tiktok shop", "tiktok", "facebook", "instagram", "marketing digital",
-        "curso online", "infoproduto", "afiliado", "renda extra", "trafego pago",
-        "loja virtual", "coaching", "mentoria", "investimentos",
-        "trending product", "viral product", "winning product",
-        "free shipping", "buy now", "shop now", "order now", "50% off",
-        "frete gratis", "compre agora", "oferta", "promocao",
-        "moda feminina", "roupa feminina", "decoracao", "cozinha",
-        "advogado", "dentista", "psicologia",
+    # Sub-nichos ESPECIFICOS para rastrear (produto + mercado)
+    SPECIFIC_NICHES = {
+        # Health / Supplements
+        "weight loss supplement": ["weight loss", "belly fat", "keto", "slim", "diet pill", "fat burn"],
+        "prostate supplement": ["prostate", "prostadine", "prostavive", "prostate health"],
+        "blood sugar supplement": ["blood sugar", "glucose", "diabetes", "sugar defender", "glucotrust"],
+        "brain supplement": ["brain", "memory", "cognitive", "neuro", "brain wave"],
+        "testosterone booster": ["testosterone", "male enhancement", "libido", "nitric boost", "stamina"],
+        "joint pain supplement": ["joint pain", "joint genesis", "arthritis", "mobility"],
+        "gut health supplement": ["gut health", "probiotic", "digestive", "bloating", "biome"],
+        "anti aging skincare": ["anti aging", "wrinkle", "collagen", "youthful", "aging"],
+        "hair growth product": ["hair growth", "hair loss", "thinning hair", "hair regrow"],
+        "teeth whitening": ["teeth whiten", "dental", "smile", "dent", "oral"],
+        "sleep supplement": ["sleep", "insomnia", "melatonin", "rest", "sleep aid"],
+        "vision supplement": ["vision", "eye health", "sight", "eyesight"],
+        # Wealth / DR
+        "make money online": ["make money", "passive income", "earn online", "side hustle"],
+        "affiliate marketing": ["affiliate", "commission", "clickbank", "promote"],
+        "crypto trading": ["crypto", "bitcoin", "trading", "forex"],
+        # Other DR
+        "manifestation": ["manifestation", "abundance", "attract", "law of attraction", "frequency"],
+        "dog training": ["dog training", "puppy", "dog behavior"],
+        "survival prepping": ["survival", "prepper", "emergency", "solar generator", "water purif"],
+        # Ecommerce specific
+        "pet products": ["pet", "dog food", "cat", "cachorro", "gato"],
+        "whey protein": ["whey", "protein", "creatina", "creatine", "suplemento"],
     }
 
-    # Identificar os top nichos ESPECIFICOS do nosso banco
+    # Identificar os sub-nichos ESPECIFICOS
     niche_data = {}
     for ad in ads:
-        kw = (ad.get("search_keyword") or "").lower().strip()
-        niche = (ad.get("ai_niche") or "").lower().strip()
+        text = ((ad.get("title", "") or "") + " " + (ad.get("body", "") or "") + " " + (ad.get("search_keyword", "") or "")).lower()
 
-        # Preferir ai_niche + keyword combinados para mais especificidade
-        key = kw if kw and kw not in IGNORE_NICHES else niche
-        if not key or len(key) < 3 or key in IGNORE_NICHES:
-            continue
-        if key not in niche_data:
-            niche_data[key] = {"total": 0, "impressions": 0, "rockets": 0, "sources": set(), "days_list": []}
-        nd = niche_data[key]
-        nd["total"] += 1
-        nd["impressions"] += int(ad.get("impressions", 0) or 0)
-        nd["sources"].add(ad.get("source", ""))
-        days = int(ad.get("days_running", 0) or 0)
-        if days > 0:
-            nd["days_list"].append(days)
-        if 1 <= days <= 7 and (ad.get("impressions", 0) or 0) > 10000:
-            nd["rockets"] += 1
+        for niche_name, keywords in SPECIFIC_NICHES.items():
+            if any(kw in text for kw in keywords):
+                if niche_name not in niche_data:
+                    niche_data[niche_name] = {"total": 0, "impressions": 0, "rockets": 0, "sources": set(), "days_list": []}
+                nd = niche_data[niche_name]
+                nd["total"] += 1
+                nd["impressions"] += int(ad.get("impressions", 0) or 0)
+                nd["sources"].add(ad.get("source", ""))
+                days = int(ad.get("days_running", 0) or 0)
+                if days > 0:
+                    nd["days_list"].append(days)
+                if 1 <= days <= 7 and (ad.get("impressions", 0) or 0) > 10000:
+                    nd["rockets"] += 1
+                break  # Um ad so conta para o primeiro nicho que match
 
     # Calcular scores e selecionar top 15 mais interessantes
     scored = []

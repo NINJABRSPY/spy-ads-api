@@ -3117,15 +3117,32 @@ def predict_dashboard():
     ads = load_latest_data()
     affiliates = load_affiliate_products()
 
-    # Identificar os top nichos do nosso banco
+    # Nichos genericos para ignorar (plataformas, termos vagos)
+    IGNORE_NICHES = {
+        "shopee", "ecommerce", "ecommerce brasil", "dropshipping", "dropshipping brasil",
+        "tiktok shop", "tiktok", "facebook", "instagram", "marketing digital",
+        "curso online", "infoproduto", "afiliado", "renda extra", "trafego pago",
+        "loja virtual", "coaching", "mentoria", "investimentos",
+        "trending product", "viral product", "winning product",
+        "free shipping", "buy now", "shop now", "order now", "50% off",
+        "frete gratis", "compre agora", "oferta", "promocao",
+        "moda feminina", "roupa feminina", "decoracao", "cozinha",
+        "advogado", "dentista", "psicologia",
+    }
+
+    # Identificar os top nichos ESPECIFICOS do nosso banco
     niche_data = {}
     for ad in ads:
-        kw = (ad.get("search_keyword") or ad.get("ai_niche") or "").lower().strip()
-        if not kw or len(kw) < 3 or kw in ("tiktok shop", "tiktok"):
+        kw = (ad.get("search_keyword") or "").lower().strip()
+        niche = (ad.get("ai_niche") or "").lower().strip()
+
+        # Preferir ai_niche + keyword combinados para mais especificidade
+        key = kw if kw and kw not in IGNORE_NICHES else niche
+        if not key or len(key) < 3 or key in IGNORE_NICHES:
             continue
-        if kw not in niche_data:
-            niche_data[kw] = {"total": 0, "impressions": 0, "rockets": 0, "sources": set(), "days_list": []}
-        nd = niche_data[kw]
+        if key not in niche_data:
+            niche_data[key] = {"total": 0, "impressions": 0, "rockets": 0, "sources": set(), "days_list": []}
+        nd = niche_data[key]
         nd["total"] += 1
         nd["impressions"] += int(ad.get("impressions", 0) or 0)
         nd["sources"].add(ad.get("source", ""))
@@ -3203,29 +3220,35 @@ def predict_dashboard():
 
     ai_context = "\n".join(context_parts)
 
-    predictions = _ai_predict(f"""DADOS REAIS DE 15 FONTES DE SPY ADS — TOP 5 NICHOS MAIS ATIVOS:
+    predictions = _ai_predict(f"""DADOS REAIS DE 15 FONTES DE SPY ADS — TOP 5 SUB-NICHOS MAIS ATIVOS:
 
 {ai_context}
 
-Para CADA um dos 5 nichos acima, faca uma previsao. Retorne JSON:
+IMPORTANTE: Analise cada sub-nicho de forma ESPECIFICA. Nao fale de forma generica. Seja especifico sobre qual PRODUTO, qual TIPO de oferta, qual ANGULO funciona. O cliente quer saber exatamente o que fazer.
+
+Para CADA um dos 5 sub-nichos, faca uma previsao detalhada e especifica. Retorne JSON:
 {{
   "predictions": [
     {{
-      "niche": "nome do nicho",
+      "niche": "nome especifico do sub-nicho",
       "status": "EXPLODING/HOT/WARMING/STABLE/COOLING/SATURATED",
-      "emoji": "emoji que representa (🔥🚀📈➡️📉❄️⚠️)",
+      "emoji": "emoji representativo",
       "action": "ENTER_NOW/WAIT/MONITOR/AVOID/EXIT",
       "confidence": 85,
-      "headline": "frase impactante de 1 linha que resume a previsao",
-      "prediction": "previsao em 2 frases sobre o que vai acontecer",
-      "opportunity": "oportunidade especifica em 1 frase",
-      "risk": "risco principal em 1 frase",
-      "tip": "dica pratica em 1 frase para quem quer entrar"
+      "headline": "frase impactante que faz o cliente agir",
+      "prediction": "previsao especifica: qual tipo de produto vai vender, qual plataforma usar, quanto investir",
+      "opportunity": "oportunidade ESPECIFICA: qual produto ou angulo explorar",
+      "risk": "risco CONCRETO: por que pode dar errado",
+      "tip": "dica PRATICA e acionavel: primeiro passo exato para lucrar",
+      "estimated_roi": "estimativa de ROI se entrar agora (ex: 2-3x em 30 dias)",
+      "best_product_type": "tipo de produto que mais vende (fisico/digital/suplemento/curso)",
+      "best_platform_to_advertise": "melhor plataforma para anunciar (Facebook/TikTok/YouTube/Google)"
     }}
   ],
-  "market_summary": "resumo geral do mercado em 2 frases",
-  "hottest_niche": "qual nicho tem mais potencial agora",
-  "avoid_niche": "qual nicho evitar"
+  "market_summary": "resumo ESPECIFICO do mercado: quais sub-nichos estao bombando e quais estao morrendo",
+  "hottest_niche": "sub-nicho com MAIS potencial de lucro imediato",
+  "avoid_niche": "sub-nicho que vai dar PREJUIZO se entrar agora",
+  "golden_opportunity": "a oportunidade ESCONDIDA que 99% das pessoas nao perceberam nos dados"
 }}""", max_tokens=2000)
 
     return {

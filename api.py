@@ -3117,32 +3117,32 @@ def predict_dashboard():
     ads = load_latest_data()
     affiliates = load_affiliate_products()
 
-    # Sub-nichos ESPECIFICOS para rastrear (produto + mercado)
+    # Sub-nichos ESPECIFICOS para rastrear (PT + EN)
     SPECIFIC_NICHES = {
         # Health / Supplements
-        "weight loss supplement": ["weight loss", "belly fat", "keto", "slim", "diet pill", "fat burn"],
-        "prostate supplement": ["prostate", "prostadine", "prostavive", "prostate health"],
-        "blood sugar supplement": ["blood sugar", "glucose", "diabetes", "sugar defender", "glucotrust"],
-        "brain supplement": ["brain", "memory", "cognitive", "neuro", "brain wave"],
-        "testosterone booster": ["testosterone", "male enhancement", "libido", "nitric boost", "stamina"],
-        "joint pain supplement": ["joint pain", "joint genesis", "arthritis", "mobility"],
-        "gut health supplement": ["gut health", "probiotic", "digestive", "bloating", "biome"],
-        "anti aging skincare": ["anti aging", "wrinkle", "collagen", "youthful", "aging"],
-        "hair growth product": ["hair growth", "hair loss", "thinning hair", "hair regrow"],
-        "teeth whitening": ["teeth whiten", "dental", "smile", "dent", "oral"],
-        "sleep supplement": ["sleep", "insomnia", "melatonin", "rest", "sleep aid"],
-        "vision supplement": ["vision", "eye health", "sight", "eyesight"],
+        "Suplemento Emagrecimento": ["weight loss", "belly fat", "keto", "slim", "fat burn", "emagrecer", "emagrecimento", "dieta", "perder peso", "barriga"],
+        "Suplemento para Próstata": ["prostate", "prostadine", "prostavive", "prostata", "prostate health"],
+        "Suplemento Glicemia / Diabetes": ["blood sugar", "glucose", "diabetes", "sugar defender", "glucotrust", "glicemia", "insulina"],
+        "Suplemento para Cérebro / Memória": ["brain", "memory", "cognitive", "neuro", "brain wave", "memoria", "cerebro", "foco"],
+        "Testosterona / Saúde Masculina": ["testosterone", "male enhancement", "libido", "nitric boost", "stamina", "testosterona", "virilidade"],
+        "Suplemento Articulações / Dor": ["joint pain", "joint genesis", "arthritis", "mobility", "articulacao", "dor nas costas", "coluna"],
+        "Saúde Intestinal / Probiótico": ["gut health", "probiotic", "digestive", "bloating", "biome", "intestino", "probiotico", "digestao"],
+        "Anti-Aging / Rejuvenescimento": ["anti aging", "wrinkle", "collagen", "youthful", "aging", "rugas", "colageno", "rejuvenesc"],
+        "Crescimento Capilar": ["hair growth", "hair loss", "thinning hair", "cabelo", "queda de cabelo", "calvicie", "capilar"],
+        "Clareamento Dental": ["teeth whiten", "dental", "dent", "oral", "clareamento", "sorriso", "branqueamento"],
+        "Suplemento para Sono": ["sleep", "insomnia", "melatonin", "sleep aid", "insonia", "dormir", "sono"],
+        "Suplemento para Visão": ["vision", "eye health", "sight", "eyesight", "visao", "olhos"],
+        # Fitness / Nutrition
+        "Whey Protein / Creatina": ["whey", "protein", "creatina", "creatine", "suplemento", "academia", "hipertrofia"],
+        "Fitness / Treino": ["workout", "fitness", "exercise", "treino", "musculacao", "gym"],
         # Wealth / DR
-        "make money online": ["make money", "passive income", "earn online", "side hustle"],
-        "affiliate marketing": ["affiliate", "commission", "clickbank", "promote"],
-        "crypto trading": ["crypto", "bitcoin", "trading", "forex"],
-        # Other DR
-        "manifestation": ["manifestation", "abundance", "attract", "law of attraction", "frequency"],
-        "dog training": ["dog training", "puppy", "dog behavior"],
-        "survival prepping": ["survival", "prepper", "emergency", "solar generator", "water purif"],
-        # Ecommerce specific
-        "pet products": ["pet", "dog food", "cat", "cachorro", "gato"],
-        "whey protein": ["whey", "protein", "creatina", "creatine", "suplemento"],
+        "Ganhar Dinheiro Online": ["make money", "passive income", "earn online", "ganhar dinheiro", "renda extra", "trabalhar em casa"],
+        "Marketing de Afiliados": ["affiliate", "commission", "clickbank", "afiliado", "comissao"],
+        "Cripto / Trading": ["crypto", "bitcoin", "trading", "forex", "cripto", "criptomoeda"],
+        # Other
+        "Manifestação / Espiritualidade": ["manifestation", "abundance", "law of attraction", "manifestacao", "abundancia", "frequencia"],
+        "Adestramento de Cães": ["dog training", "puppy", "cachorro", "adestramento", "adestrar", "pet shop", "gato", "pet"],
+        "Skincare / Cuidados com Pele": ["skincare", "skin care", "acne", "pele", "hidratante", "protetor solar"],
     }
 
     # Identificar os sub-nichos ESPECIFICOS

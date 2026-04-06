@@ -3072,34 +3072,11 @@ def offer_search(q: str = Query(..., description="Buscar oferta especifica")):
 # PREDICTIVE AI — Previsao de mercado cruzando 15 fontes
 # ============================================================
 
-OPENROUTER_KEY = "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"
-OPENROUTER_MODEL = "qwen/qwen-plus"
-
 def _ai_predict(prompt, max_tokens=2000):
-    """Chama LLM via OpenRouter para previsao"""
-    import requests as req
-    try:
-        r = req.post("https://openrouter.ai/api/v1/chat/completions", json={
-            "model": OPENROUTER_MODEL,
-            "messages": [
-                {"role": "system", "content": "Voce e um analista de inteligencia de mercado especializado em marketing digital, direct response e e-commerce. Voce analisa dados de 15 fontes de spy ads para fazer previsoes de mercado. Sempre retorne JSON valido."},
-                {"role": "user", "content": prompt}
-            ],
-            "max_tokens": max_tokens,
-            "temperature": 0.3,
-        }, headers={
-            "Authorization": f"Bearer {OPENROUTER_KEY}",
-            "Content-Type": "application/json",
-        }, timeout=30)
-        text = r.json()["choices"][0]["message"]["content"].strip()
-        text = text.replace("```json", "").replace("```", "").strip()
-        start = text.find("{")
-        end = text.rfind("}") + 1
-        if start >= 0 and end > start:
-            return json.loads(text[start:end])
-        return {"raw": text}
-    except Exception as e:
-        return {"error": str(e)}
+    """Chama DeepSeek para previsao preditiva"""
+    return _ai_call(f"""Voce e um analista de inteligencia de mercado especializado em marketing digital, direct response e e-commerce. Analise os dados de 15 fontes e faca previsoes precisas. Retorne APENAS JSON valido.
+
+{prompt}""", max_tokens=max_tokens)
 
 
 @app.get("/api/predict")

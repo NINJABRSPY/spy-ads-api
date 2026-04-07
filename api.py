@@ -3624,6 +3624,12 @@ def _build_uncloak_data():
         "instagram.com", "tiktok.com", "youtube.com", "twitter.com",
         "google.com", "meta.com", "pinterest.com", "reddit.com",
         "t.co", "bit.ly", "linktr.ee", "linktree.com",
+        "play.google.com", "apps.apple.com", "itunes.apple.com",
+        "apple.com", "amazon.com", "amazon.com.br",
+        "wa.me", "api.whatsapp.com", "whatsapp.com",
+        "fb.me", "m.me", "messenger.com",
+        "shopify.com", "myshopify.com",
+        "ad.doubleclick.net", "doubleclick.net",
     }
 
     # Agrupar por dominio da landing page

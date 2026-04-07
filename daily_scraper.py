@@ -421,35 +421,87 @@ def run_social1():
         log("Social1: Erro ao verificar abas - PULANDO")
         return
 
-    # Rodar scraper de produtos + videos
+    # Rodar scraper LEVE de produtos (rapido, ~2min)
     try:
         result = subprocess.run(
-            ["node", "social1_scraper.js"],
-            capture_output=True, text=True, timeout=1200,
-            cwd=os.path.dirname(os.path.abspath(__file__))
-        )
-        if result.returncode == 0:
-            log("Social1 products+videos: OK")
-        else:
-            log(f"Social1 scraper ERRO: {result.stderr[:200]}")
-    except subprocess.TimeoutExpired:
-        log("Social1 scraper: TIMEOUT (20min)")
-    except Exception as e:
-        log(f"Social1 scraper ERRO: {e}")
+            ["node", "-e", """
+const WebSocket = require('ws');
+const http = require('http');
+const fs = require('fs');
+const REGIONS = ['us', 'uk', 'br', 'de', 'fr', 'es', 'it', 'mx'];
+const DAYS = [1, 7, 30];
+(async () => {
+  const tabs = await new Promise(r => { http.get('http://localhost:9222/json', res => { let d=''; res.on('data',c=>d+=c); res.on('end',()=>r(JSON.parse(d).filter(t=>t.type==='page'))); }); });
+  const s1 = tabs.find(p => p.url.includes('social1'));
+  if (!s1) { console.log('Social1 not found'); process.exit(1); }
+  const ws = new WebSocket(s1.webSocketDebuggerUrl);
+  let id=1; const pending={};
+  function send(m,p={}) { return new Promise(r=>{const i=id++;pending[i]=r;ws.send(JSON.stringify({id:i,method:m,params:p}));}); }
+  ws.on('message', d => { const m=JSON.parse(d.toString()); if(m.id&&pending[m.id]){pending[m.id](m.result);delete pending[m.id];} });
+  async function fetchAPI(path) { const r = await send('Runtime.evaluate',{expression:'(async()=>{const r=await fetch("'+path+'");return await r.text()})()',returnByValue:true,awaitPromise:true}); try{return JSON.parse(r.result.value)}catch{return null} }
+  ws.on('open', async () => {
+    const allProducts = []; const productIds = new Set();
+    for (const days of DAYS) { for (const region of REGIONS) {
+      const data = await fetchAPI('/api/products/getTopProducts?limit=50&offset=0&days='+days+'&region='+region);
+      if (!data || !data.results) continue;
+      for (const p of data.results) { if (!productIds.has(p.product_id)) { productIds.add(p.product_id); allProducts.push({...p, _region:region, _days:days, _scraped_at:new Date().toISOString()}); } }
+      await new Promise(r => setTimeout(r, 800));
+    }}
+    const ts = new Date().toISOString().slice(0,10).replace(/-/g,'');
+    fs.writeFileSync('resultados/social1_products_'+ts+'.json', JSON.stringify({source:'social1',type:'products',scraped_at:new Date().toISOString(),total:allProducts.length,products:allProducts},null,2));
+    console.log('Products: '+allProducts.length);
 
-    # Rodar scraper de creators
-    try:
-        result = subprocess.run(
-            ["node", "social1_creators2.js"],
+    // Quick videos (only 1d, top regions)
+    const allVideos = []; const videoIds = new Set();
+    for (const region of ['us','uk','br']) {
+      const data = await fetchAPI('/api/videos/getTopVideos?limit=50&offset=0&days=1&region='+region);
+      if (!data || !data.results) continue;
+      for (const v of data.results) { if (!videoIds.has(v.video_id)) { videoIds.add(v.video_id); allVideos.push({...v, _region:region, _days:1, _scraped_at:new Date().toISOString()}); } }
+      await new Promise(r => setTimeout(r, 800));
+    }
+    // Merge with existing videos
+    try {
+      const existing = JSON.parse(fs.readFileSync(fs.readdirSync('resultados').filter(f=>f.startsWith('social1_videos')).sort().pop() ? 'resultados/'+fs.readdirSync('resultados').filter(f=>f.startsWith('social1_videos')).sort().pop() : '/dev/null','utf8'));
+      for (const v of (existing.videos||[])) { if (!videoIds.has(v.video_id)) { videoIds.add(v.video_id); allVideos.push(v); } }
+    } catch {}
+    fs.writeFileSync('resultados/social1_videos_'+ts+'.json', JSON.stringify({source:'social1',type:'videos',scraped_at:new Date().toISOString(),total:allVideos.length,videos:allVideos},null,2));
+    console.log('Videos: '+allVideos.length);
+    ws.close(); process.exit(0);
+  });
+})();
+"""],
             capture_output=True, text=True, timeout=300,
             cwd=os.path.dirname(os.path.abspath(__file__))
         )
         if result.returncode == 0:
-            log("Social1 creators: OK")
+            log(f"Social1 products+videos: OK — {result.stdout.strip()}")
         else:
-            log(f"Social1 creators ERRO: {result.stderr[:200]}")
+            log(f"Social1 scraper ERRO: {result.stderr[:200]}")
+    except subprocess.TimeoutExpired:
+        log("Social1 scraper: TIMEOUT (5min)")
     except Exception as e:
-        log(f"Social1 creators ERRO: {e}")
+        log(f"Social1 scraper ERRO: {e}")
+
+    # Creators: rodar apenas no domingo (demora muito para rodar todo dia)
+    is_sunday = datetime.now().weekday() == 6
+    if is_sunday:
+        log("Social1: Domingo — rodando creators completo")
+        try:
+            result = subprocess.run(
+                ["node", "social1_creators2.js"],
+                capture_output=True, text=True, timeout=1800,
+                cwd=os.path.dirname(os.path.abspath(__file__))
+            )
+            if result.returncode == 0:
+                log("Social1 creators: OK")
+            else:
+                log(f"Social1 creators ERRO: {result.stderr[:200]}")
+        except subprocess.TimeoutExpired:
+            log("Social1 creators: TIMEOUT (30min)")
+        except Exception as e:
+            log(f"Social1 creators ERRO: {e}")
+    else:
+        log("Social1: Creators pula (roda apenas domingos)")
 
     # Converter para formato NinjaSpy (TikTok Shop page)
     try:

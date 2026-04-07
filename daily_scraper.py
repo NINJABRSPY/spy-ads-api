@@ -60,14 +60,19 @@ def run_minea():
     try:
         import requests
         r = requests.get("http://localhost:9222/json/version", timeout=3)
-        if r.status_code == 200:
-            from minea_dropshipping import run as run_minea_drop
-            run_minea_drop()
-            log("Minea: OK")
-        else:
+        if r.status_code != 200:
             log("Minea: Chrome debugging nao disponivel - PULANDO")
-    except:
-        log("Minea: Chrome debugging nao disponivel - PULANDO")
+            return
+    except Exception as e:
+        log(f"Minea: Chrome check falhou: {e} - PULANDO")
+        return
+
+    try:
+        from minea_dropshipping import run as run_minea_drop
+        run_minea_drop()
+        log("Minea: OK")
+    except Exception as e:
+        log(f"Minea ERRO: {str(e)[:200]}")
 
 
 def run_adyntel():

@@ -175,7 +175,7 @@ def normalize_meta_ad(ad, keyword, country):
     image_url = ""
     if images:
         if isinstance(images[0], dict):
-            image_url = images[0].get("original_image_url", "") or images[0].get("url", "")
+            image_url = images[0].get("original_image_url", "") or images[0].get("resized_image_url", "") or images[0].get("url", "")
         elif isinstance(images[0], str):
             image_url = images[0]
 
@@ -189,6 +189,19 @@ def normalize_meta_ad(ad, keyword, country):
                 image_url = videos[0].get("video_preview_image_url", "")
         elif isinstance(videos[0], str):
             video_url = videos[0]
+
+    # Fallback: cards podem ter imagem
+    if not image_url and cards:
+        for card in cards:
+            if isinstance(card, dict):
+                card_img = card.get("original_image_url", "") or card.get("resized_image_url", "") or card.get("image_url", "")
+                if card_img:
+                    image_url = card_img
+                    break
+
+    # Fallback final: profile picture do anunciante (melhor que nada)
+    if not image_url:
+        image_url = snapshot.get("page_profile_picture_url", "")
 
     # Extrair CTA dos cards
     cards = snapshot.get("cards", [])

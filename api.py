@@ -9,6 +9,7 @@ import glob
 import os
 from pathlib import Path
 from datetime import datetime
+from urllib.parse import urlparse
 
 try:
     from fastapi import FastAPI, Query
@@ -2558,6 +2559,8 @@ _sw_cache = {"data": None, "loaded_at": None}
 
 def load_similarweb():
     files = sorted(glob.glob(f"{OUTPUT_DIR}/similarweb_*.json"), reverse=True)
+    # Exclude cache file (flat dict, not {domains: {...}} structure)
+    files = [f for f in files if "cache" not in os.path.basename(f)]
     if not files:
         return {}
     latest = files[0]
@@ -3576,9 +3579,34 @@ def angle_detector(
 # UNCLOAK ENGINE — Revelar criativos escondidos
 # ============================================================
 
+_AFFILIATE_NETWORKS = {
+    "clickbank": ["clickbank.net", "hop.clickbank.net", "*.hop.clickbank.net", "clkbank"],
+    "buygoods": ["buygoods.com", "securechkout.com", "bg-checkout"],
+    "maxweb": ["maxweboffers.com", "mw-redirect", "maxweb"],
+    "digistore24": ["digistore24.com", "digistore"],
+    "hotmart": ["hotmart.com", "go.hotmart.com", "pay.hotmart.com"],
+    "kiwify": ["kiwify.com.br", "pay.kiwify.com.br"],
+    "monetizze": ["monetizze.com.br", "app.monetizze.com.br"],
+    "warrior_plus": ["warriorplus.com", "jvzoo.com"],
+}
+
+
+def _detect_affiliate_network(landing_page: str) -> dict:
+    """Detecta rede de afiliados pela URL"""
+    lp = (landing_page or "").lower()
+    if not lp:
+        return {}
+    for network, patterns in _AFFILIATE_NETWORKS.items():
+        for pat in patterns:
+            if pat in lp:
+                return {"network": network, "match": pat}
+    return {}
+
+
 def _build_uncloak_data():
     """Cruza todas as fontes para encontrar criativos escondidos atras de catalogos"""
     ads = load_latest_data()
+    sw_data = load_similarweb()
 
     # Agrupar por advertiser
     by_advertiser = {}
@@ -3590,6 +3618,14 @@ def _build_uncloak_data():
             by_advertiser[name] = []
         by_advertiser[name].append(ad)
 
+    # Domínios genéricos que devem ser ignorados no cross-reference
+    NOISE_DOMAINS = {
+        "adstransparency.google.com", "linkedin.com", "facebook.com",
+        "instagram.com", "tiktok.com", "youtube.com", "twitter.com",
+        "google.com", "meta.com", "pinterest.com", "reddit.com",
+        "t.co", "bit.ly", "linktr.ee", "linktree.com",
+    }
+
     # Agrupar por dominio da landing page
     by_domain = {}
     for ad in ads:
@@ -3597,15 +3633,51 @@ def _build_uncloak_data():
         if not lp or len(lp) < 10:
             continue
         try:
-            from urllib.parse import urlparse
             domain = urlparse(lp).hostname
             if domain:
                 domain = domain.replace("www.", "")
+                if domain in NOISE_DOMAINS:
+                    continue
                 if domain not in by_domain:
                     by_domain[domain] = []
                 by_domain[domain].append(ad)
         except:
             pass
+
+    # --- DOMAIN CROSS-REFERENCE: mesmo domínio, anunciantes diferentes ---
+    def _are_similar_names(a, b):
+        """Filtra variações do mesmo anunciante (ex: 'tefuny shop' vs 'tefuny store')"""
+        # Remove common suffixes
+        for suf in [" shop", " store", " us", " uk", " br", " official", ".com", " 2", " co.", " co"]:
+            a = a.replace(suf, "")
+            b = b.replace(suf, "")
+        a, b = a.strip(), b.strip()
+        if not a or not b:
+            return True
+        # Same base name or one contains the other
+        return a == b or a in b or b in a
+
+    domain_xref = {}
+    for domain, domain_ads in by_domain.items():
+        advertisers = set()
+        for a in domain_ads:
+            adv = (a.get("advertiser") or "").lower().strip()
+            if adv and len(adv) >= 3:
+                advertisers.add(adv)
+        # Filter out name variations — keep only truly different advertisers
+        if len(advertisers) >= 2:
+            unique_advs = list(advertisers)
+            truly_different = []
+            for adv in unique_advs:
+                is_dup = any(_are_similar_names(adv, existing) for existing in truly_different)
+                if not is_dup:
+                    truly_different.append(adv)
+            if len(truly_different) >= 2:
+                domain_xref[domain] = {
+                    "advertisers": truly_different,
+                    "ad_count": len(domain_ads),
+                    "ads": domain_ads,
+                }
 
     results = []
 
@@ -3680,23 +3752,123 @@ def _build_uncloak_data():
             })
             cloaking_score += 10
 
-        if not signals or cloaking_score < 20:
-            continue
-
-        cloaking_score = min(100, cloaking_score)
-
-        # Selecionar ads representativos
-        top_images = sorted(image_ads, key=lambda x: x.get("impressions", 0) or 0, reverse=True)[:3]
-        top_videos = sorted(video_ads, key=lambda x: x.get("impressions", 0) or 0, reverse=True)[:3]
-
-        # Domains
+        # Domains do anunciante
         domains = list(set(
             d.replace("www.", "") for a in ad_list
             for d in [urlparse(a.get("landing_page", "")).hostname or ""]
             if d and d != ""
         ))
 
-        results.append({
+        # === NEW Signal 7: Domain Cross-Reference ===
+        # Mesmo domínio usado por múltiplos anunciantes = altamente suspeito
+        xref_matches = []
+        for dom in domains:
+            if dom in domain_xref:
+                other_advs = [a for a in domain_xref[dom]["advertisers"] if a != name]
+                if other_advs:
+                    xref_matches.append({"domain": dom, "other_advertisers": other_advs})
+
+        if xref_matches:
+            all_others = set()
+            for m in xref_matches:
+                all_others.update(m["other_advertisers"])
+            signals.append({
+                "signal": "🔗 Mesmo domínio, anunciantes diferentes",
+                "detail": f"Landing page compartilhada com {len(all_others)} outro(s) anunciante(s): {', '.join(a.title() for a in list(all_others)[:5])} — forte indicador de cloaking ou operação coordenada",
+                "severity": "critical",
+                "domains_shared": [m["domain"] for m in xref_matches],
+            })
+            cloaking_score += min(35, 15 + len(all_others) * 10)
+
+        # === NEW Signal 8: SimilarWeb Traffic vs Declared Impressions ===
+        traffic_intel = {}
+        for dom in domains:
+            sw = sw_data.get(dom) or sw_data.get(f"www.{dom}")
+            if sw and sw.get("monthly_visits"):
+                monthly = sw["monthly_visits"]
+                total_imp = sum(a.get("impressions", 0) or 0 for a in ad_list)
+
+                traffic_intel[dom] = {
+                    "monthly_visits": monthly,
+                    "global_rank": sw.get("global_rank"),
+                    "bounce_rate": sw.get("bounce_rate"),
+                    "avg_duration": sw.get("avg_duration"),
+                    "top_countries": sw.get("geography", [])[:3],
+                    "social_breakdown": sw.get("social_breakdown"),
+                    "branded_search": sw.get("branded_search"),
+                    "ad_publishers": sw.get("ad_publishers"),
+                    "traffic_sources": sw.get("traffic_sources"),
+                    "declared_impressions": total_imp,
+                }
+
+                # Tráfego muito baixo vs impressões altas = cloaking confirmado
+                if total_imp > 100000 and monthly < 10000:
+                    signals.append({
+                        "signal": "⚠️ Tráfego real vs Impressões: DISCREPÂNCIA",
+                        "detail": f"{dom}: {monthly:,} visitas reais/mês vs {total_imp:,} impressões declaradas — tráfego real é {total_imp // max(monthly, 1)}x menor. Forte indicador de cloaking ou redirect.",
+                        "severity": "critical",
+                    })
+                    cloaking_score += 25
+                elif total_imp > 50000 and monthly > 100000:
+                    signals.append({
+                        "signal": "✅ Tráfego real confirma escala",
+                        "detail": f"{dom}: {monthly:,} visitas/mês — operação legítima de alto volume",
+                        "severity": "info",
+                    })
+
+                # Bounce rate muito alto + impressões altas = landing page de redirect
+                # SimilarWeb retorna bounce_rate como porcentagem (ex: 85.3 = 85.3%)
+                bounce = sw.get("bounce_rate") or 0
+                if bounce > 85 and total_imp > 50000:
+                    signals.append({
+                        "signal": "🔄 Bounce rate suspeito",
+                        "detail": f"{dom}: {bounce:.1f}% bounce rate — possível redirect ou página de cloaking",
+                        "severity": "high",
+                    })
+                    cloaking_score += 15
+
+        # === NEW Signal 9: Affiliate Network Detection ===
+        # Check landing page URLs AND ad body text for network mentions
+        networks_found = {}
+        for a in ad_list:
+            net = _detect_affiliate_network(a.get("landing_page", ""))
+            if net:
+                networks_found[net["network"]] = net["match"]
+            # Also check body/title for network mentions (useful when landing_page is empty)
+            body_text = (a.get("body", "") or "") + " " + (a.get("title", "") or "")
+            if body_text.strip():
+                net_body = _detect_affiliate_network(body_text)
+                if net_body and net_body["network"] not in networks_found:
+                    networks_found[net_body["network"]] = f"body:{net_body['match']}"
+
+        if networks_found:
+            net_names = ", ".join(n.replace("_", " ").title() for n in networks_found.keys())
+            signals.append({
+                "signal": "🏷️ Rede de afiliados detectada",
+                "detail": f"Identificado como produto de: {net_names} — operação de afiliados/DR (Direct Response)",
+                "severity": "high",
+                "networks": list(networks_found.keys()),
+            })
+            cloaking_score += 10
+
+        if not signals or cloaking_score < 20:
+            continue
+
+        cloaking_score = min(100, cloaking_score)
+
+        # Selecionar ads representativos (com fallback de imagem)
+        def _ensure_image(ad_item):
+            """Garante que o ad tem alguma imagem para exibir no frontend"""
+            if not ad_item.get("image_url") and ad_item.get("advertiser_image"):
+                ad_item = {**ad_item, "image_url": ad_item["advertiser_image"]}
+            if not ad_item.get("image_url") and ad_item.get("meta_snapshot_url"):
+                ad_item = {**ad_item, "image_fallback_url": ad_item["meta_snapshot_url"]}
+            return ad_item
+
+        top_images = [_ensure_image(a) for a in sorted(image_ads, key=lambda x: x.get("impressions", 0) or 0, reverse=True)[:3]]
+        top_videos = [_ensure_image(a) for a in sorted(video_ads, key=lambda x: x.get("impressions", 0) or 0, reverse=True)[:3]]
+
+        entry = {
             "advertiser": name.title(),
             "total_ads": len(ad_list),
             "image_ads": len(image_ads),
@@ -3712,7 +3884,94 @@ def _build_uncloak_data():
             "revealed_videos": top_videos,
             "catalog_images": top_images,
             "is_revealed": len(video_ads) > 0 and len(image_ads) > 0,
-        })
+        }
+
+        # Add new intel fields
+        if traffic_intel:
+            entry["traffic_intel"] = traffic_intel
+        if networks_found:
+            entry["affiliate_networks"] = list(networks_found.keys())
+        if xref_matches:
+            entry["domain_xref"] = xref_matches
+
+        results.append(entry)
+
+    # --- ADD domain-only entries (anunciantes diferentes, mesmo domínio, sem match por nome) ---
+    seen_advertisers = set(r["advertiser"].lower() for r in results)
+    for domain, xref in domain_xref.items():
+        # Skip if all advertisers already in results
+        new_advs = [a for a in xref["advertisers"] if a not in seen_advertisers]
+        if not new_advs or len(xref["advertisers"]) < 2:
+            continue
+
+        dom_ads = xref["ads"]
+        dom_sources = list(set(a.get("source", "") for a in dom_ads))
+        dom_platforms = list(set(a.get("platform", "") for a in dom_ads))
+        dom_image = [a for a in dom_ads if a.get("image_url") and not a.get("video_url")]
+        dom_video = [a for a in dom_ads if a.get("video_url")]
+        dom_spend = sum(a.get("estimated_spend", 0) or 0 for a in dom_ads)
+
+        dom_signals = [{
+            "signal": "🔗 Múltiplos anunciantes no mesmo domínio",
+            "detail": f"{len(xref['advertisers'])} anunciantes diferentes apontam para {domain}: {', '.join(a.title() for a in xref['advertisers'][:5])}",
+            "severity": "critical",
+        }]
+
+        dom_score = 30 + len(xref["advertisers"]) * 10
+
+        # Check SimilarWeb for this domain
+        sw = sw_data.get(domain) or sw_data.get(f"www.{domain}")
+        dom_traffic = {}
+        if sw and sw.get("monthly_visits"):
+            dom_traffic = {
+                domain: {
+                    "monthly_visits": sw["monthly_visits"],
+                    "global_rank": sw.get("global_rank"),
+                    "bounce_rate": sw.get("bounce_rate"),
+                    "top_countries": sw.get("geography", [])[:3],
+                }
+            }
+
+        # Network detection
+        dom_nets = {}
+        for a in dom_ads:
+            net = _detect_affiliate_network(a.get("landing_page", ""))
+            if net:
+                dom_nets[net["network"]] = net["match"]
+        if dom_nets:
+            dom_signals.append({
+                "signal": "🏷️ Rede de afiliados detectada",
+                "detail": f"Produto de: {', '.join(n.replace('_', ' ').title() for n in dom_nets.keys())}",
+                "severity": "high",
+            })
+            dom_score += 10
+
+        dom_score = min(100, dom_score)
+
+        entry = {
+            "advertiser": f"[Domain] {domain}",
+            "total_ads": len(dom_ads),
+            "image_ads": len(dom_image),
+            "video_ads": len(dom_video),
+            "cloaking_score": dom_score,
+            "cloaking_level": "critical" if dom_score >= 70 else "high" if dom_score >= 50 else "medium",
+            "signals": dom_signals,
+            "sources": dom_sources,
+            "platforms": dom_platforms,
+            "domains": [domain],
+            "estimated_spend": round(dom_spend, 2),
+            "max_days_running": max((a.get("days_running", 0) or 0) for a in dom_ads),
+            "revealed_videos": sorted(dom_video, key=lambda x: x.get("impressions", 0) or 0, reverse=True)[:3],
+            "catalog_images": sorted(dom_image, key=lambda x: x.get("impressions", 0) or 0, reverse=True)[:3],
+            "is_revealed": len(dom_video) > 0 and len(dom_image) > 0,
+            "linked_advertisers": [a.title() for a in xref["advertisers"]],
+        }
+        if dom_traffic:
+            entry["traffic_intel"] = dom_traffic
+        if dom_nets:
+            entry["affiliate_networks"] = list(dom_nets.keys())
+
+        results.append(entry)
 
     results.sort(key=lambda x: x["cloaking_score"], reverse=True)
     return results
@@ -3736,6 +3995,9 @@ def uncloak_dashboard(
     total = len(results)
     revealed = len([r for r in results if r["is_revealed"]])
     critical = len([r for r in results if r["cloaking_level"] == "critical"])
+    with_traffic = len([r for r in results if r.get("traffic_intel")])
+    with_xref = len([r for r in results if r.get("domain_xref") or r.get("linked_advertisers")])
+    with_network = len([r for r in results if r.get("affiliate_networks")])
 
     return {
         "data": results[:limit],
@@ -3748,6 +4010,9 @@ def uncloak_dashboard(
             "critical": critical,
             "high": len([r for r in results if r["cloaking_level"] == "high"]),
             "medium": len([r for r in results if r["cloaking_level"] == "medium"]),
+            "with_traffic_intel": with_traffic,
+            "domain_crossref_hits": with_xref,
+            "affiliate_networks_detected": with_network,
         }
     }
 
@@ -3762,7 +4027,9 @@ def uncloak_search(
 
     matched = [r for r in results if
                q_lower in r["advertiser"].lower() or
-               any(q_lower in d for d in r.get("domains", []))]
+               any(q_lower in d for d in r.get("domains", [])) or
+               any(q_lower in n for n in r.get("affiliate_networks", [])) or
+               any(q_lower in a.lower() for a in r.get("linked_advertisers", []))]
 
     if not matched:
         return {"found": False, "message": f"Nenhum resultado para '{q}'", "data": []}
@@ -3777,6 +4044,37 @@ def uncloak_revealed(limit: int = Query(20, ge=1, le=50)):
     revealed = [r for r in results if r["is_revealed"]]
     revealed.sort(key=lambda x: x["cloaking_score"], reverse=True)
     return {"data": revealed[:limit], "total": len(revealed)}
+
+
+@app.get("/api/uncloak/networks")
+def uncloak_networks(limit: int = Query(30, ge=1, le=100)):
+    """Anunciantes por rede de afiliados — ClickBank, BuyGoods, Hotmart, etc."""
+    results = _build_uncloak_data()
+    by_net = {}
+    for r in results:
+        for net in r.get("affiliate_networks", []):
+            if net not in by_net:
+                by_net[net] = []
+            by_net[net].append(r)
+
+    output = []
+    for net, entries in sorted(by_net.items(), key=lambda x: len(x[1]), reverse=True):
+        output.append({
+            "network": net.replace("_", " ").title(),
+            "count": len(entries),
+            "avg_cloaking_score": round(sum(e["cloaking_score"] for e in entries) / len(entries)),
+            "top_advertisers": [{"advertiser": e["advertiser"], "score": e["cloaking_score"]} for e in entries[:10]],
+        })
+    return {"data": output, "total_networks": len(output)}
+
+
+@app.get("/api/uncloak/domain-xref")
+def uncloak_domain_xref(limit: int = Query(20, ge=1, le=50)):
+    """Domínios compartilhados entre múltiplos anunciantes — operações coordenadas"""
+    results = _build_uncloak_data()
+    xref_entries = [r for r in results if r.get("domain_xref") or r.get("linked_advertisers")]
+    xref_entries.sort(key=lambda x: x["cloaking_score"], reverse=True)
+    return {"data": xref_entries[:limit], "total": len(xref_entries)}
 
 
 # ============================================================

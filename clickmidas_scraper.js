@@ -43,9 +43,17 @@ async function main() {
   ws.on('open', async () => {
     console.log('Connected to ClickMidas!\n');
 
-    // Navigate to midas-score page
+    // Clear cache and hard reload to fix pagination issues
+    console.log('Clearing cache + hard reload...');
+    await send('Network.clearBrowserCache');
+    await send('Network.setCacheDisabled', { cacheDisabled: true });
+
+    // Navigate fresh to midas-score
     await send('Page.navigate', { url: 'https://www.clickmidas.com.br/midas-score' });
-    await new Promise(r => setTimeout(r, 8000));
+    await new Promise(r => setTimeout(r, 10000));
+
+    // Re-enable cache after load
+    await send('Network.setCacheDisabled', { cacheDisabled: false });
 
     // First, discover all tables and their data
     const discoverResult = await send('Runtime.evaluate', {

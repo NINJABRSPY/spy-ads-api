@@ -43,17 +43,10 @@ async function main() {
   ws.on('open', async () => {
     console.log('Connected to ClickMidas!\n');
 
-    // Clear cache and hard reload to fix pagination issues
-    console.log('Clearing cache + hard reload...');
-    await send('Network.clearBrowserCache');
-    await send('Network.setCacheDisabled', { cacheDisabled: true });
-
-    // Navigate fresh to midas-score
-    await send('Page.navigate', { url: 'https://www.clickmidas.com.br/midas-score' });
-    await new Promise(r => setTimeout(r, 10000));
-
-    // Re-enable cache after load
-    await send('Network.setCacheDisabled', { cacheDisabled: false });
+    // Simple reload (don't clear storage - it logs out Wix)
+    console.log('Reloading ClickMidas page...');
+    await send('Page.reload', { ignoreCache: true });
+    await new Promise(r => setTimeout(r, 12000));
 
     // First, discover all tables and their data
     const discoverResult = await send('Runtime.evaluate', {
@@ -100,7 +93,13 @@ async function main() {
 
       const pageMatch = table.pageText.match(/Page (\d+) of (\d+)/);
       if (!pageMatch) continue;
-      const totalPages = parseInt(pageMatch[2]);
+      let totalPages = parseInt(pageMatch[2]);
+
+      // Limit large tables to avoid crashes
+      if (totalPages > 50) {
+        console.log(`  Limiting ${totalPages} pages to 50 (memory safety)`);
+        totalPages = 50;
+      }
 
       console.log(`\n=== TABLE ${table.id} (${totalPages} pages) ===`);
       console.log(`  Headers: ${table.headers.join(' | ')}`);
@@ -109,11 +108,56 @@ async function main() {
       let lastPageNum = 0;
       for (let page = 1; page <= totalPages; page++) {
         if (page > 1) {
-          // Click Next for THIS specific table
+          // Scroll button into view + click via multiple methods
           await send('Runtime.evaluate', {
             expression: `
               (function() {
-                const table = document.getElementById('${table.id}') || document.querySelector('#${table.id}');
+                const table = document.getElementById('${table.id}');
+                if (!table) return 'no table';
+                const nextBtn = table.querySelector('button[aria-label="Next"]');
+                if (!nextBtn || nextBtn.disabled) return 'no btn';
+                // Scroll into view
+                nextBtn.scrollIntoView({behavior: 'instant', block: 'center'});
+                return 'scrolled';
+              })()`,
+            returnByValue: true
+          });
+          await new Promise(r => setTimeout(r, 500));
+
+          // Get button position AFTER scroll
+          const clickResult = await send('Runtime.evaluate', {
+            expression: `
+              (function() {
+                const table = document.getElementById('${table.id}');
+                if (!table) return JSON.stringify({error: 'no table'});
+                const nextBtn = table.querySelector('button[aria-label="Next"]');
+                if (!nextBtn || nextBtn.disabled) return JSON.stringify({error: 'no btn'});
+                const rect = nextBtn.getBoundingClientRect();
+                // Try multiple click methods
+                nextBtn.focus();
+                nextBtn.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true}));
+                nextBtn.dispatchEvent(new PointerEvent('pointerdown', {bubbles: true}));
+                nextBtn.dispatchEvent(new PointerEvent('pointerup', {bubbles: true}));
+                nextBtn.click();
+                return JSON.stringify({x: rect.x + rect.width/2, y: rect.y + rect.height/2});
+              })()`,
+            returnByValue: true
+          });
+
+          // Also try CDP mouse event
+          try {
+            const pos = JSON.parse(clickResult.result.value);
+            if (pos.x > 0 && pos.y > 0) {
+              await send('Input.dispatchMouseEvent', {type: 'mousePressed', x: pos.x, y: pos.y, button: 'left', clickCount: 1});
+              await send('Input.dispatchMouseEvent', {type: 'mouseReleased', x: pos.x, y: pos.y, button: 'left', clickCount: 1});
+            }
+          } catch {}
+
+          // Legacy fallback
+          await send('Runtime.evaluate', {
+            expression: `
+              (function() {
+                const table = document.getElementById('${table.id}');
                 if (!table) return 'table not found';
                 const nextBtn = table.querySelector('button[aria-label="Next"]');
                 if (nextBtn && !nextBtn.disabled) { nextBtn.click(); return 'ok'; }

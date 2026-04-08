@@ -6840,17 +6840,65 @@
   },
   "atacadaodosuplemento.com.br": {
     "domain": "atacadaodosuplemento.com.br",
-    "scraped_at": "2026-04-06T18:43:02.507Z",
+    "scraped_at": "2026-04-07T23:26:36.737Z",
     "title": "AT SUPLEMENTOS EIRELI",
     "icon": "https://site-images.similarcdn.com/image?url=atacadaodosuplemento.com.br&t=2&s=1&h=7fd882b2deb42b9cc009ac54c722a18a5c4b89efe9ecdc8531267c06fd9f8c79",
     "global_rank": 5853141,
     "country_rank": 382939,
     "employee_range": "10 - 50",
-    "visits_graph": [
+    "monthly_visits": 13052,
+    "visits_change": -0.28,
+    "visits_trend": [
+      7464,
+      3256,
+      2330
+    ],
+    "bounce_rate": 22,
+    "avg_duration": 496,
+    "pages_per_visit": 5.9,
+    "unique_users": 2120,
+    "desktop_pct": 46,
+    "mobile_pct": 54,
+    "global_rank_trend": [
       {
-        "month": "2025-12-01",
-        "visits": 4947
+        "month": "2026-01-01",
+        "rank": 1706809
       },
+      {
+        "month": "2026-02-01",
+        "rank": 3593097
+      },
+      {
+        "month": "2026-03-01",
+        "rank": 5853141
+      }
+    ],
+    "traffic_sources": {
+      "direct": 2205,
+      "direct_pct": 18,
+      "organic_search": 3565,
+      "organic_pct": 30,
+      "paid_search": 0,
+      "paid_pct": 0,
+      "social": 5092,
+      "social_pct": 43,
+      "referrals": 971,
+      "display_ads": 86,
+      "email": 7
+    },
+    "geography": [
+      {
+        "country_code": 76,
+        "share": 100
+      }
+    ],
+    "geography_names": [
+      {
+        "code": "76",
+        "name": "Brazil"
+      }
+    ],
+    "visits_graph": [
       {
         "month": "2026-01-01",
         "visits": 7465
@@ -6858,18 +6906,40 @@
       {
         "month": "2026-02-01",
         "visits": 3257
+      },
+      {
+        "month": "2026-03-01",
+        "visits": 2330
       }
     ],
+    "top_referrals": [
+      {
+        "domain": "parqueshoppingbelem.com.br",
+        "share": 100,
+        "change": 0
+      }
+    ],
+    "social_breakdown": {
+      "Social": 52.3,
+      "Instagram": 47.7
+    },
     "branded_search": {
-      "branded_pct": 17,
-      "non_branded_pct": 83
+      "branded_pct": 40,
+      "non_branded_pct": 60
     },
     "top_keywords": [],
+    "referral_categories": [
+      {
+        "category": "Law and Government/Law and Government",
+        "share": 100
+      }
+    ],
+    "exit_destinations": [],
     "competitors": [
       {
         "domain": "adsuplementos.com.br",
-        "visits": 3336,
-        "change": -0.03
+        "visits": 2989,
+        "change": 0.43
       }
     ]
   },
@@ -42080,5 +42150,605 @@
         "change": -0.59
       }
     ]
+  },
+  "materiais.maximustecidos.com.br": {
+    "domain": "materiais.maximustecidos.com.br",
+    "scraped_at": "2026-04-07T18:59:26.343Z",
+    "title": "",
+    "icon": "https://site-images.similarcdn.com/image?url=materiais.maximustecidos.com.br&t=2&s=1&h=feaf94238fcd5b054d40f5a5d172a698f15f89ab56f938c2ed0589a3410059d4",
+    "global_rank": 0,
+    "country_rank": 0,
+    "employee_range": "",
+    "monthly_visits": 264636,
+    "visits_change": 0.04,
+    "visits_trend": [
+      98698,
+      81243,
+      84693
+    ],
+    "bounce_rate": 66.9,
+    "avg_duration": 63,
+    "pages_per_visit": 1.55,
+    "unique_users": 40175,
+    "desktop_pct": 8,
+    "mobile_pct": 92,
+    "global_rank_trend": [
+      {
+        "month": "2026-01-01",
+        "rank": 0
+      },
+      {
+        "month": "2026-02-01",
+        "rank": 0
+      },
+      {
+        "month": "2026-03-01",
+        "rank": 0
+      }
+    ],
+    "traffic_sources": {
+      "direct": 62988,
+      "direct_pct": 24,
+      "organic_search": 77006,
+      "organic_pct": 29,
+      "paid_search": 20796,
+      "paid_pct": 8,
+      "social": 73845,
+      "social_pct": 28,
+      "referrals": 23784,
+      "display_ads": 6172,
+      "email": 45
+    },
+    "geography": [
+      {
+        "country_code": 76,
+        "share": 99.8
+      },
+      {
+        "country_code": 620,
+        "share": 0.1
+      },
+      {
+        "country_code": 724,
+        "share": 0
+      }
+    ],
+    "geography_names": [
+      {
+        "code": "76",
+        "name": "Brazil"
+      },
+      {
+        "code": "620",
+        "name": "Portugal"
+      },
+      {
+        "code": "724",
+        "name": "Spain"
+      }
+    ],
+    "visits_graph": [
+      {
+        "month": "2026-01-01",
+        "visits": 98698
+      },
+      {
+        "month": "2026-02-01",
+        "visits": 81244
+      },
+      {
+        "month": "2026-03-01",
+        "visits": 84694
+      }
+    ],
+    "top_referrals": [
+      {
+        "domain": "app.hotmart.com",
+        "share": 77.5,
+        "change": -0.53
+      },
+      {
+        "domain": "maximustecidos.com.br",
+        "share": 19.1,
+        "change": -0.3
+      },
+      {
+        "domain": "marlenemukai.com.br",
+        "share": 1.5,
+        "change": -1
+      },
+      {
+        "domain": "app.rdstation.com.br",
+        "share": 1.1,
+        "change": 0
+      },
+      {
+        "domain": "app.gohacks.com.br",
+        "share": 0.6,
+        "change": 0
+      }
+    ],
+    "social_breakdown": {
+      "Social": 35.7,
+      "Youtube": 31.3,
+      "Pinterest": 19.5,
+      "Facebook": 13.5
+    },
+    "top_keywords": [],
+    "referral_categories": [
+      {
+        "category": "Business and Consumer Services/Online Marketing",
+        "share": 78.7
+      },
+      {
+        "category": "Lifestyle/Gifts and Flowers",
+        "share": 19.1
+      },
+      {
+        "category": "Lifestyle",
+        "share": 1.5
+      },
+      {
+        "category": "Computers Electronics and Technology/Search Engines",
+        "share": 0.6
+      }
+    ],
+    "exit_destinations": [
+      {
+        "domain": "pay.hotmart.com",
+        "share": 78.1
+      },
+      {
+        "domain": "web.whatsapp.com",
+        "share": 13
+      },
+      {
+        "domain": "maximustecidos.com.br",
+        "share": 8.9
+      }
+    ],
+    "competitors": [
+      {
+        "domain": "jnycroche.com.br",
+        "visits": 32479,
+        "change": -0.11
+      },
+      {
+        "domain": "escoladacostura.com",
+        "visits": 11941,
+        "change": 1.19
+      },
+      {
+        "domain": "annegalante.com.br",
+        "visits": 338422,
+        "change": -0.78
+      },
+      {
+        "domain": "cursos.dianademarchi.com.br",
+        "visits": 54558,
+        "change": 0.2
+      }
+    ]
+  },
+  "grafismofonetico.com.br": {
+    "domain": "grafismofonetico.com.br",
+    "scraped_at": "2026-04-08T13:15:10.087Z",
+    "title": "Grafismo fonético em Pdf para Crianças (Pdf para Imprimir)",
+    "icon": "https://site-images.similarcdn.com/image?url=grafismofonetico.com.br&t=2&s=1&h=4305babac4e144dc1d6e7ffc27d8b0795b33f9b651046d5804ba67a3137ae663",
+    "global_rank": 3408632,
+    "country_rank": 238905,
+    "employee_range": "10 - 50",
+    "monthly_visits": 9196,
+    "visits_change": 0.89,
+    "visits_trend": [
+      1956,
+      2506,
+      4733
+    ],
+    "bounce_rate": 43,
+    "avg_duration": 58,
+    "pages_per_visit": 2.43,
+    "unique_users": 1671,
+    "desktop_pct": 28,
+    "mobile_pct": 72,
+    "global_rank_trend": [
+      {
+        "month": "2026-01-01",
+        "rank": 6944395
+      },
+      {
+        "month": "2026-02-01",
+        "rank": 5553089
+      },
+      {
+        "month": "2026-03-01",
+        "rank": 3408632
+      }
+    ],
+    "traffic_sources": {
+      "direct": 884,
+      "direct_pct": 14,
+      "organic_search": 1048,
+      "organic_pct": 17,
+      "paid_search": 34,
+      "paid_pct": 1,
+      "social": 3924,
+      "social_pct": 63,
+      "referrals": 276,
+      "display_ads": 41,
+      "email": 5
+    },
+    "geography": [
+      {
+        "country_code": 76,
+        "share": 95.6
+      },
+      {
+        "country_code": 620,
+        "share": 4.4
+      }
+    ],
+    "geography_names": [
+      {
+        "code": "76",
+        "name": "Brazil"
+      },
+      {
+        "code": "620",
+        "name": "Portugal"
+      }
+    ],
+    "visits_graph": [
+      {
+        "month": "2026-01-01",
+        "visits": 1956
+      },
+      {
+        "month": "2026-02-01",
+        "visits": 2507
+      },
+      {
+        "month": "2026-03-01",
+        "visits": 4733
+      }
+    ],
+    "top_referrals": [],
+    "social_breakdown": {
+      "Pinterest": 73.7,
+      "Social": 26.3
+    },
+    "branded_search": {
+      "branded_pct": 30,
+      "non_branded_pct": 70
+    },
+    "top_keywords": [],
+    "referral_categories": [],
+    "exit_destinations": [
+      {
+        "domain": "pay.hotmart.com",
+        "share": 74
+      },
+      {
+        "domain": "api.whatsapp.com",
+        "share": 26
+      }
+    ],
+    "competitors": []
+  },
+  "thegelatide.com": {
+    "domain": "thegelatide.com",
+    "scraped_at": "2026-04-08T14:45:17.284Z",
+    "title": "Gela Tide",
+    "icon": "https://site-images.similarcdn.com/image?url=thegelatide.com&t=2&s=1&h=9f918cccbd22042748ba7b5a9e93a7d8d5e4ccf56fb6d962a9566722872676fa",
+    "global_rank": 67529,
+    "country_rank": 13088,
+    "employee_range": "",
+    "monthly_visits": 1132894,
+    "visits_change": 7.36,
+    "visits_trend": [
+      948,
+      120918,
+      1011027
+    ],
+    "bounce_rate": 61.6,
+    "avg_duration": 85,
+    "pages_per_visit": 1.61,
+    "unique_users": 186067,
+    "desktop_pct": 71,
+    "mobile_pct": 29,
+    "global_rank_trend": [
+      {
+        "month": "2026-01-01",
+        "rank": 0
+      },
+      {
+        "month": "2026-02-01",
+        "rank": 352181
+      },
+      {
+        "month": "2026-03-01",
+        "rank": 67529
+      }
+    ],
+    "traffic_sources": {
+      "direct": 187091,
+      "direct_pct": 17,
+      "organic_search": 3723,
+      "organic_pct": 0,
+      "paid_search": 44,
+      "paid_pct": 0,
+      "social": 895123,
+      "social_pct": 79,
+      "referrals": 8949,
+      "display_ads": 37334,
+      "email": 10
+    },
+    "geography": [
+      {
+        "country_code": 840,
+        "share": 99.7
+      },
+      {
+        "country_code": 76,
+        "share": 0.3
+      }
+    ],
+    "geography_names": [
+      {
+        "code": "840",
+        "name": "United States"
+      },
+      {
+        "code": "76",
+        "name": "Brazil"
+      }
+    ],
+    "visits_graph": [
+      {
+        "month": "2026-01-01",
+        "visits": 949
+      },
+      {
+        "month": "2026-02-01",
+        "visits": 120918
+      },
+      {
+        "month": "2026-03-01",
+        "visits": 1011027
+      }
+    ],
+    "top_referrals": [
+      {
+        "domain": "healthcart17.live",
+        "share": 43.7,
+        "change": 0
+      },
+      {
+        "domain": "en.healthheadlines.info",
+        "share": 22.9,
+        "change": 0
+      },
+      {
+        "domain": "app.naveryx.health",
+        "share": 12.5,
+        "change": 0
+      },
+      {
+        "domain": "globalreviews-now.shop",
+        "share": 3,
+        "change": 1.81
+      },
+      {
+        "domain": "app.swipeoffers.com.br",
+        "share": 2.6,
+        "change": 0
+      }
+    ],
+    "social_breakdown": {
+      "Facebook": 96.8,
+      "Instagram": 3.2,
+      "Social": 0
+    },
+    "branded_search": {
+      "branded_pct": 37,
+      "non_branded_pct": 63
+    },
+    "top_keywords": [
+      {
+        "keyword": "gela tide",
+        "share": 100,
+        "visits": 40
+      }
+    ],
+    "referral_categories": [
+      {
+        "category": "Unknown",
+        "share": 73.3
+      },
+      {
+        "category": "News and Media",
+        "share": 22.9
+      },
+      {
+        "category": "Computers Electronics and Technology/Advertising Networks",
+        "share": 2.1
+      },
+      {
+        "category": "Business and Consumer Services/Online Marketing",
+        "share": 1.3
+      },
+      {
+        "category": "Computers Electronics and Technology/Search Engines",
+        "share": 0.3
+      }
+    ],
+    "exit_destinations": [
+      {
+        "domain": "yourorderwasconfirmed.com",
+        "share": 83
+      },
+      {
+        "domain": "orders.cartpanda.com",
+        "share": 8
+      },
+      {
+        "domain": "clkbank.com",
+        "share": 7.1
+      },
+      {
+        "domain": "buygoods.com",
+        "share": 1.3
+      },
+      {
+        "domain": "health-group.mycartpanda.com",
+        "share": 0.5
+      }
+    ],
+    "competitors": [
+      {
+        "domain": "walmart.com",
+        "visits": 1420918381,
+        "change": 0.13
+      },
+      {
+        "domain": "amazon.com",
+        "visits": 7528032259,
+        "change": 0.1
+      },
+      {
+        "domain": "ebay.com",
+        "visits": 1887854873,
+        "change": 0.1
+      },
+      {
+        "domain": "temu.com",
+        "visits": 3950508558,
+        "change": 0.05
+      }
+    ]
+  },
+  "gethealthysupplements.shop": {
+    "domain": "gethealthysupplements.shop",
+    "scraped_at": "2026-04-08T16:47:31.615Z",
+    "title": "",
+    "icon": "https://site-images.similarcdn.com/image?url=gethealthysupplements.shop&t=2&s=1&h=37d81df3275ecd2ccc49f9d9e5454246cb5e36792bc88ed43733030ff695adcc",
+    "global_rank": 12076965,
+    "country_rank": 3849500,
+    "employee_range": "10 - 50",
+    "monthly_visits": 1776,
+    "visits_change": 2.29,
+    "visits_trend": [
+      108,
+      389,
+      1278
+    ],
+    "bounce_rate": 64,
+    "avg_duration": 52,
+    "pages_per_visit": 1.45,
+    "unique_users": 355,
+    "desktop_pct": 0,
+    "mobile_pct": 100,
+    "global_rank_trend": [
+      {
+        "month": "2026-01-01",
+        "rank": 0
+      },
+      {
+        "month": "2026-02-01",
+        "rank": 0
+      },
+      {
+        "month": "2026-03-01",
+        "rank": 12076965
+      }
+    ],
+    "traffic_sources": {
+      "direct": 0,
+      "direct_pct": 0,
+      "organic_search": 0,
+      "organic_pct": 0,
+      "paid_search": 0,
+      "paid_pct": 0,
+      "social": 0,
+      "social_pct": 0,
+      "referrals": 0,
+      "display_ads": 0,
+      "email": 0
+    },
+    "geography": [
+      {
+        "country_code": 840,
+        "share": 80.9
+      },
+      {
+        "country_code": 76,
+        "share": 19.1
+      }
+    ],
+    "geography_names": [
+      {
+        "code": "840",
+        "name": "United States"
+      },
+      {
+        "code": "76",
+        "name": "Brazil"
+      }
+    ],
+    "visits_graph": [
+      {
+        "month": "2026-01-01",
+        "visits": 108
+      },
+      {
+        "month": "2026-02-01",
+        "visits": 389
+      },
+      {
+        "month": "2026-03-01",
+        "visits": 1278
+      }
+    ],
+    "top_referrals": [],
+    "branded_search": {
+      "branded_pct": 0,
+      "non_branded_pct": 100
+    },
+    "top_keywords": [
+      {
+        "keyword": "chocotide",
+        "share": 0,
+        "visits": 0
+      },
+      {
+        "keyword": "vitalislim",
+        "share": 0,
+        "visits": 0
+      }
+    ],
+    "referral_categories": [],
+    "exit_destinations": [
+      {
+        "domain": "google.com",
+        "share": 81.7
+      },
+      {
+        "domain": "sacola.magazineluiza.com.br",
+        "share": 16.2
+      },
+      {
+        "domain": "memoryon.store",
+        "share": 1.8
+      },
+      {
+        "domain": "gelatinesculpt.com",
+        "share": 0.3
+      },
+      {
+        "domain": "thegelatide.com",
+        "share": 0.1
+      }
+    ],
+    "competitors": []
   }
 }

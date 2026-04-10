@@ -1,0 +1,895 @@
+{
+  "source": "clickmidas",
+  "platform_source": "clickbank",
+  "scraped_at": "2026-04-09T12:00:36.374Z",
+  "total_products": 88,
+  "total_raw": 90,
+  "products": [
+    {
+      "name": "The Brain Song (Killer NEW Memory Offer)",
+      "gravity": 194.91,
+      "gravity_1d": -1.47,
+      "gravity_7d": -4.77,
+      "gravity_30d": 3.9,
+      "midas_score": -1.6,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "The Genius Song (BRAND-NEW!)",
+      "gravity": 139.9,
+      "gravity_1d": -1.12,
+      "gravity_7d": 1.14,
+      "gravity_30d": -6.28,
+      "midas_score": 0.01,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "NEW : Energy Revolution System - Conversions Monster !",
+      "gravity": 166.64,
+      "gravity_1d": -0.27,
+      "gravity_7d": 0.68,
+      "gravity_30d": 11.56,
+      "midas_score": 0.12,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "CitrusBurn - HOT New WEIGHT LOSS Supplement For 2026",
+      "gravity": 118.97,
+      "gravity_1d": -2.45,
+      "gravity_7d": -7.34,
+      "gravity_30d": -22.7,
+      "midas_score": -4.12,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "Glyco Harmony",
+      "gravity": 9,
+      "gravity_1d": 3,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 2.22,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "Moon Reading - Interactive Astrology Reading that converts like CRAZY!",
+      "gravity": 82.81,
+      "gravity_1d": 1.63,
+      "gravity_7d": -1.65,
+      "gravity_30d": -11.76,
+      "midas_score": -0.01,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "The Memory Wave",
+      "gravity": 74.28,
+      "gravity_1d": -1.66,
+      "gravity_7d": -2.19,
+      "gravity_30d": -8.77,
+      "midas_score": -2.59,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "ProstaVive - Powerhouse Prostate Offer",
+      "gravity": 112.39,
+      "gravity_1d": 1.21,
+      "gravity_7d": 2.22,
+      "gravity_30d": -15.62,
+      "midas_score": 1.53,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "Neuro Energizer - New Manifestation VSL heavily tested on cold traffic",
+      "gravity": 78.59,
+      "gravity_1d": 0.91,
+      "gravity_7d": 2.45,
+      "gravity_30d": -11.55,
+      "midas_score": 2.14,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "Audifort - Top Brain and Hearing",
+      "gravity": 81.83,
+      "gravity_1d": 0.09,
+      "gravity_7d": -3.1,
+      "gravity_30d": -17.27,
+      "midas_score": -1.84,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "YU SLEEP - The #1 Sleep Offer - NEW March 2026 VSL - up to $5 EPC",
+      "gravity": 76.49,
+      "gravity_1d": -0.88,
+      "gravity_7d": 5.17,
+      "gravity_30d": 14.65,
+      "midas_score": 2.8,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "ProDentim - The Biggest Monster In The Dental Niche",
+      "gravity": 98.28,
+      "gravity_1d": 2.32,
+      "gravity_7d": 11.12,
+      "gravity_30d": 3.87,
+      "midas_score": 6.84,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "Year of the Horse 2026 - Your Astrology Language Reading",
+      "gravity": 66.91,
+      "gravity_1d": 8.5,
+      "gravity_7d": 9.77,
+      "gravity_30d": 6.31,
+      "midas_score": 13.65,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "TedsWoodworking - Highest Converting Woodworking Site On The Internet!",
+      "gravity": 111.4,
+      "gravity_1d": -0.01,
+      "gravity_7d": -2.46,
+      "gravity_30d": -13.32,
+      "midas_score": -1.11,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "Numerologist.com - Fully Personalized VSL *doubles* conversion rate",
+      "gravity": 86.26,
+      "gravity_1d": -0.48,
+      "gravity_7d": 0.15,
+      "gravity_30d": -12.81,
+      "midas_score": -0.19,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "Billionaire Brain Wave - Brand New VSL From 8-Figure Marketer",
+      "gravity": 80.57,
+      "gravity_1d": -1.27,
+      "gravity_7d": -1.23,
+      "gravity_30d": -4.72,
+      "midas_score": -1.55,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "NITRIC BOOST-New Explosive Male Enhancement Offer-Crazy High CVR & AOV",
+      "gravity": 78.04,
+      "gravity_1d": 0.93,
+      "gravity_7d": -5.51,
+      "gravity_30d": -8.7,
+      "midas_score": -2.93,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "Dubai Wealth Secret - Brand-New Forbidden Wealth Angle Going Viral",
+      "gravity": 75.03,
+      "gravity_1d": -1.46,
+      "gravity_7d": -2.35,
+      "gravity_30d": -5.91,
+      "midas_score": -2.54,
+      "tables": [
+        "comp-lk8qhecb4"
+      ]
+    },
+    {
+      "name": "AquaSculpt",
+      "traffic": 65559.36,
+      "midas_score": 3.5,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "Nerve Calm",
+      "traffic": 43656.89,
+      "midas_score": -5.38,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "GLPro",
+      "traffic": 50231.98,
+      "midas_score": 0.44,
+      "tables": [
+        "comp-lk8qhecx",
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "PurDentix",
+      "traffic": 26625.79,
+      "midas_score": -0.41,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "Mind Vault",
+      "traffic": 36663.03,
+      "midas_score": -0.39,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "BackBiome",
+      "traffic": 28647.94,
+      "midas_score": -0.04,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "Glycopezil",
+      "traffic": 76480.95,
+      "midas_score": -7.23,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "Boostaro",
+      "traffic": 25600.59,
+      "midas_score": 0.22,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "Arialief",
+      "traffic": 41743.52,
+      "midas_score": -0.52,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "Alpha Surge",
+      "traffic": 3749.48,
+      "midas_score": 3.89,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "MounjaBoost",
+      "traffic": 13821.13,
+      "midas_score": 0.06,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "Lotto Champ",
+      "traffic": 3226.15,
+      "midas_score": -2,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "Pulmo Balance",
+      "traffic": 0,
+      "midas_score": 0,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "Sumatra Tonic",
+      "traffic": 118.69,
+      "midas_score": 0,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "Hero Up",
+      "traffic": 9072.28,
+      "midas_score": 4.09,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "VisiFlora",
+      "traffic": 919.81,
+      "midas_score": -1.4,
+      "tables": [
+        "comp-lk8qhecx",
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "SugarMute",
+      "traffic": 38400.35,
+      "midas_score": -3.17,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "Nitric Boost Ultra",
+      "traffic": 0,
+      "midas_score": 0,
+      "tables": [
+        "comp-lk8qhecx"
+      ]
+    },
+    {
+      "name": "IA HEROES PRO",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 11703.55,
+      "currency": "EUR",
+      "rating": 44,
+      "overall_score": 2,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "Te vas a Transformar",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 198219.75,
+      "currency": "COP",
+      "rating": 358,
+      "overall_score": 3.73,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "BLACK VITALÍCIA - ANDRÉA VERMONT + EBOOKS",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 316.5,
+      "currency": "BRL",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "El Rentable Negocio de la Sublimacion",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 43.52,
+      "midas_score": 0,
+      "max_commission": 142.82,
+      "currency": "USD",
+      "rating": 30,
+      "overall_score": 4.7,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "BLACK VITALÍCIA - ANDRÉA VERMONT + EBOOKS BOLETOS",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 108.23,
+      "currency": "BRL",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "SIMBORA TRINCAR",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 290.51,
+      "currency": "BRL",
+      "rating": 9,
+      "overall_score": 4.44,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "Combo Black Friday 2025",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 33.18,
+      "currency": "BRL",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "Black Power Jejum",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 286.91,
+      "currency": "BRL",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "VOLL +",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 220,
+      "currency": "BRL",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "Black Friday - LCM",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 360.27,
+      "currency": "BRL",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "Black Friday Soaper EFinc 2025",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 310.83,
+      "currency": "BRL",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "A Maior Revolução no Mundo da Milhas © - Black Friday",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 1087.28,
+      "currency": "BRL",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "Pós-Graduação : Gestão da Qualidade e Auditoria na Indústria Farmacêutica",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 360.38,
+      "currency": "BRL",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "Combo Exclusivo 8 em 1:  Legacy BrandsDecoded®",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 4.6,
+      "gravity_30d": 0,
+      "midas_score": 1.53,
+      "max_commission": 142.88,
+      "currency": "BRL",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "TopCorpus Evolution",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 539.96,
+      "currency": "BRL",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "GénoMincir",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 178.25,
+      "currency": "EUR",
+      "rating": 0,
+      "overall_score": 0,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "Leadlovers | Mais Vendas, Menos Esforço",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 0,
+      "currency": "BRL",
+      "rating": 1493,
+      "overall_score": 4.33,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "The Secret Of Digital 1.0",
+      "gravity": 150,
+      "gravity_1d": 0,
+      "gravity_7d": 0,
+      "gravity_30d": 0,
+      "midas_score": 0,
+      "max_commission": 16.45,
+      "currency": "USD",
+      "rating": 34,
+      "overall_score": 2.32,
+      "tables": [
+        "comp-lltpkex4"
+      ]
+    },
+    {
+      "name": "Promote Awaken XT Now!",
+      "traffic": 1588.67,
+      "midas_score": 18.58,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Promote Genesis Revival Now!",
+      "traffic": 2267.26,
+      "midas_score": 17.92,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "CaviArgan",
+      "traffic": 2425.33,
+      "midas_score": 15.87,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Start Promoting the JointVive Today!",
+      "traffic": 42453.53,
+      "midas_score": 11.2,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Quietum Plus",
+      "traffic": 3149.91,
+      "midas_score": 9.51,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Prostadine",
+      "traffic": 3439.94,
+      "midas_score": 5.51,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Ring Quiet",
+      "traffic": 169.88,
+      "midas_score": 4.25,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Keyslim Drops",
+      "traffic": 1513.93,
+      "midas_score": 3.05,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Alpha Drive 24",
+      "traffic": 927.43,
+      "midas_score": 2.97,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Make Huge Profits with VitaLean!",
+      "traffic": 326.56,
+      "midas_score": 2.47,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Advanced Memory Formula",
+      "traffic": 582015.26,
+      "midas_score": 2.34,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Earn 60% Commission Promoting Advanced Collagen Plus!",
+      "traffic": 582015.26,
+      "midas_score": 2.34,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Advanced Prostate Formula",
+      "traffic": 582015.26,
+      "midas_score": 2.34,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Earn 60% Commission Promoting Advanced Amino Formula",
+      "traffic": 582015.26,
+      "midas_score": 2.34,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Curcumitol-Q BioBDMC",
+      "traffic": 582015.26,
+      "midas_score": 2.34,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Advanced Joint Support",
+      "traffic": 582015.26,
+      "midas_score": 2.34,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "GLP-1 Plus",
+      "traffic": 582015.26,
+      "midas_score": 2.34,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "Advanced Vision Formula",
+      "traffic": 582015.26,
+      "midas_score": 2.34,
+      "tables": [
+        "comp-lqo80seq"
+      ]
+    },
+    {
+      "name": "AlphaFuel Pro V2",
+      "traffic": 33894.21,
+      "midas_score": -0.14,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "Trimology DE DTC",
+      "traffic": 2606.56,
+      "midas_score": 12,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "Gluco Armor",
+      "traffic": 12445.95,
+      "midas_score": 0.11,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "FitCafe",
+      "traffic": 22097.02,
+      "midas_score": -0.09,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "Gluco Cleanse Tea",
+      "traffic": 285.76,
+      "midas_score": 0,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "Synevra UltraLift",
+      "traffic": 5086.73,
+      "midas_score": -0.43,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "FemiPro",
+      "traffic": 373.69,
+      "midas_score": 0,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "NerveAlive",
+      "traffic": 23674.41,
+      "midas_score": -0.22,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "ProstaPeak",
+      "traffic": 20215.77,
+      "midas_score": 0.32,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "CelluCare",
+      "traffic": 5343.2,
+      "midas_score": 1.34,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "SeroBurn",
+      "traffic": 11327.46,
+      "midas_score": 0.22,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "Visium Pro",
+      "traffic": 266.48,
+      "midas_score": 0,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "Slim Boost Tea",
+      "traffic": 1498.95,
+      "midas_score": -0.01,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "GoldAlign",
+      "traffic": 0,
+      "midas_score": 0,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "Male Power XL",
+      "traffic": 14938.99,
+      "midas_score": -0.13,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    },
+    {
+      "name": "FlashBurn",
+      "traffic": 21164.02,
+      "midas_score": 0.13,
+      "tables": [
+        "comp-lx0k7b6o"
+      ]
+    }
+  ]
+}

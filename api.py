@@ -539,15 +539,16 @@ def get_stats():
     """Estatisticas gerais"""
     summary = load_latest_summary()
     ads = load_latest_data()
+    from collections import Counter
+    by_source = dict(Counter(a.get("source", "unknown") for a in ads).most_common())
+    by_platform = dict(Counter(a.get("platform", "unknown") for a in ads).most_common())
+    by_keyword = dict(Counter(a.get("search_keyword", "") for a in ads if a.get("search_keyword")).most_common(10))
     return {
         "total_ads": len(ads),
         "last_sync": summary.get("scrape_date", ""),
-        "by_source": summary.get("by_source", {}),
-        "by_platform": summary.get("by_platform", {}),
-        "top_keywords": dict(sorted(
-            summary.get("by_keyword", {}).items(),
-            key=lambda x: x[1], reverse=True
-        )[:10]),
+        "by_source": by_source,
+        "by_platform": by_platform,
+        "top_keywords": by_keyword,
     }
 
 @app.get("/api/trending")

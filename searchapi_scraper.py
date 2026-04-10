@@ -170,6 +170,9 @@ def normalize_meta_ad(ad, keyword, country):
         else:
             body = str(raw_body)
 
+    # Extrair cards (precisa antes do fallback de imagem)
+    cards = snapshot.get("cards", [])
+
     # Extrair imagens
     images = snapshot.get("images", [])
     image_url = ""
@@ -204,7 +207,6 @@ def normalize_meta_ad(ad, keyword, country):
         image_url = snapshot.get("page_profile_picture_url", "")
 
     # Extrair CTA dos cards
-    cards = snapshot.get("cards", [])
     cta = ""
     landing_page = ""
     title = snapshot.get("title", "")

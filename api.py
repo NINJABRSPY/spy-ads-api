@@ -497,11 +497,31 @@ def list_ads(
     if search:
         sl = search.lower()
         words = sl.split()
-        ads = [a for a in ads if
-               sl in ((a.get("title", "") or "") + " " + (a.get("body", "") or "") + " " +
-                      (a.get("advertiser", "") or "") + " " + (a.get("search_keyword", "") or "") + " " +
-                      (a.get("ai_niche", "") or "")).lower()
-               or all(w in ((a.get("title", "") or "") + " " + (a.get("body", "") or "")).lower() for w in words)]
+        def _searchable_text(a):
+            # Juntar todos os campos relevantes para busca (case-insensitive, partial match)
+            parts = [
+                a.get("title", "") or "",
+                a.get("body", "") or "",
+                a.get("advertiser", "") or "",
+                a.get("search_keyword", "") or "",
+                a.get("ai_niche", "") or "",
+                a.get("ai_target_audience", "") or "",
+                a.get("ai_strategy", "") or "",
+                a.get("ai_hook_type", "") or "",
+                a.get("cta", "") or "",
+                # PiPiAds v3 AI fields
+                a.get("pipi_hook", "") or "",
+                a.get("pipi_script", "") or "",
+                a.get("pipi_has_presenter", "") or "",
+                a.get("pipi_language", "") or "",
+            ]
+            tags = a.get("pipi_tags", []) or []
+            if isinstance(tags, list):
+                parts.append(" ".join(str(t) for t in tags))
+            return " ".join(parts).lower()
+
+        ads = [a for a in ads if sl in _searchable_text(a)
+               or all(w in _searchable_text(a) for w in words)]
     if niche:
         ads = [a for a in ads if niche.lower() in (a.get("ai_niche", "") or "").lower()]
     if country:

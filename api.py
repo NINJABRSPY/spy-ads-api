@@ -419,6 +419,9 @@ COMPACT_FIELDS = [
     "ai_niche", "ai_strategy", "ai_copy_quality", "ai_emotion", "ai_language",
     "also_on", "has_store", "store_daily_revenue", "search_keyword",
     "social1_region", "social1_units_sold", "social1_gmv",
+    # PiPiAds v3 AI fields (hook, script, tags, presenter, CPM/CPA)
+    "pipi_hook", "pipi_script", "pipi_tags", "pipi_has_presenter",
+    "pipi_language", "pipi_cpm", "pipi_cpa",
 ]
 
 def _detect_country(ad):

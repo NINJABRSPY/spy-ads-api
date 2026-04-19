@@ -5,9 +5,10 @@ import json, time, csv, glob, requests
 from datetime import datetime
 from pathlib import Path
 
-TOKEN = "NjljNWQ5ZDhmZTJkN2YzOGZkZjcxNWQ3LTE3NzQ1NzUzMTI="
-DEVICE_ID = "887465847"
-COOKIE = "uid=NjljNWQ5ZDhmZTJkN2YzOGZkZjcxNWQ3LTI5NTc2OTM0; language=pt; langTip=1"
+TOKEN = "NjRjYzg5MTdiMDg3OTAzOGNkOGFhZmUyLTE3NzY0NjcxNTU="
+DEVICE_ID = "510739519"
+# PP-userInfo eh cookie obrigatorio na API v3 (contem o user_id+expires+level embutidos)
+COOKIE = 'PP-userInfo={%22vip_deadline%22:1779028917%2C%22expires%22:1779059155%2C%22level%22:%22ADVANCED%22%2C%22discount_code%22:null%2C%22timezone_offset%22:180%2C%22has_popup_shown%22:true%2C%22language_setting%22:%22pt%22%2C%22access_token%22:%22NjRjYzg5MTdiMDg3OTAzOGNkOGFhZmUyLTE3NzY0NjcxNTU=%22%2C%22level_version%22:%223.0%22%2C%22_id%22:%2264cc8917b0879038cd8aafe2%22%2C%22time_zone_id%22:%22America/Sao_Paulo%22%2C%22email%22:%22ninjabr.forum@gmail.com%22%2C%22username%22:%22NINJABR.FORUM@GMAIL.COM%22%2C%22team_info%22:{%22team_level_expire_time%22:1779028917%2C%22team_email%22:%22ninjabr.forum@gmail.com%22%2C%22team_level%22:%22ADVANCED%22}%2C%22is_sub_account%22:false%2C%22isSub%22:true%2C%22had_purchase%22:true}; language=pt; langTip=1'
 
 KEYWORDS = [
     # Ecommerce / Dropshipping

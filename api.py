@@ -4418,6 +4418,213 @@ def sync_status():
     }
 
 # ============================================================
+# PIPIADS LIVE SEARCH (on-demand via API v3)
+# ============================================================
+# Consulta em tempo real a API do PipiAds quando usuario busca no NinjaSpy.
+# Cache em memoria de 1h por params hash para economizar creditos (20/busca).
+# Novos ads sao mergeados no unified em background para persistencia.
+
+import hashlib
+import threading
+import time as _time
+
+_pipi_live_cache = {}  # {cache_key: {"data": [...], "expires_at": ts, "total_real": int}}
+_PIPI_CACHE_TTL = 3600  # 1h
+
+def _pipi_cache_key(params: dict) -> str:
+    """Gera chave de cache estavel a partir dos params."""
+    normalized = json.dumps(params, sort_keys=True, ensure_ascii=False)
+    return hashlib.md5(normalized.encode("utf-8")).hexdigest()
+
+def _pipi_cache_get(key: str):
+    entry = _pipi_live_cache.get(key)
+    if not entry:
+        return None
+    if _time.time() > entry["expires_at"]:
+        _pipi_live_cache.pop(key, None)
+        return None
+    return entry
+
+def _pipi_cache_set(key: str, data: list, total_real: int):
+    _pipi_live_cache[key] = {
+        "data": data,
+        "expires_at": _time.time() + _PIPI_CACHE_TTL,
+        "total_real": total_real,
+    }
+    # Limpar entries expirados se cache crescer muito
+    if len(_pipi_live_cache) > 500:
+        now = _time.time()
+        expired = [k for k, v in _pipi_live_cache.items() if v["expires_at"] < now]
+        for k in expired:
+            _pipi_live_cache.pop(k, None)
+
+def _pipi_merge_background(new_ads: list):
+    """Mergeia ads novos no unified em background thread (nao bloqueia resposta)."""
+    def _merge():
+        try:
+            uf = sorted(glob.glob(f"{OUTPUT_DIR}/unified_2*.json"), reverse=True)
+            if not uf:
+                return
+            latest = uf[0]
+            with open(latest, "r", encoding="utf-8") as f:
+                existing = json.load(f)
+            ids = {a.get("ad_id", "") for a in existing if a.get("ad_id")}
+            to_add = [a for a in new_ads if a.get("ad_id") and a["ad_id"] not in ids]
+            if not to_add:
+                return
+            tmp_file = latest + ".tmp"
+            with open(tmp_file, "w", encoding="utf-8") as f:
+                json.dump(existing + to_add, f, ensure_ascii=False)
+            os.replace(tmp_file, latest)
+        except Exception:
+            pass  # nao falha se o merge nao conseguir
+    t = threading.Thread(target=_merge, daemon=True)
+    t.start()
+
+
+@app.get("/api/pipiads/search")
+def pipiads_live_search(
+    keyword: str = Query(..., description="Termo de busca (obrigatorio)"),
+    region: str = Query(None, description="US, BR, UK, FR, DE, ES, IT, MX, etc"),
+    platform: str = Query(None, description="tiktok (plat_type=1) ou facebook (plat_type=2)"),
+    sort: str = Query("relevance", description="relevance, impressions, engagement, recent"),
+    page: int = Query(1, ge=1, le=50, description="Pagina (1-50)"),
+    limit: int = Query(20, ge=1, le=50, description="Ads por pagina (max 50)"),
+    language: str = Query(None, description="pt, en, es, fr, de, etc"),
+    has_presenter: str = Query(None, description="yes ou no"),
+    days_min: int = Query(None, description="Minimo de dias rodando"),
+    days_max: int = Query(None, description="Maximo de dias rodando"),
+    nocache: bool = Query(False, description="Ignorar cache e forcar chamada live"),
+):
+    """Busca AO VIVO no PipiAds v3 — consome creditos (conta ADVANCED: 100k/mes).
+
+    Retorna ads com AI analysis completa (pipi_hook, pipi_script, pipi_tags,
+    pipi_cpm, pipi_cpa, pipi_language, pipi_has_presenter).
+
+    Cache de 1h por combinacao de params para economizar creditos.
+    Ads novos sao mergeados no unified em background para persistencia.
+    """
+    import requests as _req
+    from pipi_auto import HEADERS as _PIPI_HEADERS, normalize as _pipi_normalize
+
+    # Montar body da busca PipiAds v3
+    body = {
+        "is_participle": False,
+        "search_type": 1,
+        "extend_keywords": [{"type": 1, "keyword": keyword}],
+        "sort_type": "desc",
+        "current_page": page,
+        "page_size": limit,
+    }
+    # Sort: 999=relevance, 2=impressions, 3=engagement, 1=recent
+    sort_map = {"relevance": 999, "impressions": 2, "engagement": 3, "recent": 1}
+    body["sort"] = sort_map.get(sort, 999)
+    if region:
+        body["country"] = region.upper()
+    if platform:
+        plat_map = {"tiktok": 1, "facebook": 2}
+        body["plat_type"] = plat_map.get(platform.lower(), 0)
+    if language:
+        body["language"] = language.lower()
+    if days_min is not None:
+        body["days_min"] = str(days_min)
+    if days_max is not None:
+        body["days_max"] = str(days_max)
+
+    # Cache lookup
+    cache_key = _pipi_cache_key({
+        "k": keyword.lower(), "r": region, "p": platform, "s": sort,
+        "pg": page, "l": limit, "lang": language, "hp": has_presenter,
+        "dm": days_min, "dx": days_max,
+    })
+    if not nocache:
+        cached = _pipi_cache_get(cache_key)
+        if cached:
+            return {
+                "data": cached["data"],
+                "total": len(cached["data"]),
+                "total_available": cached["total_real"],
+                "page": page, "limit": limit,
+                "cached": True,
+                "source": "pipiads_live",
+            }
+
+    # Chamada live
+    try:
+        r = _req.post(
+            "https://www.pipiads.com/v3/api/search4/at/video/search",
+            headers=_PIPI_HEADERS, json=body, timeout=30,
+        )
+        if r.status_code != 200:
+            return {
+                "data": [], "total": 0, "error": f"PipiAds retornou {r.status_code}",
+                "page": page, "limit": limit, "cached": False,
+            }
+        result = r.json().get("result", {})
+        raw_ads = result.get("data", []) or []
+    except Exception as e:
+        return {
+            "data": [], "total": 0, "error": f"Falha na chamada PipiAds: {str(e)[:120]}",
+            "page": page, "limit": limit, "cached": False,
+        }
+
+    # Get total real (contagem total disponivel)
+    total_real = len(raw_ads)
+    try:
+        count_body = {**body, "search_model": "ALL"}
+        cr = _req.post(
+            "https://www.pipiads.com/v3/api/search4/at/video/get-adlib-search-count",
+            headers=_PIPI_HEADERS, json=count_body, timeout=15,
+        )
+        if cr.status_code == 200:
+            total_real = cr.json().get("data", {}).get("count", total_real) or total_real
+    except Exception:
+        pass
+
+    # Normalizar pro formato unified (pipi_auto.normalize ja faz isso)
+    normalized = [_pipi_normalize(item, keyword) for item in raw_ads]
+
+    # Filtros pos-processamento (campos que PipiAds nao filtra direto)
+    if has_presenter:
+        want = has_presenter.lower()
+        normalized = [a for a in normalized if (a.get("pipi_has_presenter") or "").lower() == want]
+
+    # Adicionar marcador de fonte live
+    for ad in normalized:
+        ad["live_fetched"] = True
+        ad["collected_at"] = datetime.now().isoformat()
+
+    # Cache
+    _pipi_cache_set(cache_key, normalized, total_real)
+
+    # Merge em background
+    if normalized:
+        _pipi_merge_background(normalized)
+
+    return {
+        "data": normalized,
+        "total": len(normalized),
+        "total_available": total_real,
+        "page": page,
+        "limit": limit,
+        "cached": False,
+        "source": "pipiads_live",
+    }
+
+
+@app.get("/api/pipiads/cache-stats")
+def pipiads_cache_stats():
+    """Diagnostico do cache do PipiAds live search."""
+    now = _time.time()
+    active = [k for k, v in _pipi_live_cache.items() if v["expires_at"] > now]
+    return {
+        "total_entries": len(_pipi_live_cache),
+        "active_entries": len(active),
+        "cache_ttl_seconds": _PIPI_CACHE_TTL,
+    }
+
+
+# ============================================================
 # RUN
 # ============================================================
 

@@ -2598,25 +2598,50 @@ def load_similarweb():
     return _sw_cache["data"]
 
 
+# SimilarWeb on-demand — tenta localhost primeiro (dev), depois URL publica (Render)
+_SW_ENDPOINTS = [
+    ("http://localhost:4000", None),  # Dev local
+    ("https://traffic.ninjabrhub.online", "njspy_traffic_2026_x9k"),  # VPS via SSH tunnel
+]
+
+
+def _fetch_similarweb_live(domain: str):
+    """Tenta buscar dados do SimilarWeb em servidores on-demand (local ou VPS)."""
+    import requests as req
+    for base_url, api_key in _SW_ENDPOINTS:
+        try:
+            url = f"{base_url}/api/traffic/{domain}"
+            if api_key:
+                url += f"?key={api_key}"
+            r = req.get(url, timeout=40)
+            if r.status_code == 200:
+                data = r.json()
+                if data.get("monthly_visits"):
+                    return {"live": True, "endpoint": base_url, **data}
+        except Exception:
+            continue
+    return None
+
+
 @app.get("/api/traffic/{domain}")
 def get_traffic(domain: str):
-    """Dados de tráfego de qualquer domínio via SimilarWeb"""
+    """Dados de tráfego de qualquer domínio via SimilarWeb (cache + on-demand)."""
     domains = load_similarweb()
     if domain in domains:
         return {"domain": domain, "cached": True, **domains[domain]}
+    if f"www.{domain}" in domains:
+        return {"domain": domain, "cached": True, **domains[f"www.{domain}"]}
 
-    # Try on-demand local server (if running)
-    try:
-        import requests as req
-        r = req.get(f"http://localhost:4000/api/traffic/{domain}", timeout=30)
-        if r.status_code == 200:
-            data = r.json()
-            if data.get("monthly_visits"):
-                return {"domain": domain, "cached": False, "live": True, **data}
-    except:
-        pass
+    # Try on-demand (local dev server OR VPS via SSH tunnel)
+    live_data = _fetch_similarweb_live(domain)
+    if live_data:
+        return {"domain": domain, "cached": False, **live_data}
 
-    return {"domain": domain, "cached": False, "message": "Domínio não analisado ainda. Inicie o servidor local SimilarWeb ou aguarde o próximo ciclo."}
+    return {
+        "domain": domain,
+        "cached": False,
+        "message": "Domínio não analisado ainda. SSH tunnel offline ou SimilarWeb server parado. Tente novamente em alguns minutos.",
+    }
 
 
 @app.get("/api/traffic")

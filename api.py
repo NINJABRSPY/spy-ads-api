@@ -4958,6 +4958,261 @@ def social1_proxy_health():
 
 
 # ============================================================
+# DAILY INTEL SERVICE (on-demand via HostDimer proxy)
+# ============================================================
+# Cliente busca no NinjaSpy -> Render consulta intel.ninjabrhub.online
+# (FastAPI no HostDimer porta 3020, conta paga $29/mes).
+# Retorna VSLs + Ad Creatives scaling agora em 28 nichos.
+
+_DAILYINTEL_PROXY_URL = "https://intel.ninjabrhub.online"
+_DAILYINTEL_API_KEY = "njspy_dailyintel_2026_r8t9y0"
+_DAILYINTEL_CACHE = {}
+_DAILYINTEL_CACHE_TTL = 3600  # 1h
+
+
+def _dailyintel_cache_key(params: dict) -> str:
+    normalized = json.dumps(params, sort_keys=True, ensure_ascii=False)
+    return hashlib.md5(normalized.encode("utf-8")).hexdigest()
+
+
+def _dailyintel_cache_get(key: str):
+    entry = _DAILYINTEL_CACHE.get(key)
+    if not entry:
+        return None
+    if _time.time() > entry["expires_at"]:
+        _DAILYINTEL_CACHE.pop(key, None)
+        return None
+    return entry["data"]
+
+
+def _dailyintel_cache_set(key: str, data: dict):
+    _DAILYINTEL_CACHE[key] = {"data": data, "expires_at": _time.time() + _DAILYINTEL_CACHE_TTL}
+    if len(_DAILYINTEL_CACHE) > 500:
+        now = _time.time()
+        expired = [k for k, v in _DAILYINTEL_CACHE.items() if v["expires_at"] < now]
+        for k in expired:
+            _DAILYINTEL_CACHE.pop(k, None)
+
+
+def _dailyintel_normalize(v: dict) -> dict:
+    """Converte video do Daily Intel pro formato unified."""
+    vid = str(v.get("id") or "")
+    product = v.get("product_name") or "Unknown"
+    niche = v.get("niche") or ""
+    platform_low = (v.get("platform") or "").lower()
+    report = v.get("daily_reports") or {}
+    return {
+        "ad_id": f"dailyintel_{vid}",
+        "source": "dailyintel",
+        "platform": platform_low or "unknown",
+        "advertiser": product,
+        "advertiser_image": v.get("vsl_preview_url") or v.get("ads_preview_url") or "",
+        "title": f"{product} — {niche}" if niche else product,
+        "body": (v.get("utm_campaign") or "")[:300],
+        "cta": "View Offer",
+        "image_url": v.get("ads_preview_url") or v.get("vsl_preview_url") or "",
+        "video_url": v.get("vsl_playlist_url") or v.get("ads_playlist_url") or "",
+        "landing_page": v.get("page_link") or "",
+        "first_seen": report.get("report_date") or "",
+        "last_seen": report.get("report_date") or "",
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "impressions": 0,
+        "total_engagement": 0,
+        "heat": 500 if v.get("has_clean_vsl") and v.get("has_clean_ads") else 200,
+        "ad_type": "vsl" if v.get("has_clean_vsl") else "creative",
+        "channels": platform_low,
+        "has_media": bool(v.get("vsl_preview_url") or v.get("ads_preview_url")),
+        "has_store": True,
+        "country": v.get("country") or "",
+        "collected_at": datetime.now().isoformat(),
+        "live_fetched": True,
+        # Daily Intel specific
+        "dailyintel_id": vid,
+        "dailyintel_niche": niche,
+        "dailyintel_platform": v.get("platform") or "",
+        "dailyintel_traffic_type": v.get("traffic_type") or "",
+        "dailyintel_is_paid": bool(v.get("is_paid_traffic")),
+        "dailyintel_funnel_stage": v.get("funnel_stage") or "",
+        "dailyintel_device_type": v.get("device_type") or "",
+        "dailyintel_utm_source": v.get("utm_source") or "",
+        "dailyintel_utm_medium": v.get("utm_medium") or "",
+        "dailyintel_utm_campaign": v.get("utm_campaign") or "",
+        "dailyintel_vsl_id": v.get("bunny_vsl_id") or "",
+        "dailyintel_ads_id": v.get("bunny_ads_id") or "",
+        "dailyintel_vsl_preview": v.get("vsl_preview_url") or "",
+        "dailyintel_vsl_playlist": v.get("vsl_playlist_url") or "",
+        "dailyintel_ads_preview": v.get("ads_preview_url") or "",
+        "dailyintel_ads_playlist": v.get("ads_playlist_url") or "",
+        "dailyintel_has_clean_vsl": bool(v.get("has_clean_vsl")),
+        "dailyintel_has_clean_ads": bool(v.get("has_clean_ads")),
+        "dailyintel_page_link": v.get("page_link") or "",
+        "dailyintel_checkout_link": v.get("checkout_link") or "",
+        "dailyintel_campaign_status": v.get("campaign_status") or "",
+        "dailyintel_report_date": report.get("report_date") or "",
+        "dailyintel_report_title": report.get("title") or "",
+    }
+
+
+def _dailyintel_merge_background(new_ads: list):
+    def _merge():
+        try:
+            uf = sorted(glob.glob(f"{OUTPUT_DIR}/unified_2*.json"), reverse=True)
+            if not uf:
+                return
+            latest = uf[0]
+            with open(latest, "r", encoding="utf-8") as f:
+                existing = json.load(f)
+            ids = {a.get("ad_id", "") for a in existing if a.get("ad_id")}
+            to_add = [a for a in new_ads if a.get("ad_id") and a["ad_id"] not in ids]
+            if not to_add:
+                return
+            tmp_file = latest + ".tmp"
+            with open(tmp_file, "w", encoding="utf-8") as f:
+                json.dump(existing + to_add, f, ensure_ascii=False)
+            os.replace(tmp_file, latest)
+        except Exception:
+            pass
+    threading.Thread(target=_merge, daemon=True).start()
+
+
+@app.get("/api/dailyintel/search")
+def dailyintel_live_search(
+    niche: Optional[str] = Query(None),
+    platform: Optional[str] = Query(None),
+    traffic_type: Optional[str] = Query(None),
+    is_paid: Optional[bool] = Query(None),
+    has_vsl: Optional[bool] = Query(None),
+    has_ads: Optional[bool] = Query(None),
+    funnel_stage: Optional[str] = Query(None),
+    device_type: Optional[str] = Query(None),
+    search: Optional[str] = Query(None),
+    date_from: Optional[str] = Query(None),
+    date_to: Optional[str] = Query(None),
+    sort: str = Query("date_desc"),
+    page: int = Query(1, ge=1),
+    limit: int = Query(20, ge=1, le=100),
+    nocache: bool = Query(False),
+):
+    """Busca AO VIVO em VSLs + Ad Creatives do Daily Intel Service.
+
+    ~1400 videos em 28 nichos (Weight Loss, Memory, Diabetes, ED, Vision, etc).
+    Cada item tem vsl_preview_url, ads_preview_url, page_link, checkout_link,
+    utm_campaign (identifica campanha), traffic_type, funnel_stage.
+    """
+    import requests as _req
+
+    cache_key = _dailyintel_cache_key({
+        "n": niche, "p": platform, "tt": traffic_type, "ip": is_paid,
+        "hv": has_vsl, "ha": has_ads, "fs": funnel_stage, "dt": device_type,
+        "s": search, "df": date_from, "dto": date_to, "sort": sort,
+        "pg": page, "l": limit,
+    })
+    if not nocache:
+        cached = _dailyintel_cache_get(cache_key)
+        if cached:
+            return {**cached, "cached": True, "source": "dailyintel_live"}
+
+    # Montar params pro proxy
+    params = {"page": page, "limit": limit, "sort": sort, "key": _DAILYINTEL_API_KEY}
+    if niche: params["niche"] = niche
+    if platform: params["platform"] = platform
+    if traffic_type: params["traffic_type"] = traffic_type
+    if is_paid is not None: params["is_paid"] = str(is_paid).lower()
+    if has_vsl is not None: params["has_vsl"] = str(has_vsl).lower()
+    if has_ads is not None: params["has_ads"] = str(has_ads).lower()
+    if funnel_stage: params["funnel_stage"] = funnel_stage
+    if device_type: params["device_type"] = device_type
+    if search: params["search"] = search
+    if date_from: params["date_from"] = date_from
+    if date_to: params["date_to"] = date_to
+    if nocache: params["nocache"] = "true"
+
+    try:
+        r = _req.get(f"{_DAILYINTEL_PROXY_URL}/api/search", params=params, timeout=30)
+        if r.status_code != 200:
+            return {
+                "data": [], "total": 0, "cached": False,
+                "error": f"dailyintel proxy retornou {r.status_code}",
+                "snippet": r.text[:200],
+            }
+        raw = r.json()
+    except Exception as e:
+        return {"data": [], "total": 0, "cached": False, "error": f"Falha chamando dailyintel proxy: {str(e)[:150]}"}
+
+    videos = raw.get("data") or []
+    normalized = [_dailyintel_normalize(v) for v in videos]
+
+    response = {
+        "data": normalized,
+        "total": raw.get("total", len(normalized)),
+        "total_available": raw.get("total_available"),
+        "page": page,
+        "limit": limit,
+        "pages": raw.get("pages"),
+        "cached": False,
+        "source": "dailyintel_live",
+    }
+
+    _dailyintel_cache_set(cache_key, response)
+
+    if normalized:
+        _dailyintel_merge_background(normalized)
+
+    return response
+
+
+@app.get("/api/dailyintel/niches")
+def dailyintel_niches():
+    """Facet de nichos com contagem (dropdown filter)."""
+    import requests as _req
+    try:
+        r = _req.get(f"{_DAILYINTEL_PROXY_URL}/api/niches?key={_DAILYINTEL_API_KEY}", timeout=20)
+        if r.status_code == 200:
+            return r.json()
+    except Exception as e:
+        return {"error": str(e)[:200], "data": []}
+    return {"error": f"proxy status {r.status_code}", "data": []}
+
+
+@app.get("/api/dailyintel/platforms")
+def dailyintel_platforms():
+    """Facet de platforms (Facebook, Instagram)."""
+    import requests as _req
+    try:
+        r = _req.get(f"{_DAILYINTEL_PROXY_URL}/api/platforms?key={_DAILYINTEL_API_KEY}", timeout=20)
+        if r.status_code == 200:
+            return r.json()
+    except Exception as e:
+        return {"error": str(e)[:200], "data": []}
+    return {"error": f"proxy status {r.status_code}", "data": []}
+
+
+@app.get("/api/dailyintel/health")
+def dailyintel_proxy_health():
+    """Ping do proxy Daily Intel no HostDimer."""
+    import requests as _req
+    try:
+        r = _req.get(f"{_DAILYINTEL_PROXY_URL}/health", timeout=10)
+        return {"proxy_reachable": r.status_code == 200, "proxy_response": r.json() if r.status_code == 200 else r.text[:200]}
+    except Exception as e:
+        return {"proxy_reachable": False, "error": str(e)[:200]}
+
+
+@app.get("/api/dailyintel/cache-stats")
+def dailyintel_cache_stats():
+    now = _time.time()
+    active = [k for k, v in _DAILYINTEL_CACHE.items() if v["expires_at"] > now]
+    return {
+        "total_entries": len(_DAILYINTEL_CACHE),
+        "active_entries": len(active),
+        "cache_ttl_seconds": _DAILYINTEL_CACHE_TTL,
+        "proxy_url": _DAILYINTEL_PROXY_URL,
+    }
+
+
+# ============================================================
 # RUN
 # ============================================================
 

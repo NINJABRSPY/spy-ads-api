@@ -4835,6 +4835,105 @@ def social1_live_search(
     return response
 
 
+def _social1_normalize_creator(c: dict, region: str) -> dict:
+    """Converte creator do Social1 pro formato unified do NinjaSpy."""
+    oecuid = str(c.get("creator_oecuid") or "")
+    handle = c.get("handle") or ""
+    followers = int(c.get("follower_cnt") or 0)
+    gmv = float(c.get("med_gmv_revenue") or 0)
+    return {
+        "ad_id": f"social1_creator_{oecuid}",
+        "source": "social1",
+        "platform": "tiktok",
+        "advertiser": c.get("nickname") or handle or "Creator",
+        "advertiser_image": c.get("profilePicture") or "",
+        "title": (c.get("nickname") or handle),
+        "body": f"@{handle} — {followers:,} followers — ${gmv:,.0f} GMV",
+        "cta": "View Creator",
+        "image_url": c.get("profilePicture") or "",
+        "video_url": "",
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "impressions": followers,
+        "total_engagement": int(gmv),
+        "days_running": 0,
+        "heat": min(1000, int(gmv / 1000)) if gmv else 0,
+        "ad_type": "creator",
+        "country": region.upper(),
+        "channels": "tiktok",
+        "has_media": bool(c.get("profilePicture")),
+        "has_store": True,
+        "search_keyword": "",
+        "collected_at": datetime.now().isoformat(),
+        "live_fetched": True,
+        # Social1 creator-specific
+        "social1_creator_id": oecuid,
+        "social1_handle": handle,
+        "social1_nickname": c.get("nickname") or "",
+        "social1_followers": followers,
+        "social1_gmv": gmv,
+        "social1_region": region.lower(),
+        "social1_tiktok_url": f"https://www.tiktok.com/@{handle}" if handle else "",
+    }
+
+
+@app.get("/api/social1/creators")
+def social1_live_creators(
+    region: str = Query("us", description="us, uk, br, de, fr, es, it, mx"),
+    nocache: bool = Query(False),
+):
+    """Top creators TikTok Shop AO VIVO por regiao.
+
+    Retorna creators normalizados com campos social1_* extras:
+    social1_creator_id, social1_handle, social1_nickname,
+    social1_followers, social1_gmv, social1_tiktok_url.
+
+    Cache de 1h por regiao.
+    """
+    import requests as _req
+
+    cache_key = _social1_cache_key({"type": "creators", "r": region})
+    if not nocache:
+        cached = _social1_cache_get(cache_key)
+        if cached:
+            return {**cached, "cached": True, "source": "social1_live"}
+
+    params = {"region": region, "key": _SOCIAL1_API_KEY}
+    try:
+        r = _req.get(f"{_SOCIAL1_PROXY_URL}/api/creators", params=params, timeout=60)
+        if r.status_code != 200:
+            return {
+                "data": [], "total": 0, "cached": False,
+                "error": f"social1 proxy retornou {r.status_code}",
+                "snippet": r.text[:200],
+            }
+        raw = r.json()
+    except Exception as e:
+        return {"data": [], "total": 0, "cached": False, "error": f"Falha chamando social1 proxy: {str(e)[:150]}"}
+
+    # Creators vem como raw["data"] (array direto)
+    creators_list = raw.get("data") or []
+    if not isinstance(creators_list, list):
+        creators_list = []
+
+    normalized = [_social1_normalize_creator(c, region) for c in creators_list]
+
+    response = {
+        "data": normalized,
+        "total": len(normalized),
+        "region": region,
+        "cached": False,
+        "source": "social1_live",
+    }
+    _social1_cache_set(cache_key, response)
+
+    if normalized:
+        _social1_merge_background(normalized)
+
+    return response
+
+
 @app.get("/api/social1/cache-stats")
 def social1_cache_stats():
     now = _time.time()

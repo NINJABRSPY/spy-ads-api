@@ -1,7 +1,7 @@
 {
   "source": "similarweb",
   "scraped_at": "2026-04-03T17:55:50.349Z",
-  "total_domains": 154,
+  "total_domains": 160,
   "domains": {
     "fb.me": {
       "domain": "fb.me",
@@ -405,30 +405,26 @@
     },
     "amazon.com": {
       "domain": "amazon.com",
-      "scraped_at": "2026-04-05T12:47:47.698Z",
-      "title": "Amazon Charts Top 20 Books",
+      "scraped_at": "2026-04-23T17:19:57.513Z",
+      "title": "Check out what I found on Amazon! #ShopByInterest",
       "icon": "https://site-images.similarcdn.com/image?url=amazon.com&t=2&s=1&h=43a07f575342a8fbb74cd3ca3ebf33760f2fbfbff603546fb4f7208244147dcc",
       "global_rank": 9,
       "country_rank": 4,
       "employee_range": "> 10,000",
-      "monthly_visits": 8086267373,
-      "visits_change": -0.16,
+      "monthly_visits": 7528032259,
+      "visits_change": 0.1,
       "visits_trend": [
-        3077818349,
         2719230286,
-        2289218736
+        2289218736,
+        2519583235
       ],
-      "bounce_rate": 30.4,
-      "avg_duration": 372,
-      "pages_per_visit": 9.3,
-      "unique_users": 514446254,
+      "bounce_rate": 30.6,
+      "avg_duration": 362,
+      "pages_per_visit": 9.09,
+      "unique_users": 487720485,
       "desktop_pct": 51,
       "mobile_pct": 49,
       "global_rank_trend": [
-        {
-          "month": "2025-12-01",
-          "rank": 6
-        },
         {
           "month": "2026-01-01",
           "rank": 9
@@ -436,40 +432,44 @@
         {
           "month": "2026-02-01",
           "rank": 9
+        },
+        {
+          "month": "2026-03-01",
+          "rank": 9
         }
       ],
       "traffic_sources": {
-        "direct": 4961461309,
+        "direct": 4672197105,
         "direct_pct": 62,
-        "organic_search": 1779893074,
+        "organic_search": 1679714476,
         "organic_pct": 22,
-        "paid_search": 382353321,
-        "paid_pct": 5,
-        "social": 442144933,
-        "social_pct": 6,
-        "referrals": 417975284,
-        "display_ads": 41393951,
-        "email": 8612776
+        "paid_search": 334109371,
+        "paid_pct": 4,
+        "social": 402150720,
+        "social_pct": 5,
+        "referrals": 389974042,
+        "display_ads": 42937041,
+        "email": 6949503
       },
       "geography": [
         {
           "country_code": 840,
-          "share": 87.4
+          "share": 87
         },
         {
           "country_code": 356,
-          "share": 1.1
-        },
-        {
-          "country_code": 170,
-          "share": 0.7
+          "share": 1.2
         },
         {
           "country_code": 124,
-          "share": 0.7
+          "share": 0.8
         },
         {
           "country_code": 826,
+          "share": 0.7
+        },
+        {
+          "country_code": 170,
           "share": 0.7
         }
       ],
@@ -483,10 +483,6 @@
           "name": "India"
         },
         {
-          "code": "170",
-          "name": "Colombia"
-        },
-        {
           "code": "124",
           "name": "Canada"
         },
@@ -495,16 +491,20 @@
           "name": "United Kingdom"
         },
         {
+          "code": "170",
+          "name": "Colombia"
+        },
+        {
+          "code": "276",
+          "name": "Germany"
+        },
+        {
           "code": "392",
           "name": "Japan"
         },
         {
           "code": "484",
           "name": "Mexico"
-        },
-        {
-          "code": "276",
-          "name": "Germany"
         },
         {
           "code": "76",
@@ -531,6 +531,10 @@
           "name": "France"
         },
         {
+          "code": "32",
+          "name": "Argentina"
+        },
+        {
           "code": "710",
           "name": "South Africa"
         },
@@ -539,20 +543,16 @@
           "name": "Peru"
         },
         {
-          "code": "32",
-          "name": "Argentina"
-        },
-        {
           "code": "410",
           "name": "Korea, Republic of"
         },
         {
-          "code": "608",
-          "name": "Philippines"
-        },
-        {
           "code": "218",
           "name": "Ecuador"
+        },
+        {
+          "code": "608",
+          "name": "Philippines"
         },
         {
           "code": "528",
@@ -571,20 +571,20 @@
           "name": "Chile"
         },
         {
-          "code": "792",
-          "name": "Turkey"
-        },
-        {
           "code": "188",
           "name": "Costa Rica"
         },
         {
-          "code": "586",
-          "name": "Pakistan"
+          "code": "792",
+          "name": "Turkey"
         },
         {
           "code": "214",
           "name": "Dominican Republic"
+        },
+        {
+          "code": "586",
+          "name": "Pakistan"
         },
         {
           "code": "616",
@@ -599,104 +599,96 @@
           "name": "Puerto Rico"
         },
         {
-          "code": "752",
-          "name": "Sweden"
+          "code": "862",
+          "name": "Venezuela"
         },
         {
           "code": "344",
           "name": "Hong Kong"
         },
         {
-          "code": "862",
-          "name": "Venezuela"
+          "code": "752",
+          "name": "Sweden"
         },
         {
           "code": "702",
           "name": "Singapore"
         },
         {
-          "code": "388",
-          "name": "Jamaica"
+          "code": "682",
+          "name": "Saudi Arabia"
         },
         {
           "code": "704",
           "name": "Vietnam"
         },
         {
-          "code": "682",
-          "name": "Saudi Arabia"
-        },
-        {
-          "code": "56",
-          "name": "Belgium"
+          "code": "388",
+          "name": "Jamaica"
         },
         {
           "code": "764",
           "name": "Thailand"
         },
         {
-          "code": "554",
-          "name": "New Zealand"
+          "code": "56",
+          "name": "Belgium"
         },
         {
-          "code": "566",
-          "name": "Nigeria"
+          "code": "554",
+          "name": "New Zealand"
         },
         {
           "code": "458",
           "name": "Malaysia"
         },
         {
-          "code": "620",
-          "name": "Portugal"
+          "code": "566",
+          "name": "Nigeria"
         },
         {
           "code": "818",
           "name": "Egypt"
         },
         {
-          "code": "578",
-          "name": "Norway"
-        },
-        {
-          "code": "643",
-          "name": "Russia"
-        },
-        {
           "code": "372",
           "name": "Ireland"
-        },
-        {
-          "code": "784",
-          "name": "United Arab Emirates"
         },
         {
           "code": "804",
           "name": "Ukraine"
         },
         {
-          "code": "222",
-          "name": "El Salvador"
+          "code": "643",
+          "name": "Russia"
         },
         {
-          "code": "504",
-          "name": "Morocco"
+          "code": "784",
+          "name": "United Arab Emirates"
+        },
+        {
+          "code": "578",
+          "name": "Norway"
+        },
+        {
+          "code": "620",
+          "name": "Portugal"
+        },
+        {
+          "code": "222",
+          "name": "El Salvador"
         },
         {
           "code": "756",
           "name": "Switzerland"
         },
         {
-          "code": "268",
-          "name": "Georgia"
+          "code": "504",
+          "name": "Morocco"
         },
         {
           "code": "50",
           "name": "Bangladesh"
-        },
-        {
-          "code": "246",
-          "name": "Finland"
         },
         {
           "code": "642",
@@ -705,6 +697,14 @@
         {
           "code": "780",
           "name": "Trinidad and Tobago"
+        },
+        {
+          "code": "268",
+          "name": "Georgia"
+        },
+        {
+          "code": "246",
+          "name": "Finland"
         },
         {
           "code": "40",
@@ -719,36 +719,36 @@
           "name": "Nicaragua"
         },
         {
-          "code": "320",
-          "name": "Guatemala"
-        },
-        {
           "code": "208",
           "name": "Denmark"
-        },
-        {
-          "code": "348",
-          "name": "Hungary"
         },
         {
           "code": "68",
           "name": "Bolivia"
         },
         {
+          "code": "320",
+          "name": "Guatemala"
+        },
+        {
           "code": "300",
           "name": "Greece"
+        },
+        {
+          "code": "348",
+          "name": "Hungary"
         },
         {
           "code": "404",
           "name": "Kenya"
         },
         {
-          "code": "688",
-          "name": "Serbia"
-        },
-        {
           "code": "144",
           "name": "Sri Lanka"
+        },
+        {
+          "code": "688",
+          "name": "Serbia"
         },
         {
           "code": "203",
@@ -759,6 +759,10 @@
           "name": "Paraguay"
         },
         {
+          "code": "400",
+          "name": "Jordan"
+        },
+        {
           "code": "191",
           "name": "Croatia"
         },
@@ -767,28 +771,28 @@
           "name": "Uruguay"
         },
         {
-          "code": "400",
-          "name": "Jordan"
+          "code": "100",
+          "name": "Bulgaria"
         },
         {
           "code": "703",
           "name": "Slovakia"
         },
         {
-          "code": "100",
-          "name": "Bulgaria"
+          "code": "116",
+          "name": "Cambodia"
         },
         {
-          "code": "368",
-          "name": "Iraq"
+          "code": "340",
+          "name": "Honduras"
         },
         {
           "code": "634",
           "name": "Qatar"
         },
         {
-          "code": "340",
-          "name": "Honduras"
+          "code": "368",
+          "name": "Iraq"
         },
         {
           "code": "414",
@@ -799,10 +803,6 @@
           "name": "Slovenia"
         },
         {
-          "code": "116",
-          "name": "Cambodia"
-        },
-        {
           "code": "440",
           "name": "Lithuania"
         },
@@ -811,48 +811,48 @@
           "name": "Mongolia"
         },
         {
-          "code": "112",
-          "name": "Belarus"
-        },
-        {
           "code": "12",
           "name": "Algeria"
-        },
-        {
-          "code": "288",
-          "name": "Ghana"
-        },
-        {
-          "code": "442",
-          "name": "Luxembourg"
-        },
-        {
-          "code": "512",
-          "name": "Oman"
         },
         {
           "code": "398",
           "name": "Kazakhstan"
         },
         {
+          "code": "442",
+          "name": "Luxembourg"
+        },
+        {
+          "code": "112",
+          "name": "Belarus"
+        },
+        {
+          "code": "512",
+          "name": "Oman"
+        },
+        {
           "code": "860",
           "name": "Uzbekistan"
         },
         {
-          "code": "352",
-          "name": "Iceland"
+          "code": "288",
+          "name": "Ghana"
         },
         {
           "code": "233",
           "name": "Estonia"
         },
         {
+          "code": "196",
+          "name": "Cyprus"
+        },
+        {
           "code": "428",
           "name": "Latvia"
         },
         {
-          "code": "196",
-          "name": "Cyprus"
+          "code": "352",
+          "name": "Iceland"
         },
         {
           "code": "48",
@@ -871,24 +871,24 @@
           "name": "Macedonia, the former Yugoslav Republic of"
         },
         {
-          "code": "887",
-          "name": "Yemen"
+          "code": "894",
+          "name": "Zambia"
         },
         {
           "code": "70",
           "name": "Bosnia and Herzegovina"
         },
         {
-          "code": "894",
-          "name": "Zambia"
-        },
-        {
-          "code": "480",
-          "name": "Mauritius"
+          "code": "887",
+          "name": "Yemen"
         },
         {
           "code": "498",
           "name": "Moldova"
+        },
+        {
+          "code": "480",
+          "name": "Mauritius"
         },
         {
           "code": "470",
@@ -911,40 +911,36 @@
           "name": "Ethiopia"
         },
         {
-          "code": "716",
-          "name": "Zimbabwe"
-        },
-        {
           "code": "275",
           "name": "Palestine"
         },
         {
-          "code": "96",
-          "name": "Brunei Darussalam"
+          "code": "716",
+          "name": "Zimbabwe"
         },
         {
           "code": "104",
           "name": "Myanmar"
         },
         {
-          "code": "516",
-          "name": "Namibia"
+          "code": "96",
+          "name": "Brunei Darussalam"
         },
         {
-          "code": "31",
-          "name": "Azerbaijan"
+          "code": "516",
+          "name": "Namibia"
         },
         {
           "code": "800",
           "name": "Uganda"
         },
         {
-          "code": "417",
-          "name": "Kyrgyzstan"
+          "code": "31",
+          "name": "Azerbaijan"
         },
         {
-          "code": "638",
-          "name": "Réunion"
+          "code": "417",
+          "name": "Kyrgyzstan"
         },
         {
           "code": "646",
@@ -953,6 +949,10 @@
         {
           "code": "499",
           "name": "Montenegro"
+        },
+        {
+          "code": "638",
+          "name": "Réunion"
         },
         {
           "code": "686",
@@ -1053,50 +1053,50 @@
       ],
       "visits_graph": [
         {
-          "month": "2025-12-01",
-          "visits": 3077818349
-        },
-        {
           "month": "2026-01-01",
           "visits": 2719230286
         },
         {
           "month": "2026-02-01",
           "visits": 2289218737
+        },
+        {
+          "month": "2026-03-01",
+          "visits": 2519583235
         }
       ],
       "top_referrals": [
         {
           "domain": "primevideo.com",
-          "share": 14,
-          "change": -0.25
+          "share": 13.9,
+          "change": 0.09
         },
         {
           "domain": "slickdeals.net",
-          "share": 8.4,
-          "change": -0.21
+          "share": 8.2,
+          "change": 0.06
         },
         {
           "domain": "lingxing.com",
-          "share": 6.8,
-          "change": -0.26
+          "share": 7.5,
+          "change": 0.52
         },
         {
-          "domain": "passport.amazon.jobs",
-          "share": 2.9,
-          "change": -0.02
+          "domain": "amazon.jobs",
+          "share": 3.4,
+          "change": 0.08
         },
         {
           "domain": "audible.com",
-          "share": 2.4,
-          "change": -0.18
+          "share": 2.5,
+          "change": 0.06
         }
       ],
       "social_breakdown": {
-        "Youtube": 55.1,
-        "Facebook": 12.9,
-        "Pinterest": 12.3,
-        "Reddit": 6.7,
+        "Youtube": 48.2,
+        "Facebook": 13.4,
+        "Pinterest": 13.2,
+        "Reddit": 11.7,
         "X-twitter": 6
       },
       "branded_search": {
@@ -1106,42 +1106,42 @@
       "top_keywords": [
         {
           "keyword": "prime video",
-          "share": 2,
-          "visits": 724220
+          "share": 4.9,
+          "visits": 1846700
         },
         {
           "keyword": "hentai manga",
-          "share": 1,
-          "visits": 364600
-        },
-        {
-          "keyword": "kindle",
-          "share": 0.8,
-          "visits": 276010
+          "share": 0.9,
+          "visits": 346160
         },
         {
           "keyword": "prime",
-          "share": 0.6,
-          "visits": 220600
+          "share": 0.9,
+          "visits": 344630
         },
         {
-          "keyword": "translate",
-          "share": 0.5,
-          "visits": 189980
+          "keyword": "kindle",
+          "share": 0.7,
+          "visits": 250860
+        },
+        {
+          "keyword": "project hail mary",
+          "share": 0.6,
+          "visits": 228600
         }
       ],
       "referral_categories": [
         {
           "category": "Arts and Entertainment/TV Movies and Streaming",
-          "share": 17
+          "share": 17.4
         },
         {
           "category": "E-commerce and Shopping/Coupons and Rebates",
-          "share": 12.9
+          "share": 12.7
         },
         {
           "category": "Business and Consumer Services/Shipping and Logistics",
-          "share": 8.5
+          "share": 9.2
         },
         {
           "category": "Computers Electronics and Technology/Computers Electronics and Technology",
@@ -1149,51 +1149,51 @@
         },
         {
           "category": "News and Media",
-          "share": 4.4
+          "share": 3.9
         }
       ],
       "exit_destinations": [
         {
           "domain": "google.com",
-          "share": 16.3
+          "share": 12.2
         },
         {
           "domain": "amazon.de",
-          "share": 7.3
+          "share": 7.7
         },
         {
           "domain": "amazon.ca",
-          "share": 5.7
-        },
-        {
-          "domain": "youtube.com",
-          "share": 4.8
+          "share": 6.2
         },
         {
           "domain": "amazon.work",
-          "share": 4
+          "share": 4.7
+        },
+        {
+          "domain": "youtube.com",
+          "share": 4.7
         }
       ],
       "competitors": [
         {
           "domain": "ebay.com",
-          "visits": 1925622457,
-          "change": -0.13
+          "visits": 1887854873,
+          "change": 0.1
         },
         {
           "domain": "walmart.com",
-          "visits": 1560437980,
-          "change": -0.13
+          "visits": 1420918381,
+          "change": 0.13
         },
         {
           "domain": "target.com",
-          "visits": 691486053,
-          "change": -0.14
+          "visits": 603801280,
+          "change": 0.2
         },
         {
           "domain": "aliexpress.com",
-          "visits": 1772386317,
-          "change": -0.2
+          "visits": 1700040724,
+          "change": 0.11
         }
       ]
     },
@@ -9746,7 +9746,7 @@
     },
     "ninjabr.app": {
       "domain": "ninjabr.app",
-      "scraped_at": "2026-04-07T14:43:02.894Z",
+      "scraped_at": "2026-04-22T21:12:44.920Z",
       "title": "Lovable App",
       "icon": "https://site-images.similarcdn.com/image?url=ninjabr.app&t=2&s=1&h=f290a93cb4646fd779ef6636e820c5c8c99eb616cb8b5568d569ce638636d537",
       "global_rank": 3068328,
@@ -9851,33 +9851,7 @@
         "branded_pct": 53,
         "non_branded_pct": 47
       },
-      "top_keywords": [
-        {
-          "keyword": "ninjamultilogin",
-          "share": 100,
-          "visits": 80
-        },
-        {
-          "keyword": "ninjabra",
-          "share": 0,
-          "visits": 0
-        },
-        {
-          "keyword": "multilogin ninjabr",
-          "share": 0,
-          "visits": 0
-        },
-        {
-          "keyword": "ninja multilogin download",
-          "share": 0,
-          "visits": 0
-        },
-        {
-          "keyword": "nijabr",
-          "share": 0,
-          "visits": 0
-        }
-      ],
+      "top_keywords": [],
       "referral_categories": [
         {
           "category": "Gambling/Sports Betting",
@@ -52676,6 +52650,1645 @@
         }
       ],
       "competitors": []
+    },
+    "ninjabrhub.io": {
+      "domain": "ninjabrhub.io",
+      "scraped_at": "2026-04-22T21:13:07.135Z",
+      "title": "",
+      "icon": "https://site-images.similarcdn.com/image?url=ninjabrhub.io&t=2&s=1&h=1270bb7ee862297f82248fc3f8f9779fc3e35e98082fa81950bc9e2dae6cd5a5",
+      "global_rank": 0,
+      "country_rank": 0,
+      "employee_range": "",
+      "monthly_visits": 108,
+      "visits_change": 0,
+      "visits_trend": [
+        0,
+        0,
+        108
+      ],
+      "bounce_rate": 0,
+      "avg_duration": 32,
+      "pages_per_visit": 3,
+      "unique_users": 60,
+      "desktop_pct": 0,
+      "mobile_pct": 100,
+      "global_rank_trend": [
+        {
+          "month": "2026-01-01",
+          "rank": 0
+        },
+        {
+          "month": "2026-02-01",
+          "rank": 0
+        },
+        {
+          "month": "2026-03-01",
+          "rank": 0
+        }
+      ],
+      "traffic_sources": {
+        "direct": 0,
+        "direct_pct": 0,
+        "organic_search": 0,
+        "organic_pct": 0,
+        "paid_search": 0,
+        "paid_pct": 0,
+        "social": 0,
+        "social_pct": 0,
+        "referrals": 0,
+        "display_ads": 0,
+        "email": 0
+      },
+      "geography": [
+        {
+          "country_code": 76,
+          "share": 100
+        }
+      ],
+      "geography_names": [
+        {
+          "code": "76",
+          "name": "Brazil"
+        }
+      ],
+      "visits_graph": [
+        {
+          "month": "2026-01-01",
+          "visits": 0
+        },
+        {
+          "month": "2026-02-01",
+          "visits": 0
+        },
+        {
+          "month": "2026-03-01",
+          "visits": 108
+        }
+      ],
+      "top_referrals": [],
+      "top_keywords": [],
+      "referral_categories": [],
+      "exit_destinations": [
+        {
+          "domain": "api.whatsapp.com",
+          "share": 56.2
+        },
+        {
+          "domain": "pay.hotmart.com",
+          "share": 34.6
+        },
+        {
+          "domain": "pay.kirvano.com",
+          "share": 8.5
+        },
+        {
+          "domain": "storage.googleapis.com",
+          "share": 0.6
+        }
+      ],
+      "competitors": []
+    },
+    "mercadolivre.com.br": {
+      "domain": "mercadolivre.com.br",
+      "scraped_at": "2026-04-22T21:13:27.176Z",
+      "title": "Ajuda",
+      "icon": "https://site-images.similarcdn.com/image?url=mercadolivre.com.br&t=2&s=1&h=3c340d32c96089493b635b140aff7af264665a53ecfbebb3ac01c7ed2e53fea5",
+      "global_rank": 92,
+      "country_rank": 9,
+      "employee_range": "> 10,000",
+      "monthly_visits": 822877384,
+      "visits_change": 0.1,
+      "visits_trend": [
+        288528870,
+        253946166,
+        280402346
+      ],
+      "bounce_rate": 36.9,
+      "avg_duration": 449,
+      "pages_per_visit": 7.88,
+      "unique_users": 62589055,
+      "desktop_pct": 50,
+      "mobile_pct": 50,
+      "global_rank_trend": [
+        {
+          "month": "2026-01-01",
+          "rank": 90
+        },
+        {
+          "month": "2026-02-01",
+          "rank": 92
+        },
+        {
+          "month": "2026-03-01",
+          "rank": 92
+        }
+      ],
+      "traffic_sources": {
+        "direct": 324890228,
+        "direct_pct": 39,
+        "organic_search": 319916934,
+        "organic_pct": 39,
+        "paid_search": 106433963,
+        "paid_pct": 13,
+        "social": 47114775,
+        "social_pct": 6,
+        "referrals": 21353251,
+        "display_ads": 2868847,
+        "email": 299385
+      },
+      "geography": [
+        {
+          "country_code": 76,
+          "share": 98.5
+        },
+        {
+          "country_code": 840,
+          "share": 0.4
+        },
+        {
+          "country_code": 32,
+          "share": 0.1
+        },
+        {
+          "country_code": 858,
+          "share": 0.1
+        },
+        {
+          "country_code": 484,
+          "share": 0.1
+        }
+      ],
+      "geography_names": [
+        {
+          "code": "76",
+          "name": "Brazil"
+        },
+        {
+          "code": "840",
+          "name": "United States"
+        },
+        {
+          "code": "32",
+          "name": "Argentina"
+        },
+        {
+          "code": "858",
+          "name": "Uruguay"
+        },
+        {
+          "code": "484",
+          "name": "Mexico"
+        },
+        {
+          "code": "600",
+          "name": "Paraguay"
+        },
+        {
+          "code": "620",
+          "name": "Portugal"
+        },
+        {
+          "code": "710",
+          "name": "South Africa"
+        },
+        {
+          "code": "250",
+          "name": "France"
+        },
+        {
+          "code": "756",
+          "name": "Switzerland"
+        },
+        {
+          "code": "68",
+          "name": "Bolivia"
+        },
+        {
+          "code": "826",
+          "name": "United Kingdom"
+        },
+        {
+          "code": "170",
+          "name": "Colombia"
+        },
+        {
+          "code": "276",
+          "name": "Germany"
+        },
+        {
+          "code": "152",
+          "name": "Chile"
+        },
+        {
+          "code": "724",
+          "name": "Spain"
+        },
+        {
+          "code": "380",
+          "name": "Italy"
+        },
+        {
+          "code": "604",
+          "name": "Peru"
+        },
+        {
+          "code": "591",
+          "name": "Panama"
+        },
+        {
+          "code": "528",
+          "name": "Netherlands"
+        },
+        {
+          "code": "156",
+          "name": "China"
+        },
+        {
+          "code": "372",
+          "name": "Ireland"
+        },
+        {
+          "code": "124",
+          "name": "Canada"
+        },
+        {
+          "code": "356",
+          "name": "India"
+        },
+        {
+          "code": "24",
+          "name": "Angola"
+        },
+        {
+          "code": "360",
+          "name": "Indonesia"
+        },
+        {
+          "code": "392",
+          "name": "Japan"
+        },
+        {
+          "code": "792",
+          "name": "Turkey"
+        },
+        {
+          "code": "50",
+          "name": "Bangladesh"
+        },
+        {
+          "code": "702",
+          "name": "Singapore"
+        },
+        {
+          "code": "608",
+          "name": "Philippines"
+        },
+        {
+          "code": "764",
+          "name": "Thailand"
+        },
+        {
+          "code": "616",
+          "name": "Poland"
+        },
+        {
+          "code": "36",
+          "name": "Australia"
+        },
+        {
+          "code": "188",
+          "name": "Costa Rica"
+        },
+        {
+          "code": "638",
+          "name": "Réunion"
+        },
+        {
+          "code": "643",
+          "name": "Russia"
+        },
+        {
+          "code": "578",
+          "name": "Norway"
+        },
+        {
+          "code": "704",
+          "name": "Vietnam"
+        },
+        {
+          "code": "56",
+          "name": "Belgium"
+        },
+        {
+          "code": "300",
+          "name": "Greece"
+        },
+        {
+          "code": "682",
+          "name": "Saudi Arabia"
+        },
+        {
+          "code": "862",
+          "name": "Venezuela"
+        },
+        {
+          "code": "410",
+          "name": "Korea, Republic of"
+        },
+        {
+          "code": "554",
+          "name": "New Zealand"
+        },
+        {
+          "code": "642",
+          "name": "Romania"
+        },
+        {
+          "code": "804",
+          "name": "Ukraine"
+        },
+        {
+          "code": "752",
+          "name": "Sweden"
+        },
+        {
+          "code": "158",
+          "name": "Taiwan"
+        },
+        {
+          "code": "344",
+          "name": "Hong Kong"
+        },
+        {
+          "code": "203",
+          "name": "Czech Republic"
+        },
+        {
+          "code": "320",
+          "name": "Guatemala"
+        },
+        {
+          "code": "818",
+          "name": "Egypt"
+        },
+        {
+          "code": "348",
+          "name": "Hungary"
+        },
+        {
+          "code": "112",
+          "name": "Belarus"
+        },
+        {
+          "code": "788",
+          "name": "Tunisia"
+        },
+        {
+          "code": "218",
+          "name": "Ecuador"
+        },
+        {
+          "code": "504",
+          "name": "Morocco"
+        },
+        {
+          "code": "214",
+          "name": "Dominican Republic"
+        },
+        {
+          "code": "191",
+          "name": "Croatia"
+        },
+        {
+          "code": "340",
+          "name": "Honduras"
+        },
+        {
+          "code": "12",
+          "name": "Algeria"
+        },
+        {
+          "code": "398",
+          "name": "Kazakhstan"
+        },
+        {
+          "code": "686",
+          "name": "Senegal"
+        },
+        {
+          "code": "40",
+          "name": "Austria"
+        },
+        {
+          "code": "566",
+          "name": "Nigeria"
+        },
+        {
+          "code": "400",
+          "name": "Jordan"
+        },
+        {
+          "code": "246",
+          "name": "Finland"
+        },
+        {
+          "code": "368",
+          "name": "Iraq"
+        },
+        {
+          "code": "376",
+          "name": "Israel"
+        },
+        {
+          "code": "784",
+          "name": "United Arab Emirates"
+        },
+        {
+          "code": "458",
+          "name": "Malaysia"
+        },
+        {
+          "code": "208",
+          "name": "Denmark"
+        },
+        {
+          "code": "586",
+          "name": "Pakistan"
+        },
+        {
+          "code": "100",
+          "name": "Bulgaria"
+        },
+        {
+          "code": "116",
+          "name": "Cambodia"
+        },
+        {
+          "code": "31",
+          "name": "Azerbaijan"
+        },
+        {
+          "code": "516",
+          "name": "Namibia"
+        },
+        {
+          "code": "404",
+          "name": "Kenya"
+        },
+        {
+          "code": "558",
+          "name": "Nicaragua"
+        },
+        {
+          "code": "496",
+          "name": "Mongolia"
+        },
+        {
+          "code": "417",
+          "name": "Kyrgyzstan"
+        },
+        {
+          "code": "860",
+          "name": "Uzbekistan"
+        },
+        {
+          "code": "222",
+          "name": "El Salvador"
+        },
+        {
+          "code": "894",
+          "name": "Zambia"
+        },
+        {
+          "code": "688",
+          "name": "Serbia"
+        },
+        {
+          "code": "630",
+          "name": "Puerto Rico"
+        },
+        {
+          "code": "288",
+          "name": "Ghana"
+        },
+        {
+          "code": "231",
+          "name": "Ethiopia"
+        },
+        {
+          "code": "275",
+          "name": "Palestine"
+        },
+        {
+          "code": "51",
+          "name": "Armenia"
+        },
+        {
+          "code": "268",
+          "name": "Georgia"
+        },
+        {
+          "code": "703",
+          "name": "Slovakia"
+        },
+        {
+          "code": "440",
+          "name": "Lithuania"
+        },
+        {
+          "code": "634",
+          "name": "Qatar"
+        },
+        {
+          "code": "384",
+          "name": "Côte d'Ivoire"
+        },
+        {
+          "code": "104",
+          "name": "Myanmar"
+        },
+        {
+          "code": "8",
+          "name": "Albania"
+        },
+        {
+          "code": "48",
+          "name": "Bahrain"
+        },
+        {
+          "code": "480",
+          "name": "Mauritius"
+        },
+        {
+          "code": "414",
+          "name": "Kuwait"
+        },
+        {
+          "code": "388",
+          "name": "Jamaica"
+        },
+        {
+          "code": "442",
+          "name": "Luxembourg"
+        },
+        {
+          "code": "800",
+          "name": "Uganda"
+        },
+        {
+          "code": "807",
+          "name": "Macedonia, the former Yugoslav Republic of"
+        },
+        {
+          "code": "196",
+          "name": "Cyprus"
+        },
+        {
+          "code": "144",
+          "name": "Sri Lanka"
+        },
+        {
+          "code": "524",
+          "name": "Nepal"
+        },
+        {
+          "code": "705",
+          "name": "Slovenia"
+        },
+        {
+          "code": "512",
+          "name": "Oman"
+        },
+        {
+          "code": "70",
+          "name": "Bosnia and Herzegovina"
+        },
+        {
+          "code": "499",
+          "name": "Montenegro"
+        },
+        {
+          "code": "352",
+          "name": "Iceland"
+        },
+        {
+          "code": "428",
+          "name": "Latvia"
+        },
+        {
+          "code": "780",
+          "name": "Trinidad and Tobago"
+        },
+        {
+          "code": "233",
+          "name": "Estonia"
+        },
+        {
+          "code": "96",
+          "name": "Brunei Darussalam"
+        },
+        {
+          "code": "498",
+          "name": "Moldova"
+        },
+        {
+          "code": "470",
+          "name": "Malta"
+        }
+      ],
+      "visits_graph": [
+        {
+          "month": "2026-01-01",
+          "visits": 288528871
+        },
+        {
+          "month": "2026-02-01",
+          "visits": 253946167
+        },
+        {
+          "month": "2026-03-01",
+          "visits": 280402347
+        }
+      ],
+      "top_referrals": [
+        {
+          "domain": "mercadolivre.com",
+          "share": 21.6,
+          "change": 0.14
+        },
+        {
+          "domain": "chatgpt.com",
+          "share": 10.7,
+          "change": 0.41
+        },
+        {
+          "domain": "pelando.com.br",
+          "share": 8.2,
+          "change": 0.02
+        },
+        {
+          "domain": "mercadopago.com.br",
+          "share": 5.6,
+          "change": 0.02
+        },
+        {
+          "domain": "ww55.affinity.net",
+          "share": 5.6,
+          "change": 0.13
+        }
+      ],
+      "social_breakdown": {
+        "Youtube": 58.8,
+        "Facebook": 9.5,
+        "WhatsApp Webapp": 7.5,
+        "X-twitter": 7.5,
+        "Pinterest": 6.9
+      },
+      "branded_search": {
+        "branded_pct": 32,
+        "non_branded_pct": 68
+      },
+      "top_keywords": [
+        {
+          "keyword": "iphone 16",
+          "share": 0.5,
+          "visits": 119970
+        },
+        {
+          "keyword": "poco x7 pro",
+          "share": 0.5,
+          "visits": 102140
+        },
+        {
+          "keyword": "growth",
+          "share": 0.4,
+          "visits": 98700
+        },
+        {
+          "keyword": "iphone 15 pro max",
+          "share": 0.4,
+          "visits": 84980
+        },
+        {
+          "keyword": "bicicleta eletrica",
+          "share": 0.4,
+          "visits": 82130
+        }
+      ],
+      "referral_categories": [
+        {
+          "category": "E-commerce and Shopping/Marketplace",
+          "share": 24.2
+        },
+        {
+          "category": "AI Chatbots and Tools",
+          "share": 12.5
+        },
+        {
+          "category": "E-commerce and Shopping/Coupons and Rebates",
+          "share": 11.7
+        },
+        {
+          "category": "Unknown",
+          "share": 7.6
+        },
+        {
+          "category": "Computers Electronics and Technology/Search Engines",
+          "share": 6.4
+        }
+      ],
+      "exit_destinations": [
+        {
+          "domain": "mercadolivre.com",
+          "share": 69
+        },
+        {
+          "domain": "google.com",
+          "share": 9.6
+        },
+        {
+          "domain": "mercadopago.com.br",
+          "share": 7.9
+        },
+        {
+          "domain": "whatsapp.com",
+          "share": 1.7
+        },
+        {
+          "domain": "mercadolibre.com",
+          "share": 1.5
+        }
+      ],
+      "competitors": [
+        {
+          "domain": "amazon.com.br",
+          "visits": 646569584,
+          "change": 0.14
+        },
+        {
+          "domain": "shopee.com.br",
+          "visits": 538636732,
+          "change": 0.07
+        },
+        {
+          "domain": "magazineluiza.com.br",
+          "visits": 134322865,
+          "change": 0.09
+        },
+        {
+          "domain": "kabum.com.br",
+          "visits": 38130177,
+          "change": 0.08
+        }
+      ]
+    },
+    "magalu.com.br": {
+      "domain": "magalu.com.br",
+      "scraped_at": "2026-04-22T21:13:43.188Z",
+      "title": "Magazine Luiza | Pra você é Magalu!",
+      "icon": "https://site-images.similarcdn.com/image?url=magalu.com.br&t=2&s=1&h=9fc1f01feed40bc38e82bf1af4451775589e7e9adf2387df47db9d2952301836",
+      "global_rank": 2046204,
+      "country_rank": 151802,
+      "employee_range": "",
+      "monthly_visits": 26908,
+      "visits_change": 0.22,
+      "visits_trend": [
+        6844,
+        9047,
+        11015
+      ],
+      "bounce_rate": 55.2,
+      "avg_duration": 119,
+      "pages_per_visit": 2.46,
+      "unique_users": 4147,
+      "desktop_pct": 40,
+      "mobile_pct": 60,
+      "global_rank_trend": [
+        {
+          "month": "2026-01-01",
+          "rank": 2491287
+        },
+        {
+          "month": "2026-02-01",
+          "rank": 2059266
+        },
+        {
+          "month": "2026-03-01",
+          "rank": 2046204
+        }
+      ],
+      "traffic_sources": {
+        "direct": 19347,
+        "direct_pct": 72,
+        "organic_search": 3921,
+        "organic_pct": 15,
+        "paid_search": 0,
+        "paid_pct": 0,
+        "social": 765,
+        "social_pct": 3,
+        "referrals": 2603,
+        "display_ads": 236,
+        "email": 36
+      },
+      "geography": [
+        {
+          "country_code": 76,
+          "share": 100
+        }
+      ],
+      "geography_names": [
+        {
+          "code": "76",
+          "name": "Brazil"
+        }
+      ],
+      "visits_graph": [
+        {
+          "month": "2026-01-01",
+          "visits": 6845
+        },
+        {
+          "month": "2026-02-01",
+          "visits": 9048
+        },
+        {
+          "month": "2026-03-01",
+          "visits": 11016
+        }
+      ],
+      "top_referrals": [
+        {
+          "domain": "chatgpt.com",
+          "share": 54.5,
+          "change": -1
+        },
+        {
+          "domain": "seller.magalu.com",
+          "share": 45.5,
+          "change": 0
+        }
+      ],
+      "social_breakdown": {
+        "Social": 70.5,
+        "Reddit": 29.5
+      },
+      "branded_search": {
+        "branded_pct": 55,
+        "non_branded_pct": 45
+      },
+      "top_keywords": [
+        {
+          "keyword": "seller magalu login",
+          "share": 0,
+          "visits": 0
+        },
+        {
+          "keyword": "comunidade de mulheres infoproduto",
+          "share": 0,
+          "visits": 0
+        },
+        {
+          "keyword": "magalu marketplace login",
+          "share": 0,
+          "visits": 0
+        },
+        {
+          "keyword": "magazine luiza seller",
+          "share": 0,
+          "visits": 0
+        },
+        {
+          "keyword": "politica de preivacidade lojas magalu",
+          "share": 0,
+          "visits": 0
+        }
+      ],
+      "referral_categories": [
+        {
+          "category": "AI Chatbots and Tools",
+          "share": 54.5
+        },
+        {
+          "category": "Business and Consumer Services/Online Marketing",
+          "share": 45.5
+        }
+      ],
+      "exit_destinations": [
+        {
+          "domain": "sso-corp.luizalabs.com",
+          "share": 100
+        },
+        {
+          "domain": "unimagalu.com.br",
+          "share": 0
+        }
+      ],
+      "competitors": [
+        {
+          "domain": "magazineluiza.com.br",
+          "visits": 134322865,
+          "change": 0.09
+        },
+        {
+          "domain": "luizalabs.com",
+          "visits": 2070132,
+          "change": 0.11
+        },
+        {
+          "domain": "google.com",
+          "visits": 250837040234,
+          "change": 0.11
+        },
+        {
+          "domain": "blog.fujiokadistribuidor.com.br",
+          "visits": 2585,
+          "change": -0.47
+        }
+      ]
+    },
+    "casamentoeconomico-insta.shop": {
+      "domain": "casamentoeconomico-insta.shop",
+      "scraped_at": "2026-04-23T00:13:30.057Z",
+      "title": "casamentoeconomico-insta.shop",
+      "icon": "https://site-images.similarcdn.com/image?url=casamentoeconomico-insta.shop&t=2&s=1&h=4b36372cd7cf72046ff0a0b9611c75a094e7ba186c0c5800383f38827ebfba74",
+      "global_rank": 0,
+      "country_rank": 0,
+      "employee_range": "10 - 50",
+      "monthly_visits": 978,
+      "visits_change": 0,
+      "visits_trend": [
+        852,
+        0,
+        125
+      ],
+      "bounce_rate": 59.4,
+      "avg_duration": 0,
+      "pages_per_visit": 1.41,
+      "unique_users": 295,
+      "desktop_pct": 0,
+      "mobile_pct": 100,
+      "global_rank_trend": [
+        {
+          "month": "2026-01-01",
+          "rank": 0
+        },
+        {
+          "month": "2026-02-01",
+          "rank": 0
+        },
+        {
+          "month": "2026-03-01",
+          "rank": 0
+        }
+      ],
+      "traffic_sources": {
+        "direct": 0,
+        "direct_pct": 0,
+        "organic_search": 0,
+        "organic_pct": 0,
+        "paid_search": 0,
+        "paid_pct": 0,
+        "social": 0,
+        "social_pct": 0,
+        "referrals": 0,
+        "display_ads": 0,
+        "email": 0
+      },
+      "geography": [
+        {
+          "country_code": 76,
+          "share": 100
+        }
+      ],
+      "geography_names": [
+        {
+          "code": "76",
+          "name": "Brazil"
+        }
+      ],
+      "visits_graph": [
+        {
+          "month": "2026-01-01",
+          "visits": 853
+        },
+        {
+          "month": "2026-02-01",
+          "visits": 0
+        },
+        {
+          "month": "2026-03-01",
+          "visits": 126
+        }
+      ],
+      "top_referrals": [],
+      "top_keywords": [],
+      "referral_categories": [],
+      "exit_destinations": [
+        {
+          "domain": "pay.hotmart.com",
+          "share": 65.4
+        },
+        {
+          "domain": "drive.google.com",
+          "share": 28.4
+        },
+        {
+          "domain": "kiwify.app",
+          "share": 6.2
+        }
+      ],
+      "competitors": []
+    },
+    "asimov.com": {
+      "domain": "asimov.com",
+      "scraped_at": "2026-04-23T03:02:55.465Z",
+      "title": "Kernel",
+      "icon": "https://site-images.similarcdn.com/image?url=asimov.com&t=2&s=1&h=80f6ad08b9c01b75bbad52d84c00ca6c4a02c300614ab9af9d7e34ee003e2fee",
+      "global_rank": 588560,
+      "country_rank": 298311,
+      "employee_range": "10 - 50",
+      "monthly_visits": 169395,
+      "visits_change": 0.19,
+      "visits_trend": [
+        61311,
+        49436,
+        58647
+      ],
+      "bounce_rate": 49.8,
+      "avg_duration": 72,
+      "pages_per_visit": 1.79,
+      "unique_users": 27211,
+      "desktop_pct": 33,
+      "mobile_pct": 67,
+      "global_rank_trend": [
+        {
+          "month": "2026-01-01",
+          "rank": 647285
+        },
+        {
+          "month": "2026-02-01",
+          "rank": 700480
+        },
+        {
+          "month": "2026-03-01",
+          "rank": 588560
+        }
+      ],
+      "traffic_sources": {
+        "direct": 73238,
+        "direct_pct": 43,
+        "organic_search": 60663,
+        "organic_pct": 36,
+        "paid_search": 3415,
+        "paid_pct": 2,
+        "social": 15887,
+        "social_pct": 9,
+        "referrals": 15025,
+        "display_ads": 909,
+        "email": 258
+      },
+      "geography": [
+        {
+          "country_code": 840,
+          "share": 40.4
+        },
+        {
+          "country_code": 124,
+          "share": 9.4
+        },
+        {
+          "country_code": 826,
+          "share": 9.2
+        },
+        {
+          "country_code": 356,
+          "share": 8.1
+        },
+        {
+          "country_code": 36,
+          "share": 6.2
+        }
+      ],
+      "geography_names": [
+        {
+          "code": "840",
+          "name": "United States"
+        },
+        {
+          "code": "124",
+          "name": "Canada"
+        },
+        {
+          "code": "826",
+          "name": "United Kingdom"
+        },
+        {
+          "code": "356",
+          "name": "India"
+        },
+        {
+          "code": "36",
+          "name": "Australia"
+        },
+        {
+          "code": "528",
+          "name": "Netherlands"
+        },
+        {
+          "code": "704",
+          "name": "Vietnam"
+        },
+        {
+          "code": "276",
+          "name": "Germany"
+        },
+        {
+          "code": "380",
+          "name": "Italy"
+        },
+        {
+          "code": "208",
+          "name": "Denmark"
+        },
+        {
+          "code": "250",
+          "name": "France"
+        },
+        {
+          "code": "76",
+          "name": "Brazil"
+        },
+        {
+          "code": "392",
+          "name": "Japan"
+        },
+        {
+          "code": "792",
+          "name": "Turkey"
+        },
+        {
+          "code": "724",
+          "name": "Spain"
+        },
+        {
+          "code": "360",
+          "name": "Indonesia"
+        },
+        {
+          "code": "616",
+          "name": "Poland"
+        },
+        {
+          "code": "246",
+          "name": "Finland"
+        },
+        {
+          "code": "620",
+          "name": "Portugal"
+        },
+        {
+          "code": "804",
+          "name": "Ukraine"
+        },
+        {
+          "code": "752",
+          "name": "Sweden"
+        },
+        {
+          "code": "586",
+          "name": "Pakistan"
+        },
+        {
+          "code": "376",
+          "name": "Israel"
+        }
+      ],
+      "visits_graph": [
+        {
+          "month": "2026-01-01",
+          "visits": 61312
+        },
+        {
+          "month": "2026-02-01",
+          "visits": 49436
+        },
+        {
+          "month": "2026-03-01",
+          "visits": 58647
+        }
+      ],
+      "top_referrals": [
+        {
+          "domain": "marginalrevolution.com",
+          "share": 14.3,
+          "change": 0
+        },
+        {
+          "domain": "news.ycombinator.com",
+          "share": 13.9,
+          "change": 0
+        },
+        {
+          "domain": "scientificdiscovery.dev",
+          "share": 10.8,
+          "change": -1
+        },
+        {
+          "domain": "hckrnews.com",
+          "share": 8.1,
+          "change": 0
+        },
+        {
+          "domain": "perplexity.ai",
+          "share": 8.1,
+          "change": 0
+        }
+      ],
+      "social_breakdown": {
+        "X-twitter": 58,
+        "Linkedin": 35.6,
+        "Facebook": 3.7,
+        "Social": 2.8
+      },
+      "branded_search": {
+        "branded_pct": 73,
+        "non_branded_pct": 27
+      },
+      "top_keywords": [
+        {
+          "keyword": "ipsc cell banking  in biotech",
+          "share": 33.3,
+          "visits": 100
+        },
+        {
+          "keyword": "lignées stables productrice de lv",
+          "share": 16.7,
+          "visits": 50
+        },
+        {
+          "keyword": "biotech startuos",
+          "share": 10,
+          "visits": 30
+        },
+        {
+          "keyword": "schéma lentivecteur non intégratif",
+          "share": 6.7,
+          "visits": 20
+        },
+        {
+          "keyword": "miltenyi biotec",
+          "share": 6.7,
+          "visits": 20
+        }
+      ],
+      "referral_categories": [
+        {
+          "category": "Computers Electronics and Technology/Computers Electronics and Technology",
+          "share": 17.4
+        },
+        {
+          "category": "News and Media",
+          "share": 16
+        },
+        {
+          "category": "Science and Education/Social Sciences",
+          "share": 10.8
+        },
+        {
+          "category": "Unknown",
+          "share": 9.5
+        },
+        {
+          "category": "Science and Education/Biology",
+          "share": 8.5
+        }
+      ],
+      "exit_destinations": [
+        {
+          "domain": "jobs.ashbyhq.com",
+          "share": 25.7
+        },
+        {
+          "domain": "thetransmitter.org",
+          "share": 10.9
+        },
+        {
+          "domain": "google.com",
+          "share": 8.7
+        },
+        {
+          "domain": "newscientist.com",
+          "share": 8.1
+        },
+        {
+          "domain": "fragrantica.com",
+          "share": 7.8
+        }
+      ],
+      "competitors": [
+        {
+          "domain": "3pbiovian.com",
+          "visits": 18893,
+          "change": -0.34
+        },
+        {
+          "domain": "andelynbio.com",
+          "visits": 25239,
+          "change": 0.22
+        },
+        {
+          "domain": "arrowheadpharma.com",
+          "visits": 171762,
+          "change": 0.02
+        },
+        {
+          "domain": "pelagepharma.com",
+          "visits": 143890,
+          "change": 0.78
+        }
+      ]
+    },
+    "asimov.academy": {
+      "domain": "asimov.academy",
+      "scraped_at": "2026-04-23T03:04:01.372Z",
+      "title": "Formação Analista de Dados",
+      "icon": "https://site-images.similarcdn.com/image?url=asimov.academy&t=2&s=1&h=56e058b567427fa66dd8f1c237f0c4380c53689c1ca65554e56d0fdb56274185",
+      "global_rank": 180010,
+      "country_rank": 18282,
+      "employee_range": "10 - 50",
+      "monthly_visits": 562465,
+      "visits_change": 0.5,
+      "visits_trend": [
+        188738,
+        149411,
+        224315
+      ],
+      "bounce_rate": 40.9,
+      "avg_duration": 303,
+      "pages_per_visit": 3.77,
+      "unique_users": 66504,
+      "desktop_pct": 67,
+      "mobile_pct": 33,
+      "global_rank_trend": [
+        {
+          "month": "2026-01-01",
+          "rank": 210051
+        },
+        {
+          "month": "2026-02-01",
+          "rank": 228145
+        },
+        {
+          "month": "2026-03-01",
+          "rank": 180010
+        }
+      ],
+      "traffic_sources": {
+        "direct": 268111,
+        "direct_pct": 48,
+        "organic_search": 190996,
+        "organic_pct": 34,
+        "paid_search": 43036,
+        "paid_pct": 8,
+        "social": 40625,
+        "social_pct": 7,
+        "referrals": 16763,
+        "display_ads": 2611,
+        "email": 323
+      },
+      "geography": [
+        {
+          "country_code": 76,
+          "share": 89.3
+        },
+        {
+          "country_code": 620,
+          "share": 3.9
+        },
+        {
+          "country_code": 24,
+          "share": 2.6
+        },
+        {
+          "country_code": 840,
+          "share": 1.7
+        },
+        {
+          "country_code": 826,
+          "share": 0.6
+        }
+      ],
+      "geography_names": [
+        {
+          "code": "76",
+          "name": "Brazil"
+        },
+        {
+          "code": "620",
+          "name": "Portugal"
+        },
+        {
+          "code": "24",
+          "name": "Angola"
+        },
+        {
+          "code": "840",
+          "name": "United States"
+        },
+        {
+          "code": "826",
+          "name": "United Kingdom"
+        },
+        {
+          "code": "392",
+          "name": "Japan"
+        },
+        {
+          "code": "724",
+          "name": "Spain"
+        },
+        {
+          "code": "124",
+          "name": "Canada"
+        },
+        {
+          "code": "36",
+          "name": "Australia"
+        },
+        {
+          "code": "528",
+          "name": "Netherlands"
+        },
+        {
+          "code": "276",
+          "name": "Germany"
+        },
+        {
+          "code": "152",
+          "name": "Chile"
+        },
+        {
+          "code": "170",
+          "name": "Colombia"
+        },
+        {
+          "code": "32",
+          "name": "Argentina"
+        },
+        {
+          "code": "372",
+          "name": "Ireland"
+        },
+        {
+          "code": "250",
+          "name": "France"
+        }
+      ],
+      "visits_graph": [
+        {
+          "month": "2026-01-01",
+          "visits": 188738
+        },
+        {
+          "month": "2026-02-01",
+          "visits": 149411
+        },
+        {
+          "month": "2026-03-01",
+          "visits": 224315
+        }
+      ],
+      "top_referrals": [
+        {
+          "domain": "hotmart.com",
+          "share": 83.7,
+          "change": 0.22
+        },
+        {
+          "domain": "chatgpt.com",
+          "share": 4.3,
+          "change": 0.33
+        },
+        {
+          "domain": "tally.so",
+          "share": 2.5,
+          "change": 0
+        },
+        {
+          "domain": "app.clickup.com",
+          "share": 2.3,
+          "change": 0.33
+        },
+        {
+          "domain": "github.com",
+          "share": 1.7,
+          "change": -1
+        }
+      ],
+      "social_breakdown": {
+        "Youtube": 62.9,
+        "Instagram": 18.8,
+        "WhatsApp Webapp": 7.2,
+        "Facebook": 6.2,
+        "Linkedin": 4.5
+      },
+      "branded_search": {
+        "branded_pct": 43,
+        "non_branded_pct": 57
+      },
+      "top_keywords": [
+        {
+          "keyword": "ia academy",
+          "share": 9.5,
+          "visits": 90
+        },
+        {
+          "keyword": "curso n8n",
+          "share": 7.4,
+          "visits": 70
+        },
+        {
+          "keyword": "curso de python",
+          "share": 7.4,
+          "visits": 70
+        },
+        {
+          "keyword": "cursos online data science ai",
+          "share": 6.3,
+          "visits": 60
+        },
+        {
+          "keyword": "curso de programação",
+          "share": 5.3,
+          "visits": 50
+        }
+      ],
+      "referral_categories": [
+        {
+          "category": "Business and Consumer Services/Online Marketing",
+          "share": 72.5
+        },
+        {
+          "category": "Computers Electronics and Technology/Computers Electronics and Technology",
+          "share": 7.7
+        },
+        {
+          "category": "Computers Electronics and Technology/Search Engines",
+          "share": 7.5
+        },
+        {
+          "category": "AI Chatbots and Tools",
+          "share": 4.9
+        },
+        {
+          "category": "Computers Electronics and Technology/Graphics Multimedia and Web Design",
+          "share": 2.7
+        }
+      ],
+      "exit_destinations": [
+        {
+          "domain": "google.com",
+          "share": 72
+        },
+        {
+          "domain": "whatsapp.com",
+          "share": 13.2
+        },
+        {
+          "domain": "discord.com",
+          "share": 5.3
+        },
+        {
+          "domain": "pay.hotmart.com",
+          "share": 4
+        },
+        {
+          "domain": "youtube.com",
+          "share": 1.4
+        }
+      ],
+      "competitors": [
+        {
+          "domain": "datascienceacademy.com.br",
+          "visits": 1526097,
+          "change": 0.05
+        },
+        {
+          "domain": "designcode.io",
+          "visits": 499604,
+          "change": 0.05
+        },
+        {
+          "domain": "code-basics.com",
+          "visits": 531935,
+          "change": 0.21
+        },
+        {
+          "domain": "ui.dev",
+          "visits": 253340,
+          "change": -0.78
+        }
+      ]
     }
   }
 }

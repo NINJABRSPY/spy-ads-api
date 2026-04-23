@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 from datetime import datetime
 from urllib.parse import urlparse
+from typing import Optional
 
 try:
     from fastapi import FastAPI, Query
@@ -4647,6 +4648,214 @@ def pipiads_cache_stats():
         "active_entries": len(active),
         "cache_ttl_seconds": _PIPI_CACHE_TTL,
     }
+
+
+# ============================================================
+# SOCIAL1 LIVE SEARCH (on-demand via HostDimer proxy)
+# ============================================================
+# Consulta em tempo real a Social1 via proxy Playwright no HostDimer.
+# Proxy roda em https://social1.ninjabrhub.online (porta 3019 interna).
+# Mesmo pattern do PipiAds: cache 1h, background merge no unified.
+
+_SOCIAL1_PROXY_URL = "https://social1.ninjabrhub.online"
+_SOCIAL1_API_KEY = "njspy_social1_2026_q7w8e9"
+_SOCIAL1_CACHE = {}  # {cache_key: {"data": {...}, "expires_at": ts}}
+_SOCIAL1_CACHE_TTL = 3600  # 1h
+
+
+def _social1_cache_key(params: dict) -> str:
+    normalized = json.dumps(params, sort_keys=True, ensure_ascii=False)
+    return hashlib.md5(normalized.encode("utf-8")).hexdigest()
+
+
+def _social1_cache_get(key: str):
+    entry = _SOCIAL1_CACHE.get(key)
+    if not entry:
+        return None
+    if _time.time() > entry["expires_at"]:
+        _SOCIAL1_CACHE.pop(key, None)
+        return None
+    return entry["data"]
+
+
+def _social1_cache_set(key: str, data: dict):
+    _SOCIAL1_CACHE[key] = {"data": data, "expires_at": _time.time() + _SOCIAL1_CACHE_TTL}
+    if len(_SOCIAL1_CACHE) > 500:
+        now = _time.time()
+        expired = [k for k, v in _SOCIAL1_CACHE.items() if v["expires_at"] < now]
+        for k in expired:
+            _SOCIAL1_CACHE.pop(k, None)
+
+
+def _social1_normalize_product(p: dict, keyword: str, region: str) -> dict:
+    """Converte produto do Social1 pro formato unified do NinjaSpy."""
+    product_id = str(p.get("product_id") or "")
+    timeseries = p.get("timeseries") or []
+    return {
+        "ad_id": f"social1_product_{product_id}",
+        "source": "social1",
+        "platform": "tiktok",
+        "advertiser": p.get("shop_name") or "Shop " + str(p.get("shop_id") or ""),
+        "advertiser_image": p.get("shop_image_url") or "",
+        "title": (p.get("product_name") or "")[:200],
+        "body": (p.get("product_name") or "")[:500],
+        "cta": "Shop Now",
+        "image_url": p.get("product_image_url") or "",
+        "video_url": "",
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "impressions": int(p.get("views") or 0),
+        "total_engagement": int(p.get("units_sold") or 0),
+        "days_running": len(timeseries),
+        "heat": int(p.get("creator_count") or 0),
+        "ad_type": "product",
+        "country": region.upper(),
+        "channels": "tiktok",
+        "has_media": bool(p.get("product_image_url")),
+        "has_store": True,
+        "search_keyword": keyword or "",
+        "collected_at": datetime.now().isoformat(),
+        "live_fetched": True,
+        # Social1-specific
+        "social1_product_id": product_id,
+        "social1_shop_id": str(p.get("shop_id") or ""),
+        "social1_gmv": float(p.get("gmv") or 0),
+        "social1_units_sold": int(p.get("units_sold") or 0),
+        "social1_views": int(p.get("views") or 0),
+        "social1_video_count": int(p.get("video_count") or 0),
+        "social1_creator_count": int(p.get("creator_count") or 0),
+        "social1_price": float(p.get("price_value") or 0),
+        "social1_region": region.lower(),
+        "social1_timeseries": timeseries,
+    }
+
+
+def _social1_merge_background(new_ads: list):
+    """Mergeia ads no unified em background (nao bloqueia resposta)."""
+    def _merge():
+        try:
+            uf = sorted(glob.glob(f"{OUTPUT_DIR}/unified_2*.json"), reverse=True)
+            if not uf:
+                return
+            latest = uf[0]
+            with open(latest, "r", encoding="utf-8") as f:
+                existing = json.load(f)
+            ids = {a.get("ad_id", "") for a in existing if a.get("ad_id")}
+            to_add = [a for a in new_ads if a.get("ad_id") and a["ad_id"] not in ids]
+            if not to_add:
+                return
+            tmp_file = latest + ".tmp"
+            with open(tmp_file, "w", encoding="utf-8") as f:
+                json.dump(existing + to_add, f, ensure_ascii=False)
+            os.replace(tmp_file, latest)
+        except Exception:
+            pass
+    threading.Thread(target=_merge, daemon=True).start()
+
+
+@app.get("/api/social1/search")
+def social1_live_search(
+    keyword: Optional[str] = Query(None, description="Termo de busca (opcional — se vazio, retorna top)"),
+    region: str = Query("us", description="us, uk, br, de, fr, es, it, mx"),
+    days: int = Query(7, ge=1, le=30),
+    page: int = Query(1, ge=1, le=50),
+    limit: int = Query(20, ge=1, le=50),
+    shop_id: Optional[str] = Query(None),
+    category: Optional[str] = Query(None),
+    sort: Optional[str] = Query(None, description="gmv, units_sold, views (server-side TBD)"),
+    nocache: bool = Query(False),
+):
+    """Busca AO VIVO produtos TikTok Shop via Social1 no HostDimer.
+
+    Retorna produtos normalizados no formato unified com campos social1_* extras:
+    social1_gmv, social1_units_sold, social1_views, social1_video_count,
+    social1_creator_count, social1_timeseries (dados diarios).
+
+    Cache de 1h. Merge em background pro unified.
+    """
+    import requests as _req
+
+    cache_key = _social1_cache_key({
+        "k": (keyword or "").lower(), "r": region, "d": days,
+        "pg": page, "l": limit, "s": shop_id, "c": category, "sort": sort,
+    })
+    if not nocache:
+        cached = _social1_cache_get(cache_key)
+        if cached:
+            return {**cached, "cached": True, "source": "social1_live"}
+
+    # Proxy call
+    params = {
+        "region": region,
+        "days": days,
+        "page": page,
+        "limit": limit,
+        "key": _SOCIAL1_API_KEY,
+    }
+    if keyword:
+        params["keyword"] = keyword
+    if shop_id:
+        params["shop_id"] = shop_id
+    if category:
+        params["category"] = category
+    if sort:
+        params["sort"] = sort
+
+    try:
+        r = _req.get(f"{_SOCIAL1_PROXY_URL}/api/search", params=params, timeout=60)
+        if r.status_code != 200:
+            return {
+                "data": [], "total": 0, "cached": False,
+                "error": f"social1 proxy retornou {r.status_code}",
+                "snippet": r.text[:200],
+            }
+        raw = r.json()
+    except Exception as e:
+        return {"data": [], "total": 0, "cached": False, "error": f"Falha chamando social1 proxy: {str(e)[:150]}"}
+
+    # Normalizar
+    results = raw.get("data", {}).get("results", []) or []
+    normalized = [_social1_normalize_product(p, keyword or "", region) for p in results]
+
+    response = {
+        "data": normalized,
+        "total": len(normalized),
+        "page": page,
+        "limit": limit,
+        "cached": False,
+        "source": "social1_live",
+    }
+
+    _social1_cache_set(cache_key, response)
+
+    if normalized:
+        _social1_merge_background(normalized)
+
+    return response
+
+
+@app.get("/api/social1/cache-stats")
+def social1_cache_stats():
+    now = _time.time()
+    active = [k for k, v in _SOCIAL1_CACHE.items() if v["expires_at"] > now]
+    return {
+        "total_entries": len(_SOCIAL1_CACHE),
+        "active_entries": len(active),
+        "cache_ttl_seconds": _SOCIAL1_CACHE_TTL,
+        "proxy_url": _SOCIAL1_PROXY_URL,
+    }
+
+
+@app.get("/api/social1/health")
+def social1_proxy_health():
+    """Ping do proxy Social1 no HostDimer."""
+    import requests as _req
+    try:
+        r = _req.get(f"{_SOCIAL1_PROXY_URL}/health", timeout=10)
+        return {"proxy_reachable": r.status_code == 200, "proxy_response": r.json() if r.status_code == 200 else r.text[:200]}
+    except Exception as e:
+        return {"proxy_reachable": False, "error": str(e)[:200]}
 
 
 # ============================================================

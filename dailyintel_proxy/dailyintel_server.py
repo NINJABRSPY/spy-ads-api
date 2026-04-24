@@ -644,6 +644,88 @@ def native_stats(
     return _state["native_cache"].stats()
 
 
+@app.get("/api/native-download/{row_id}")
+def native_download(
+    row_id: str,
+    x_api_key: Optional[str] = Header(None),
+    key: Optional[str] = Query(None),
+):
+    """Stream MP4 SEM WATERMARK via ffmpeg remux do HLS nativo.
+
+    Pega master_url do cache nativo (ConverteAI/Vidalytics), usa ffmpeg pra
+    remuxar os segmentos .ts em MP4 sem re-encoding (-c copy = rapido), e
+    streama a resposta.
+
+    Se nao tem cache nativo, retorna 404 — consumidor deve chamar
+    /api/native/{row_id} antes pra popular cache.
+    """
+    _check_api_key(x_api_key, key)
+    if not _NATIVE_AVAILABLE or not _state["native_cache"]:
+        raise HTTPException(status_code=503, detail="native cache indisponivel")
+
+    entry = _state["native_cache"].get(row_id)
+    if not entry or not entry.get("master_url"):
+        raise HTTPException(
+            status_code=404,
+            detail="video nativo nao foi extraido ainda — chame /api/native/{row_id} primeiro",
+        )
+
+    master_url = entry["master_url"]
+    player_name = entry.get("player", "native")
+
+    # Buscar video info pra nome do arquivo
+    video = _find_video_by_id(row_id)
+    product = (video or {}).get("product_name") or "video"
+    # Nome limpo pro filename
+    import re as _re
+    safe_product = _re.sub(r"[^A-Za-z0-9_-]", "_", product)[:50]
+    filename = f"{safe_product}_vsl_720p.mp4"
+
+    import subprocess
+    import shlex
+
+    # ffmpeg remux: HLS → MP4 sem re-encoding (rapido, mesma qualidade)
+    # -c copy = copia streams sem processar (fast, ~quasi-real-time)
+    # -movflags frag_keyframe+empty_moov = fragmented MP4 pra streaming
+    # -f mp4 pipe:1 = output na stdout em MP4
+    cmd = [
+        "ffmpeg", "-y",
+        "-loglevel", "error",
+        "-i", master_url,
+        "-c", "copy",
+        "-bsf:a", "aac_adtstoasc",   # fix pra AAC em HLS
+        "-movflags", "frag_keyframe+empty_moov+default_base_moof",
+        "-f", "mp4",
+        "pipe:1",
+    ]
+
+    def stream_ffmpeg():
+        proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=0)
+        try:
+            while True:
+                chunk = proc.stdout.read(64 * 1024)
+                if not chunk:
+                    break
+                yield chunk
+        finally:
+            try:
+                proc.terminate()
+                proc.wait(timeout=3)
+            except Exception:
+                proc.kill()
+
+    return StreamingResponse(
+        stream_ffmpeg(),
+        media_type="video/mp4",
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"',
+            "X-Native-Player": player_name,
+            "Referrer-Policy": "no-referrer",
+            "Cache-Control": "public, max-age=3600",
+        },
+    )
+
+
 @app.post("/api/session/close")
 def session_close(
     x_api_key: Optional[str] = Header(None),

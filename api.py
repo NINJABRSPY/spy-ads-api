@@ -150,6 +150,7 @@ PUBLIC_PATH_PREFIXES = [
     "/api/dailyintel/native-player/",
     "/api/dailyintel/thumb/",
     "/api/dailyintel/download/",
+    "/api/dailyintel/native-download/",
     "/api/dailyintel/session/close",
 ]
 
@@ -5037,6 +5038,9 @@ def _dailyintel_normalize(v: dict) -> dict:
     # Download direto — use em <a href download>
     vsl_download = f"{base}/api/dailyintel/download/{vid}?fileType=vsl" if vid else ""
     ads_download = f"{base}/api/dailyintel/download/{vid}?fileType=ads" if vid else ""
+    # Download NATIVO (sem watermark, ffmpeg remux do HLS original)
+    # Fallback auto pro download Bunny se nao tiver extracao nativa
+    vsl_native_download = f"{base}/api/dailyintel/native-download/{vid}" if vid else ""
 
     return {
         "ad_id": f"dailyintel_{vid}",
@@ -5084,7 +5088,8 @@ def _dailyintel_normalize(v: dict) -> dict:
         "dailyintel_vsl_player": vsl_player,  # Player Bunny CDN (fallback, COM watermark)
         "dailyintel_vsl_native_player": vsl_native_player,  # Player HLS nativo (SEM watermark)
         "dailyintel_ads_player": ads_player,
-        "dailyintel_vsl_download": vsl_download,  # <a href download> — baixa MP4
+        "dailyintel_vsl_download": vsl_download,  # MP4 COM watermark (Bunny)
+        "dailyintel_vsl_native_download": vsl_native_download,  # MP4 SEM watermark (ffmpeg remux HLS)
         "dailyintel_ads_download": ads_download,
         "dailyintel_stream_endpoint": stream_endpoint,  # POST {rowId, fileType} → {embedUrl, downloadUrl}
         "dailyintel_has_clean_vsl": bool(v.get("has_clean_vsl")),
@@ -5276,6 +5281,76 @@ def dailyintel_stream(body: dict):
         return r.json()
     except Exception as e:
         return {"error": f"falha: {str(e)[:150]}"}
+
+
+@app.get("/api/dailyintel/native-download/{row_id}")
+def dailyintel_native_download(row_id: str):
+    """Download do VSL SEM WATERMARK via HLS nativo (ffmpeg remux streaming).
+
+    Precisa do cache nativo populado — se nao tiver, tenta extrair on-the-fly.
+
+    Uso: <a href="/api/dailyintel/native-download/{id}" download referrerpolicy="no-referrer">Baixar</a>
+    """
+    import requests as _req
+    from fastapi.responses import StreamingResponse, RedirectResponse
+    if str(row_id).startswith("dailyintel_"):
+        row_id = str(row_id)[len("dailyintel_"):]
+
+    # Garantir que extracao nativa foi feita (cache-first)
+    try:
+        r0 = _req.get(
+            f"{_DAILYINTEL_PROXY_URL}/api/native/{row_id}",
+            params={"key": _DAILYINTEL_API_KEY},
+            timeout=60,
+        )
+        data0 = r0.json()
+        if not data0.get("master_url"):
+            # Sem nativo — fallback pro download Bunny (com watermark)
+            return RedirectResponse(
+                url=f"/api/dailyintel/download/{row_id}?fileType=vsl",
+                status_code=302,
+            )
+    except Exception:
+        return RedirectResponse(
+            url=f"/api/dailyintel/download/{row_id}?fileType=vsl",
+            status_code=302,
+        )
+
+    # Stream ffmpeg remux via HostDimer
+    def proxy_stream():
+        with _req.get(
+            f"{_DAILYINTEL_PROXY_URL}/api/native-download/{row_id}",
+            params={"key": _DAILYINTEL_API_KEY},
+            stream=True,
+            timeout=(10, 300),  # 10s connect, 5min total
+        ) as rr:
+            for chunk in rr.iter_content(chunk_size=64 * 1024):
+                if chunk:
+                    yield chunk
+
+    # Pegar filename do upstream
+    try:
+        head = _req.head(
+            f"{_DAILYINTEL_PROXY_URL}/api/native-download/{row_id}",
+            params={"key": _DAILYINTEL_API_KEY},
+            timeout=15,
+            allow_redirects=False,
+        )
+        cd = head.headers.get("Content-Disposition", "")
+        import re as _re
+        m = _re.search(r'filename="([^"]+)"', cd)
+        filename = m.group(1) if m else f"{row_id}_vsl_720p.mp4"
+    except Exception:
+        filename = f"{row_id}_vsl_720p.mp4"
+
+    return StreamingResponse(
+        proxy_stream(),
+        media_type="video/mp4",
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"',
+            "Referrer-Policy": "no-referrer",
+        },
+    )
 
 
 @app.get("/api/dailyintel/native-player/{row_id}")

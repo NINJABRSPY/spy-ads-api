@@ -1,0 +1,22 @@
+[Unit]
+Description=NinjaSpy AdPlexity Native Proxy (FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/ninja-proxy/adplexity
+Environment="ADPLEXITY_PORT=3021"
+Environment="ADPLEXITY_API_KEY=njspy_adplexity_2026_m3k7r2"
+Environment="ADPLEXITY_COOKIES_FILE=/opt/ninja-proxy/adplexity/cookies.json"
+Environment="ADPLEXITY_CACHE_TTL=900"
+Environment="ADPLEXITY_LOG=INFO"
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/usr/bin/python3 /opt/ninja-proxy/adplexity/adplexity_server.py
+Restart=on-failure
+RestartSec=15
+StandardOutput=append:/var/log/ninja-adplexity.log
+StandardError=append:/var/log/ninja-adplexity.log
+
+[Install]
+WantedBy=multi-user.target

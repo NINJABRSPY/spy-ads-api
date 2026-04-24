@@ -152,6 +152,7 @@ PUBLIC_PATH_PREFIXES = [
     "/api/dailyintel/download/",
     "/api/dailyintel/native-download/",
     "/api/dailyintel/session/close",
+    "/api/adplexity/thumb/",
 ]
 
 # Cache de tokens validados (evita chamar Supabase a cada request)
@@ -5596,6 +5597,310 @@ def dailyintel_cache_stats():
         "active_entries": len(active),
         "cache_ttl_seconds": _DAILYINTEL_CACHE_TTL,
         "proxy_url": _DAILYINTEL_PROXY_URL,
+    }
+
+
+# ============================================================
+# ADPLEXITY NATIVE (on-demand via HostDimer proxy)
+# ============================================================
+# native.ninjabrhub.online -> conta paga ninjabr_forum (22.9M ads nativos)
+# Proxy mantem cookie laravel_session + XSRF-TOKEN
+
+_ADPLEXITY_PROXY_URL = "https://native.ninjabrhub.online"
+_ADPLEXITY_API_KEY = "njspy_adplexity_2026_m3k7r2"
+_ADPLEXITY_CACHE = {}
+_ADPLEXITY_CACHE_TTL = 1800  # 30min
+
+
+def _adplexity_cache_key(params: dict) -> str:
+    normalized = json.dumps(params, sort_keys=True, ensure_ascii=False)
+    return hashlib.md5(normalized.encode("utf-8")).hexdigest()
+
+
+def _adplexity_cache_get(key: str):
+    entry = _ADPLEXITY_CACHE.get(key)
+    if not entry:
+        return None
+    if _time.time() > entry["expires_at"]:
+        _ADPLEXITY_CACHE.pop(key, None)
+        return None
+    return entry["data"]
+
+
+def _adplexity_cache_set(key: str, data: dict, ttl: Optional[int] = None):
+    _ADPLEXITY_CACHE[key] = {
+        "data": data,
+        "expires_at": _time.time() + (ttl or _ADPLEXITY_CACHE_TTL),
+    }
+    if len(_ADPLEXITY_CACHE) > 500:
+        now = _time.time()
+        for k in [k for k, v in _ADPLEXITY_CACHE.items() if v["expires_at"] < now]:
+            _ADPLEXITY_CACHE.pop(k, None)
+
+
+def _adplexity_normalize_ad(a: dict, sub_mode: str = "ad") -> dict:
+    """Converte ad do AdPlexity pro formato unified NinjaSpy."""
+    ad_id = str(a.get("id") or a.get("lp_id") or "")
+    title = a.get("title_en") or a.get("title") or ""
+    desc = a.get("description_en") or a.get("description") or ""
+    thumb = a.get("thumb_url") or a.get("image_url") or ""
+    image = a.get("image_url") or thumb
+    # Normalizar URL — Render proxy da thumb (ja tem /api/adplexity/thumb/)
+    import re as _re
+    thumb_hash = ""
+    m = _re.search(r"/native/([^/]+?)(;[^;]*)?$", thumb or "")
+    if m:
+        thumb_hash = m.group(1)
+        thumb = f"https://spy-ads-api.onrender.com/api/adplexity/thumb/{thumb_hash}"
+        image = thumb
+
+    countries = a.get("countries") or []
+    country_str = ",".join(countries[:5]) if isinstance(countries, list) else ""
+    return {
+        "ad_id": f"adplexity_{ad_id}",
+        "source": "adplexity_native",
+        "platform": "native",
+        "advertiser": title[:60] or "Native Ad",
+        "advertiser_image": thumb,
+        "title": title[:200],
+        "body": desc[:500] if desc else title[:500],
+        "cta": "",
+        "image_url": image,
+        "video_url": "",
+        "landing_page": "",
+        "first_seen": a.get("first_seen") or "",
+        "last_seen": a.get("last_seen") or "",
+        "is_active": True,
+        "likes": 0,
+        "comments": 0,
+        "shares": 0,
+        "impressions": int(a.get("hits_total") or a.get("hits") or 0),
+        "total_engagement": int(a.get("hits_total") or 0),
+        "days_running": int(a.get("days_total") or a.get("days") or 0),
+        "heat": min(1000, int((a.get("hits_total") or 0) // 100)),
+        "ad_type": "image" if sub_mode == "ad" else "landing_page",
+        "country": country_str,
+        "all_countries": countries,
+        "channels": "native",
+        "has_media": bool(thumb),
+        "has_store": False,
+        "total_countries": len(countries) if isinstance(countries, list) else 0,
+        "collected_at": datetime.now().isoformat(),
+        "live_fetched": True,
+        # AdPlexity-specific
+        "adplexity_id": ad_id,
+        "adplexity_lp_id": str(a.get("lp_id") or "") if a.get("lp_id") else "",
+        "adplexity_sub_mode": sub_mode,
+        "adplexity_type": a.get("type"),
+        "adplexity_title_orig": a.get("title_orig") or "",
+        "adplexity_description_orig": a.get("description_orig") or "",
+        "adplexity_networks": a.get("networks") or [],
+        "adplexity_aff_networks": a.get("aff_networks") or [],
+        "adplexity_devices": a.get("devices") or [],
+        "adplexity_connections": a.get("connections") or [],
+        "adplexity_tracking_tools": a.get("tracking_tools") or [],
+        "adplexity_publishers_count": int(a.get("publishers_count") or 0),
+        "adplexity_image_sizes": a.get("image_sizes") or {},
+        "adplexity_thumb_hash": thumb_hash,
+        # YouTube (quando aplicavel)
+        "adplexity_youtube_id": a.get("youtube_id"),
+        "adplexity_youtube_views": a.get("youtube_views_count"),
+        "adplexity_youtube_likes": a.get("youtube_likes_count"),
+    }
+
+
+def _adplexity_get(path: str, params: dict = None, timeout: int = 30):
+    import requests as _req
+    p = dict(params or {})
+    p["key"] = _ADPLEXITY_API_KEY
+    return _req.get(f"{_ADPLEXITY_PROXY_URL}{path}", params=p, timeout=timeout)
+
+
+@app.get("/api/adplexity/search")
+def adplexity_search(
+    query: str = Query("", description="Termo de busca"),
+    sub_mode: str = Query("ad", description="ad (creatives) | lp (landing pages)"),
+    mode: str = Query("keyword"),
+    query_subject: str = Query("keyword.ad_or_lp", description="keyword.ad_or_lp | keyword.ad | keyword.lp | keyword.headline | keyword.description"),
+    order: str = Query("newest"),
+    date_from: Optional[str] = Query(None),
+    date_to: Optional[str] = Query(None),
+    days_min: int = Query(1, ge=0),
+    start: int = Query(0, ge=0),
+    count: int = Query(20, ge=1, le=100),
+    countries: Optional[str] = Query(None, description="codigos iso2 separados por virgula (US,BR)"),
+    networks: Optional[str] = Query(None, description="IDs (ver /api/adplexity/filters)"),
+    ad_categories: Optional[str] = Query(None),
+    aff_networks: Optional[str] = Query(None),
+    devices: Optional[str] = Query(None),
+    languages: Optional[str] = Query(None),
+    nocache: bool = Query(False),
+):
+    """Busca ads nativos ou landing pages via AdPlexity (22.9M ads).
+
+    Dados ricos: hits (views), days_running, publishers_count, networks,
+    countries, aff_networks, devices, tracking_tools.
+    """
+    cache_key = _adplexity_cache_key({
+        "q": query, "sm": sub_mode, "m": mode, "qs": query_subject, "o": order,
+        "df": date_from, "dt": date_to, "dm": days_min,
+        "s": start, "c": count,
+        "co": countries, "n": networks, "ac": ad_categories,
+        "an": aff_networks, "d": devices, "l": languages,
+    })
+    if not nocache:
+        cached = _adplexity_cache_get(cache_key)
+        if cached:
+            return {**cached, "cached": True, "source": "adplexity_live"}
+
+    params = {
+        "query": query, "sub_mode": sub_mode, "mode": mode,
+        "query_subject": query_subject, "order": order,
+        "days_min": days_min, "start": start, "count": count,
+    }
+    if date_from: params["date_from"] = date_from
+    if date_to: params["date_to"] = date_to
+    if countries: params["countries"] = countries
+    if networks: params["networks"] = networks
+    if ad_categories: params["ad_categories"] = ad_categories
+    if aff_networks: params["aff_networks"] = aff_networks
+    if devices: params["devices"] = devices
+    if languages: params["languages"] = languages
+
+    try:
+        r = _adplexity_get("/api/search", params, timeout=45)
+    except Exception as e:
+        return {"data": [], "total": 0, "cached": False, "error": f"falha: {str(e)[:150]}"}
+
+    if r.status_code != 200:
+        return {"data": [], "total": 0, "cached": False, "error": f"proxy {r.status_code}", "snippet": r.text[:150]}
+
+    raw = r.json()
+    ads = raw.get("ads") or []
+    normalized = [_adplexity_normalize_ad(a, sub_mode) for a in ads]
+
+    response = {
+        "data": normalized,
+        "total": raw.get("total") or 0,
+        "returned": len(normalized),
+        "start": start,
+        "count": count,
+        "pages": ((raw.get("total") or 0) + count - 1) // count if count else 0,
+        "cached": False,
+        "source": "adplexity_live",
+        "sub_mode": sub_mode,
+    }
+    _adplexity_cache_set(cache_key, response)
+    return response
+
+
+@app.get("/api/adplexity/filters")
+def adplexity_filters():
+    """Dicionarios pra popular filtros no frontend.
+
+    Retorna 109 adCategories, 249 countries, 100 networks, 248 affNetworks,
+    11 deviceTypes, linguagens, trackingTools, technology, etc.
+    """
+    cache_key = _adplexity_cache_key("filters")
+    cached = _adplexity_cache_get(cache_key)
+    if cached: return cached
+    try:
+        r = _adplexity_get("/api/filters", timeout=20)
+        if r.status_code == 200:
+            data = r.json()
+            _adplexity_cache_set(cache_key, data, ttl=3600)
+            return data
+        return {"error": f"proxy {r.status_code}"}
+    except Exception as e:
+        return {"error": str(e)[:150]}
+
+
+@app.get("/api/adplexity/trending")
+def adplexity_trending(
+    category: str = Query("lp-domain", description="lp-domain = top 400 advertisers"),
+    period: str = Query("7d", description="7d | 30d | 90d"),
+):
+    """Top 400 advertisers rodando ads nativos (ranking por adsCount).
+
+    Cada item: advertiserName, adsCount, networks, daysRunning, countries, newestAds.
+    """
+    cache_key = _adplexity_cache_key({"trending": category, "p": period})
+    cached = _adplexity_cache_get(cache_key)
+    if cached: return {"data": cached, "cached": True}
+    try:
+        r = _adplexity_get("/api/trending", {"category": category, "period": period}, timeout=30)
+        if r.status_code == 200:
+            data = r.json()
+            _adplexity_cache_set(cache_key, data, ttl=3600)
+            return {"data": data, "cached": False, "total": len(data) if isinstance(data, list) else 0}
+        return {"error": f"proxy {r.status_code}", "data": []}
+    except Exception as e:
+        return {"error": str(e)[:150], "data": []}
+
+
+@app.get("/api/adplexity/counters")
+def adplexity_counters(
+    query: str = Query(""),
+    sub_mode: str = Query("ad"),
+    date_from: Optional[str] = Query(None),
+    date_to: Optional[str] = Query(None),
+):
+    """Agregados por filtros pra uma busca — util pra dashboards."""
+    params = {"query": query, "sub_mode": sub_mode}
+    if date_from: params["date_from"] = date_from
+    if date_to: params["date_to"] = date_to
+    cache_key = _adplexity_cache_key({"counters": params})
+    cached = _adplexity_cache_get(cache_key)
+    if cached: return cached
+    try:
+        r = _adplexity_get("/api/counters", params, timeout=30)
+        if r.status_code == 200:
+            data = r.json()
+            _adplexity_cache_set(cache_key, data, ttl=1800)
+            return data
+        return {"error": f"proxy {r.status_code}"}
+    except Exception as e:
+        return {"error": str(e)[:150]}
+
+
+@app.get("/api/adplexity/thumb/{ad_hash}")
+def adplexity_thumb(ad_hash: str):
+    """Proxy da thumbnail (302 redirect pro HostDimer)."""
+    from fastapi.responses import RedirectResponse
+    url = f"{_ADPLEXITY_PROXY_URL}/api/thumb/{ad_hash}?key={_ADPLEXITY_API_KEY}"
+    return RedirectResponse(url=url, status_code=302)
+
+
+@app.get("/api/adplexity/profile")
+def adplexity_profile():
+    """Info da conta AdPlexity (username, exportLimit, folders)."""
+    try:
+        r = _adplexity_get("/api/profile", timeout=15)
+        return r.json() if r.status_code == 200 else {"error": f"proxy {r.status_code}"}
+    except Exception as e:
+        return {"error": str(e)[:150]}
+
+
+@app.get("/api/adplexity/health")
+def adplexity_health():
+    """Ping do proxy AdPlexity."""
+    import requests as _req
+    try:
+        r = _req.get(f"{_ADPLEXITY_PROXY_URL}/health", timeout=10)
+        return {"proxy_reachable": r.status_code == 200, "proxy_response": r.json() if r.status_code == 200 else r.text[:200]}
+    except Exception as e:
+        return {"proxy_reachable": False, "error": str(e)[:200]}
+
+
+@app.get("/api/adplexity/cache-stats")
+def adplexity_cache_stats():
+    now = _time.time()
+    active = [k for k, v in _ADPLEXITY_CACHE.items() if v["expires_at"] > now]
+    return {
+        "total_entries": len(_ADPLEXITY_CACHE),
+        "active_entries": len(active),
+        "cache_ttl_seconds": _ADPLEXITY_CACHE_TTL,
+        "proxy_url": _ADPLEXITY_PROXY_URL,
     }
 
 

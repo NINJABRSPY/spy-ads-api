@@ -5369,7 +5369,18 @@ def dailyintel_download(row_id: str, fileType: str = Query("vsl")):
     dl = data.get("downloadUrl")
     if not dl:
         return JSONResponse({"error": data.get("error") or "sem downloadUrl"}, status_code=404)
-    return RedirectResponse(url=dl, status_code=302)
+    # BunnyCDN tem whitelist de Referer — enviar Referrer-Policy pra browser
+    # nao mandar Referer ao seguir o redirect. Funciona em conjunto com o
+    # referrerpolicy="no-referrer" do frontend <a href download>.
+    filename = data.get("filename") or f"{row_id}_{fileType}.mp4"
+    return RedirectResponse(
+        url=dl,
+        status_code=302,
+        headers={
+            "Referrer-Policy": "no-referrer",
+            "Content-Disposition": f'attachment; filename="{filename}"',
+        },
+    )
 
 
 @app.get("/api/dailyintel/health")

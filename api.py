@@ -149,6 +149,7 @@ PUBLIC_PATH_PREFIXES = [
     "/api/dailyintel/player/",
     "/api/dailyintel/thumb/",
     "/api/dailyintel/download/",
+    "/api/dailyintel/session/close",
 ]
 
 # Cache de tokens validados (evita chamar Supabase a cada request)
@@ -5381,6 +5382,33 @@ def dailyintel_download(row_id: str, fileType: str = Query("vsl")):
             "Content-Disposition": f'attachment; filename="{filename}"',
         },
     )
+
+
+@app.post("/api/dailyintel/session/close")
+@app.get("/api/dailyintel/session/close")
+def dailyintel_session_close():
+    """Encerra a session ativa no Daily Intel (libera pro proximo stream).
+
+    Frontend DEVE chamar isto quando fechar o modal do player. Sem isto,
+    o proximo video vai esperar ~15s (retry) antes de abrir.
+
+    Uso:
+      fetch('https://spy-ads-api.onrender.com/api/dailyintel/session/close',
+            {method:'POST', referrerPolicy:'no-referrer'});
+      // ou GET tambem funciona pra facilitar <a href> ou navegador.sendBeacon
+
+    Sem JWT — publico.
+    """
+    import requests as _req
+    try:
+        r = _req.post(
+            f"{_DAILYINTEL_PROXY_URL}/api/session/close",
+            params={"key": _DAILYINTEL_API_KEY},
+            timeout=15,
+        )
+        return r.json() if r.headers.get("content-type", "").startswith("application/json") else {"closed": r.status_code == 200}
+    except Exception as e:
+        return {"closed": False, "error": str(e)[:150]}
 
 
 @app.get("/api/dailyintel/health")

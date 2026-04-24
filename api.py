@@ -143,6 +143,13 @@ SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 # Endpoints que NAO precisam de autenticacao
 PUBLIC_ENDPOINTS = ["/", "/health", "/docs", "/openapi.json", "/api/sync/status", "/api/auth-check"]
 
+# Paths que sao publicos por prefixo (usados em <iframe src> e <img src> — nao
+# passam JWT). So retornam conteudo embed/imagem, nao dados de ads.
+PUBLIC_PATH_PREFIXES = [
+    "/api/dailyintel/player/",
+    "/api/dailyintel/thumb/",
+]
+
 # Cache de tokens validados (evita chamar Supabase a cada request)
 _token_cache = {}  # {token_hash: {"valid": True, "user_id": "...", "expires": timestamp}}
 TOKEN_CACHE_TTL = 300  # 5 minutos de cache
@@ -231,6 +238,10 @@ class AuthAndRateLimitMiddleware(BaseHTTPMiddleware):
 
         # Endpoints publicos
         if any(path == ep or path.startswith(ep + "?") for ep in PUBLIC_ENDPOINTS):
+            return await call_next(request)
+
+        # Paths publicos por prefixo (iframe/img embed — nao passam JWT)
+        if any(path.startswith(pref) for pref in PUBLIC_PATH_PREFIXES):
             return await call_next(request)
 
         # ===== ORIGEM CONFIAVEL — exige token mas sem rate limit =====

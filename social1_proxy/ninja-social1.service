@@ -1,0 +1,22 @@
+[Unit]
+Description=NinjaSpy Social1 Proxy (Playwright + FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/ninja-proxy/social1
+Environment="SOCIAL1_PORT=3019"
+Environment="SOCIAL1_API_KEY=njspy_social1_2026_q7w8e9"
+Environment="SOCIAL1_USER_DATA_DIR=/opt/ninja-proxy/social1/browser_data"
+Environment="SOCIAL1_HEADLESS=true"
+Environment="SOCIAL1_LOG=INFO"
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/usr/bin/python3 /opt/ninja-proxy/social1/social1_server.py
+Restart=on-failure
+RestartSec=15
+StandardOutput=append:/var/log/ninja-social1.log
+StandardError=append:/var/log/ninja-social1.log
+
+[Install]
+WantedBy=multi-user.target

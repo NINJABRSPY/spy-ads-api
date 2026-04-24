@@ -1,0 +1,22 @@
+[Unit]
+Description=NinjaSpy Daily Intel Service Proxy (FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/ninja-proxy/dailyintel
+Environment="DAILYINTEL_PORT=3020"
+Environment="DAILYINTEL_API_KEY=njspy_dailyintel_2026_r8t9y0"
+Environment="DAILYINTEL_COOKIES_FILE=/opt/ninja-proxy/dailyintel/cookies.json"
+Environment="DAILYINTEL_CACHE_TTL=900"
+Environment="DAILYINTEL_LOG=INFO"
+Environment="PYTHONUNBUFFERED=1"
+ExecStart=/usr/bin/python3 /opt/ninja-proxy/dailyintel/dailyintel_server.py
+Restart=on-failure
+RestartSec=15
+StandardOutput=append:/var/log/ninja-dailyintel.log
+StandardError=append:/var/log/ninja-dailyintel.log
+
+[Install]
+WantedBy=multi-user.target

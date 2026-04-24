@@ -1,0 +1,32 @@
+[
+  {
+    "name": "_fbp",
+    "value": "fb.1.1776898943736.8411104957",
+    "domain": "dailyintelservice.com",
+    "path": "/",
+    "expires": 1784674943,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "member_session",
+    "value": "d68f095b5dd73f33b21494b5c8542f3648825c91f334753f129943655acdd46b",
+    "domain": "dailyintelservice.com",
+    "path": "/",
+    "expires": 1779560363,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "fb_user_email",
+    "value": "ninjabr.forum%40gmail.com",
+    "domain": "dailyintelservice.com",
+    "path": "/",
+    "expires": 1784744392,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "Lax"
+  }
+]

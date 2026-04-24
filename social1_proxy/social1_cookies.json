@@ -1,0 +1,62 @@
+[
+  {
+    "name": "_ga",
+    "value": "GA1.1.1456162250.1775051628",
+    "domain": ".social1.ai",
+    "path": "/",
+    "expires": 1811530044.009129,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "__Host-next-auth.csrf-token",
+    "value": "6c50be2c7bc376842094a503c935a801949edc8becfda3a94efd23ffc974896f%7Cfcace5c7cae2454e4c45efdc2341ccf6949240ab5bfb86ddfe8a37115f657f6a",
+    "domain": "www.social1.ai",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "__Secure-next-auth.callback-url",
+    "value": "https%3A%2F%2Fwww.social1.ai%2Fsignin%3Femail%3Dninjabr.forum%2540gmail.com%26send%3D1",
+    "domain": "www.social1.ai",
+    "path": "/",
+    "expires": -1,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "_ga_KW1C8BH7Q1",
+    "value": "GS2.1.s1776968650$o7$g1$t1776970056$j48$l0$h0",
+    "domain": ".social1.ai",
+    "path": "/",
+    "expires": 1811530056.401122,
+    "httpOnly": false,
+    "secure": false,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "__Secure-next-auth.session-token",
+    "value": "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..fKAf-NZeum63eamV.MoKwmQ4DS2_Klv3H1NKohUMwnvj6T3oCbzJUQYeyYNc5b3yWsfUmdVeD98Pa28_wiVV4OTJuXzBZflkZq0osXgztvEmwCqo28ozeI5PLSE5UNZGQ-WUHTDkTVEvQI6LagIFFaD7Ep74CWtj76fo1CsaN-9AU3HwqnqL57qkIESZXg0jL2lYg0tC1BYOjqac0CJUOrTx-9zCVojRgr8XnC-LAPyCmt2yWtYB7atrCrrZLAmMnUMw-eg75dTy5im71RSxDdfn7DazZgbyC-ssNFAnLr_lkc_zD71US_x6GuteOnng17i3J5DQGBZ44fLohEEXHuq9II_wP890-HxTkntimnEWV9laPmZ0NLZEmXm6OJEc8Qo7xWUAg.JiM5paoYgjH23skxjSGCBQ",
+    "domain": "www.social1.ai",
+    "path": "/",
+    "expires": 1779562312.958103,
+    "httpOnly": true,
+    "secure": true,
+    "sameSite": "Lax"
+  },
+  {
+    "name": "ph_phc_LvsHwkuAh5ZkWAADNlrGGfG14aaUsBNwOckji9YooKX_posthog",
+    "value": "%7B%22distinct_id%22%3A%2269cd228a84ec4562e7eed18e%22%2C%22%24sesid%22%3A%5B1776970829285%2C%22019dbb95-cbe2-7666-9794-e3c748359393%22%2C1776968649697%5D%2C%22%24epp%22%3Atrue%2C%22%24initial_person_info%22%3A%7B%22r%22%3A%22%24direct%22%2C%22u%22%3A%22https%3A%2F%2Fwww.social1.ai%2F%22%7D%7D",
+    "domain": ".social1.ai",
+    "path": "/",
+    "expires": 1808506829,
+    "httpOnly": false,
+    "secure": true,
+    "sameSite": "Lax"
+  }
+]

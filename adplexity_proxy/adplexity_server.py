@@ -456,29 +456,52 @@ async def trending_params(
 
 
 @app.get("/api/thumb/{ad_id}")
-async def thumb(ad_id: str):
-    """Proxy de thumbnail — evita browser lidar com auth/CORS.
+async def thumb(ad_id: str, size: str = Query("256", description="256 (default, thumbnail) | full (original)")):
+    """Proxy de thumbnail — retorna imagem binaria.
 
-    ad_id deve ser o hash do arquivo em n01.adplexity.com (nao o database id).
+    CDN AdPlexity serve 2 formatos:
+    - `{hash}` sem suffix = imagem original (pode ser 1MB+)
+    - `{hash};256x-` = thumbnail 256px (recomendado pra grid)
+
+    Tentamos primeiro a size pedida, com fallback pra original se falhar.
     """
-    # URLs das thumbs sao do tipo:
-    #   https://n01.adplexity.com/storage/images/native/{hash}.png;256x-
-    # O user passa o hash + sufixo opcional (256x-, 512x-, etc)
-    url = f"https://n01.adplexity.com/storage/images/native/{ad_id}"
-    if ";" not in ad_id:
-        url = url + ";512x-"
-    try:
-        r = requests.get(url, cookies=_state["cookies"] or {}, headers={"User-Agent": USER_AGENT, "Referer": BASE_URL}, timeout=30)
-    except Exception as e:
-        raise HTTPException(status_code=502, detail=f"thumb upstream: {e}")
-    if r.status_code != 200:
-        raise HTTPException(status_code=r.status_code, detail=r.text[:200])
     from fastapi.responses import Response
-    return Response(
-        content=r.content,
-        media_type=r.headers.get("Content-Type", "image/png"),
-        headers={"Cache-Control": "public, max-age=86400"},
-    )
+
+    # Remover suffix se vier no hash (nao deveria mas user pode passar)
+    clean_id = ad_id.split(";")[0]
+
+    candidates = []
+    if size == "256":
+        candidates = [f"{clean_id};256x-", clean_id]
+    elif size == "full":
+        candidates = [clean_id, f"{clean_id};256x-"]
+    else:
+        candidates = [f"{clean_id};{size}x-", f"{clean_id};256x-", clean_id]
+
+    last_status = 0
+    last_text = ""
+    for suffix in candidates:
+        url = f"https://n01.adplexity.com/storage/images/native/{suffix}"
+        try:
+            r = requests.get(
+                url,
+                cookies=_state["cookies"] or {},
+                headers={"User-Agent": USER_AGENT, "Referer": BASE_URL},
+                timeout=30,
+            )
+        except Exception as e:
+            last_text = str(e)
+            continue
+        if r.status_code == 200 and r.headers.get("Content-Type", "").startswith("image"):
+            return Response(
+                content=r.content,
+                media_type=r.headers.get("Content-Type", "image/png"),
+                headers={"Cache-Control": "public, max-age=86400"},
+            )
+        last_status = r.status_code
+        last_text = r.text[:200]
+
+    raise HTTPException(status_code=last_status or 502, detail=f"thumb upstream: {last_text[:200]}")
 
 
 @app.post("/api/reload-cookies")

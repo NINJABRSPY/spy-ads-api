@@ -5014,6 +5014,9 @@ def _dailyintel_normalize(v: dict) -> dict:
     vsl_thumb = f"{base}/api/dailyintel/thumb/{vsl_id}?lib=vsl" if vsl_id else ""
     ads_thumb = f"{base}/api/dailyintel/thumb/{ads_id}?lib=ads" if ads_id else ""
     stream_endpoint = f"{base}/api/dailyintel/stream"
+    # Player wrapper: HTML com iframe no-referrer — usar direto em <iframe src=...>
+    vsl_player = f"{base}/api/dailyintel/player/{vid}?fileType=vsl" if vid else ""
+    ads_player = f"{base}/api/dailyintel/player/{vid}?fileType=ads" if vid else ""
 
     return {
         "ad_id": f"dailyintel_{vid}",
@@ -5058,6 +5061,8 @@ def _dailyintel_normalize(v: dict) -> dict:
         "dailyintel_ads_id": ads_id,
         "dailyintel_vsl_thumb": vsl_thumb,  # URL absoluta pro browser usar em <img>
         "dailyintel_ads_thumb": ads_thumb,
+        "dailyintel_vsl_player": vsl_player,  # URL pro <iframe src=...> (HTML wrapper no-referrer)
+        "dailyintel_ads_player": ads_player,
         "dailyintel_stream_endpoint": stream_endpoint,  # POST {rowId, fileType} → {embedUrl, downloadUrl}
         "dailyintel_has_clean_vsl": bool(v.get("has_clean_vsl")),
         "dailyintel_has_clean_ads": bool(v.get("has_clean_ads")),
@@ -5248,6 +5253,70 @@ def dailyintel_stream(body: dict):
         return r.json()
     except Exception as e:
         return {"error": f"falha: {str(e)[:150]}"}
+
+
+@app.get("/api/dailyintel/player/{row_id}")
+def dailyintel_player(row_id: str, fileType: str = Query("vsl")):
+    """Retorna HTML com iframe embutido SEM Referer — permite carregar em qualquer origem.
+
+    Uso no frontend:
+      <iframe src="https://spy-ads-api.onrender.com/api/dailyintel/player/<row_id>?fileType=vsl"
+              allowfullscreen
+              style="width:100%;aspect-ratio:16/9;border:0"></iframe>
+
+    Internamente: chama /api/dailyintel/stream, pega embedUrl, e renderiza
+    HTML wrapper com meta no-referrer + iframe referrerpolicy=no-referrer.
+    BunnyCDN whitelist = dailyintelservice.com, entao precisamos esconder Referer.
+    """
+    import requests as _req
+    if str(row_id).startswith("dailyintel_"):
+        row_id = str(row_id)[len("dailyintel_"):]
+
+    try:
+        r = _req.post(
+            f"{_DAILYINTEL_PROXY_URL}/api/stream",
+            params={"key": _DAILYINTEL_API_KEY},
+            json={"rowId": row_id, "fileType": fileType},
+            timeout=30,
+        )
+        data = r.json()
+        embed = data.get("embedUrl", "")
+        err = data.get("error")
+    except Exception as e:
+        embed = ""
+        err = str(e)[:150]
+
+    if not embed:
+        err_msg = err or "video indisponivel"
+        html = f"""<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Erro</title>
+<style>body{{margin:0;background:#04192c;color:#fff;font-family:system-ui;display:flex;align-items:center;justify-content:center;height:100vh;text-align:center}}</style>
+</head><body><div><h2>Video indisponivel</h2><p>{err_msg}</p></div></body></html>"""
+        from fastapi.responses import HTMLResponse
+        return HTMLResponse(content=html, status_code=404)
+
+    # HTML wrapper com no-referrer pra burlar whitelist do BunnyCDN
+    html = f"""<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Player</title>
+<style>
+  html,body{{margin:0;padding:0;height:100%;background:#000;overflow:hidden}}
+  iframe{{width:100%;height:100%;border:0;display:block}}
+</style>
+</head>
+<body>
+<iframe src="{embed}"
+        referrerpolicy="no-referrer"
+        allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture"
+        allowfullscreen></iframe>
+</body>
+</html>"""
+    from fastapi.responses import HTMLResponse
+    return HTMLResponse(content=html)
 
 
 @app.get("/api/dailyintel/health")

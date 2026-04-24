@@ -332,12 +332,20 @@ async def search(
     days_max: Optional[int] = Query(None),
     start: int = Query(0, ge=0),
     count: int = Query(20, ge=1, le=100),
-    countries: Optional[str] = Query(None, description="Codigos separados por virgula (US,BR,GB)"),
-    networks: Optional[str] = Query(None, description="IDs separados por virgula (ver /api/filters)"),
-    ad_categories: Optional[str] = Query(None),
-    aff_networks: Optional[str] = Query(None),
-    devices: Optional[str] = Query(None),
-    languages: Optional[str] = Query(None),
+    countries: Optional[str] = Query(None, description="ISO-2 separados por virgula (US,BR,GB)"),
+    networks: Optional[str] = Query(None, description="Traffic source IDs (ver /api/filters > network)"),
+    ad_categories: Optional[str] = Query(None, description="Vertical IDs (ver /api/filters > adCategory)"),
+    aff_networks: Optional[str] = Query(None, description="Affiliate Network IDs (ver /api/filters > affNetwork)"),
+    arbitrage_networks: Optional[str] = Query(None, description="Arbitrage Network IDs (ver /api/filters > arbitrageNetwork)"),
+    devices: Optional[str] = Query(None, description="DeviceType IDs"),
+    languages: Optional[str] = Query(None, description="Landing page language IDs"),
+    technology: Optional[str] = Query(None, description="Technology IDs (ver /api/filters > technology)"),
+    tracking: Optional[str] = Query(None, description="Tracking tool IDs (ver /api/filters > tracking)"),
+    connection: Optional[str] = Query(None, description="Connection IDs"),
+    ad_type: Optional[str] = Query(None, description="Ad type IDs (video, image, etc)"),
+    image_size: Optional[str] = Query(None, description="Image size IDs"),
+    video_type: Optional[str] = Query(None, description="Video type IDs"),
+    video_category: Optional[str] = Query(None, description="Video category IDs"),
     nocache: bool = Query(False),
     x_api_key: Optional[str] = Header(None),
     key: Optional[str] = Query(None),
@@ -348,19 +356,38 @@ async def search(
     """
     _check_api_key(x_api_key, key)
 
+    def _csv_ids(s: Optional[str], as_upper: bool = False, as_int: bool = True) -> list:
+        """Converte 'US,BR' ou '45,63' em lista."""
+        if not s:
+            return []
+        out = []
+        for tok in s.split(","):
+            tok = tok.strip()
+            if not tok:
+                continue
+            if as_upper:
+                out.append(tok.upper())
+            elif as_int and tok.isdigit():
+                out.append(int(tok))
+            else:
+                out.append(tok)
+        return out
+
     filters = {}
-    if countries:
-        filters["country"] = [c.strip().upper() for c in countries.split(",") if c.strip()]
-    if networks:
-        filters["network"] = [int(n) for n in networks.split(",") if n.strip().isdigit()]
-    if ad_categories:
-        filters["adCategory"] = [int(n) for n in ad_categories.split(",") if n.strip().isdigit()]
-    if aff_networks:
-        filters["affNetwork"] = [int(n) for n in aff_networks.split(",") if n.strip().isdigit()]
-    if devices:
-        filters["deviceType"] = [int(n) for n in devices.split(",") if n.strip().isdigit()]
-    if languages:
-        filters["language"] = [int(n) for n in languages.split(",") if n.strip().isdigit()]
+    if countries:        filters["country"] = _csv_ids(countries, as_upper=True, as_int=False)
+    if networks:         filters["network"] = _csv_ids(networks)
+    if ad_categories:    filters["adCategory"] = _csv_ids(ad_categories)
+    if aff_networks:     filters["affNetwork"] = _csv_ids(aff_networks)
+    if arbitrage_networks: filters["arbitrageNetwork"] = _csv_ids(arbitrage_networks)
+    if devices:          filters["deviceType"] = _csv_ids(devices)
+    if languages:        filters["language"] = _csv_ids(languages)
+    if technology:       filters["technology"] = _csv_ids(technology)
+    if tracking:         filters["tracking"] = _csv_ids(tracking)
+    if connection:       filters["connection"] = _csv_ids(connection)
+    if ad_type:          filters["adType"] = _csv_ids(ad_type)
+    if image_size:       filters["imageSize"] = _csv_ids(image_size)
+    if video_type:       filters["videoType"] = _csv_ids(video_type)
+    if video_category:   filters["videoCategory"] = _csv_ids(video_category)
 
     body = _build_search_body(
         mode=mode, sub_mode=sub_mode, query=query, query_subject=query_subject,

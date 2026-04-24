@@ -5728,12 +5728,21 @@ def adplexity_search(
     days_min: int = Query(1, ge=0),
     start: int = Query(0, ge=0),
     count: int = Query(20, ge=1, le=100),
-    countries: Optional[str] = Query(None, description="codigos iso2 separados por virgula (US,BR)"),
-    networks: Optional[str] = Query(None, description="IDs (ver /api/adplexity/filters)"),
-    ad_categories: Optional[str] = Query(None),
-    aff_networks: Optional[str] = Query(None),
-    devices: Optional[str] = Query(None),
-    languages: Optional[str] = Query(None),
+    # Filtros UI (nomes igual /api/adplexity/filters)
+    countries: Optional[str] = Query(None, description="codigos ISO-2 CSV (US,BR)"),
+    networks: Optional[str] = Query(None, description="Traffic Source IDs CSV (ver /filters > network)"),
+    ad_categories: Optional[str] = Query(None, description="Vertical IDs CSV (ver /filters > adCategory)"),
+    aff_networks: Optional[str] = Query(None, description="Affiliate Network IDs CSV"),
+    arbitrage_networks: Optional[str] = Query(None, description="Arbitrage Network IDs CSV"),
+    devices: Optional[str] = Query(None, description="DeviceType IDs CSV"),
+    languages: Optional[str] = Query(None, description="Landing page language IDs CSV"),
+    technology: Optional[str] = Query(None, description="Technology IDs CSV"),
+    tracking: Optional[str] = Query(None, description="Tracking Tool IDs CSV"),
+    connection: Optional[str] = Query(None, description="Connection IDs CSV"),
+    ad_type: Optional[str] = Query(None, description="Ad type IDs CSV"),
+    image_size: Optional[str] = Query(None, description="Image size IDs CSV"),
+    video_type: Optional[str] = Query(None, description="Video type IDs CSV"),
+    video_category: Optional[str] = Query(None, description="Video category IDs CSV"),
     nocache: bool = Query(False),
 ):
     """Busca ads nativos ou landing pages via AdPlexity (22.9M ads).
@@ -5741,12 +5750,20 @@ def adplexity_search(
     Dados ricos: hits (views), days_running, publishers_count, networks,
     countries, aff_networks, devices, tracking_tools.
     """
+    # Todos os filtros viram parte do cache key e sao repassados ao proxy
+    filter_params = {
+        "countries": countries, "networks": networks, "ad_categories": ad_categories,
+        "aff_networks": aff_networks, "arbitrage_networks": arbitrage_networks,
+        "devices": devices, "languages": languages,
+        "technology": technology, "tracking": tracking, "connection": connection,
+        "ad_type": ad_type, "image_size": image_size,
+        "video_type": video_type, "video_category": video_category,
+    }
     cache_key = _adplexity_cache_key({
         "q": query, "sm": sub_mode, "m": mode, "qs": query_subject, "o": order,
         "df": date_from, "dt": date_to, "dm": days_min,
         "s": start, "c": count,
-        "co": countries, "n": networks, "ac": ad_categories,
-        "an": aff_networks, "d": devices, "l": languages,
+        **{f"f_{k}": v for k, v in filter_params.items() if v},
     })
     if not nocache:
         cached = _adplexity_cache_get(cache_key)
@@ -5760,12 +5777,10 @@ def adplexity_search(
     }
     if date_from: params["date_from"] = date_from
     if date_to: params["date_to"] = date_to
-    if countries: params["countries"] = countries
-    if networks: params["networks"] = networks
-    if ad_categories: params["ad_categories"] = ad_categories
-    if aff_networks: params["aff_networks"] = aff_networks
-    if devices: params["devices"] = devices
-    if languages: params["languages"] = languages
+    # Repassar todos filtros nao-vazios
+    for k, v in filter_params.items():
+        if v:
+            params[k] = v
 
     try:
         r = _adplexity_get("/api/search", params, timeout=45)

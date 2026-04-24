@@ -148,6 +148,7 @@ PUBLIC_ENDPOINTS = ["/", "/health", "/docs", "/openapi.json", "/api/sync/status"
 PUBLIC_PATH_PREFIXES = [
     "/api/dailyintel/player/",
     "/api/dailyintel/thumb/",
+    "/api/dailyintel/download/",
 ]
 
 # Cache de tokens validados (evita chamar Supabase a cada request)
@@ -5028,6 +5029,9 @@ def _dailyintel_normalize(v: dict) -> dict:
     # Player wrapper: HTML com iframe no-referrer — usar direto em <iframe src=...>
     vsl_player = f"{base}/api/dailyintel/player/{vid}?fileType=vsl" if vid else ""
     ads_player = f"{base}/api/dailyintel/player/{vid}?fileType=ads" if vid else ""
+    # Download direto — use em <a href download>
+    vsl_download = f"{base}/api/dailyintel/download/{vid}?fileType=vsl" if vid else ""
+    ads_download = f"{base}/api/dailyintel/download/{vid}?fileType=ads" if vid else ""
 
     return {
         "ad_id": f"dailyintel_{vid}",
@@ -5072,8 +5076,10 @@ def _dailyintel_normalize(v: dict) -> dict:
         "dailyintel_ads_id": ads_id,
         "dailyintel_vsl_thumb": vsl_thumb,  # URL absoluta pro browser usar em <img>
         "dailyintel_ads_thumb": ads_thumb,
-        "dailyintel_vsl_player": vsl_player,  # URL pro <iframe src=...> (HTML wrapper no-referrer)
+        "dailyintel_vsl_player": vsl_player,  # URL pro <iframe src=...> (video nativo, sem watermark)
         "dailyintel_ads_player": ads_player,
+        "dailyintel_vsl_download": vsl_download,  # <a href download> — baixa MP4
+        "dailyintel_ads_download": ads_download,
         "dailyintel_stream_endpoint": stream_endpoint,  # POST {rowId, fileType} → {embedUrl, downloadUrl}
         "dailyintel_has_clean_vsl": bool(v.get("has_clean_vsl")),
         "dailyintel_has_clean_ads": bool(v.get("has_clean_ads")),
@@ -5268,18 +5274,19 @@ def dailyintel_stream(body: dict):
 
 @app.get("/api/dailyintel/player/{row_id}")
 def dailyintel_player(row_id: str, fileType: str = Query("vsl")):
-    """Retorna HTML com iframe embutido SEM Referer — permite carregar em qualquer origem.
+    """HTML player — usa <video> nativo com MP4 direto (sem watermark, sem session lock).
+
+    Usamos downloadUrl (.mp4 assinado) em vez do iframe BunnyCDN player porque:
+    - BunnyCDN iframe player ADICIONA WATERMARK quando Referer nao bate whitelist
+    - BunnyCDN iframe player limita a 1 sessao concorrente ("Already streaming...")
+    - <video> com meta no-referrer pula as 2 protecoes
 
     Uso no frontend:
       <iframe src="https://spy-ads-api.onrender.com/api/dailyintel/player/<row_id>?fileType=vsl"
-              allowfullscreen
-              style="width:100%;aspect-ratio:16/9;border:0"></iframe>
-
-    Internamente: chama /api/dailyintel/stream, pega embedUrl, e renderiza
-    HTML wrapper com meta no-referrer + iframe referrerpolicy=no-referrer.
-    BunnyCDN whitelist = dailyintelservice.com, entao precisamos esconder Referer.
+              allowfullscreen></iframe>
     """
     import requests as _req
+    from fastapi.responses import HTMLResponse
     if str(row_id).startswith("dailyintel_"):
         row_id = str(row_id)[len("dailyintel_"):]
 
@@ -5291,22 +5298,22 @@ def dailyintel_player(row_id: str, fileType: str = Query("vsl")):
             timeout=30,
         )
         data = r.json()
-        embed = data.get("embedUrl", "")
+        video = data.get("downloadUrl", "")  # MP4 assinado
+        poster_id = data.get("videoId") or ""
         err = data.get("error")
     except Exception as e:
-        embed = ""
+        video = ""
         err = str(e)[:150]
 
-    if not embed:
+    if not video:
         err_msg = err or "video indisponivel"
         html = f"""<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>Erro</title>
 <style>body{{margin:0;background:#04192c;color:#fff;font-family:system-ui;display:flex;align-items:center;justify-content:center;height:100vh;text-align:center}}</style>
 </head><body><div><h2>Video indisponivel</h2><p>{err_msg}</p></div></body></html>"""
-        from fastapi.responses import HTMLResponse
         return HTMLResponse(content=html, status_code=404)
 
-    # HTML wrapper com no-referrer pra burlar whitelist do BunnyCDN
+    # HTML player com <video> tag e no-referrer
     html = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -5315,19 +5322,54 @@ def dailyintel_player(row_id: str, fileType: str = Query("vsl")):
 <meta name="referrer" content="no-referrer">
 <title>Player</title>
 <style>
-  html,body{{margin:0;padding:0;height:100%;background:#000;overflow:hidden}}
-  iframe{{width:100%;height:100%;border:0;display:block}}
+  html,body{{margin:0;padding:0;height:100%;background:#000;overflow:hidden;font-family:system-ui,-apple-system,sans-serif}}
+  video{{width:100%;height:100%;object-fit:contain;background:#000}}
+  .err{{color:#fff;display:flex;align-items:center;justify-content:center;height:100%;padding:20px;text-align:center}}
 </style>
 </head>
 <body>
-<iframe src="{embed}"
-        referrerpolicy="no-referrer"
-        allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture"
-        allowfullscreen></iframe>
+<video controls playsinline preload="metadata" referrerpolicy="no-referrer">
+  <source src="{video}" type="video/mp4">
+  <div class="err">Seu navegador nao suporta video MP4. <a href="{video}" style="color:#6ab">Baixar video</a></div>
+</video>
+<script>
+  // Fallback pra erros de carregamento
+  const v = document.querySelector('video');
+  v.addEventListener('error', () => {{
+    document.body.innerHTML = '<div class="err"><div><h2>Nao conseguimos carregar o video</h2><p>Tente recarregar. Se persistir, o token pode ter expirado.</p></div></div>';
+  }});
+</script>
 </body>
 </html>"""
-    from fastapi.responses import HTMLResponse
     return HTMLResponse(content=html)
+
+
+@app.get("/api/dailyintel/download/{row_id}")
+def dailyintel_download(row_id: str, fileType: str = Query("vsl")):
+    """Forca download do MP4 via 302 redirect pro BunnyCDN assinado.
+
+    Uso: <a href="/api/dailyintel/download/<row_id>?fileType=vsl" download>Baixar</a>
+    """
+    import requests as _req
+    from fastapi.responses import RedirectResponse, JSONResponse
+    if str(row_id).startswith("dailyintel_"):
+        row_id = str(row_id)[len("dailyintel_"):]
+
+    try:
+        r = _req.post(
+            f"{_DAILYINTEL_PROXY_URL}/api/stream",
+            params={"key": _DAILYINTEL_API_KEY},
+            json={"rowId": row_id, "fileType": fileType},
+            timeout=30,
+        )
+        data = r.json()
+    except Exception as e:
+        return JSONResponse({"error": f"falha: {str(e)[:150]}"}, status_code=502)
+
+    dl = data.get("downloadUrl")
+    if not dl:
+        return JSONResponse({"error": data.get("error") or "sem downloadUrl"}, status_code=404)
+    return RedirectResponse(url=dl, status_code=302)
 
 
 @app.get("/api/dailyintel/health")

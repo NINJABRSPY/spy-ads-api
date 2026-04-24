@@ -147,6 +147,7 @@ PUBLIC_ENDPOINTS = ["/", "/health", "/docs", "/openapi.json", "/api/sync/status"
 # passam JWT). So retornam conteudo embed/imagem, nao dados de ads.
 PUBLIC_PATH_PREFIXES = [
     "/api/dailyintel/player/",
+    "/api/dailyintel/native-player/",
     "/api/dailyintel/thumb/",
     "/api/dailyintel/download/",
     "/api/dailyintel/session/close",
@@ -5030,6 +5031,9 @@ def _dailyintel_normalize(v: dict) -> dict:
     # Player wrapper: HTML com iframe no-referrer — usar direto em <iframe src=...>
     vsl_player = f"{base}/api/dailyintel/player/{vid}?fileType=vsl" if vid else ""
     ads_player = f"{base}/api/dailyintel/player/{vid}?fileType=ads" if vid else ""
+    # Player NATIVO (sem watermark, HLS direto da fonte original)
+    # Fallback automatico pro player Bunny se nao conseguir extrair nativo
+    vsl_native_player = f"{base}/api/dailyintel/native-player/{vid}?fileType=vsl" if vid else ""
     # Download direto — use em <a href download>
     vsl_download = f"{base}/api/dailyintel/download/{vid}?fileType=vsl" if vid else ""
     ads_download = f"{base}/api/dailyintel/download/{vid}?fileType=ads" if vid else ""
@@ -5077,7 +5081,8 @@ def _dailyintel_normalize(v: dict) -> dict:
         "dailyintel_ads_id": ads_id,
         "dailyintel_vsl_thumb": vsl_thumb,  # URL absoluta pro browser usar em <img>
         "dailyintel_ads_thumb": ads_thumb,
-        "dailyintel_vsl_player": vsl_player,  # URL pro <iframe src=...> (video nativo, sem watermark)
+        "dailyintel_vsl_player": vsl_player,  # Player Bunny CDN (fallback, COM watermark)
+        "dailyintel_vsl_native_player": vsl_native_player,  # Player HLS nativo (SEM watermark)
         "dailyintel_ads_player": ads_player,
         "dailyintel_vsl_download": vsl_download,  # <a href download> — baixa MP4
         "dailyintel_ads_download": ads_download,
@@ -5271,6 +5276,98 @@ def dailyintel_stream(body: dict):
         return r.json()
     except Exception as e:
         return {"error": f"falha: {str(e)[:150]}"}
+
+
+@app.get("/api/dailyintel/native-player/{row_id}")
+def dailyintel_native_player(row_id: str, fileType: str = Query("vsl")):
+    """Player HLS NATIVO — serve VSL direto da fonte original (sem watermark).
+
+    Scraper extraiu a URL master.m3u8 da landing page do anunciante
+    (ConverteAI/Vidalytics/etc). Aqui retorna HTML com video.js + hls.js
+    reproduzindo direto do CDN original.
+
+    Se nao tem cache nativo, retorna HTML que tenta extrair on-demand
+    ou redireciona pro /player/ (fallback com watermark).
+
+    Para VSL: usa o row_id da tabela daily_intel.
+    Para Ads: ads nao tem landing page separado — usa fallback Bunny.
+    """
+    import requests as _req
+    from fastapi.responses import HTMLResponse, RedirectResponse
+    if str(row_id).startswith("dailyintel_"):
+        row_id = str(row_id)[len("dailyintel_"):]
+
+    # Ads nao tem page_link → fallback
+    if fileType != "vsl":
+        return RedirectResponse(url=f"/api/dailyintel/player/{row_id}?fileType={fileType}", status_code=302)
+
+    # Tentar pegar master nativo do cache
+    try:
+        r = _req.get(
+            f"{_DAILYINTEL_PROXY_URL}/api/native/{row_id}",
+            params={"key": _DAILYINTEL_API_KEY},
+            timeout=60,
+        )
+        data = r.json()
+        master = data.get("master_url")
+    except Exception as e:
+        data = {}
+        master = None
+
+    # Fallback: se falhou extraction, usa player Bunny com watermark
+    if not master:
+        return RedirectResponse(url=f"/api/dailyintel/player/{row_id}?fileType=vsl", status_code=302)
+
+    # HLS player usando hls.js
+    html = f"""<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Player</title>
+<style>
+  html,body{{margin:0;padding:0;height:100%;background:#000;overflow:hidden;font-family:system-ui,-apple-system,sans-serif}}
+  video{{width:100%;height:100%;object-fit:contain;background:#000}}
+  .err{{color:#fff;display:flex;align-items:center;justify-content:center;height:100%;padding:20px;text-align:center}}
+  .tag{{position:absolute;top:8px;left:8px;background:rgba(0,0,0,0.5);color:#6cf;padding:3px 8px;border-radius:4px;font-size:11px;z-index:10}}
+</style>
+</head>
+<body>
+<div class="tag">NATIVE · {data.get('player','hls')}</div>
+<video id="v" controls playsinline preload="metadata" referrerpolicy="no-referrer"></video>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
+<script>
+(function(){{
+  var v = document.getElementById('v');
+  var src = {json.dumps(master)};
+  if (v.canPlayType('application/vnd.apple.mpegurl')) {{
+    // Safari nativo
+    v.src = src;
+  }} else if (window.Hls && Hls.isSupported()) {{
+    var hls = new Hls({{
+      enableWorker: true,
+      lowLatencyMode: false,
+      backBufferLength: 90,
+    }});
+    hls.loadSource(src);
+    hls.attachMedia(v);
+    hls.on(Hls.Events.ERROR, function(event, data){{
+      if (data.fatal) {{
+        document.body.innerHTML = '<div class="err"><div><h2>Erro ao carregar video nativo</h2><p>Tente recarregar a pagina.</p></div></div>';
+      }}
+    }});
+  }} else {{
+    document.body.innerHTML = '<div class="err">Seu navegador nao suporta HLS.</div>';
+  }}
+  v.addEventListener('error', function(){{
+    document.body.innerHTML = '<div class="err"><div><h2>Nao conseguimos carregar o video</h2></div></div>';
+  }});
+}})();
+</script>
+</body>
+</html>"""
+    return HTMLResponse(content=html)
 
 
 @app.get("/api/dailyintel/player/{row_id}")

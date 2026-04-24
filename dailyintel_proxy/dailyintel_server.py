@@ -9,6 +9,7 @@ Servico: ninja-dailyintel.service
 Exposto via: https://intel.ninjabrhub.online
 """
 
+import asyncio
 import json
 import logging
 import os
@@ -22,6 +23,14 @@ from fastapi import FastAPI, HTTPException, Query, Header, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse, Response
 import uvicorn
+
+# Native extractor (scraper de VSL sem watermark)
+try:
+    from native_extractor import extract_native_hls, NativeCache
+    _NATIVE_AVAILABLE = True
+except Exception as _e:
+    _NATIVE_AVAILABLE = False
+    _NATIVE_ERR = str(_e)
 
 # ============================================================
 # CONFIG
@@ -64,7 +73,14 @@ _state = {
     },
     "stream_cache": {},            # {(row_id, file_type): {"data": ..., "expires_at": ts}}
     "lock": threading.Lock(),
+    "native_cache": None,          # NativeCache instance — lazy init
+    "native_lock": asyncio.Lock() if False else None,  # async lock, init no startup
 }
+
+NATIVE_CACHE_DIR = os.environ.get(
+    "DAILYINTEL_NATIVE_CACHE",
+    str(Path(__file__).parent / "native_cache"),
+)
 
 # TTL do cache do stream — Daily Intel bloqueia chamadas multiplas ao mesmo
 # video ("Already streaming"). Mesmo stream retornado por X segundos evita
@@ -229,6 +245,11 @@ app.add_middleware(
 @app.on_event("startup")
 async def _startup():
     _state["cookies"] = _load_cookies()
+    _state["native_lock"] = asyncio.Lock()
+    if _NATIVE_AVAILABLE:
+        _state["native_cache"] = NativeCache(NATIVE_CACHE_DIR)
+        stats = _state["native_cache"].stats()
+        log.info(f"Native cache: {stats}")
     log.info(f"Daily Intel Proxy iniciando na porta {PORT}")
 
 
@@ -541,6 +562,86 @@ def stream(
             _state["stream_cache"].pop(k, None)
 
     return data
+
+
+def _find_video_by_id(row_id: str) -> Optional[dict]:
+    """Busca video no cache pela id."""
+    cache = _get_videos()
+    for v in (cache.get("videos") or []):
+        if v.get("id") == row_id:
+            return v
+    return None
+
+
+@app.get("/api/native/{row_id}")
+async def native_video(
+    row_id: str,
+    refresh: bool = Query(False, description="Forcar re-scrape mesmo se tem cache"),
+    x_api_key: Optional[str] = Header(None),
+    key: Optional[str] = Query(None),
+):
+    """Retorna URL HLS master nativa (sem watermark) do video.
+
+    Visita o page_link do anunciante e extrai a URL master.m3u8 do player
+    embutido (ConverteAI, Vidalytics, etc). Resultado cacheado em disco
+    permanentemente (so re-scrapa se refresh=true ou ainda nao tentou).
+    """
+    _check_api_key(x_api_key, key)
+    if not _NATIVE_AVAILABLE:
+        raise HTTPException(status_code=503, detail=f"native extractor indisponivel: {_NATIVE_ERR}")
+
+    nc: NativeCache = _state["native_cache"]
+
+    if not refresh:
+        cached = nc.get(row_id)
+        if cached and cached.get("master_url"):
+            return {**cached, "row_id": row_id, "cached": True}
+        if cached and cached.get("failed"):
+            return {**cached, "row_id": row_id, "cached": True}
+
+    video = _find_video_by_id(row_id)
+    if not video:
+        raise HTTPException(status_code=404, detail="row_id nao encontrado no cache de videos")
+
+    page_link = video.get("page_link") or ""
+    if not page_link:
+        nc.mark_failed(row_id, "sem page_link")
+        raise HTTPException(status_code=404, detail="video sem page_link")
+
+    # Concorrencia: 1 scrape por vez pra nao estourar recursos
+    async with _state["native_lock"]:
+        # Re-check apos pegar lock (outro request pode ter feito)
+        if not refresh:
+            cached = nc.get(row_id)
+            if cached and cached.get("master_url"):
+                return {**cached, "row_id": row_id, "cached": True}
+
+        log.info(f"Scraping native for {row_id} -> {page_link[:80]}")
+        try:
+            result = await extract_native_hls(page_link, timeout_s=25)
+        except Exception as e:
+            log.warning(f"extract failed {row_id}: {e}")
+            nc.mark_failed(row_id, str(e))
+            raise HTTPException(status_code=502, detail=f"scraper falhou: {str(e)[:200]}")
+
+    if not result:
+        nc.mark_failed(row_id, "no master playlist detected")
+        raise HTTPException(status_code=404, detail="nao conseguimos detectar player na page_link")
+
+    nc.set(row_id, result)
+    return {**result, "row_id": row_id, "cached": False}
+
+
+@app.get("/api/native/stats")
+def native_stats(
+    x_api_key: Optional[str] = Header(None),
+    key: Optional[str] = Query(None),
+):
+    """Diagnostico do cache de extracao nativa."""
+    _check_api_key(x_api_key, key)
+    if not _NATIVE_AVAILABLE:
+        return {"error": _NATIVE_ERR}
+    return _state["native_cache"].stats()
 
 
 @app.post("/api/session/close")

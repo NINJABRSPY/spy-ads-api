@@ -13,15 +13,17 @@ from urllib.parse import urlparse
 from typing import Optional
 
 try:
-    from fastapi import FastAPI, Query
+    from fastapi import FastAPI, Query, HTTPException
     from fastapi.middleware.cors import CORSMiddleware
+    from fastapi.responses import RedirectResponse
     import uvicorn
 except ImportError:
     print("Instalando dependencias...")
     import subprocess, sys
     subprocess.check_call([sys.executable, "-m", "pip", "install", "fastapi", "uvicorn"])
-    from fastapi import FastAPI, Query
+    from fastapi import FastAPI, Query, HTTPException
     from fastapi.middleware.cors import CORSMiddleware
+    from fastapi.responses import RedirectResponse
     import uvicorn
 
 from config import OUTPUT_DIR
@@ -4995,23 +4997,35 @@ def _dailyintel_cache_set(key: str, data: dict):
 
 
 def _dailyintel_normalize(v: dict) -> dict:
-    """Converte video do Daily Intel pro formato unified."""
+    """Converte video do Daily Intel pro formato unified.
+
+    Thumbs e videos passam pelo proxy Render (precisam cookie upstream).
+    """
     vid = str(v.get("id") or "")
     product = v.get("product_name") or "Unknown"
     niche = v.get("niche") or ""
     platform_low = (v.get("platform") or "").lower()
     report = v.get("daily_reports") or {}
+    vsl_id = v.get("bunny_vsl_id") or ""
+    ads_id = v.get("bunny_ads_id") or ""
+
+    # URLs absolutas dos endpoints do Render (browser chama direto)
+    base = "https://spy-ads-api.onrender.com"
+    vsl_thumb = f"{base}/api/dailyintel/thumb/{vsl_id}?lib=vsl" if vsl_id else ""
+    ads_thumb = f"{base}/api/dailyintel/thumb/{ads_id}?lib=ads" if ads_id else ""
+    stream_endpoint = f"{base}/api/dailyintel/stream"
+
     return {
         "ad_id": f"dailyintel_{vid}",
         "source": "dailyintel",
         "platform": platform_low or "unknown",
         "advertiser": product,
-        "advertiser_image": v.get("vsl_preview_url") or v.get("ads_preview_url") or "",
+        "advertiser_image": vsl_thumb or ads_thumb,
         "title": f"{product} — {niche}" if niche else product,
         "body": (v.get("utm_campaign") or "")[:300],
         "cta": "View Offer",
-        "image_url": v.get("ads_preview_url") or v.get("vsl_preview_url") or "",
-        "video_url": v.get("vsl_playlist_url") or v.get("ads_playlist_url") or "",
+        "image_url": ads_thumb or vsl_thumb,
+        "video_url": "",  # vazio — pegar via stream endpoint quando for tocar
         "landing_page": v.get("page_link") or "",
         "first_seen": report.get("report_date") or "",
         "last_seen": report.get("report_date") or "",
@@ -5023,13 +5037,14 @@ def _dailyintel_normalize(v: dict) -> dict:
         "heat": 500 if v.get("has_clean_vsl") and v.get("has_clean_ads") else 200,
         "ad_type": "vsl" if v.get("has_clean_vsl") else "creative",
         "channels": platform_low,
-        "has_media": bool(v.get("vsl_preview_url") or v.get("ads_preview_url")),
+        "has_media": bool(vsl_thumb or ads_thumb),
         "has_store": True,
         "country": v.get("country") or "",
         "collected_at": datetime.now().isoformat(),
         "live_fetched": True,
         # Daily Intel specific
         "dailyintel_id": vid,
+        "dailyintel_row_id": vid,  # alias — usado no POST /api/dailyintel/stream
         "dailyintel_niche": niche,
         "dailyintel_platform": v.get("platform") or "",
         "dailyintel_traffic_type": v.get("traffic_type") or "",
@@ -5039,12 +5054,11 @@ def _dailyintel_normalize(v: dict) -> dict:
         "dailyintel_utm_source": v.get("utm_source") or "",
         "dailyintel_utm_medium": v.get("utm_medium") or "",
         "dailyintel_utm_campaign": v.get("utm_campaign") or "",
-        "dailyintel_vsl_id": v.get("bunny_vsl_id") or "",
-        "dailyintel_ads_id": v.get("bunny_ads_id") or "",
-        "dailyintel_vsl_preview": v.get("vsl_preview_url") or "",
-        "dailyintel_vsl_playlist": v.get("vsl_playlist_url") or "",
-        "dailyintel_ads_preview": v.get("ads_preview_url") or "",
-        "dailyintel_ads_playlist": v.get("ads_playlist_url") or "",
+        "dailyintel_vsl_id": vsl_id,
+        "dailyintel_ads_id": ads_id,
+        "dailyintel_vsl_thumb": vsl_thumb,  # URL absoluta pro browser usar em <img>
+        "dailyintel_ads_thumb": ads_thumb,
+        "dailyintel_stream_endpoint": stream_endpoint,  # POST {rowId, fileType} → {embedUrl, downloadUrl}
         "dailyintel_has_clean_vsl": bool(v.get("has_clean_vsl")),
         "dailyintel_has_clean_ads": bool(v.get("has_clean_ads")),
         "dailyintel_page_link": v.get("page_link") or "",
@@ -5187,6 +5201,53 @@ def dailyintel_platforms():
     except Exception as e:
         return {"error": str(e)[:200], "data": []}
     return {"error": f"proxy status {r.status_code}", "data": []}
+
+
+@app.get("/api/dailyintel/thumb/{video_id}")
+def dailyintel_thumb(video_id: str, lib: str = Query("vsl")):
+    """Proxy da thumbnail pro browser (redireciona pro HostDimer proxy com key).
+
+    Usamos 302 redirect — browser carrega imagem direto do HostDimer sem
+    passar pelo Render (economia de bandwidth).
+    """
+    from fastapi.responses import RedirectResponse
+    url = f"{_DAILYINTEL_PROXY_URL}/api/thumb/{video_id}?lib={lib}&key={_DAILYINTEL_API_KEY}"
+    return RedirectResponse(url=url, status_code=302)
+
+
+@app.post("/api/dailyintel/stream")
+def dailyintel_stream(body: dict):
+    """Pega URL assinada pra tocar o video.
+
+    Body: {"rowId": "<dailyintel_id do ad>", "fileType": "vsl" ou "ads"}
+    Retorna: {"embedUrl": "iframe.mediadelivery.net/embed/...token=X&expires=Y",
+              "downloadUrl": "vz-xxx.b-cdn.net/....mp4?token=X&expires=Y",
+              "filename": "X_vsl_720p.mp4"}
+
+    Uso no frontend:
+      const r = await fetch('/api/dailyintel/stream', {method:'POST', body: JSON.stringify({rowId, fileType})});
+      const {embedUrl} = await r.json();
+      // renderizar <iframe src={embedUrl}>
+    """
+    import requests as _req
+    row_id = body.get("rowId") or body.get("videoId") or body.get("id")
+    file_type = body.get("fileType") or body.get("type") or "vsl"
+    if not row_id:
+        raise HTTPException(status_code=400, detail="rowId obrigatorio")
+
+    if str(row_id).startswith("dailyintel_"):
+        row_id = str(row_id)[len("dailyintel_"):]
+
+    try:
+        r = _req.post(
+            f"{_DAILYINTEL_PROXY_URL}/api/stream",
+            params={"key": _DAILYINTEL_API_KEY},
+            json={"rowId": row_id, "fileType": file_type},
+            timeout=30,
+        )
+        return r.json()
+    except Exception as e:
+        return {"error": f"falha: {str(e)[:150]}"}
 
 
 @app.get("/api/dailyintel/health")

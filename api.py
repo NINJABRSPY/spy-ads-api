@@ -5275,16 +5275,14 @@ def dailyintel_stream(body: dict):
 
 @app.get("/api/dailyintel/player/{row_id}")
 def dailyintel_player(row_id: str, fileType: str = Query("vsl")):
-    """HTML player — usa <video> nativo com MP4 direto (sem watermark, sem session lock).
+    """HTML player — usa iframe BunnyCDN pra gestao de session automatica.
 
-    Usamos downloadUrl (.mp4 assinado) em vez do iframe BunnyCDN player porque:
-    - BunnyCDN iframe player ADICIONA WATERMARK quando Referer nao bate whitelist
-    - BunnyCDN iframe player limita a 1 sessao concorrente ("Already streaming...")
-    - <video> com meta no-referrer pula as 2 protecoes
+    Iframe tem WebSocket com iframe.mediadelivery.net que libera a session
+    quando o usuario fecha o modal (sem erro "Already streaming").
 
-    Uso no frontend:
-      <iframe src="https://spy-ads-api.onrender.com/api/dailyintel/player/<row_id>?fileType=vsl"
-              allowfullscreen></iframe>
+    Nota sobre watermark: a marca d'agua aparece embutida no arquivo MP4
+    original do Daily Intel — nao e removivel, aparece em qualquer player
+    (inclusive no site deles).
     """
     import requests as _req
     from fastapi.responses import HTMLResponse
@@ -5296,25 +5294,28 @@ def dailyintel_player(row_id: str, fileType: str = Query("vsl")):
             f"{_DAILYINTEL_PROXY_URL}/api/stream",
             params={"key": _DAILYINTEL_API_KEY},
             json={"rowId": row_id, "fileType": fileType},
-            timeout=30,
+            timeout=90,  # Proxy pode ter retry backoff
         )
         data = r.json()
-        video = data.get("downloadUrl", "")  # MP4 assinado
-        poster_id = data.get("videoId") or ""
+        embed = data.get("embedUrl", "")
+        download = data.get("downloadUrl", "")
         err = data.get("error")
     except Exception as e:
-        video = ""
+        embed = ""
         err = str(e)[:150]
 
-    if not video:
+    if not embed:
         err_msg = err or "video indisponivel"
         html = f"""<!DOCTYPE html>
 <html><head><meta charset="utf-8"><title>Erro</title>
-<style>body{{margin:0;background:#04192c;color:#fff;font-family:system-ui;display:flex;align-items:center;justify-content:center;height:100vh;text-align:center}}</style>
-</head><body><div><h2>Video indisponivel</h2><p>{err_msg}</p></div></body></html>"""
+<style>body{{margin:0;background:#04192c;color:#fff;font-family:system-ui;display:flex;align-items:center;justify-content:center;height:100vh;text-align:center;padding:20px}}</style>
+</head><body><div><h2>Video indisponivel</h2><p>{err_msg}</p><p style="opacity:0.7;font-size:14px">Tente novamente em alguns segundos.</p></div></body></html>"""
         return HTMLResponse(content=html, status_code=404)
 
-    # HTML player com <video> tag e no-referrer
+    # iframe BunnyCDN com referrerpolicy=no-referrer + <meta referrer>
+    # BunnyCDN aceita quando Referer vazio (so bloqueia "estrangeiros").
+    # WebSocket do iframe gerencia session automaticamente — ao fechar
+    # modal/iframe, session eh liberada naturalmente.
     html = f"""<!DOCTYPE html>
 <html>
 <head>
@@ -5323,23 +5324,15 @@ def dailyintel_player(row_id: str, fileType: str = Query("vsl")):
 <meta name="referrer" content="no-referrer">
 <title>Player</title>
 <style>
-  html,body{{margin:0;padding:0;height:100%;background:#000;overflow:hidden;font-family:system-ui,-apple-system,sans-serif}}
-  video{{width:100%;height:100%;object-fit:contain;background:#000}}
-  .err{{color:#fff;display:flex;align-items:center;justify-content:center;height:100%;padding:20px;text-align:center}}
+  html,body{{margin:0;padding:0;height:100%;background:#000;overflow:hidden}}
+  iframe{{width:100%;height:100%;border:0;display:block}}
 </style>
 </head>
 <body>
-<video controls playsinline preload="metadata" referrerpolicy="no-referrer">
-  <source src="{video}" type="video/mp4">
-  <div class="err">Seu navegador nao suporta video MP4. <a href="{video}" style="color:#6ab">Baixar video</a></div>
-</video>
-<script>
-  // Fallback pra erros de carregamento
-  const v = document.querySelector('video');
-  v.addEventListener('error', () => {{
-    document.body.innerHTML = '<div class="err"><div><h2>Nao conseguimos carregar o video</h2><p>Tente recarregar. Se persistir, o token pode ter expirado.</p></div></div>';
-  }});
-</script>
+<iframe src="{embed}"
+        referrerpolicy="no-referrer"
+        allow="accelerometer;autoplay;encrypted-media;gyroscope;picture-in-picture"
+        allowfullscreen></iframe>
 </body>
 </html>"""
     return HTMLResponse(content=html)

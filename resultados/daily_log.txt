@@ -996,3 +996,48 @@ Call log:
 [2026-04-24 15:04:22] Total: 226099 ads | Fontes: {'bigspy': 188744, 'adyntel_google': 746, 'adyntel_linkedin': 113, 'pipiads': 2387, 'minea': 4376, 'adyntel_meta': 561, 'social1': 7019, 'meta_official': 20955, 'fastmoss': 58, 'adyntel_tiktok': 188, 'youtube_search': 952}
 [2026-04-24 15:04:23] === COMPRESS + PUSH ===
 [2026-04-24 15:04:42] Compressed: 226099 ads -> resultados/unified_latest.json.gz (65.9 MB)
+[2026-04-24 15:05:05] Push: OK
+[2026-04-24 15:05:05] Concluido em 365.1 minutos
+[2026-04-24 15:05:05] ============================================================
+[2026-04-25 09:00:02] 
+[2026-04-25 09:00:02] ============================================================
+[2026-04-25 09:00:02]   NinjaSpy Daily Scraper
+[2026-04-25 09:00:02] ============================================================
+[2026-04-25 09:00:02] === TOKENS ===
+[2026-04-25 09:00:02] ALERTA DE TOKENS: AdsParo EXPIROU! Renovar token em adsparo_client.py; BigSpy EXPIROU! Renovar token em config.py
+[2026-04-25 09:00:02] === CLICKMIDAS ===
+[2026-04-25 09:00:06] ClickMidas: Aba encontrada -> https://www.clickmidas.com.br/midas-score
+[2026-04-25 09:00:06] ClickMidas: Navegando para midas-score...
+[2026-04-25 09:00:19] ClickMidas scraper: OK
+[2026-04-25 09:00:19] ClickMidas: 65 produtos coletados hoje
+[2026-04-25 09:00:19] ClickMidas: ALERTA - Apenas 65 produtos (mínimo 500)
+[2026-04-25 09:00:19] ClickMidas: Mantendo dados do dia anterior para não perder cobertura
+[2026-04-25 09:00:19] ClickMidas: Arquivo anterior tem 1835 produtos - MANTIDO
+[2026-04-25 09:00:19] === SOCIAL1 (TikTok Shop) ===
+[2026-04-25 09:00:25] Social1 products+videos: OK — Products: 0
+Videos: 5057
+[2026-04-25 09:00:25] Social1: Creators pula (roda apenas domingos)
+[2026-04-25 09:00:25] Social1 converter: OK -> resultados/tiktok_shop_20260425_0900.json
+[2026-04-25 09:00:31] Social1 -> unified: +0 ads mesclados
+[2026-04-25 09:00:31] === SEARCHAPI (Meta Ad Library) ===
+[2026-04-25 10:29:39] SearchAPI: +10342 ads
+[2026-04-25 10:29:39] === YOUTUBE TRANSCRIBER ===
+[2026-04-25 10:39:22] YouTube Transcriber: +25 novos transcritos
+[2026-04-25 10:39:22] === ADSPARO ===
+[2026-04-25 10:39:23] AdsParo: Token expirado ou invalido - PULANDO
+[2026-04-25 10:39:23] === BIGSPY ===
+[2026-04-25 12:06:56] BigSpy BR: OK
+[2026-04-25 13:44:35] BigSpy Global: OK
+[2026-04-25 13:44:35] === PIPIADS ===
+[2026-04-25 14:18:55] PiPiAds: OK
+[2026-04-25 14:18:55] === MINEA ===
+[2026-04-25 14:22:04] Minea ERRO: BrowserType.connect_over_cdp: Timeout 180000ms exceeded.
+Call log:
+  - <ws preparing> retrieving websocket url from http://localhost:9222
+  - <ws connecting> ws://localhost:9222/devtools/browser/98683
+[2026-04-25 14:22:04] === ADYNTEL ===
+[2026-04-25 14:25:16] Adyntel: +17 novos ads
+[2026-04-25 14:25:16] Adyntel: OK
+[2026-04-25 14:25:21] Total: 226902 ads | Fontes: {'bigspy': 189147, 'adyntel_google': 763, 'adyntel_linkedin': 113, 'pipiads': 2394, 'minea': 4376, 'adyntel_meta': 561, 'social1': 7019, 'meta_official': 21289, 'fastmoss': 58, 'adyntel_tiktok': 200, 'youtube_search': 982}
+[2026-04-25 14:25:21] === COMPRESS + PUSH ===
+[2026-04-25 14:25:40] Compressed: 226902 ads -> resultados/unified_latest.json.gz (66.2 MB)

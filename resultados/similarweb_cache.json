@@ -44363,5 +44363,248 @@
         "change": -0.78
       }
     ]
+  },
+  "inlead.digital": {
+    "domain": "inlead.digital",
+    "scraped_at": "2026-04-27T08:55:46.533Z",
+    "title": "Tutorial inlead: como criar um funil de vendas do zero completo - Blog | inlead | Criação de funis dinâmicos e interativos",
+    "icon": "https://site-images.similarcdn.com/image?url=inlead.digital&t=2&s=1&h=505527b87c08bf460cb406ebf26f6e8019038881ab2c75932c71cdc7a5f1fd18",
+    "global_rank": 73867,
+    "country_rank": 7239,
+    "employee_range": "0 - 10",
+    "monthly_visits": 2853740,
+    "visits_change": 0.07,
+    "visits_trend": [
+      1027728,
+      881003,
+      945007
+    ],
+    "bounce_rate": 64.5,
+    "avg_duration": 39,
+    "pages_per_visit": 1.69,
+    "unique_users": 568387,
+    "desktop_pct": 25,
+    "mobile_pct": 75,
+    "global_rank_trend": [
+      {
+        "month": "2026-01-01",
+        "rank": 67635
+      },
+      {
+        "month": "2026-02-01",
+        "rank": 74571
+      },
+      {
+        "month": "2026-03-01",
+        "rank": 73867
+      }
+    ],
+    "traffic_sources": {
+      "direct": 868479,
+      "direct_pct": 30,
+      "organic_search": 0,
+      "organic_pct": 0,
+      "paid_search": 0,
+      "paid_pct": 0,
+      "social": 0,
+      "social_pct": null,
+      "referrals": 150436,
+      "display_ads": 913695,
+      "email": 10026
+    },
+    "geography": [
+      {
+        "country_code": 76,
+        "share": 88.5
+      },
+      {
+        "country_code": 840,
+        "share": 3.2
+      },
+      {
+        "country_code": 484,
+        "share": 2.3
+      },
+      {
+        "country_code": 604,
+        "share": 1.5
+      },
+      {
+        "country_code": 32,
+        "share": 1.4
+      }
+    ],
+    "geography_names": [
+      {
+        "code": "76",
+        "name": "Brazil"
+      },
+      {
+        "code": "840",
+        "name": "United States"
+      },
+      {
+        "code": "484",
+        "name": "Mexico"
+      },
+      {
+        "code": "604",
+        "name": "Peru"
+      },
+      {
+        "code": "32",
+        "name": "Argentina"
+      },
+      {
+        "code": "170",
+        "name": "Colombia"
+      },
+      {
+        "code": "250",
+        "name": "France"
+      },
+      {
+        "code": "620",
+        "name": "Portugal"
+      },
+      {
+        "code": "152",
+        "name": "Chile"
+      },
+      {
+        "code": "724",
+        "name": "Spain"
+      },
+      {
+        "code": "218",
+        "name": "Ecuador"
+      },
+      {
+        "code": "356",
+        "name": "India"
+      },
+      {
+        "code": "752",
+        "name": "Sweden"
+      },
+      {
+        "code": "36",
+        "name": "Australia"
+      },
+      {
+        "code": "24",
+        "name": "Angola"
+      },
+      {
+        "code": "372",
+        "name": "Ireland"
+      },
+      {
+        "code": "392",
+        "name": "Japan"
+      },
+      {
+        "code": "756",
+        "name": "Switzerland"
+      },
+      {
+        "code": "188",
+        "name": "Costa Rica"
+      },
+      {
+        "code": "616",
+        "name": "Poland"
+      },
+      {
+        "code": "348",
+        "name": "Hungary"
+      },
+      {
+        "code": "276",
+        "name": "Germany"
+      },
+      {
+        "code": "380",
+        "name": "Italy"
+      },
+      {
+        "code": "12",
+        "name": "Algeria"
+      }
+    ],
+    "visits_graph": [
+      {
+        "month": "2026-01-01",
+        "visits": 1027728
+      },
+      {
+        "month": "2026-02-01",
+        "visits": 881004
+      },
+      {
+        "month": "2026-03-01",
+        "visits": 945007
+      }
+    ],
+    "social_breakdown": {
+      "Facebook": 49.5,
+      "Instagram": 27.2,
+      "Youtube": 22.5,
+      "Linkedin": 0.6,
+      "WhatsApp Webapp": 0.1
+    },
+    "branded_search": {
+      "branded_pct": 96,
+      "non_branded_pct": 4
+    },
+    "top_keywords": [
+      {
+        "keyword": "xquiz",
+        "share": 65.7,
+        "visits": 920
+      },
+      {
+        "keyword": "trufull - cbd",
+        "share": 6.4,
+        "visits": 90
+      },
+      {
+        "keyword": "como calcular imc",
+        "share": 5,
+        "visits": 70
+      },
+      {
+        "keyword": "tetrahidrocanabinol",
+        "share": 5,
+        "visits": 70
+      },
+      {
+        "keyword": "quiz lead",
+        "share": 3.6,
+        "visits": 50
+      }
+    ],
+    "competitors": [
+      {
+        "domain": "lemlist.com",
+        "visits": 2549524,
+        "change": 0.04
+      },
+      {
+        "domain": "snov.io",
+        "visits": 3382090,
+        "change": 0.25
+      },
+      {
+        "domain": "utmify.com.br",
+        "visits": 3494222,
+        "change": 0.18
+      },
+      {
+        "domain": "leadiq.com",
+        "visits": 1200138,
+        "change": 0.09
+      }
+    ]
   }
 }

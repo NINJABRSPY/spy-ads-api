@@ -1,7 +1,7 @@
 [
-  {"name": "laravel_session", "value": "eyJpdiI6InZyTzdJM3ozXC90ZkwzRjM3VjZGSzh3PT0iLCJ2YWx1ZSI6IldNZ2RLTVJcL0Y5NmFUWVloemNOT3o1VnJtUEMwRlBcL3g3TzlMN1BVUE80QWQ0WHRRSWlYODdoMUJ6WkdxZDFjUyIsIm1hYyI6IjY0MmYyZGNlNWVhZjE4OGVhMTg3YTU2MTRjZjJmMzIxMzU4NDExNGU0ZjhkOTRjMmVlODI3MjY1NGZkY2VmODUifQ%3D%3D", "domain": "native.adplexity.com", "path": "/"},
+  {"name": "laravel_session", "value": "eyJpdiI6ImJuQTBkOFwvbjBTNWNZcUJcLzZGUzJLQT09IiwidmFsdWUiOiIzM1RwTk0rU2ZZeGxMa09BSWFiUDZQUm5xS3plXC9WKzJWQ0hhUjRsR1krenMxODZqSzVSc3lhMUxQNGJzVXh3diIsIm1hYyI6IjEyYTY4NjI1ZjRmNTdkYzI4YzU1ZWZiZGJhMGY0ZjU1MTAxOGUxYzVjZGVjNzJhNmMwZGZjYzVjODA5YmFjMzIifQ%3D%3D", "domain": "native.adplexity.com", "path": "/"},
   {"name": "amember_s", "value": "k480ktf9nkgl54i80se1le42d2", "domain": ".adplexity.com", "path": "/"},
   {"name": "amember_nr", "value": "92ab0750f92cca68a13fff148e9d7d2c", "domain": ".adplexity.com", "path": "/"},
   {"name": "prefer-v2-ui", "value": "true", "domain": "native.adplexity.com", "path": "/"},
-  {"name": "XSRF-TOKEN", "value": "eyJpdiI6Ikcyc2RwUUhcL2Era3JmSjYyQVF4RWRBPT0iLCJ2YWx1ZSI6Ik5NK2d5SnNOb1BUakxIejJ2NjBrYVZ2ZGN5dm9WZHpHZFRzSEl6ajZaR2NPSVdOUlwvUjVubm1Fc2FqS1dwMVJhIiwibWFjIjoiY2QwOTAzYzNkNGQ3Mjg0YTAyMTAwNmJmNjRiNWQ3NTUyMDNmYmI2MzEwNDVjYzliNDM0Y2MzN2EzY2E5ZWNkZSJ9", "domain": "native.adplexity.com", "path": "/"}
+  {"name": "XSRF-TOKEN", "value": "eyJpdiI6IlFnMmZCM0lFQVB2VVhkREFrTk53aFE9PSIsInZhbHVlIjoiYnBNQWFSWG9RTm13NnBzMEpTZ0hvcXJ3UUJxT2VlUCtTRlRPN3pib21VZ01yUHdJY2puSjUwRGVOWWxLblk5eiIsIm1hYyI6IjFjMDQyMjAwOWFkM2MwMWU3ZTI4NDJkZWZmZTI4YmVkYzAzN2RlNGFjOGJlYzM5OTExMTVmNzA2ZjQ3ZGYyYjAifQ%3D%3D", "domain": "native.adplexity.com", "path": "/"}
 ]
